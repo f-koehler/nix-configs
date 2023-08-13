@@ -55,6 +55,7 @@
 
         homebrew = {
           enable = true;
+          brewPrefix = "/opt/homebrew/bin";
           onActivation.cleanup = "zap";
           casks = [
             "bitwarden"
@@ -66,10 +67,10 @@
             "libreoffice"
             "mactex"
             "microsoft-teams"
-            "microsoft-onenote"
-            "microsoft-excel"
-            "microsoft-word"
-            "microsoft-powerpoint"
+            # "microsoft-onenote"
+            # "microsoft-excel"
+            # "microsoft-word"
+            # "microsoft-powerpoint"
             "nextcloud"
             "obsidian"
             "protonmail-bridge"
@@ -87,10 +88,11 @@
           ];
           masApps = {
             "Magnet" = 441258766;
-            "Microsoft Excel" = 462058435;
-            "Microsoft OneNote" = 784801555;
+            "Tailscale" = 1475387142;
+            "Xcode" = 497799835;
           };
           taps = [
+            "homebrew/cask"
             "homebrew/cask-fonts"
             "homebrew/cask-versions"
           ];

@@ -57,6 +57,9 @@
           enable = true;
           brewPrefix = "/opt/homebrew/bin";
           onActivation.cleanup = "zap";
+          brews = [
+            "java"
+          ];
           casks = [
             "bitwarden"
             "brave-browser"
@@ -68,9 +71,9 @@
             "mactex"
             "microsoft-teams"
             # "microsoft-onenote"
-            # "microsoft-excel"
-            # "microsoft-word"
-            # "microsoft-powerpoint"
+            "microsoft-excel"
+            "microsoft-word"
+            "microsoft-powerpoint"
             "nextcloud"
             "obsidian"
             "protonmail-bridge"

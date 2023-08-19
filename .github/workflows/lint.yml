@@ -1,0 +1,19 @@
+name: "Lint"
+on:
+  pull_request:
+  push:
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v22
+      - name: Check home-manager flake
+        run: nix flake check
+        working-directory: home-manager
+      - name: Check nix-darwin flake
+        run: nix flake check
+        working-directory: nix-darwin
+      - name: Check nixos flake
+        run: nix flake check
+        working-directory: nixos

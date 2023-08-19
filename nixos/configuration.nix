@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -43,7 +44,7 @@
     LC_TIME = "en_SG.UTF-8";
   };
 
-  services.flatpak.enable = true; 
+  services.flatpak.enable = true;
   virtualisation.docker.enable = true;
 
   # Enable the X11 windowing system.
@@ -87,7 +88,7 @@
     isNormalUser = true;
     description = "Fabian Koehler";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [];
+    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
@@ -96,12 +97,14 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  alacritty
-  #brave
-  git
-  neovim
-  vscode-fhs
-  zsh
+    alacritty
+    #brave
+    git
+    neovim
+    vscode-fhs
+    zsh
+    firefox
+    nixpkgs-fmt
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

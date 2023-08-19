@@ -14,7 +14,8 @@
     let
       system = "aarch64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-    in {
+    in
+    {
       homeConfigurations."fkoehler" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 

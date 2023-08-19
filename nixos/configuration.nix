@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -96,7 +97,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   alacritty
-  brave
+  #brave
   git
   neovim
   vscode-fhs

@@ -4,7 +4,7 @@
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "fkoehler";
-  home.homeDirectory = (if pkgs.stdenv.isDarwin then "/Users/fkoehler" else "/home/fkoehler");
+  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/fkoehler" else "/home/fkoehler";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -81,7 +81,7 @@
     enable = true;
     settings = {
       font = {
-        size = (if pkgs.stdenv.isDarwin then 12 else 9);
+        size = if pkgs.stdenv.isDarwin then 12 else 9;
         normal = {
           family = "Hack Nerd Font";
           style = "Regular";

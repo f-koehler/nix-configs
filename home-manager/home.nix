@@ -101,9 +101,11 @@
       };
     };
   };
+  programs.bash.enable = true;
   programs.bat.enable = true;
   programs.direnv = {
     enable = true;
+    enableBashIntegration = true;
     enableZshIntegration = true;
   };
   programs.exa = {
@@ -112,6 +114,7 @@
   };
   programs.fzf = {
     enable = true;
+    enableBashIntegration = true;
     enableZshIntegration = true;
     tmux.enableShellIntegration = true;
   };
@@ -172,6 +175,7 @@
   };
   programs.starship = {
     enable = true;
+    enableBashIntegration = true;
     enableZshIntegration = true;
   };
   programs.tmux = {
@@ -187,6 +191,7 @@
   };
   programs.zoxide = {
     enable = true;
+    enableBashIntegration = true;
     enableZshIntegration = true;
   };
   programs.zsh = {

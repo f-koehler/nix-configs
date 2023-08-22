@@ -48,11 +48,15 @@ jobs:
       - uses: cachix/install-nix-action@v22
         with:
           nix_path: nixpkgs=channel:nixos-unstable
-      - name: Run home-manager
+      - name: Add nix channel.
+        run: nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+      - name: Update channels.
+        run: nix-channel --update
+      - name: Install home-manager.
+        run: nix-shell '<home-manager>' -A install
+      - name: Copy config.
         run: |
-          nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-          nix-channel --update
-          nix-shell '<home-manager>' -A install
           mkdir -p ~/.config/home-manager
           cp -v home-manager/home.nix ~/.config/home-manager
-          home-manager build
+      - name: Run home-manager.
+        run: home-manager build

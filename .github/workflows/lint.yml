@@ -36,4 +36,18 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Lint
-        run: scripts/statix-check.sh
+        run: ./scripts/statix-check.sh
+  home-manager:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v22
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+      - name: Run home-manager
+        run: |
+          nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+          nix-channel --update
+          mkdir -p ~/.config/home-manager
+          cp -v home-manager/home.nix ~/.config/home-manager
+          home-manager build

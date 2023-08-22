@@ -33,7 +33,10 @@
     gnupg
     htop
     jq
+    nmap
     neovim
+    ghostscript
+    poppler_utils
     qpdf
     rsync
     starship
@@ -50,6 +53,7 @@
     onActivation.cleanup = "zap";
     brews = [
       "java"
+      "latexindent"
     ];
     casks = [
       "bitwarden"

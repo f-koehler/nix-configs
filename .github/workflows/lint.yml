@@ -48,5 +48,7 @@ jobs:
       - uses: cachix/install-nix-action@v22
         with:
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: Create state directory.
+        run: mkdir -p ~/.local/state/home-manager/profiles
       - name: Run home-manager.
         run: nix run home-manager/master -- switch --flake ${GITHUB_WORKSPACE}/home-manager/

@@ -49,4 +49,4 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Run home-manager.
-        run: nix run home-manager/master -- init --switch ./home-manager
+        run: nix run home-manager/master -- switch --flake ${GITHUB_WORKSPACE}/home-manager/

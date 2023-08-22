@@ -48,16 +48,5 @@ jobs:
       - uses: cachix/install-nix-action@v22
         with:
           nix_path: nixpkgs=channel:nixos-unstable
-          extra_nix_config: "allowed-users = runner"
-      - name: Add nix channel.
-        run: nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-      - name: Update channels.
-        run: nix-channel --update
-      - name: Install home-manager.
-        run: nix-shell '<home-manager>' -A install
-      - name: Copy config.
-        run: |
-          mkdir -p ~/.config/home-manager
-          cp -v home-manager/home.nix ~/.config/home-manager
       - name: Run home-manager.
-        run: home-manager build
+        run: nix run home-manager/master -- init --switch ./home-manager

@@ -48,6 +48,9 @@ jobs:
       - uses: cachix/install-nix-action@v22
         with:
           nix_path: nixpkgs=channel:nixos-unstable
+          # extra_nix_config: "allowed_users"
+      - name: Get user.
+        run: whoami
       - name: Add nix channel.
         run: nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
       - name: Update channels.

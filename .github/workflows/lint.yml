@@ -45,12 +45,11 @@ jobs:
       - statix
     steps:
       - uses: actions/checkout@v3
-      - name: Show hostname.
-        run: hostname -s
       - uses: cachix/install-nix-action@v22
         with:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Create state directory.
         run: mkdir -p ~/.local/state/nix/profiles
       - name: Run home-manager.
-        run: nix run home-manager/master -- switch --flake ${GITHUB_WORKSPACE}/home-manager/
+        run: nix run home-manager/master -- switch --flake ".#runner"
+        working-directory: home-manager

@@ -45,6 +45,8 @@ jobs:
       - statix
     steps:
       - uses: actions/checkout@v3
+      - name: Show hostname.
+        run: hostname -s
       - uses: cachix/install-nix-action@v22
         with:
           nix_path: nixpkgs=channel:nixos-unstable

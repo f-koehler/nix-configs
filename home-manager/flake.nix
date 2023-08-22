@@ -10,21 +10,18 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
-    let
-      system = "aarch64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
-      homeConfigurations."fkoehler" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [ ./home.nix ];
-
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
+  outputs = inputs@{ nixpkgs, home-manager, ... }: {
+    homeConfigurations."fkoehler@mbp2021" = home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs {
+        system = "aarch64-darwin";
       };
+      modules = [ ./home.nix ];
     };
+    homeConfigurations."fkoehler@fke15" = home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+      };
+      modules = [ ./home.nix ];
+    };
+  };
 }

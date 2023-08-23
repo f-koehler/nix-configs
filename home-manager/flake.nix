@@ -12,24 +12,34 @@
 
   outputs = inputs@{ nixpkgs, home-manager, ... }: {
     homeConfigurations."fkoehler@mbp2021" = home-manager.lib.homeManagerConfiguration {
-      username = "fkoehler";
-      homeDirectory = "/Users/fkoehler";
       pkgs = import nixpkgs {
         system = "aarch64-darwin";
       };
-      modules = [ ./home.nix ];
+      modules = [
+        ./home.nix
+        {
+          home = {
+            username = "fkoehler";
+            homeDirectory = "/Users/fkoehler";
+          };
+        }
+      ];
     };
     homeConfigurations."fkoehler@fke15" = home-manager.lib.homeManagerConfiguration {
-      username = "fkoehler";
-      homeDirectory = "/home/fkoehler";
       pkgs = import nixpkgs {
         system = "x86_64-linux";
       };
-      modules = [ ./home.nix ];
+      modules = [
+        ./home.nix
+        {
+          home = {
+            username = "fkoehler";
+            homeDirectory = "/home/fkoehler";
+          };
+        }
+      ];
     };
     homeConfigurations."runner" = home-manager.lib.homeManagerConfiguration {
-      username = "runner";
-      homeDirectory = "/home/runner";
       pkgs = import nixpkgs {
         system = "x86_64-linux";
       };

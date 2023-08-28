@@ -101,6 +101,12 @@
       };
     };
   };
+
+  programs.atuin = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+  };
   programs.bash.enable = true;
   programs.bat.enable = true;
   programs.direnv = {
@@ -112,12 +118,12 @@
     enable = true;
     enableAliases = true;
   };
-  programs.fzf = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    tmux.enableShellIntegration = true;
-  };
+  # programs.fzf = {
+  #   enable = true;
+  #   enableBashIntegration = true;
+  #   enableZshIntegration = true;
+  #   tmux.enableShellIntegration = true;
+  # };
   programs.gh = {
     enable = true;
     extensions = with pkgs; [

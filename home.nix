@@ -55,7 +55,7 @@
     # '';
   };
 
-  xdg.configFile.nvim.source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/nvim";
+  xdg.configFile.nvim.source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Code/configs/nvim";
 
   # You can also manage environment variables but you will have to manually
   # source

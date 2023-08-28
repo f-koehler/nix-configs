@@ -5,9 +5,10 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixgl.url = "github:guibou/nixGL";
   };
 
-  outputs = inputs@{ self, nix-darwin, home-manager, nixpkgs, ... }: {
+  outputs = inputs@{ self, nix-darwin, home-manager, nixpkgs, nixgl, ... }: {
     darwinConfigurations."mbp2021" = nix-darwin.lib.darwinSystem {
       modules = [
         ./nix-darwin/configuration.nix
@@ -23,6 +24,7 @@
     homeConfigurations."fkoehler@fke15" = home-manager.lib.homeManagerConfiguration {
       pkgs = import nixpkgs {
         system = "x86_64-linux";
+        overlays = [ nixgl.overlay ];
       };
       modules = [
         ./home.nix

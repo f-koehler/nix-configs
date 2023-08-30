@@ -10,9 +10,8 @@ jobs:
       - uses: cachix/install-nix-action@v22
         with:
           nix_path: nixpkgs=channel:nixos-unstable
-      - name: Check home-manager flake
+      - name: Check main flake
         run: nix flake check
-        working-directory: home-manager
       - name: Check nix-darwin flake
         run: nix flake check
         working-directory: nix-darwin

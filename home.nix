@@ -106,6 +106,14 @@
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
+    settings = {
+      style = "compact";
+      inline_height = 20;
+      show_preview = true;
+    };
+    flags = [
+      "--disable-up-arrow"
+    ];
   };
   programs.bash.enable = true;
   programs.bat.enable = true;

@@ -19,6 +19,7 @@
   # environment.
   home.packages = with pkgs; [
     bat
+    fish
     neovim
     nixpkgs-fmt
     zsh
@@ -105,6 +106,7 @@
   programs.atuin = {
     enable = true;
     enableBashIntegration = true;
+    enableFishIntegration = true;
     enableZshIntegration = true;
     settings = {
       style = "compact";
@@ -120,6 +122,7 @@
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
+    enableFishIntegration = true;
     enableZshIntegration = true;
   };
   programs.exa = {
@@ -129,6 +132,7 @@
   # programs.fzf = {
   #   enable = true;
   #   enableBashIntegration = true;
+  #   enableFishIntegration = true;
   #   enableZshIntegration = true;
   #   tmux.enableShellIntegration = true;
   # };
@@ -190,6 +194,7 @@
   programs.starship = {
     enable = true;
     enableBashIntegration = true;
+    enableFishIntegration = true;
     enableZshIntegration = true;
   };
   programs.tmux = {
@@ -206,6 +211,7 @@
   programs.zoxide = {
     enable = true;
     enableBashIntegration = true;
+    enableFishIntegration = true;
     enableZshIntegration = true;
   };
   programs.zsh = {

@@ -205,6 +205,11 @@
     mouse = true;
     terminal = "screen-256color";
   };
+  programs.wezterm = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+  };
   programs.zellij = {
     enable = true;
   };

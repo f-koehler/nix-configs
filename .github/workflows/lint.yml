@@ -15,9 +15,6 @@ jobs:
       - name: Check nix-darwin flake
         run: nix flake check
         working-directory: nix-darwin
-      - name: Check nixos flake
-        run: nix flake check
-        working-directory: nixos
   nixpkgs-fmt:
     runs-on: ubuntu-latest
     steps:

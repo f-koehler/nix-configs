@@ -48,4 +48,3 @@ jobs:
         run: mkdir -p ~/.local/state/nix/profiles
       - name: Run home-manager.
         run: nix run home-manager/master -- switch -b backup --flake ".#runner"
-        working-directory: home-manager

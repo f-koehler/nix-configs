@@ -257,9 +257,9 @@
       bindkey "^[[3~" delete-char
       bindkey "^[[1;3D" backward-word
       bindkey "^[[1;3C" forward-word
-      if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+      if [[ "$OSTYPE" == "darwin"* ]]; then
         eval $(/opt/homebrew/bin/brew shellenv )
-        export FPATH=\"/opt/homebrew/share/zsh/site-functions:${FPATH}\"
+        export FPATH=\"/opt/homebrew/share/zsh/site-functions:''${FPATH}\"
       fi
     '';
   };

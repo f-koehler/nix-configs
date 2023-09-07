@@ -8,7 +8,7 @@
     nixgl.url = "github:guibou/nixGL";
   };
 
-  outputs = inputs@{ self, nix-darwin, home-manager, nixpkgs, nixgl, ... }: {
+  outputs = { nix-darwin, home-manager, nixpkgs, nixgl, ... }: {
     darwinConfigurations."mbp2021" = nix-darwin.lib.darwinSystem {
       modules = [
         ./nix-darwin/configuration.nix

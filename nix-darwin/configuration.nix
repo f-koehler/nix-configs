@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
   users.users.fkoehler.home = "/Users/fkoehler";
 
   # List packages installed in system profile. To search by name, run:

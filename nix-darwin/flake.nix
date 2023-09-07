@@ -9,7 +9,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, home-manager, nixpkgs, ... }: {
+  outputs = { nix-darwin, home-manager, ... }: {
     darwinConfigurations."mbp2021" = nix-darwin.lib.darwinSystem {
       modules = [
         ./configuration.nix

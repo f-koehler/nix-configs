@@ -26,7 +26,7 @@
 
     bat
     direnv
-    exa
+    eza
     fzf
     gh
     git

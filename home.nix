@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -205,7 +205,7 @@
     mouse = true;
     terminal = "screen-256color";
   };
-  programs.wezterm = {
+  programs.wezterm = lib.mkIf pkgs.stdenv.isLinux {
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;

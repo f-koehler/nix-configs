@@ -10,11 +10,8 @@ jobs:
       - uses: cachix/install-nix-action@v23
         with:
           nix_path: nixpkgs=channel:nixos-unstable
-      - name: Check main flake
+      - name: Check flake
         run: nix flake check
-      - name: Check nix-darwin flake
-        run: nix flake check
-        working-directory: nix-darwin
   nixpkgs-fmt:
     runs-on: ubuntu-latest
     steps:

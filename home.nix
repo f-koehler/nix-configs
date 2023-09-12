@@ -261,6 +261,9 @@
         eval $(/opt/homebrew/bin/brew shellenv )
         export FPATH=\"/opt/homebrew/share/zsh/site-functions:''${FPATH}\"
       fi
+      
+      export GPG_TTY=$(tty)
+      export EDITOR=nvim
     '';
   };
 

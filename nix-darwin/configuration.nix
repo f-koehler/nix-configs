@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
   users.users.fkoehler.home = "/Users/fkoehler";
 
   # List packages installed in system profile. To search by name, run:
@@ -26,7 +26,7 @@
 
     bat
     direnv
-    exa
+    eza
     fzf
     gh
     git
@@ -52,6 +52,7 @@
     brewPrefix = "/opt/homebrew/bin";
     onActivation.cleanup = "zap";
     brews = [
+      "ffmpeg"
       "java"
       "latexindent"
     ];
@@ -90,6 +91,7 @@
       "Magnet" = 441258766;
       "Tailscale" = 1475387142;
       "Xcode" = 497799835;
+      "Microsoft Remote Desktop" = 1295203466;
     };
     taps = [
       "homebrew/cask"

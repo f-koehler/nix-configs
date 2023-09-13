@@ -8,7 +8,7 @@
     nixgl.url = "github:guibou/nixGL";
   };
 
-  outputs = inputs@{ self, nix-darwin, home-manager, nixpkgs, nixgl, ... }: {
+  outputs = { nix-darwin, home-manager, nixpkgs, nixgl, ... }: {
     darwinConfigurations."mbp2021" = nix-darwin.lib.darwinSystem {
       modules = [
         ./nix-darwin/configuration.nix
@@ -32,6 +32,21 @@
           home = {
             username = "fkoehler";
             homeDirectory = "/home/fkoehler";
+          };
+        }
+      ];
+    };
+
+    homeConfigurations."runner" = home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+      };
+      modules = [
+        ./home.nix
+        {
+          home = {
+            username = "runner";
+            homeDirectory = "/home/runner";
           };
         }
       ];

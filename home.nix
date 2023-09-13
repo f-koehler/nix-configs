@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -126,7 +126,7 @@
     enableFishIntegration = true;
     enableZshIntegration = true;
   };
-  programs.exa = {
+  programs.eza = {
     enable = true;
     enableAliases = true;
   };
@@ -206,7 +206,7 @@
     mouse = true;
     terminal = "screen-256color";
   };
-  programs.wezterm = {
+  programs.wezterm = lib.mkIf pkgs.stdenv.isLinux {
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
@@ -258,6 +258,13 @@
       bindkey "^[[3~" delete-char
       bindkey "^[[1;3D" backward-word
       bindkey "^[[1;3C" forward-word
+      if [[ "$OSTYPE" == "darwin"* ]]; then
+        eval $(/opt/homebrew/bin/brew shellenv )
+        export FPATH=\"/opt/homebrew/share/zsh/site-functions:''${FPATH}\"
+      fi
+      
+      export GPG_TTY=$(tty)
+      export EDITOR=nvim
     '';
   };
 

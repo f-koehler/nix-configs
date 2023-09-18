@@ -225,6 +225,11 @@
       return config
     '';
   };
+  programs.yazi = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+  };
   programs.zellij = {
     enable = true;
   };

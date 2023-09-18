@@ -45,6 +45,8 @@
     zellij
     zoxide
     zsh
+
+    # julia-bin
   ];
 
   homebrew = {
@@ -66,11 +68,12 @@
       "libreoffice"
       "mactex"
       "microsoft-teams"
-      # "microsoft-onenote"
+      "microsoft-onenote"
       # "microsoft-outlook"
       "microsoft-excel"
       "microsoft-word"
       "microsoft-powerpoint"
+      "mullvadvpn"
       "nextcloud"
       "obsidian"
       "protonmail-bridge"
@@ -79,11 +82,13 @@
       "steam"
       "telegram"
       "thunderbird"
+      "transmission"
       "utm"
       "visual-studio-code"
       "warp"
       "wezterm"
       "whatsapp"
+      "tinymediamanager"
       "zoom"
       "zotero"
     ];

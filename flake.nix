@@ -11,7 +11,7 @@
   outputs = { nix-darwin, home-manager, nixpkgs, nixgl, ... }: {
     darwinConfigurations."mbp2021" = nix-darwin.lib.darwinSystem {
       modules = [
-        ./nix-darwin/configuration.nix
+        ./darwin.nix
         home-manager.darwinModules.home-manager
         {
           home-manager = {

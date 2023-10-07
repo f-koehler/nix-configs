@@ -14,9 +14,11 @@
         ./nix-darwin/configuration.nix
         home-manager.darwinModules.home-manager
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.fkoehler = import ./home.nix;
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.fkoehler = import ./home.nix;
+          };
         }
       ];
     };

@@ -21,7 +21,6 @@
     awscli2
     bat
     fish
-    neovim
     nixpkgs-fmt
     zsh
     # # Adds the 'hello' command to your environment. It prints a friendly
@@ -163,10 +162,10 @@
       };
     };
   };
-  # programs.neovim = {
-  #   enable = true;
-  #   defaultEditor = true;
-  # };
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
   programs.ssh = {
     enable = true;
     matchBlocks = {

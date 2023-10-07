@@ -11,10 +11,10 @@ elif [ -f "/etc/NIXOS" ]; then
     echo "NixOS needs to be implemented"
     exit 1
 else
-    NUM_JOBS="$(nproc -a)"
-    nix run --max-jobs ${NUM_JOBS} hume-manager/master -- switch -b backup --flake .
+    NUM_JOBS="$(nproc --all)"
+    nix run --max-jobs ${NUM_JOBS} home-manager/master -- switch -b backup --flake .
     flatpak update --user -y
     flatpak update --system -y
-    pkcon refresh --plain -y
-    pkcon update --plain -y
+    sudo pkcon refresh --plain -y
+    sudo pkcon update --plain -y
 fi

@@ -21,6 +21,7 @@
     awscli2
     bat
     fish
+    # neovim
     nixpkgs-fmt
     zsh
     # # Adds the 'hello' command to your environment. It prints a friendly
@@ -205,7 +206,8 @@
     mouse = true;
     terminal = "screen-256color";
   };
-  programs.wezterm = lib.mkIf pkgs.stdenv.isLinux {
+  # programs.wezterm = lib.mkIf pkgs.stdenv.isLinux {
+  programs.wezterm = {
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
@@ -268,7 +270,6 @@
       fi
       
       export GPG_TTY=$(tty)
-      export EDITOR=nvim
     '';
   };
 

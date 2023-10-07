@@ -34,7 +34,7 @@
     htop
     jq
     nmap
-    neovim
+    # neovim
     ghostscript
     poppler_utils
     qpdf

@@ -88,43 +88,16 @@
 
     bash.enable = true;
     bat.enable = true;
-    direnv = {
-      enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableZshIntegration = true;
-    };
     eza = {
       enable = true;
       enableAliases = true;
     };
-    # fzf = {
-    #   enable = true;
-    #   enableBashIntegration = true;
-    #   enableFishIntegration = true;
-    #   enableZshIntegration = true;
-    #   tmux.enableShellIntegration = true;
-    # };
     gh = {
       enable = true;
     };
     neovim = {
       enable = true;
       defaultEditor = true;
-    };
-    starship = {
-      enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableZshIntegration = true;
-    };
-    tmux = {
-      enable = true;
-      aggressiveResize = true;
-      escapeTime = 0;
-      historyLimit = 50000;
-      mouse = true;
-      terminal = "screen-256color";
     };
     # wezterm = lib.mkIf pkgs.stdenv.isLinux {
     yazi = {
@@ -134,12 +107,6 @@
     };
     zellij = {
       enable = true;
-    };
-    zoxide = {
-      enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableZshIntegration = true;
     };
 
     # Let Home Manager install and manage itself.

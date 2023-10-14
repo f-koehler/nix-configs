@@ -20,6 +20,8 @@
     nodejs
     yarn
 
+    micromamba
+
     nixpkgs-fmt
     nixpkgs-lint
     nixd

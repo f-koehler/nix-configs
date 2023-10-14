@@ -24,6 +24,7 @@
       awscli2
       bat
       fish
+      micromamba
       # neovim
       nixpkgs-fmt
       zsh

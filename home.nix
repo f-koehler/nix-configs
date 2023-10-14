@@ -269,12 +269,15 @@
         bindkey "^[[3~" delete-char
         bindkey "^[[1;3D" backward-word
         bindkey "^[[1;3C" forward-word
-        if [[ "$OSTYPE" == "darwin"* ]]; then
-          eval $(/opt/homebrew/bin/brew shellenv )
-          export FPATH=\"/opt/homebrew/share/zsh/site-functions:''${FPATH}\"
-        fi
-      
+
         export GPG_TTY=$(tty)
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+          eval $(/opt/homebrew/bin/brew shellenv)
+          export FPATH=\"/opt/homebrew/share/zsh/site-functions:''${FPATH}\"
+          eval "$(/usr/libexec/path_helper)"
+        fi
+
+        eval "$(micromamba shell hook --shell=zsh)"
       '';
     };
 

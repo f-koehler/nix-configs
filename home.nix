@@ -85,45 +85,7 @@
   };
 
   programs = {
-    alacritty = {
-      enable = true;
-      settings = {
-        font = {
-          size = if pkgs.stdenv.isDarwin then 12 else 9;
-          normal = {
-            family = "Hack Nerd Font";
-            style = "Regular";
-          };
-          bold = {
-            family = "Hack Nerd Font";
-            style = "Bold";
-          };
-          italic = {
-            family = "Hack Nerd Font";
-            style = "Italic";
-          };
-          bold_italic = {
-            family = "Hack Nerd Font";
-            style = "Bold Italic";
-          };
-        };
-      };
-    };
 
-    atuin = {
-      enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableZshIntegration = true;
-      settings = {
-        style = "compact";
-        inline_height = 20;
-        show_preview = true;
-      };
-      flags = [
-        "--disable-up-arrow"
-      ];
-    };
     bash.enable = true;
     bat.enable = true;
     direnv = {
@@ -146,53 +108,9 @@
     gh = {
       enable = true;
     };
-    git = {
-      enable = true;
-      userEmail = "me@fkoehler.org";
-      userName = "Fabian Köhler";
-      signing = {
-        key = "C5DC80511469AD81C84E3564D55A35AFB2900A11";
-      };
-      extraConfig = {
-        pull = {
-          rebase = "false";
-        };
-        init = {
-          defaultBranch = "main";
-        };
-        color = {
-          ui = "auto";
-        };
-      };
-    };
     neovim = {
       enable = true;
       defaultEditor = true;
-    };
-    ssh = {
-      enable = true;
-      matchBlocks = {
-        "mbp2021" = {
-          hostname = "100.101.7.60";
-          port = 22;
-          user = "fkoehler";
-        };
-        "vps" = {
-          hostname = "100.74.108.18";
-          port = 20257;
-          user = "fkoehler";
-        };
-        "osmc" = {
-          hostname = "100.82.94.54";
-          port = 22;
-          user = "osmc";
-        };
-        "zoq45" = {
-          hostname = "100.107.23.113";
-          port = 22;
-          user = "fkoehler";
-        };
-      };
     };
     starship = {
       enable = true;
@@ -209,25 +127,6 @@
       terminal = "screen-256color";
     };
     # wezterm = lib.mkIf pkgs.stdenv.isLinux {
-    wezterm = {
-      enable = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
-      extraConfig = ''
-        local wezterm = require 'wezterm';
-        local config = {}
-        if wezterm.config_builder then
-          config = wezterm.config_builder()
-        end
-
-        config.audible_bell = "Disabled"
-        config.font = wezterm.font('Hack Nerd Font')
-        config.font_size = 9.0
-        config.hide_tab_bar_if_only_one_tab = true
-    
-        return config
-      '';
-    };
     yazi = {
       enable = true;
       enableBashIntegration = true;
@@ -241,41 +140,6 @@
       enableBashIntegration = true;
       enableFishIntegration = true;
       enableZshIntegration = true;
-    };
-    zsh = {
-      enable = true;
-      autocd = true;
-      enableAutosuggestions = true;
-      enableCompletion = true;
-      enableVteIntegration = true;
-      history = {
-        expireDuplicatesFirst = true;
-        extended = true;
-        ignoreAllDups = true;
-        ignoreDups = true;
-        ignoreSpace = true;
-        save = 1000000;
-        share = true;
-        size = 1000000;
-      };
-      initExtra = ''
-        bindkey "^[[H" beginning-of-line
-        bindkey "^[[F" end-of-line
-        bindkey "^[[1;5C" forward-word
-        bindkey "^[[1;5D" backward-word
-        bindkey "^[[3~" delete-char
-        bindkey "^[[1;3D" backward-word
-        bindkey "^[[1;3C" forward-word
-
-        export GPG_TTY=$(tty)
-        if [[ "$OSTYPE" == "darwin"* ]]; then
-          eval $(/opt/homebrew/bin/brew shellenv)
-          export FPATH=\"/opt/homebrew/share/zsh/site-functions:''${FPATH}\"
-          eval "$(/usr/libexec/path_helper)"
-        fi
-
-        eval "$(micromamba shell hook --shell=zsh)"
-      '';
     };
 
     # Let Home Manager install and manage itself.

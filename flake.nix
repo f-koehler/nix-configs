@@ -34,6 +34,7 @@
             homeDirectory = "/home/fkoehler";
           };
         }
+        ./home/default.nix
       ];
     };
 

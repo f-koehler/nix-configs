@@ -1,4 +1,4 @@
-{ home-manager, ... }: {
+{ ... }: {
   home = {
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
@@ -27,4 +27,5 @@
     ./zsh.nix
   ];
 
+  programs.home-manager.enable = true;
 }

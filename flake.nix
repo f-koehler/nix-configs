@@ -19,6 +19,7 @@
             users.fkoehler = import ./home.nix;
           };
         }
+        ./home/default.nix
       ];
     };
 
@@ -50,6 +51,7 @@
             homeDirectory = "/home/runner";
           };
         }
+        ./home/default.nix
       ];
     };
   };

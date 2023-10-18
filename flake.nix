@@ -21,6 +21,20 @@
       url = "github:nix-community/nix-index-database/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-anywhere = {
+      url = "github:nix-community/nixos-anywhere/main";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        disko.follows = "disko";
+      };
+    };
+
   };
 
   outputs = { nix-darwin, home-manager, nix-index-database, nixpkgs, ... }: {

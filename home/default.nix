@@ -18,6 +18,7 @@
   imports = [
     ./alacritty.nix
     ./atuin.nix
+    ./firefox.nix
     ./git.nix
     ./ssh.nix
     ./starship.nix

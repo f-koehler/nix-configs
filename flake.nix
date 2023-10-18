@@ -23,9 +23,10 @@
     };
   };
 
-  outputs = { nix-darwin, home-manager, nixpkgs, ... }: {
+  outputs = { nix-darwin, home-manager, nix-index-database, nixpkgs, ... }: {
     darwinConfigurations."mbp2021" = nix-darwin.lib.darwinSystem {
       modules = [
+        nix-index-database.darwinModules.nix-index
         ./darwin.nix
         home-manager.darwinModules.home-manager
         {
@@ -44,6 +45,7 @@
         system = "x86_64-linux";
       };
       modules = [
+        nix-index-database.hmModules.nix-index
         ./home.nix
         {
           home = {
@@ -60,6 +62,7 @@
         system = "x86_64-linux";
       };
       modules = [
+        nix-index-database.hmModules.nix-index
         ./home.nix
         {
           home = {

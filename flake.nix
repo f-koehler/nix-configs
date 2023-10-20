@@ -53,8 +53,24 @@
         ./home/default.nix
       ];
     };
-
     homeConfigurations."fkoehler@fke15" = home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+      };
+      modules = [
+        nix-index-database.hmModules.nix-index
+        ./home.nix
+        {
+          home = {
+            username = "fkoehler";
+            homeDirectory = "/home/fkoehler";
+          };
+        }
+        ./home/default.nix
+      ];
+    };
+
+    homeConfigurations."fkoehler@fkt14" = home-manager.lib.homeManagerConfiguration {
       pkgs = import nixpkgs {
         system = "x86_64-linux";
       };

@@ -19,7 +19,6 @@
     ./alacritty.nix
     ./atuin.nix
     ./direnv.nix
-    ./firefox.nix
     ./git.nix
     ./ssh.nix
     ./starship.nix

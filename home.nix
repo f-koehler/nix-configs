@@ -5,6 +5,7 @@
     package = pkgs.nix;
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
+  fonts.fontconfig.enable = true;
   home = {
     # Home Manager needs a bit of information about you and the paths it should
     # manage.

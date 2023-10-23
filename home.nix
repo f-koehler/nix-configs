@@ -93,7 +93,7 @@
     "cp" = "cp -i";
     "mv" = "mv -i";
     "rm" = "rm -i";
-    "cat" = "bat --plain --paging=never";
+    "cat" = "bat --style=plain --paging=never";
   };
 
   programs = {

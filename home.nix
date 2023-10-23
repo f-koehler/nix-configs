@@ -34,6 +34,12 @@
       nixpkgs-fmt
       zsh
       yarn
+
+      pre-commit
+
+      rustc
+      cargo
+
       # # Adds the 'hello' command to your environment. It prints a friendly
       # # "Hello, world!" when run.
       # pkgs.hello

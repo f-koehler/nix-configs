@@ -25,6 +25,7 @@
       bat
       fish
       micromamba
+      terraform
       # neovim
       nixpkgs-fmt
       zsh

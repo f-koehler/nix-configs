@@ -25,6 +25,8 @@
       bat
       du-dust
       fish
+      age
+      sops
       micromamba
       pre-commit
       # neovim

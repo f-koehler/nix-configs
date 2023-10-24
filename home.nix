@@ -26,6 +26,7 @@
       du-dust
       fish
       micromamba
+      pre-commit
       # neovim
       nixpkgs-fmt
       zsh

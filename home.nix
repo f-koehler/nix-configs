@@ -1,6 +1,11 @@
 { config, pkgs, lib, ... }:
 
 {
+  nix = {
+    package = pkgs.nix;
+    settings.experimental-features = [ "nix-command" "flakes" ];
+  };
+  fonts.fontconfig.enable = true;
   home = {
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
@@ -33,6 +38,12 @@
       nixpkgs-fmt
       zsh
       yarn
+
+      pre-commit
+
+      rustc
+      cargo
+
       # # Adds the 'hello' command to your environment. It prints a friendly
       # # "Hello, world!" when run.
       # pkgs.hello
@@ -86,7 +97,7 @@
     "cp" = "cp -i";
     "mv" = "mv -i";
     "rm" = "rm -i";
-    "cat" = "bat --plain --paging=never";
+    "cat" = "bat --style=plain --paging=never";
   };
 
   programs = {

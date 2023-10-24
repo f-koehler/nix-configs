@@ -23,6 +23,7 @@
       ansible-lint
       awscli2
       bat
+      du-dust
       fish
       micromamba
       # neovim

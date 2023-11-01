@@ -99,6 +99,7 @@
     "mv" = "mv -i";
     "rm" = "rm -i";
     "cat" = "bat --style=plain --paging=never";
+    "conda" = "micromamba";
   };
 
   programs = {

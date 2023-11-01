@@ -99,7 +99,7 @@
     "mv" = "mv -i";
     "rm" = "rm -i";
     "cat" = "bat --style=plain --paging=never";
-    "conda" = "micromamba";
+    # "tailscale" = "/Applications/Tailscale.app/Contents/MacOS/Tailscale";
   };
 
   programs = {

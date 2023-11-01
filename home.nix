@@ -33,7 +33,6 @@
       age
       sops
       micromamba
-      terraform
       pre-commit
       # neovim
       nixpkgs-fmt

@@ -116,6 +116,7 @@
       enable = true;
       defaultEditor = true;
     };
+    password-store.enable = true;
     # wezterm = lib.mkIf pkgs.stdenv.isLinux {
     yazi = {
       enable = true;

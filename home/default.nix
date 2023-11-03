@@ -20,6 +20,7 @@
     ./atuin.nix
     ./direnv.nix
     ./git.nix
+    ./gpg.nix
     ./ssh.nix
     ./starship.nix
     ./tmux.nix

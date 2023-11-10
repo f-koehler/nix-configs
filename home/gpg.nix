@@ -1,5 +1,5 @@
-_: {
-  services.gpg-agent = {
+{ pkgs, ... }: {
+  services.gpg-agent = if pkgs.stdenv.isDarwin then { } else {
     enable = true;
     enableBashIntegration = true;
     enableFishIntegration = true;

@@ -37,7 +37,7 @@
   };
 
   outputs = { nix-darwin, home-manager, nix-index-database, nixpkgs, ... }: {
-    darwinConfigurations."mbp2021" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."mac_arm64" = nix-darwin.lib.darwinSystem {
       modules = [
         nix-index-database.darwinModules.nix-index
         ./darwin.nix
@@ -53,7 +53,7 @@
     };
 
     homeConfigurations = {
-      "fkoehler@fkt14" = home-manager.lib.homeManagerConfiguration {
+      "linux_x64" = home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "x86_64-linux";
           config.allowUnfree = true;
@@ -65,22 +65,6 @@
             home = {
               username = "fkoehler";
               homeDirectory = "/home/fkoehler";
-            };
-          }
-        ];
-      };
-
-      "runner" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          system = "x86_64-linux";
-        };
-        modules = [
-          nix-index-database.hmModules.nix-index
-          ./home/default.nix
-          {
-            home = {
-              username = "runner";
-              homeDirectory = "/home/runner";
             };
           }
         ];

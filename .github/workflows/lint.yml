@@ -54,4 +54,4 @@ jobs:
       - name: Create state directory.
         run: mkdir -p ~/.local/state/nix/profiles
       - name: Run home-manager.
-        run: nix run home-manager/master -- switch -b backup --flake ".#runner"
+        run: nix run home-manager/master -- switch -b backup --flake ".#linux_x64"

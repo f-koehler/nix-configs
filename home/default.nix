@@ -38,8 +38,6 @@
     # The home.packages option allows you to install Nix packages into your
     # environment.
     packages = with pkgs; [
-      ansible
-      ansible-lint
       awscli2
       bat
       du-dust
@@ -49,16 +47,8 @@
       micromamba
       pre-commit
       # neovim
-      nixpkgs-fmt
       zsh
-      yarn
       hexyl
-
-      golangci-lint
-      pre-commit
-
-      rustc
-      cargo
 
       # # Adds the 'hello' command to your environment. It prints a friendly
       # # "Hello, world!" when run.
@@ -76,7 +66,12 @@
       # (pkgs.writeShellScriptBin "my-hello" ''
       #   echo "Hello, ${config.home.username}!"
       # '')
-    ];
+    ]
+    ++ import ../packages/ansible.nix { inherit pkgs; }
+    ++ import ../packages/go.nix { inherit pkgs; }
+    ++ import ../packages/js.nix { inherit pkgs; }
+    ++ import ../packages/nix.nix { inherit pkgs; }
+    ++ import ../packages/rust.nix { inherit pkgs; };
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.

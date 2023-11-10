@@ -40,7 +40,7 @@
     darwinConfigurations."mac_arm64" = nix-darwin.lib.darwinSystem {
       modules = [
         nix-index-database.darwinModules.nix-index
-        ./darwin.nix
+        ./macos/default.nix
         home-manager.darwinModules.home-manager
         {
           home-manager = {

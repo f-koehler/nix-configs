@@ -1,21 +1,21 @@
 { config, pkgs, lib, ... }:
 
 {
-imports = [
-    ./home/alacritty.nix
-    ./home/atuin.nix
-    ./home/direnv.nix
-    ./home/git.nix
-    ./home/gpg.nix
-    ./home/ssh.nix
-    ./home/starship.nix
-    ./home/tmux.nix
-    ./home/wezterm.nix
-    ./home/zoxide.nix
-    ./home/zsh.nix
+  imports = [
+    ./alacritty.nix
+    ./atuin.nix
+    ./direnv.nix
+    ./git.nix
+    ./gpg.nix
+    ./ssh.nix
+    ./starship.nix
+    ./tmux.nix
+    ./wezterm.nix
+    ./zoxide.nix
+    ./zsh.nix
   ];
 
-  nix = if pkgs.stdenv.isDarwin then {} else {
+  nix = if pkgs.stdenv.isDarwin then { } else {
     package = pkgs.nix;
     settings.experimental-features = [ "nix-command" "flakes" ];
   };

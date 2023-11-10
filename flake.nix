@@ -46,7 +46,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.fkoehler = import ./home.nix;
+            users.fkoehler = import ./default/home.nix;
           };
         }
       ];
@@ -60,7 +60,7 @@
         };
         modules = [
           nix-index-database.hmModules.nix-index
-          ./home.nix
+          ./home/default.nix
           {
             home = {
               username = "fkoehler";
@@ -77,7 +77,7 @@
         };
         modules = [
           nix-index-database.hmModules.nix-index
-          ./home.nix
+          ./home/default.nix
           {
             home = {
               username = "fkoehler";
@@ -93,7 +93,7 @@
         };
         modules = [
           nix-index-database.hmModules.nix-index
-          ./home.nix
+          ./home/default.nix
           {
             home = {
               username = "runner";

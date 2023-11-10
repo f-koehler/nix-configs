@@ -38,7 +38,9 @@
       nixpkgs-fmt
       zsh
       yarn
+      hexyl
 
+      golangci-lint
       pre-commit
 
       rustc

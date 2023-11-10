@@ -34,7 +34,6 @@
         disko.follows = "disko";
       };
     };
-
   };
 
   outputs = { nix-darwin, home-manager, nix-index-database, nixpkgs, ... }: {
@@ -50,7 +49,6 @@
             users.fkoehler = import ./home.nix;
           };
         }
-        ./home/default.nix
       ];
     };
 
@@ -69,7 +67,6 @@
               homeDirectory = "/home/fkoehler";
             };
           }
-          ./home/default.nix
         ];
       };
 
@@ -87,7 +84,6 @@
               homeDirectory = "/home/fkoehler";
             };
           }
-          ./home/default.nix
         ];
       };
 
@@ -104,7 +100,6 @@
               homeDirectory = "/home/runner";
             };
           }
-          ./home/default.nix
         ];
       };
     };

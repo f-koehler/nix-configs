@@ -1,7 +1,21 @@
 { config, pkgs, lib, ... }:
 
 {
-  nix = {
+imports = [
+    ./home/alacritty.nix
+    ./home/atuin.nix
+    ./home/direnv.nix
+    ./home/git.nix
+    ./home/gpg.nix
+    ./home/ssh.nix
+    ./home/starship.nix
+    ./home/tmux.nix
+    ./home/wezterm.nix
+    ./home/zoxide.nix
+    ./home/zsh.nix
+  ];
+
+  nix = if pkgs.stdenv.isDarwin then {} else {
     package = pkgs.nix;
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
@@ -128,5 +142,8 @@
     zellij = {
       enable = true;
     };
+
+    # Let Home Manager install and manage itself.
+    home-manager.enable = true;
   };
 }

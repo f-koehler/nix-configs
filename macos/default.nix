@@ -75,7 +75,6 @@
       "transmission"
       "utm"
       "visual-studio-code"
-      "warp"
       "wezterm"
       "whatsapp"
       "tinymediamanager"

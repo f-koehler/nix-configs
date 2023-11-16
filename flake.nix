@@ -46,7 +46,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.fkoehler = import ./default/home.nix;
+            users.fkoehler = import ./home/default.nix;
           };
         }
       ];

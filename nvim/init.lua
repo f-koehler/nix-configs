@@ -12,13 +12,14 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   "airblade/vim-gitgutter",
-  "sheerun/vim-polyglot",
   "tomasiser/vim-code-dark",
   "tpope/vim-commentary",
   "tpope/vim-sensible",
   "tpope/vim-vinegar",
   "vim-airline/vim-airline",
   "vim-airline/vim-airline-themes",
+  "nvim-treesitter/nvim-treesitter",
 })
 
 vim.cmd.colorscheme('codedark')
+

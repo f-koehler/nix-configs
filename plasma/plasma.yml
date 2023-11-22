@@ -1,10 +1,17 @@
 - name: Configure KDE Plasma.
   hosts: localhost
   tasks:
+    - name: Create config directory.
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.config"
+        state: directory
+        owner: "{{ ansible_env.USER }}"
+        group: "{{ ansible_env.USER }}"
+        mode: "0755"
     - name: Render templates.
       ansible.builtin.template:
         src: "templates/{{ file }}"
-        dest: "~/.config/{{ file }}"
+        dest: "{{ ansible_env.HOME }}/.config/{{ file }}"
         owner: "{{ ansible_env.USER }}"
         group: "{{ ansible_env.USER }}"
         mode: "0644"

@@ -69,6 +69,6 @@ jobs:
       - uses: cachix/install-nix-action@v23
         with:
           nix_path: nixpkgs=channel:nixos-unstable
-      - name: Lint
+      - name: Deploy
         run: nix-shell --run "ansible-playbook plasma.yml" -p nixpkgs-fmt
         working-directory: plasma

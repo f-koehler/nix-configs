@@ -39,6 +39,11 @@ jobs:
         with:
           name: deadnix
       - uses: astro/deadnix-action@main
+  ansible-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - uses: ansible/ansible-lint@v6.22.0
   home-manager:
     runs-on: ubuntu-latest
     needs:
@@ -46,6 +51,7 @@ jobs:
       - nixpkgs-fmt
       - statix
       - deadnix
+      - ansible-lint
     steps:
       - uses: actions/checkout@v4.1.1
       - uses: cachix/install-nix-action@v23
@@ -55,8 +61,3 @@ jobs:
         run: mkdir -p ~/.local/state/nix/profiles
       - name: Run home-manager.
         run: nix run home-manager/master -- switch -b backup --flake ".#gha"
-  ansible-lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4.1.1
-      - uses: ansible/ansible-lint@v6.22.0

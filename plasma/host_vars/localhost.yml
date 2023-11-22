@@ -1,0 +1,28 @@
+plasma_timezone: "Asia/Singapore"
+plasma_locale: "en_SG.UTF-8"
+activities:
+  default:
+    name: Default
+    description: "Default activity"
+    icon: "home"
+  work:
+    name: Work
+    description: "Work for SpeQtral"
+    icon: kstars_satellites
+window_rules:
+  msteams:
+    Description: Microsoft Teams
+    activity: work
+    activityrule: 2
+    title: Microsoft Teams
+    titlematch: 2
+    wmclass: microsoft-edge
+    wmclassmatch: 1
+  msplanner:
+    Description: Microsoft Planner
+    activity: work
+    activityrule: 2
+    title: Microsoft Planner
+    titlematch: 2
+    wmclass: microsoft-edge
+    wmclassmatch: 1

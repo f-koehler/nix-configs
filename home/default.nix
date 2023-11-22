@@ -110,6 +110,7 @@
     "rm" = "rm -i";
     "cat" = "bat --style=plain --paging=never";
     # "tailscale" = "/Applications/Tailscale.app/Contents/MacOS/Tailscale";
+    "open" = lib.mkIf pkgs.stdenv.isLinux "xdg-open";
   };
 
   programs = {

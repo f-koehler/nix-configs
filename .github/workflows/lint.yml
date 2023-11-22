@@ -51,7 +51,6 @@ jobs:
       - nixpkgs-fmt
       - statix
       - deadnix
-      - ansible-lint
     steps:
       - uses: actions/checkout@v4.1.1
       - uses: cachix/install-nix-action@v23
@@ -61,3 +60,15 @@ jobs:
         run: mkdir -p ~/.local/state/nix/profiles
       - name: Run home-manager.
         run: nix run home-manager/master -- switch -b backup --flake ".#gha"
+  ansible:
+    runs-on: ubuntu-latest
+    needs:
+      - ansible-lint
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - uses: cachix/install-nix-action@v23
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+      - name: Lint
+        run: nix-shell --run "ansible-playbook plasma.yml" -p nixpkgs-fmt
+        working-directory: plasma

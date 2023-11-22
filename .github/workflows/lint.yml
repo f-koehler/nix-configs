@@ -55,3 +55,8 @@ jobs:
         run: mkdir -p ~/.local/state/nix/profiles
       - name: Run home-manager.
         run: nix run home-manager/master -- switch -b backup --flake ".#gha"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - uses: ansible/ansible-lint@6.22.0

@@ -34,15 +34,9 @@
         disko.follows = "disko";
       };
     };
-
-    plasma-manager = {
-      url = "github:pjones/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
   };
 
-  outputs = { nix-darwin, home-manager, plasma-manager, nix-index-database, nixpkgs, ... }: {
+  outputs = { nix-darwin, home-manager, nix-index-database, nixpkgs, ... }: {
     darwinConfigurations."mac_arm64" = nix-darwin.lib.darwinSystem {
       modules = [
         nix-index-database.darwinModules.nix-index
@@ -73,7 +67,6 @@
               homeDirectory = "/home/fkoehler";
             };
           }
-          plasma-manager.homeManagerModules.plasma-manager
         ];
       };
       "gha" = home-manager.lib.homeManagerConfiguration {

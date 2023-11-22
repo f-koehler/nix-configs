@@ -10,8 +10,6 @@
       ansible.builtin.template:
         src: "templates/{{ file }}"
         dest: "{{ ansible_env.HOME }}/.config/{{ file }}"
-        owner: "{{ ansible_env.USER }}"
-        group: "{{ ansible_env.USER }}"
         mode: "0644"
       loop_control:
         loop_var: file

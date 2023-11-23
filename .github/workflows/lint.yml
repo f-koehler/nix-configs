@@ -43,7 +43,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.1
-      - uses: ansible/ansible-lint@v6.22.0
+      - run: nix-shell --run "ansible-galaxy install -r requirements.yml && ansible-lint ." -p ansible ansible-lint
+        working-directory: plasma
   home-manager:
     runs-on: ubuntu-latest
     needs:
@@ -70,5 +71,5 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Deploy
-        run: nix-shell --run "ansible-playbook plasma.yml" -p nixpkgs-fmt
+        run: nix-shell --run "ansible-galaxy install -r requirements.yml && ansible-playbook plasma.yml" -p ansible libsForQt5.kconfig
         working-directory: plasma

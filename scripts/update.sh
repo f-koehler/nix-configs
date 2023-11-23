@@ -17,4 +17,5 @@ else
     flatpak update --system -y
     sudo pkcon refresh --plain -y
     sudo pkcon update --plain -y
+    cd plasma && ansible-playbook plasma.yml && cd ..
 fi

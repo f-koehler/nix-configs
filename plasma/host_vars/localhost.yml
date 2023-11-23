@@ -7,6 +7,10 @@ activities:
     name: Work
     description: "Work for SpeQtral"
     icon: kstars_satellites
+  vm:
+    name: VMs
+    description: "Virtual Machines"
+    icon: virt-manager
 window_rules:
   msteams:
     Description: Microsoft Teams
@@ -23,4 +27,10 @@ window_rules:
     title: Microsoft Planner
     titlematch: 2
     wmclass: microsoft-edge
+    wmclassmatch: 1
+  virt-manager:
+    Description: Virtual Machine Manager
+    activity: vm
+    activityrule: 2
+    wmclass: virt-manager
     wmclassmatch: 1

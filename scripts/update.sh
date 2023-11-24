@@ -16,6 +16,10 @@ else
     cd plasma && nix-shell --run "ansible-galaxy install -r requirements.yml && ansible-playbook plasma.yml" -p ansible libsForQt5.kconfig && cd ..
     flatpak update --user -y
     flatpak update --system -y
-    sudo pkcon refresh --plain -y
-    sudo pkcon update --plain -y
+    if [ -f /etc/redhat-release ]; then
+	sudo dnf upgrade --refresh -y
+    else
+    	sudo pkcon refresh --plain -y
+    	sudo pkcon update --plain -y
+    fi
 fi

@@ -121,6 +121,7 @@
       enable = true;
       enableAliases = true;
     };
+    fish.enable = true;
     gh = {
       enable = true;
     };

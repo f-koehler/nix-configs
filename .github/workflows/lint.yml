@@ -35,7 +35,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4.1.1
       - uses: cachix/install-nix-action@v24
-      - uses: cachix/cachix-action@v12
+      - uses: cachix/cachix-action@v13
         with:
           name: deadnix
       - uses: astro/deadnix-action@main

@@ -39,16 +39,18 @@
     # environment.
     packages = with pkgs; [
       # awscli2
+      # neovim
+      age
       bat
       du-dust
       fish
-      age
-      sops
+      hexyl
+      inshellisense
+      lunarvim
       micromamba
       pre-commit
-      # neovim
+      sops
       zsh
-      hexyl
 
       # # Adds the 'hello' command to your environment. It prints a friendly
       # # "Hello, world!" when run.

@@ -83,6 +83,7 @@
         method: user
         remote: flathub
         name:
+          - ch.protonmail.protonmail-bridge
           - com.bitwarden.desktop
           - com.discordapp.Discord
           - com.github.iwalton3.jellyfin-media-player

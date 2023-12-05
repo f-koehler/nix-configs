@@ -5,6 +5,7 @@
     ./alacritty.nix
     ./atuin.nix
     ./direnv.nix
+    ./fish.nix
     ./git.nix
     ./gpg.nix
     ./ssh.nix
@@ -123,7 +124,6 @@
       enable = true;
       enableAliases = true;
     };
-    fish.enable = true;
     gh = {
       enable = true;
     };

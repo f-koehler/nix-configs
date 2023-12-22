@@ -39,6 +39,13 @@ jobs:
         with:
           name: deadnix
       - uses: astro/deadnix-action@main
+  flake-checker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - uses: DeterminateSystems/nix-installer-action@v9
+      - uses: DeterminateSystems/magic-nix-cache-action@v2
+      - uses: DeterminateSystems/flake-checker-action@v5
   ansible-lint:
     runs-on: ubuntu-latest
     steps:
@@ -55,6 +62,7 @@ jobs:
       - nixpkgs-fmt
       - statix
       - deadnix
+      - flake-checker
     steps:
       - uses: actions/checkout@v4.1.1
       - uses: cachix/install-nix-action@v24

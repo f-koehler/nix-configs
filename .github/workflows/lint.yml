@@ -82,7 +82,7 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Install flatpak.
-        run: sudo apt install flatpak
+        run: sudo apt install flatpak gsettings-desktop-schemas
       - name: Deploy
         run: nix-shell --run "ansible-galaxy install -r requirements.yml && ansible-playbook plasma.yml" -p ansible libsForQt5.kconfig
         working-directory: plasma

@@ -69,9 +69,8 @@ jobs:
       - flake-checker
     steps:
       - uses: actions/checkout@v4.1.1
-      - uses: cachix/install-nix-action@v24
-        with:
-          nix_path: nixpkgs=channel:nixos-unstable
+      - uses: DeterminateSystems/nix-installer-action@v9
+      - uses: DeterminateSystems/magic-nix-cache-action@v2
       - name: Create state directory.
         run: mkdir -p ~/.local/state/nix/profiles
       - name: Run home-manager.

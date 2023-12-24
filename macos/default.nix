@@ -50,8 +50,8 @@
     ];
     casks = [
       "bitwarden"
-      "brave-browser"
       "docker"
+      "firefox"
       "font-hack-nerd-font"
       "gimp"
       "inkscape"

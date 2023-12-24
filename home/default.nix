@@ -50,8 +50,10 @@
       lunarvim
       micromamba
       pre-commit
+      rye
       sops
       zsh
+      pandoc
 
       # # Adds the 'hello' command to your environment. It prints a friendly
       # # "Hello, world!" when run.
@@ -126,6 +128,9 @@
     };
     gh = {
       enable = true;
+      settings = {
+        version = 1;
+      };
     };
     neovim = {
       enable = true;

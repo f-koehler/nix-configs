@@ -63,7 +63,6 @@
       "microsoft-excel"
       "microsoft-word"
       "microsoft-powerpoint"
-      "mullvadvpn"
       "nextcloud"
       "obsidian"
       "protonmail-bridge"

@@ -51,6 +51,7 @@
     casks = [
       "bitwarden"
       "docker"
+      "drawio"
       "firefox"
       "font-hack-nerd-font"
       "gimp"

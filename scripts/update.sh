@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euf -o pipefail
 
-nix flake update .
+#nix flake update .
 
 if [ "$(uname -s)" = "Darwin" ]; then
     NUM_JOBS="$(sysctl -n hw.ncpu)"

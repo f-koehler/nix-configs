@@ -70,6 +70,7 @@
       "spotify"
       "steam"
       "telegram"
+      "threema-beta"
       "thunderbird"
       "utm"
       "visual-studio-code"

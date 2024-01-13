@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.1
-      - uses: cachix/install-nix-action@v24
+      - uses: cachix/install-nix-action@v25
         with:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Check flake
@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.1
-      - uses: cachix/install-nix-action@v24
+      - uses: cachix/install-nix-action@v25
         with:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Format
@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.1
-      - uses: cachix/install-nix-action@v24
+      - uses: cachix/install-nix-action@v25
         with:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Lint
@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.1
-      - uses: cachix/install-nix-action@v24
+      - uses: cachix/install-nix-action@v25
       - uses: cachix/cachix-action@v13
         with:
           name: deadnix
@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.1
-      - uses: cachix/install-nix-action@v24
+      - uses: cachix/install-nix-action@v25
         with:
           nix_path: nixpkgs=channel:nixos-unstable
       - run: nix-shell --run "ansible-galaxy install -r requirements.yml && ansible-lint ." -p ansible ansible-lint
@@ -81,7 +81,7 @@ jobs:
       - ansible-lint
     steps:
       - uses: actions/checkout@v4.1.1
-      - uses: cachix/install-nix-action@v24
+      - uses: cachix/install-nix-action@v25
         with:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Install flatpak.

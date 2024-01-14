@@ -87,7 +87,6 @@
       "Microsoft Remote Desktop" = 1295203466;
     };
     taps = [
-      "homebrew/cask"
       "homebrew/cask-fonts"
       "homebrew/cask-versions"
     ];

@@ -26,6 +26,7 @@
     starship
     tmux
     wget
+    yt-dlp
     zellij
     zoxide
     zsh

@@ -67,6 +67,7 @@
               homeDirectory = "/home/fkoehler";
               activation = {
                 flatpaks = home-manager.lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+                  run ${builtins.toPath ./flatpaks/flatpak-remotes.sh} ${builtins.toPath ./flatpaks/remotes-user.json}
                   run ${builtins.toPath ./flatpaks/flatpak.sh} ${builtins.toPath ./flatpaks/system.txt} ${builtins.toPath ./flatpaks/user.txt}
                 '';
               };

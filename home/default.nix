@@ -57,6 +57,8 @@
       yt-dlp
       aria
       onefetch
+      gdu
+      hyperfine
 
       # # Adds the 'hello' command to your environment. It prints a friendly
       # # "Hello, world!" when run.

@@ -65,6 +65,13 @@
             home = {
               username = "fkoehler";
               homeDirectory = "/home/fkoehler";
+              activation = {
+                flatpaks = home-manager.lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+                  run ${builtins.toPath ./flatpaks/flatpak.sh} ${builtins.toPath ./flatpaks/system.txt} ${builtins.toPath ./flatpaks/user.txt}
+                '';
+              };
+              # activation = home-manager.lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+              # '';
             };
           }
         ];

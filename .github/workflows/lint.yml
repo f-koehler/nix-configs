@@ -48,7 +48,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4.1.1
       - uses: DeterminateSystems/nix-installer-action@v9
-      - uses: DeterminateSystems/magic-nix-cache-action@v2
+      - uses: DeterminateSystems/magic-nix-cache-action@v3
       - uses: DeterminateSystems/flake-checker-action@v5
   ansible-lint:
     runs-on: ubuntu-latest
@@ -70,7 +70,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4.1.1
       - uses: DeterminateSystems/nix-installer-action@v9
-      - uses: DeterminateSystems/magic-nix-cache-action@v2
+      - uses: DeterminateSystems/magic-nix-cache-action@v3
       - name: Create state directory.
         run: mkdir -p ~/.local/state/nix/profiles
       - name: Run home-manager.

@@ -1,3 +1,0 @@
-- name: Reload plasma.
-  ansible.builtin.meta: noop
-  # ansible.builtin.shell: nohup plasmashell --replace &

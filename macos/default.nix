@@ -73,6 +73,7 @@
       "telegram"
       "threema-beta"
       "thunderbird"
+      "transmission"
       "utm"
       "visual-studio-code"
       "wezterm"

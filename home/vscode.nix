@@ -39,6 +39,8 @@
       "editor.formatOnSave" = true;
       "terminal.integrated.fontSize" = 12;
       "terminal.integrated.fontFamily" = "Hack Nerd Font";
+      "cmake.options.statusBarVisibility" = "compact";
+      "cmake.showOptionsMovedNotification" = false;
     };
   };
 }

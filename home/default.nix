@@ -11,6 +11,7 @@
     ./ssh.nix
     ./starship.nix
     ./tmux.nix
+    ./vscode.nix
     ./wezterm.nix
     ./zoxide.nix
     ./zsh.nix

@@ -30,17 +30,21 @@
       vscode-extensions.tamasfe.even-better-toml
       vscode-extensions.usernamehw.errorlens
       vscode-extensions.vscode-icons-team.vscode-icons
-      vscode-extensions.vscodevim.vim
       vscode-extensions.charliermarsh.ruff
       vscode-extensions.jnoortheen.nix-ide
+      vscode-extensions.asvetliakov.vscode-neovim
     ];
     userSettings = {
       "workbench.iconTheme" = "vscode-icons";
       "editor.formatOnSave" = true;
+      "editor.fontSize" = 12;
       "terminal.integrated.fontSize" = 12;
       "terminal.integrated.fontFamily" = "Hack Nerd Font";
       "cmake.options.statusBarVisibility" = "compact";
       "cmake.showOptionsMovedNotification" = false;
+      "extensions.experimental.affinity" = {
+          "asvetliakov.vscode-neovim" = 1;
+      };
     };
   };
 }

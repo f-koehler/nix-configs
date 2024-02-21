@@ -38,7 +38,7 @@
       "workbench.iconTheme" = "vscode-icons";
       "editor.formatOnSave" = true;
       "editor.fontSize" = 12;
-      "terminal.integrated.fontSize" = 12;
+      "terminal.integrated.fontSize" = 10;
       "terminal.integrated.fontFamily" = "Hack Nerd Font";
       "cmake.options.statusBarVisibility" = "compact";
       "cmake.showOptionsMovedNotification" = false;

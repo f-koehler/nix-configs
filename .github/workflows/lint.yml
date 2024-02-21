@@ -54,11 +54,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.1
-      - uses: cachix/install-nix-action@v25
-        with:
-          nix_path: nixpkgs=channel:nixos-unstable
-      - run: nix-shell --run "ansible-galaxy install -r requirements.yml && ansible-lint ." -p ansible ansible-lint
-        working-directory: flatpak
+      - name: Run ansible-lint
+        uses: ansible/ansible-lint@v24.2.0
   home-manager:
     runs-on: ubuntu-latest
     needs:

@@ -1,0 +1,23 @@
+repos:
+  - repo: local
+    hooks:
+      - id: nixpkgs-fmt
+        name: Format with nixpkgs-fmt.
+        language: script
+        entry: ./scripts/nixpkgs-fmt.sh
+        pass_filenames: false
+      - id: nix flake check
+        name: Lint with nix flake check.
+        language: system
+        entry: nix flake check
+        pass_filenames: false
+      - id: statix-check
+        name: Lint with statix.
+        language: script
+        entry: ./scripts/statix-check.sh
+        pass_filenames: false
+  - repo: https://github.com/ansible/ansible-lint
+    rev: v24.2.0
+    hooks:
+      - id: ansible-lint
+        name: Lint with ansible-lint.

@@ -43,7 +43,7 @@
       "cmake.options.statusBarVisibility" = "compact";
       "cmake.showOptionsMovedNotification" = false;
       "extensions.experimental.affinity" = {
-          "asvetliakov.vscode-neovim" = 1;
+        "asvetliakov.vscode-neovim" = 1;
       };
     };
   };

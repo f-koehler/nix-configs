@@ -58,7 +58,7 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
       - run: nix-shell --run "ansible-galaxy install -r requirements.yml && ansible-lint ." -p ansible ansible-lint
-        working-directory: plasma
+        working-directory: flatpak
   home-manager:
     runs-on: ubuntu-latest
     needs:
@@ -88,5 +88,5 @@ jobs:
         run: sudo apt install flatpak gsettings-desktop-schemas xdg-desktop-portal-gnome
       - run: glib-compile-schemas /usr/share/glib-2.0/schemas/
       - name: Deploy
-        run: nix-shell --run "ansible-galaxy install -r requirements.yml && ansible-playbook plasma.yml" -p ansible libsForQt5.kconfig
-        working-directory: plasma
+        run: nix-shell --run "ansible-galaxy install -r requirements.yml && ansible-playbook flatpak.yml" -p ansible libsForQt5.kconfig
+        working-directory: flatpak

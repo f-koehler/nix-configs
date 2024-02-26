@@ -2,6 +2,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     nix-darwin = {
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,7 +38,14 @@
     };
   };
 
-  outputs = { nix-darwin, home-manager, nix-index-database, nixpkgs, ... }: {
+  outputs = { nixos-hardware, nix-darwin, home-manager, nix-index-database, nixpkgs, ... }: {
+    nixosConfigurations."mediapi" = nixpkgs.lib.nixosSystem {
+      system = "aarch64-linux";
+      modules = [
+        nixos-hardware.nixosModules.raspberry-pi-4
+        ./nixos/mediapi.nix
+      ];
+    };
     darwinConfigurations."mac_arm64" = nix-darwin.lib.darwinSystem {
       modules = [
         nix-index-database.darwinModules.nix-index

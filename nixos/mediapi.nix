@@ -15,6 +15,7 @@
       ./modules/audiobookshelf.nix
       ./modules/tailscale.nix
       ./modules/tailscale-cert.nix
+      ./modules/nginx.nix
     ];
 
   hardware = {

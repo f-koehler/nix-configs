@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     coreutils
     gnused
@@ -21,9 +21,9 @@
         if [ ! -f /etc/ssl/certs/tailscale.crt ] || [ ! -f /etc/ssl/certs/tailscale.key ]; then
           ${pkgs.tailscale}/bin/tailscale cert --cert-file /etc/ssl/certs/tailscale.crt --key-file /etc/ssl/certs/tailscale.key "$(${pkgs.tailscale}/bin/tailscale status --json | ${pkgs.jq}/bin/jq -r .Self.DNSName | ${pkgs.gnused}/bin/sed -e 's/\.$//')"
         fi
+        ${pkgs.coreutils}/bin/chown ${config.services.nginx.user}:${config.services.nginx.group} /etc/ssl/certs/tailscale.crt /etc/ssl/certs/tailscale.key
+        ${pkgs.coreutils}/bin/chmod 600 /etc/ssl/certs/tailscale.crt /etc/ssl/certs/tailscale.key
       '';
-      # ${pks.coreutils}/bin/chown ${config.services.nginx.user}:${config.services.nginx.group} /etc/ssl/certs/tailscale.crt /etc/ssl/certs/tailscale.key
-      # ${pks.coreutils}/bin/chmod 600 /etc/ssl/certs/tailscale.crt /etc/ssl/certs/tailscale.key
     };
   };
 }

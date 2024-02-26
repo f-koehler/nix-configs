@@ -28,15 +28,19 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
-  boot.loader.grub.enable = false;
-  # Enables the generation of /boot/extlinux/extlinux.conf
-  boot.loader.generic-extlinux-compatible.enable = true;
+  boot.loader = {
+    # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
+    grub.enable = false;
+    # Enables the generation of /boot/extlinux/extlinux.conf
+    generic-extlinux-compatible.enable = true;
+  };
 
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
-  networking.hostName = "mediapi";
+  networking = {
+    networkmanager.enable = true; # Easiest to use and most distros use this by default.
+    hostName = "mediapi";
+  };
 
   # Set your time zone.
   time.timeZone = "Asia/Singapore";

@@ -13,6 +13,8 @@
       ./modules/samba.nix
       ./modules/mediapi-usb-disks.nix
       ./modules/audiobookshelf.nix
+      ./modules/tailscale.nix
+      ./modules/tailscale-cert.nix
     ];
 
   hardware = {
@@ -107,14 +109,6 @@
     enable = true;
     openFirewall = true;
   };
-
-
-  services.tailscale = {
-    enable = true;
-    openFirewall = true;
-    extraUpFlags = "--ssh --operator=fkoehler";
-  };
-
 
 
   # Open ports in the firewall.

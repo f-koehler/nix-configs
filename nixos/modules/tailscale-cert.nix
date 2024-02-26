@@ -1,5 +1,7 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
+    coreutils
+    gnused
     jq
     tailscale
   ];
@@ -15,14 +17,13 @@
       script = ''
         #!/bin/sh
         set -euf -o pipefail
-        export PATH=/run/current-system/sw/bin:$PATH
-        mkdir -p /etc/ssl/certs
+        ${pkgs.coreutils}/bin/mkdir -p /etc/ssl/certs
         if [ ! -f /etc/ssl/certs/tailscale.crt ] || [ ! -f /etc/ssl/certs/tailscale.key ]; then
-          tailscale cert --cert-file /etc/ssl/certs/tailscale.crt --key-file /etc/ssl/certs/tailscale.key "$(tailscale status --json | jq -r .Self.DNSName | sed -e 's/\.$//')"
+          ${pkgs.tailscale}/bin/tailscale cert --cert-file /etc/ssl/certs/tailscale.crt --key-file /etc/ssl/certs/tailscale.key "$(${pkgs.tailscale}/bin/tailscale status --json | ${pkgs.jq}/bin/jq -r .Self.DNSName | ${pkgs.gnused}/bin/sed -e 's/\.$//')"
         fi
       '';
-      # chown nginx:nginx /etc/ssl/certs/tailscale.crt /etc/ssl/certs/tailscale.key
-      # chmod 600 /etc/ssl/certs/tailscale.crt /etc/ssl/certs/tailscale.key
+      # ${pks.coreutils}/bin/chown ${config.services.nginx.user}:${config.services.nginx.group} /etc/ssl/certs/tailscale.crt /etc/ssl/certs/tailscale.key
+      # ${pks.coreutils}/bin/chmod 600 /etc/ssl/certs/tailscale.crt /etc/ssl/certs/tailscale.key
     };
   };
 }

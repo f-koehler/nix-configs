@@ -34,20 +34,31 @@
       vscode-extensions.tamasfe.even-better-toml
       vscode-extensions.usernamehw.errorlens
       vscode-extensions.vscode-icons-team.vscode-icons
-      vscode-extensions.charliermarsh.ruff
-      vscode-extensions.jnoortheen.nix-ide
-      vscode-extensions.asvetliakov.vscode-neovim
     ];
     userSettings = {
-      "workbench.iconTheme" = "vscode-icons";
-      "editor.formatOnSave" = true;
-      "editor.fontSize" = 12;
-      "terminal.integrated.fontSize" = 10;
-      "terminal.integrated.fontFamily" = "Hack Nerd Font";
+      "C/C++ Include Guard.Macro Type" = "Filepath";
+      "C/C++ Include Guard.Path Skip" = 1;
+      "C/C++ Include Guard.Remove Extension" = false;
+      "C_Cpp.clang_format_fallbackStyle" = "LLVM";
+      "C_Cpp.codeAnalysis.clangTidy.enabled" = true;
       "cmake.options.statusBarVisibility" = "compact";
       "cmake.showOptionsMovedNotification" = false;
+      "editor.fontSize" = 12;
+      "editor.formatOnSave" = true;
       "extensions.experimental.affinity" = {
         "asvetliakov.vscode-neovim" = 1;
+      };
+      "extensions.experimental.useUtilityProcess" = true;
+      "git.autofetch" = true;
+      "latex-workshop.latex.recipe.default" = "latexmk (lualatex)";
+      "latex-workshop.hover.preview.mathjax.extensions" = [ "braket" ];
+      "redhat.telemetry.enabled" = false;
+      "terminal.integrated.fontFamily" = "Hack Nerd Font";
+      "terminal.integrated.fontSize" = 10;
+      "vsicons.dontShowNewVersionMessage" = true;
+      "workbench.iconTheme" = "vscode-icons";
+      "[python]" = {
+        "editor.defaultFormatter" = "charliermarsh.ruff";
       };
     };
   };

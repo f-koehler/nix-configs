@@ -16,6 +16,8 @@
       ./modules/tailscale.nix
       ./modules/tailscale-cert.nix
       ./modules/nginx.nix
+      ./modules/collect-garbage.nix
+      ./modules/fstrim.nix
     ];
 
   hardware = {

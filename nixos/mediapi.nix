@@ -18,6 +18,7 @@
       ./modules/nginx.nix
       ./modules/collect-garbage.nix
       ./modules/fstrim.nix
+      ./modules/dhparams.nix
     ];
 
   hardware = {

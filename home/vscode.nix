@@ -45,6 +45,7 @@
       "cmake.showOptionsMovedNotification" = false;
       "editor.fontSize" = 12;
       "editor.formatOnSave" = true;
+      "editor.minimap.enabled" = false;
       "extensions.experimental.affinity" = {
         "asvetliakov.vscode-neovim" = 1;
       };

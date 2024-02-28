@@ -3,37 +3,40 @@
     enable = true;
     enableExtensionUpdateCheck = true;
     enableUpdateCheck = pkgs.stdenv.isDarwin;
-    extensions = with pkgs; [
-      vscode-extensions.asvetliakov.vscode-neovim
-      vscode-extensions.charliermarsh.ruff
-      vscode-extensions.editorconfig.editorconfig
-      vscode-extensions.esbenp.prettier-vscode
-      vscode-extensions.github.copilot
-      vscode-extensions.github.vscode-github-actions
-      vscode-extensions.github.vscode-pull-request-github
-      vscode-extensions.james-yu.latex-workshop
-      vscode-extensions.jnoortheen.nix-ide
-      vscode-extensions.mechatroner.rainbow-csv
-      vscode-extensions.mkhl.direnv
-      vscode-extensions.ms-azuretools.vscode-docker
-      vscode-extensions.ms-pyright.pyright
-      vscode-extensions.ms-python.black-formatter
-      vscode-extensions.ms-python.isort
-      vscode-extensions.ms-python.python
-      vscode-extensions.ms-python.vscode-pylance
-      vscode-extensions.ms-vscode-remote.remote-containers
-      vscode-extensions.ms-vscode-remote.remote-ssh
-      vscode-extensions.ms-vscode.cmake-tools
-      vscode-extensions.ms-vscode.cpptools
-      vscode-extensions.ms-vscode.hexeditor
-      vscode-extensions.ms-vscode.makefile-tools
-      vscode-extensions.ms-vsliveshare.vsliveshare
-      vscode-extensions.redhat.vscode-xml
-      vscode-extensions.redhat.vscode-yaml
-      vscode-extensions.tailscale.vscode-tailscale
-      vscode-extensions.tamasfe.even-better-toml
-      vscode-extensions.usernamehw.errorlens
-      vscode-extensions.vscode-icons-team.vscode-icons
+    extensions = [
+      pkgs.vscode-marketplace.asvetliakov.vscode-neovim
+      pkgs.vscode-marketplace.charliermarsh.ruff
+      pkgs.vscode-marketplace.editorconfig.editorconfig
+      pkgs.vscode-marketplace.esbenp.prettier-vscode
+      pkgs.vscode-marketplace.github.copilot
+      pkgs.vscode-marketplace.github.vscode-github-actions
+      pkgs.vscode-marketplace.github.vscode-pull-request-github
+      pkgs.vscode-marketplace.james-yu.latex-workshop
+      pkgs.vscode-marketplace.jnoortheen.nix-ide
+      pkgs.vscode-marketplace.mechatroner.rainbow-csv
+      pkgs.vscode-marketplace.mkhl.direnv
+      pkgs.vscode-marketplace.ms-azuretools.vscode-docker
+      pkgs.vscode-marketplace.ms-pyright.pyright
+      pkgs.vscode-marketplace.ms-python.black-formatter
+      pkgs.vscode-marketplace.ms-python.isort
+      pkgs.vscode-marketplace.ms-python.python
+      pkgs.vscode-marketplace.ms-python.vscode-pylance
+      pkgs.vscode-marketplace.ms-vscode-remote.remote-containers
+      pkgs.vscode-marketplace.ms-vscode-remote.remote-ssh
+      pkgs.vscode-marketplace.ms-vscode.cpptools
+      pkgs.vscode-marketplace.ms-vscode.hexeditor
+      pkgs.vscode-marketplace.ms-vsliveshare.vsliveshare
+      pkgs.vscode-marketplace.redhat.vscode-xml
+      pkgs.vscode-marketplace.redhat.vscode-yaml
+      pkgs.vscode-marketplace.tailscale.vscode-tailscale
+      pkgs.vscode-marketplace.tamasfe.even-better-toml
+      pkgs.vscode-marketplace.usernamehw.errorlens
+      pkgs.vscode-marketplace.vscode-icons-team.vscode-icons
+      pkgs.vscode-marketplace.efanzh.graphviz-preview
+      pkgs.vscode-marketplace.stephanvs.dot
+    ] ++ [
+      pkgs.vscode-extensions.ms-vscode.cmake-tools
+      pkgs.vscode-extensions.ms-vscode.makefile-tools
     ];
     userSettings = {
       "C/C++ Include Guard.Macro Type" = "Filepath";

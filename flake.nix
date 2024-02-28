@@ -36,18 +36,18 @@
         disko.follows = "disko";
       };
     };
+
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
-  outputs = { nixos-hardware, nix-darwin, home-manager, nix-index-database, nixpkgs, ... }: {
-    nixosConfigurations."mediapi" = nixpkgs.lib.nixosSystem {
-      system = "aarch64-linux";
-      modules = [
-        nixos-hardware.nixosModules.raspberry-pi-4
-        ./nixos/mediapi.nix
-      ];
-    };
+  outputs = { nixos-hardware, nix-darwin, home-manager, nix-index-database, nixpkgs, flake-utils, nix-vscode-extensions, ... }: {
     darwinConfigurations."mac_arm64" = nix-darwin.lib.darwinSystem {
       modules = [
+        {
+          nixpkgs.overlays = [
+            nix-vscode-extensions.overlays.default
+          ];
+        }
         nix-index-database.darwinModules.nix-index
         ./macos/default.nix
         home-manager.darwinModules.home-manager
@@ -68,6 +68,11 @@
           config.allowUnfree = true;
         };
         modules = [
+          {
+            nixpkgs.overlays = [
+              nix-vscode-extensions.overlays.default
+            ];
+          }
           nix-index-database.hmModules.nix-index
           ./home/default.nix
           {

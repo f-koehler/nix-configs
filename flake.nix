@@ -48,7 +48,7 @@
     };
   };
 
-  outputs = { nixos-hardware, nix-darwin, home-manager, nix-index-database, nixpkgs, flake-utils, nix-vscode-extensions, hyprland, nixgl, hy3, ... }: {
+  outputs = { nix-darwin, home-manager, nix-index-database, nixpkgs, nix-vscode-extensions, hyprland, nixgl, hy3, ... }: {
     darwinConfigurations."mac_arm64" = nix-darwin.lib.darwinSystem {
       modules = [
         {

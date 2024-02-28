@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   services.nginx = {
     enable = true;
     user = "nginx";
@@ -34,5 +34,5 @@
       '';
     };
   };
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [80 443];
 }

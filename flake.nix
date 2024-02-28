@@ -40,7 +40,7 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
-  outputs = { nixos-hardware, nix-darwin, home-manager, nix-index-database, nixpkgs, flake-utils, nix-vscode-extensions, ... }: {
+  outputs = { nix-darwin, home-manager, nix-index-database, nixpkgs, nix-vscode-extensions, ... }: {
     darwinConfigurations."mac_arm64" = nix-darwin.lib.darwinSystem {
       modules = [
         {

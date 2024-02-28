@@ -48,17 +48,17 @@
     };
   };
 
-  outputs = { nixos-hardware, nix-darwin, home-manager, nix-index-database, nixpkgs, flake-utils, nix-vscode-extensions, hyprland, nixgl, hy3, ... }: {
-    darwinConfigurations."mac_arm64" = nix-darwin.lib.darwinSystem {
+  outputs = inputs: {
+    darwinConfigurations."mac_arm64" = inputs.nix-darwin.lib.darwinSystem {
       modules = [
         {
           nixpkgs.overlays = [
-            nix-vscode-extensions.overlays.default
+            inputs.nix-vscode-extensions.overlays.default
           ];
         }
-        nix-index-database.darwinModules.nix-index
+        inputs.nix-index-database.darwinModules.nix-index
         ./macos/default.nix
-        home-manager.darwinModules.home-manager
+        inputs.home-manager.darwinModules.home-manager
         {
           home-manager = {
             useGlobalPkgs = true;
@@ -70,20 +70,20 @@
     };
 
     homeConfigurations = {
-      "linux_x64" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
+      "linux_x64" = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = import inputs.nixpkgs {
           system = "x86_64-linux";
           config.allowUnfree = true;
         };
         modules = [
           {
             nixpkgs.overlays = [
-              nix-vscode-extensions.overlays.default
-              nixgl.overlay
+              inputs.nix-vscode-extensions.overlays.default
+              inputs.nixgl.overlay
             ];
           }
-          nix-index-database.hmModules.nix-index
-          hyprland.homeManagerModules.default
+          inputs.nix-index-database.hmModules.nix-index
+          inputs.hyprland.homeManagerModules.default
           ./home/default.nix
           {
             home = {
@@ -95,19 +95,19 @@
             wayland.windowManager.hyprland = {
               enable = true;
               plugins = [
-                hy3.packages.x86_64-linux.hy3
+                inputs.hy3.packages.x86_64-linux.hy3
               ];
             };
           }
         ];
       };
-      "gha" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
+      "gha" = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = import inputs.nixpkgs {
           system = "x86_64-linux";
           config.allowUnfree = true;
         };
         modules = [
-          nix-index-database.hmModules.nix-index
+          inputs.nix-index-database.hmModules.nix-index
           ./home/default.nix
           {
             home = {

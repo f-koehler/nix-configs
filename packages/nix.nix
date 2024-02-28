@@ -1,5 +1,5 @@
 { pkgs, ... }: with pkgs; [
-  nixpkgs-fmt
-  nixpkgs-lint
+  alejandra
   nixd
+  nixpkgs-lint
 ]

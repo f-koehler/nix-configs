@@ -11,6 +11,7 @@
     ./fish.nix
     ./git.nix
     ./gpg.nix
+    ./hyprland.nix
     ./ssh.nix
     ./starship.nix
     ./tmux.nix

@@ -38,9 +38,17 @@
     };
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
+    hyprland.url = "github:hyprwm/Hyprland";
+    nixgl.url = "github:guibou/nixGL";
+
+    hy3 = {
+      url = "github:outfoxxed/hy3";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
-  outputs = { nixos-hardware, nix-darwin, home-manager, nix-index-database, nixpkgs, flake-utils, nix-vscode-extensions, ... }: {
+  outputs = { nixos-hardware, nix-darwin, home-manager, nix-index-database, nixpkgs, flake-utils, nix-vscode-extensions, hyprland, nixgl, hy3, ... }: {
     darwinConfigurations."mac_arm64" = nix-darwin.lib.darwinSystem {
       modules = [
         {
@@ -71,14 +79,24 @@
           {
             nixpkgs.overlays = [
               nix-vscode-extensions.overlays.default
+              nixgl.overlay
             ];
           }
           nix-index-database.hmModules.nix-index
+          hyprland.homeManagerModules.default
           ./home/default.nix
           {
             home = {
               username = "fkoehler";
               homeDirectory = "/home/fkoehler";
+            };
+          }
+          {
+            wayland.windowManager.hyprland = {
+              enable = true;
+              plugins = [
+                hy3.packages.x86_64-linux.hy3
+              ];
             };
           }
         ];

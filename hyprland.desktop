@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Hyprland
+Comment=An intelligent dynamic tiling Wayland compositor
+Exec=/home/fkoehler/.nix-profile/bin/nixGLIntel /home/fkoehler/.nix-profile/bin/Hyprland
+Type=Application

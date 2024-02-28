@@ -1,44 +1,43 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   users.users.fkoehler.home = "/Users/fkoehler";
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs;
+    [
+      micromamba
 
+      bat
+      direnv
+      eza
+      fzf
+      gh
+      git
+      gnupg
+      htop
+      jq
+      nmap
+      # neovim
+      ghostscript
+      poppler_utils
+      qpdf
+      rsync
+      starship
+      tmux
+      wget
+      yt-dlp
+      zellij
+      zoxide
+      zsh
 
-    micromamba
-
-    bat
-    direnv
-    eza
-    fzf
-    gh
-    git
-    gnupg
-    htop
-    jq
-    nmap
-    # neovim
-    ghostscript
-    poppler_utils
-    qpdf
-    rsync
-    starship
-    tmux
-    wget
-    yt-dlp
-    zellij
-    zoxide
-    zsh
-
-    # julia-bin
-  ]
-  ++ import ../packages/ansible.nix { inherit pkgs; }
-  ++ import ../packages/cpp.nix { inherit pkgs; }
-  ++ import ../packages/go.nix { inherit pkgs; }
-  ++ import ../packages/js.nix { inherit pkgs; }
-  ++ import ../packages/nix.nix { inherit pkgs; }
-  ++ import ../packages/rust.nix { inherit pkgs; };
+      # julia-bin
+    ]
+    ++ import ../packages/ansible.nix {inherit pkgs;}
+    ++ import ../packages/cpp.nix {inherit pkgs;}
+    ++ import ../packages/go.nix {inherit pkgs;}
+    ++ import ../packages/js.nix {inherit pkgs;}
+    ++ import ../packages/nix.nix {inherit pkgs;}
+    ++ import ../packages/rust.nix {inherit pkgs;};
 
   homebrew = {
     enable = true;

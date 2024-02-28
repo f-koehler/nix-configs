@@ -32,7 +32,7 @@ _: {
       fi
 
       eval "$(micromamba shell hook --shell=zsh)"
-      
+
       function load-secrets {
         export AWS_ACCESS_KEY_ID="$(pass ls speqtral/aws/access_key_id)"
         export AWS_SECRET_ACCESS_KEY="$(pass ls speqtral/aws/secret_access_key)"

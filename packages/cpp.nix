@@ -1,6 +1,5 @@
-{ pkgs
-, ...
-}: with pkgs;[
+{pkgs, ...}:
+with pkgs; [
   clang-tools
   cmake
   cppcheck

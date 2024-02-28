@@ -1,9 +1,12 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.alacritty = {
     enable = true;
     settings = {
       font = {
-        size = if pkgs.stdenv.isDarwin then 12 else 9;
+        size =
+          if pkgs.stdenv.isDarwin
+          then 12
+          else 9;
         normal = {
           family = "Hack Nerd Font";
           style = "Regular";

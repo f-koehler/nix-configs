@@ -6,7 +6,7 @@ _: {
         what = "/dev/disk/by-label/tank0";
         where = "/mnt/tank0";
         type = "exfat";
-        wantedBy = [ "multi-user.target" ];
+        wantedBy = ["multi-user.target"];
         options = "noatime,uid=fkoehler,gid=fkoehler,umask=0";
       }
     ];

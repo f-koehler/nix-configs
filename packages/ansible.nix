@@ -1,4 +1,5 @@
-{ pkgs, ... }: with pkgs; [
+{pkgs, ...}:
+with pkgs; [
   ansible
   ansible-doctor
   ansible-language-server

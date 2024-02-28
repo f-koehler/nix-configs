@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./alacritty.nix
     ./atuin.nix
@@ -17,10 +20,13 @@
     ./zsh.nix
   ];
 
-  nix = if pkgs.stdenv.isDarwin then { } else {
-    package = pkgs.nix;
-    settings.experimental-features = [ "nix-command" "flakes" ];
-  };
+  nix =
+    if pkgs.stdenv.isDarwin
+    then {}
+    else {
+      package = pkgs.nix;
+      settings.experimental-features = ["nix-command" "flakes"];
+    };
   fonts.fontconfig.enable = true;
   home = {
     # Home Manager needs a bit of information about you and the paths it should
@@ -39,54 +45,54 @@
 
     # The home.packages option allows you to install Nix packages into your
     # environment.
-    packages = with pkgs; [
-      nixgl.nixGLIntel
+    packages = with pkgs;
+      [
+        nixgl.nixGLIntel
 
+        # awscli2
+        # neovim
+        age
+        bat
+        du-dust
+        fish
+        hexyl
+        inshellisense
+        lunarvim
+        micromamba
+        pre-commit
+        rye
+        sops
+        zsh
+        pandoc
+        yt-dlp
+        aria
+        onefetch
+        gdu
+        hyperfine
+        yq-go
 
-      # awscli2
-      # neovim
-      age
-      bat
-      du-dust
-      fish
-      hexyl
-      inshellisense
-      lunarvim
-      micromamba
-      pre-commit
-      rye
-      sops
-      zsh
-      pandoc
-      yt-dlp
-      aria
-      onefetch
-      gdu
-      hyperfine
-      yq-go
+        # # Adds the 'hello' command to your environment. It prints a friendly
+        # # "Hello, world!" when run.
+        # pkgs.hello
 
-      # # Adds the 'hello' command to your environment. It prints a friendly
-      # # "Hello, world!" when run.
-      # pkgs.hello
+        # It is sometimes useful to fine-tune packages, for example, by applying
+        # overrides. You can do that directly here, just don't forget the
+        # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+        # fonts?
+        (pkgs.nerdfonts.override {fonts = ["Hack"];})
 
-      # It is sometimes useful to fine-tune packages, for example, by applying
-      # overrides. You can do that directly here, just don't forget the
-      # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-      # fonts?
-      (pkgs.nerdfonts.override { fonts = [ "Hack" ]; })
-
-      # # You can also create simple shell scripts directly inside your
-      # # configuration. For example, this adds a command 'my-hello' to your
-      # # environment:
-      # (pkgs.writeShellScriptBin "my-hello" ''
-      #   echo "Hello, ${config.home.username}!"
-      # '')
-    ]
-    ++ import ../packages/ansible.nix { inherit pkgs; }
-    ++ import ../packages/go.nix { inherit pkgs; }
-    ++ import ../packages/js.nix { inherit pkgs; }
-    ++ import ../packages/nix.nix { inherit pkgs; }
-    ++ import ../packages/rust.nix { inherit pkgs; };
+        # # You can also create simple shell scripts directly inside your
+        # # configuration. For example, this adds a command 'my-hello' to your
+        # # environment:
+        # (pkgs.writeShellScriptBin "my-hello" ''
+        #   echo "Hello, ${config.home.username}!"
+        # '')
+      ]
+      ++ import ../packages/ansible.nix {inherit pkgs;}
+      ++ import ../packages/go.nix {inherit pkgs;}
+      ++ import ../packages/js.nix {inherit pkgs;}
+      ++ import ../packages/nix.nix {inherit pkgs;}
+      ++ import ../packages/rust.nix {inherit pkgs;};
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.
@@ -129,7 +135,6 @@
   };
 
   programs = {
-
     bash.enable = true;
     bat.enable = true;
     eza = {

@@ -1,25 +1,21 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ pkgs, ... }:
-
-{
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware/mediapi.nix
-      ./modules/jellyfin.nix
-      ./modules/samba.nix
-      ./modules/mediapi-usb-disks.nix
-      ./modules/audiobookshelf.nix
-      ./modules/tailscale.nix
-      ./modules/tailscale-cert.nix
-      ./modules/nginx.nix
-      ./modules/collect-garbage.nix
-      ./modules/fstrim.nix
-      ./modules/dhparams.nix
-    ];
+{pkgs, ...}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware/mediapi.nix
+    ./modules/jellyfin.nix
+    ./modules/samba.nix
+    ./modules/mediapi-usb-disks.nix
+    ./modules/audiobookshelf.nix
+    ./modules/tailscale.nix
+    ./modules/tailscale-cert.nix
+    ./modules/nginx.nix
+    ./modules/collect-garbage.nix
+    ./modules/fstrim.nix
+    ./modules/dhparams.nix
+  ];
 
   hardware = {
     raspberry-pi."4".apply-overlays-dtmerge.enable = true;
@@ -30,7 +26,7 @@
   };
   console.enable = false;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   boot.loader = {
     # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
@@ -79,11 +75,11 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.groups.fkoehler = { };
+  users.groups.fkoehler = {};
   users.users.fkoehler = {
     isNormalUser = true;
     group = "fkoehler";
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
   };
 
   # List packages installed in system profile. To search, run:
@@ -117,7 +113,6 @@
     enable = true;
     openFirewall = true;
   };
-
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

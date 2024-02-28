@@ -152,7 +152,7 @@
             };
           };
         };
-        devShell = inputs.nixpkgs.legacyPackages.${system}.mkShell {
+        devShells."${system}" = inputs.nixpkgs.legacyPackages.${system}.mkShell {
           inherit (self.checks.${system}.pre-commit-check) shellHook;
         };
       }

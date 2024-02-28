@@ -130,10 +130,25 @@
           pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
             src = ./.;
             hooks = {
+              # nix
               alejandra.enable = true;
               deadnix.enable = true;
               nil.enable = true;
               statix.enable = true;
+
+              # shell
+              shellcheck.enable = true;
+              shfmt.enable = true;
+
+              # yaml
+              yamllint.enable = true;
+
+              # toml
+              taplo.enable = true;
+
+              # other
+              prettier.enable = true;
+              actionlint.enable = true;
             };
           };
         };

@@ -39,9 +39,9 @@
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
-    hyprland.url = "github:hyprwm/Hyprland";
     nixgl.url = "github:guibou/nixGL";
 
+    hyprland.url = "github:hyprwm/Hyprland";
     hy3 = {
       url = "github:outfoxxed/hy3";
       inputs.hyprland.follows = "hyprland";

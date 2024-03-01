@@ -56,6 +56,7 @@
       "firefox"
       "font-hack-nerd-font"
       "gimp"
+      "gitkraken"
       "inkscape"
       "libreoffice"
       "mactex"

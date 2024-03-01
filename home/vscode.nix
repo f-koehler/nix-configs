@@ -40,6 +40,7 @@
         pkgs.vscode-marketplace.efanzh.graphviz-preview
         pkgs.vscode-marketplace.stephanvs.dot
         pkgs.vscode-marketplace.kamadorueda.alejandra
+        pkgs.vscode-marketplace.eamodio.gitlens
       ]
       ++ [
         pkgs.vscode-extensions.ms-vscode.cmake-tools

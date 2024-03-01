@@ -1,5 +1,9 @@
-{pkgs, ...}: {
-  programs.vscode = {
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  programs.vscode = lib.mkIf pkgs.stdenv.isLinux {
     enable = true;
     enableExtensionUpdateCheck = true;
     enableUpdateCheck = pkgs.stdenv.isDarwin;

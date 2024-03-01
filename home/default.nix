@@ -49,7 +49,7 @@
     # environment.
     packages = with pkgs;
       [
-        nixgl.nixGLIntel
+        (lib.mkIf pkgs.stdenv.isLinux nixgl.nixGLIntel)
 
         # awscli2
         # neovim

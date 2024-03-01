@@ -1,5 +1,9 @@
-_: {
-  wayland.windowManager.hyprland.settings = {
+{
+  lib,
+  pkgs,
+  ...
+}: {
+  wayland.windowManager.hyprland.settings = lib.mkIf pkgs.stdenv.isLinux {
     "$mod" = "SUPER";
     animations = {
       enabled = "yes";
@@ -8,6 +12,7 @@ _: {
       "$mod, return, exec, wezterm"
       # "$mod, grave, exec, $launcher"
       "$mod+SHIFT, q, hy3:killactive"
+      "$mod+SHIFT, e, exit"
 
       "$mod, h, hy3:movefocus, l"
       "$mod, j, hy3:movefocus, d"

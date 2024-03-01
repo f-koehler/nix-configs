@@ -16,6 +16,7 @@
     ./starship.nix
     ./tmux.nix
     ./vscode.nix
+    ./waybar.nix
     ./wezterm.nix
     ./zoxide.nix
     ./zsh.nix

@@ -2,9 +2,9 @@
   security.dhparams = {
     enable = true;
     stateful = true;
-    defaultBitSize = 8192;
-    path = "/etc/ssl/certs/dhparams.pem";
+    defaultBitSize = 4096;
+    params.nginx = {};
   };
-  systemd.services.nginx.after = ["dhparams-init.service"];
-  services.nginx.sslDhparam = "${config.security.dhparams.path}";
+  systemd.services.nginx.after = ["dhparams-gen-nginx.service"];
+  services.nginx.sslDhparam = "${config.security.dhparams.params.nginx.path}";
 }

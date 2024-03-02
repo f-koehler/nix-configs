@@ -54,6 +54,14 @@
 
   outputs = {self, ...} @ inputs:
     {
+      nixosConfigurations."mediapi" = inputs.nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          inputs.nixos-hardware.nixosModules.raspberry-pi-4
+          ./nixos/mediapi.nix
+        ];
+      };
+
       darwinConfigurations."mac_arm64" = inputs.nix-darwin.lib.darwinSystem {
         modules = [
           {

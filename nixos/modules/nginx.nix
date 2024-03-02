@@ -1,4 +1,10 @@
 {config, ...}: {
+  security.dhparams = {
+    enable = true;
+    stateful = true;
+    defaultBitSize = 4096;
+    params.nginx = {};
+  };
   services.nginx = {
     enable = true;
     user = "nginx";
@@ -9,6 +15,7 @@
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
     clientMaxBodySize = "10G";
+    sslDhparam = "${config.security.dhparams.params.nginx.path}";
     virtualHosts."https" = {
       serverName = "${config.networking.hostName}.corgi-dojo.ts.net";
       http2 = true;
@@ -35,4 +42,8 @@
     };
   };
   networking.firewall.allowedTCPPorts = [80 443];
+  systemd.services.nginx.after = [
+    "dhparams-gen-nginx.service"
+    "tailscale-cert.service"
+  ];
 }

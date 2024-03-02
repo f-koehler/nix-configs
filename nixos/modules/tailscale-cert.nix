@@ -30,8 +30,5 @@
         ${pkgs.coreutils}/bin/chmod 600 /etc/ssl/certs/tailscale.crt /etc/ssl/certs/tailscale.key
       '';
     };
-    nginx.after = [
-      "tailscale-cert.service"
-    ];
   };
 }

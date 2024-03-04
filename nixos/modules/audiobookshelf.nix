@@ -16,6 +16,7 @@ _: {
       };
       virtualHosts.audiobookshelf = {
         forceSSL = true;
+        kTLS = true;
         sslCertificate = "/etc/ssl/certs/tailscale.crt";
         sslCertificateKey = "/etc/ssl/certs/tailscale.key";
         listen = [

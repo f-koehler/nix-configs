@@ -1,4 +1,4 @@
-_: {
+{config, ...}: {
   services = {
     audiobookshelf = {
       enable = true;
@@ -11,23 +11,18 @@ _: {
     nginx = {
       upstreams."audiobookshelf" = {
         servers = {
-          "127.0.0.1:8097" = {};
+          "127.0.0.1:${toString config.services.audiobookshelf.port}" = {};
         };
       };
-      virtualHosts.audiobookshelf = {
+      virtualHosts."audiobooks.fkoehler.xyz" = {
         forceSSL = true;
         kTLS = true;
-        sslCertificate = "/etc/ssl/certs/tailscale.crt";
-        sslCertificateKey = "/etc/ssl/certs/tailscale.key";
+        sslCertificate = "/var/lib/acme/fkoehler.xyz/fullchain.pem";
+        sslCertificateKey = "/var/lib/acme/fkoehler.xyz/key.pem";
         listen = [
           {
             addr = "0.0.0.0";
-            port = 48097;
-            ssl = true;
-          }
-          {
-            addr = "[::]";
-            port = 48097;
+            port = 443;
             ssl = true;
           }
         ];

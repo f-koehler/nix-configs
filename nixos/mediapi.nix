@@ -3,17 +3,18 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 {pkgs, ...}: {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware/mediapi.nix
-    ./modules/jellyfin.nix
-    ./modules/samba.nix
-    ./modules/mediapi-usb-disks.nix
-    ./modules/audiobookshelf.nix
-    ./modules/tailscale.nix
-    ./modules/tailscale-cert.nix
-    ./modules/nginx.nix
     ./modules/collect-garbage.nix
     ./modules/fstrim.nix
+    ./modules/mediapi-usb-disks.nix
+    ./modules/nginx.nix
+    ./modules/samba.nix
+    ./modules/tailscale.nix
+
+    ./modules/audiobookshelf.nix
+    # ./modules/jellyfin.nix
+    # ./modules/nextcloud.nix
+    ./modules/uptime-kuma.nix
   ];
 
   hardware = {

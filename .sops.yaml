@@ -1,0 +1,11 @@
+---
+keys:
+  - &gpg_fkoehler C5DC80511469AD81C84E3564D55A35AFB2900A11
+  - &ssh_mediapi age1whzwlpuw0z2j50enmtp89208elr33y3vf3c4g32fydc07h7v79gsvzkfwv
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - pgp:
+          - *gpg_fkoehler
+        age:
+          - *ssh_mediapi

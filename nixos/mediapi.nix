@@ -17,6 +17,8 @@
     ./modules/uptime-kuma.nix
   ];
 
+  sops.defaultSopsFile = ../secrets/mediapi.yaml;
+
   hardware = {
     raspberry-pi."4".apply-overlays-dtmerge.enable = true;
     deviceTree = {

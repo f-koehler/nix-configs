@@ -137,6 +137,9 @@
         checks = {
           pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
             src = ./.;
+            excludes = [
+              "secrets/.*"
+            ];
             hooks = {
               # nix
               alejandra.enable = true;

@@ -15,6 +15,7 @@
     ./modules/jellyfin.nix
     # ./modules/nextcloud.nix
     ./modules/uptime-kuma.nix
+    ./modules/postgresql.nix
   ];
 
   sops.defaultSopsFile = ../secrets/mediapi.yaml;

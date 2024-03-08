@@ -19,4 +19,5 @@ _: {
       ];
     };
   };
+  services.postgresqlBackup.location = "/mnt/tank0/backup/mediapi/postgresql";
 }

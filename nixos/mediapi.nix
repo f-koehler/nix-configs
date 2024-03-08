@@ -12,7 +12,7 @@
     ./modules/tailscale.nix
 
     ./modules/audiobookshelf.nix
-    # ./modules/jellyfin.nix
+    ./modules/jellyfin.nix
     # ./modules/nextcloud.nix
     ./modules/uptime-kuma.nix
   ];

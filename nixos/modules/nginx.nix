@@ -11,11 +11,13 @@
     group = "nginx";
     serverTokens = false;
     recommendedTlsSettings = true;
-    recommendedProxySettings = true;
     recommendedOptimisation = true;
-    recommendedGzipSettings = true;
     clientMaxBodySize = "10G";
     sslDhparam = "${config.security.dhparams.params.nginx.path}";
+    appendHttpConfig = ''
+      proxy_headers_hash_max_size 2048;
+      proxy_headers_hash_bucket_size 256;
+    '';
   };
   networking.firewall.allowedTCPPorts = [80 443];
   systemd.services.nginx.after = [

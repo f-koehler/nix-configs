@@ -15,6 +15,7 @@
     ./modules/jellyfin.nix
     # ./modules/nextcloud.nix
     ./modules/uptime-kuma.nix
+    ./modules/paperless
     ./modules/postgresql.nix
   ];
 

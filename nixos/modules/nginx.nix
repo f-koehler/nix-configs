@@ -1,4 +1,24 @@
 {config, ...}: {
+  sops = {
+    secrets = {
+      "security/acme/cloudflare/email" = {
+        owner = config.services.nginx.user;
+        inherit (config.services.nginx) group;
+      };
+      "security/acme/cloudflare/apiKey" = {
+        owner = config.services.nginx.user;
+        inherit (config.services.nginx) group;
+      };
+    };
+    templates."cloudflare-credentials" = {
+      owner = "acme";
+      group = "acme";
+      content = ''
+        CLOUDFLARE_EMAIL="${config.sops.placeholder."security/acme/cloudflare/email"}"
+        CLOUDFLARE_API_KEY="${config.sops.placeholder."security/acme/cloudflare/apiKey"}"
+      '';
+    };
+  };
   security.dhparams = {
     enable = true;
     stateful = true;
@@ -19,9 +39,22 @@
       proxy_headers_hash_bucket_size 256;
     '';
   };
+
   networking.firewall.allowedTCPPorts = [80 443];
   systemd.services.nginx.after = [
     "dhparams-gen-nginx.service"
-    "tailscale-cert.service"
+    "acme-finished-fkoehler.xyz.target"
   ];
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "signup@fkoehler.org";
+
+    certs."fkoehler.xyz" = {
+      dnsProvider = "cloudflare";
+      domain = "*.fkoehler.xyz";
+      environmentFile = "${config.sops.templates."cloudflare-credentials".path}";
+      inherit (config.services.nginx) group;
+    };
+  };
 }

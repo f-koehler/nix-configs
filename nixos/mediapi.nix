@@ -4,10 +4,15 @@
 {pkgs, ...}: {
   imports = [
     ./hardware/mediapi.nix
+    ./modules/audiobookshelf.nix
     ./modules/collect-garbage.nix
     ./modules/fstrim.nix
+    ./modules/jellyfin.nix
     ./modules/mediapi-usb-disks.nix
     ./modules/nginx.nix
+    ./modules/paperless
+    ./modules/podman.nix
+    ./modules/postgresql.nix
     ./modules/samba.nix
     ./modules/tailscale.nix
 

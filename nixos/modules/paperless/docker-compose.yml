@@ -5,6 +5,8 @@ services:
     restart: unless-stopped
     environment:
       CHROMIUM_DISABLE_ROUTES: 1
+    ports:
+      - "3000:3000"
   # TODO: enable X86
   # tika:
   #   image: "docker.io/apache/tika:2.9.1.0-full"

@@ -17,6 +17,26 @@
       group = config.services.paperless.user;
     };
   };
+  users.users.${config.services.paperless.user} = {
+    autoSubUidGidRange = true;
+    linger = true;
+    home = "/var/lib/paperless";
+    shell = pkgs.bashInteractive;
+    extraGroups = ["systemd-journal"];
+  };
+  home-manager.users.${config.services.paperless.user} = {
+    home = {
+      stateVersion = "23.05";
+      # TODO: fix hardcoded path
+      file."/var/lib/paperless/.config/containers/compose/projects/paperless.env".text = ''
+        COMPOSE_PROJECT_DIR=/mnt/configs/nixos/modules/paperless
+        COMPOSE_FILE=docker-compose.yml
+        COMPOSE_PATH_SEPARATOR=:
+        COMPOSE_PROJECT_NAME=paperless
+      '';
+    };
+    programs.bash.enable = true;
+  };
   services = {
     postgresql = {
       enable = true;
@@ -31,7 +51,7 @@
     paperless = {
       enable = true;
       package = pkgs.paperless-ngx;
-      user = "fkoehler";
+      user = "paperless";
       passwordFile = config.sops.secrets."services/paperless/admin/password".path;
       port = 8098;
       settings = {

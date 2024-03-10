@@ -59,6 +59,12 @@
         modules = [
           inputs.nixos-hardware.nixosModules.raspberry-pi-4
           ./nixos/mediapi.nix
+          inputs.sops-nix.nixosModules.sops
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+          }
         ];
       };
 

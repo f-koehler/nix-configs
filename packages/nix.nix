@@ -1,6 +1,6 @@
 {pkgs, ...}:
 with pkgs; [
   alejandra
-  nixd
+  nil
   nixpkgs-lint
 ]

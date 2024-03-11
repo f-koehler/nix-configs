@@ -72,6 +72,18 @@
       "[python]" = {
         "editor.defaultFormatter" = "charliermarsh.ruff";
       };
+      "[nix]" = {
+        "editor.defaultFormatter" = "jnoortheen.nix-ide";
+      };
+      nix = {
+        enableLanguageServer = true;
+        serverPath = "${pkgs.nil}/bin/nil";
+        serverSettings = {
+          formatting = {
+            command = ["${pkgs.alejandra}/bin/alejandra"];
+          };
+        };
+      };
     };
   };
 }

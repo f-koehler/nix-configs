@@ -39,20 +39,22 @@
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
-    nixgl.url = "github:guibou/nixGL";
-
-    hyprland.url = "github:hyprwm/Hyprland";
-    hy3 = {
-      url = "github:outfoxxed/hy3";
-      inputs.hyprland.follows = "hyprland";
-    };
-
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = {self, ...} @ inputs:
+  outputs = {self, ...} @ inputs: let
+    inherit (self) outputs;
+    systems = [
+      "aarch64-linux"
+      "i686-linux"
+      "x86_64-linux"
+      "aarch64-darwin"
+      "x86_64-darwin"
+    ];
+    forAllSystems = inputs.nixpkgs.lib.genAttrs systems;
+  in
     {
       nixosConfigurations."mediapi" = inputs.nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
@@ -89,49 +91,18 @@
       };
 
       homeConfigurations = {
-        "linux_x64" = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = import inputs.nixpkgs {
-            system = "x86_64-linux";
-            config.allowUnfree = true;
+        "fkoehler@fkt14" = inputs.home-manager.lib.homeManagerConfiguration {
+          pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = {
+            inherit inputs outputs;
           };
           modules = [
-            {
-              nixpkgs.overlays = [
-                inputs.nix-vscode-extensions.overlays.default
-                inputs.nixgl.overlay
-              ];
-            }
             inputs.nix-index-database.hmModules.nix-index
-            inputs.hyprland.homeManagerModules.default
             ./home/default.nix
             {
               home = {
                 username = "fkoehler";
                 homeDirectory = "/home/fkoehler";
-              };
-            }
-            {
-              wayland.windowManager.hyprland = {
-                enable = true;
-                plugins = [
-                  inputs.hy3.packages.x86_64-linux.hy3
-                ];
-              };
-            }
-          ];
-        };
-        "gha" = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = import inputs.nixpkgs {
-            system = "x86_64-linux";
-            config.allowUnfree = true;
-          };
-          modules = [
-            inputs.nix-index-database.hmModules.nix-index
-            ./home/default.nix
-            {
-              home = {
-                username = "runner";
-                homeDirectory = "/home/runner";
               };
             }
           ];
@@ -140,6 +111,7 @@
     }
     // inputs.flake-utils.lib.eachDefaultSystem (
       system: {
+        formatter = forAllSystems (system: inputs.nixpkgs.legacyPackages.${system}.alejandra);
         checks = {
           pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
             src = ./.;

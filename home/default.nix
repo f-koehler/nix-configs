@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   imports = [
@@ -11,24 +12,26 @@
     ./fish.nix
     ./git.nix
     ./gpg.nix
-    ./hyprland.nix
     ./ssh.nix
     ./starship.nix
     ./tmux.nix
     ./vscode.nix
-    ./waybar.nix
     ./wezterm.nix
     ./zoxide.nix
     ./zsh.nix
   ];
+  nixpkgs = {
+    overlays = [
+      inputs.nix-vscode-extensions.overlays.default
+    ];
+    config.allowUnfree = true;
+  };
 
-  nix =
-    if pkgs.stdenv.isDarwin
-    then {}
-    else {
-      package = pkgs.nix;
-      settings.experimental-features = ["nix-command" "flakes"];
-    };
+  nix = lib.mkIf pkgs.stdenv.isLinux {
+    package = pkgs.nix;
+    settings.experimental-features = ["nix-command" "flakes"];
+  };
+
   fonts.fontconfig.enable = true;
   home = {
     # Home Manager needs a bit of information about you and the paths it should
@@ -49,8 +52,6 @@
     # environment.
     packages = with pkgs;
       [
-        (lib.mkIf pkgs.stdenv.isLinux nixgl.nixGLIntel)
-
         # awscli2
         # neovim
         age
@@ -73,6 +74,7 @@
         hyperfine
         yq-go
         rclone
+        nix-tree
 
         # # Adds the 'hello' command to your environment. It prints a friendly
         # # "Hello, world!" when run.

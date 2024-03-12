@@ -9,7 +9,7 @@ jobs:
     name: Update flake.lock
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.1.1
+      - uses: actions/checkout@v4.1.2
       - uses: DeterminateSystems/nix-installer-action@v9
       - uses: DeterminateSystems/magic-nix-cache-action@v3
       - uses: DeterminateSystems/update-flake-lock@v21

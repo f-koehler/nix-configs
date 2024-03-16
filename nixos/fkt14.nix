@@ -14,6 +14,7 @@
     ./modules/plasma.nix
     ./modules/sound.nix
     ./modules/tailscale.nix
+    ./modules/firmware.nix
   ];
 
   sops.defaultSopsFile = ../secrets/fkt14.yaml;
@@ -70,12 +71,12 @@
       vlc
       vscode
       zotero
-      virt-manager
       kdePackages.ktorrent
       sops
     ];
   };
   programs.fish.enable = true;
+  programs.virt-manager.enable = true;
   services.flatpak.enable = true;
 
   # Allow unfree packages

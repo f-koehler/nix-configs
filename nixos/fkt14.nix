@@ -16,6 +16,8 @@
     ./modules/tailscale.nix
   ];
 
+  sops.defaultSopsFile = ../secrets/fkt14.yaml;
+
   # Bootloader.
   boot = {
     loader.systemd-boot.enable = true;
@@ -69,9 +71,12 @@
       vscode
       zotero
       virt-manager
+      kdePackages.ktorrent
+      sops
     ];
   };
   programs.fish.enable = true;
+  services.flatpak.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

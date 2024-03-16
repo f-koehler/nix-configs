@@ -77,6 +77,7 @@
               inputs.nix-vscode-extensions.overlays.default
             ];
           }
+          inputs.sops-nix.nixosModules.sops
           ./nixos/fkt14.nix
           inputs.home-manager.nixosModules.home-manager
           {
@@ -113,7 +114,7 @@
       system: {
         formatter = forAllSystems (system: inputs.nixpkgs.legacyPackages.${system}.alejandra);
         checks = {
-          pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+          pre-commit-check = inputs."pre-commit-hooks".lib.${system}.run {
             src = ./.;
             excludes = [
               "secrets/.*"

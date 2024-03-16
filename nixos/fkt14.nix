@@ -9,12 +9,13 @@
     ./modules/bluetooth.nix
     ./modules/collect-garbage.nix
     ./modules/distrobox.nix
+    ./modules/firmware.nix
+    ./modules/fstrim.nix
     ./modules/libvirt.nix
     ./modules/locale.nix
     ./modules/plasma.nix
     ./modules/sound.nix
     ./modules/tailscale.nix
-    ./modules/firmware.nix
   ];
 
   sops.defaultSopsFile = ../secrets/fkt14.yaml;
@@ -73,6 +74,7 @@
       zotero
       kdePackages.ktorrent
       sops
+      rsync
     ];
   };
   programs.fish.enable = true;

@@ -17,8 +17,8 @@
     nsswins = true;
     extraConfig = ''
       log level = 5
-      server string = mediapi
-      netbios name = mediapi
+      server string = homeserver
+      netbios name = homeserver
       workgroup = WORKGROUP
       security = user
 
@@ -34,7 +34,7 @@
     '';
     shares = {
       tank_0 = {
-        path = "/mnt/tank0";
+        path = "/media/tank0";
         browseable = "yes";
         "read only" = "yes";
         "guest ok" = "yes";

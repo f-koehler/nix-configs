@@ -89,6 +89,18 @@
           }
         ];
       };
+      nixosConfigurations."homeserver" = inputs.nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          {
+            nixpkgs.overlays = [
+              inputs.nix-vscode-extensions.overlays.default
+            ];
+          }
+          inputs.sops-nix.nixosModules.sops
+          ./nixos/homeserver.nix
+        ];
+      };
 
       darwinConfigurations."mac_arm64" = inputs.nix-darwin.lib.darwinSystem {
         modules = [

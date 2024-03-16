@@ -45,7 +45,7 @@
   };
 
   outputs = {self, ...} @ inputs: let
-    inherit (self) outputs;
+    # inherit (self) outputs;
     systems = [
       "aarch64-linux"
       "i686-linux"
@@ -69,6 +69,25 @@
           }
         ];
       };
+      nixosConfigurations."fkt14" = inputs.nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          {
+            nixpkgs.overlays = [
+              inputs.nix-vscode-extensions.overlays.default
+            ];
+          }
+          ./nixos/fkt14.nix
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.fkoehler = import ./home;
+            };
+          }
+        ];
+      };
 
       darwinConfigurations."mac_arm64" = inputs.nix-darwin.lib.darwinSystem {
         modules = [
@@ -88,25 +107,6 @@
             };
           }
         ];
-      };
-
-      homeConfigurations = {
-        "fkoehler@fkt14" = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-          extraSpecialArgs = {
-            inherit inputs outputs;
-          };
-          modules = [
-            inputs.nix-index-database.hmModules.nix-index
-            ./home/default.nix
-            {
-              home = {
-                username = "fkoehler";
-                homeDirectory = "/home/fkoehler";
-              };
-            }
-          ];
-        };
       };
     }
     // inputs.flake-utils.lib.eachDefaultSystem (

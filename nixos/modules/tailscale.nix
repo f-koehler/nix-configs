@@ -1,7 +1,11 @@
 {config, ...}: {
   services.tailscale = {
     enable = true;
-    openFirewall = true;
-    extraUpFlags = "--ssh --operator=fkoehler --hostname=${config.networking.hostName}";
+    extraUpFlags = [
+      "--ssh"
+      "--hostname=${config.networking.hostName}"
+      "--operator=fkoehler"
+    ];
+    authKeyFile = "/run/secrets/tailscale_key";
   };
 }

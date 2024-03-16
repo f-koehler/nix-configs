@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  inputs,
   ...
 }: {
   imports = [
@@ -20,15 +19,8 @@
     ./zoxide.nix
     ./zsh.nix
   ];
-  nixpkgs = {
-    overlays = [
-      inputs.nix-vscode-extensions.overlays.default
-    ];
-    config.allowUnfree = true;
-  };
 
   nix = lib.mkIf pkgs.stdenv.isLinux {
-    package = pkgs.nix;
     settings.experimental-features = ["nix-command" "flakes"];
   };
 
@@ -144,7 +136,9 @@
     bat.enable = true;
     eza = {
       enable = true;
-      enableAliases = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      enableZshIntegration = true;
     };
     gh = {
       enable = true;

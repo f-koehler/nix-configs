@@ -19,6 +19,8 @@
     ./modules/nginx.nix
     ./modules/samba.nix
     ./modules/tailscale.nix
+    ./modules/podman.nix
+    ./modules/tiny-media-manager
   ];
 
   sops.defaultSopsFile = ../secrets/homeserver.yaml;
@@ -58,6 +60,7 @@
     gitFull
     tmux
     exfatprogs
+    htop
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

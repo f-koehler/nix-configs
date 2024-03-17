@@ -1,0 +1,20 @@
+---
+version: "3.8"
+services:
+  tinymediamanager:
+    image: docker.io/tinymediamanager/tinymediamanager:5.0.3
+    container_name: tinymediamanager
+    environment:
+      - USER_ID=1001
+      - GROUP_ID=100
+      - ALLOW_DIRECT_VNC=true
+      - LC_ALL=en_US.UTF-8 # force UTF8
+      - LANG=en_US.UTF-8 # force UTF8
+      - PASSWORD=changeme
+    volumes:
+      - /home/tmm/data:/data
+      - /home/tmm/tank0/media:/media/
+    ports:
+      - 5900:5900 # VNC port
+      - 4000:4000 # Webinterface
+    restart: unless-stopped

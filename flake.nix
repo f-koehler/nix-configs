@@ -99,6 +99,11 @@
           }
           inputs.sops-nix.nixosModules.sops
           ./nixos/homeserver.nix
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+          }
         ];
       };
 

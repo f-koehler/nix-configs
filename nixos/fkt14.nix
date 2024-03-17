@@ -75,6 +75,7 @@
       kdePackages.ktorrent
       sops
       rsync
+      krdc
     ];
   };
   programs.fish.enable = true;
@@ -88,6 +89,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     neovim
+    cifs-utils
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

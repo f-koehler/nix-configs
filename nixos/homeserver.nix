@@ -21,6 +21,7 @@
     ./modules/tailscale.nix
     ./modules/podman.nix
     ./modules/tiny-media-manager
+    ./modules/home-assistant.nix
   ];
 
   sops.defaultSopsFile = ../secrets/homeserver.yaml;

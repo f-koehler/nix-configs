@@ -61,20 +61,21 @@
       inkscape
       jellyfin-media-player
       kate
+      kdePackages.ktorrent
       kdePackages.plasma-browser-integration
+      krdc
       libreoffice-fresh
+      localsend
       nextcloud-client
       protonmail-bridge
+      rsync
+      sops
       tailscale
       telegram-desktop
       thunderbird
       vlc
       vscode
       zotero
-      kdePackages.ktorrent
-      sops
-      rsync
-      krdc
     ];
   };
   programs.fish.enable = true;

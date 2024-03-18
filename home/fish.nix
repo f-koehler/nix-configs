@@ -2,7 +2,7 @@ _: {
   programs.fish = {
     enable = true;
     shellInit = ''
-      eval "$(micromamba shell hook --shell=fish)"
+      micromamba shell hook --shell=fish | source
       direnv hook fish | source
     '';
     functions = {

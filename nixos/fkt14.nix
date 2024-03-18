@@ -80,6 +80,11 @@
   };
   programs.fish.enable = true;
   programs.virt-manager.enable = true;
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+  services.xserver.libinput.enable = true;
   services.flatpak.enable = true;
 
   # Allow unfree packages

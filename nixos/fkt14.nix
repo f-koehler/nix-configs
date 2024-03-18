@@ -8,7 +8,6 @@
 
     ./modules/bluetooth.nix
     ./modules/collect-garbage.nix
-    ./modules/distrobox.nix
     ./modules/firmware.nix
     ./modules/fstrim.nix
     ./modules/libvirt.nix

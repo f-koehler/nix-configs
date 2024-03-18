@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   imports = [
@@ -11,6 +12,7 @@
     ./fish.nix
     ./git.nix
     ./gpg.nix
+    ./hyprland.nix
     ./ssh.nix
     ./starship.nix
     ./tmux.nix
@@ -23,6 +25,7 @@
   nix = lib.mkIf pkgs.stdenv.isLinux {
     settings.experimental-features = ["nix-command" "flakes"];
   };
+  nixpkgs.overlays = [inputs.nix-vscode-extensions.overlays.default];
 
   fonts.fontconfig.enable = true;
   home = {
@@ -106,8 +109,6 @@
       # '';
     };
   };
-
-  xdg.configFile.nvim.source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Code/configs/nvim";
 
   # You can also manage environment variables but you will have to manually
   # source

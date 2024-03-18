@@ -3,8 +3,7 @@
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs;
-    [
+  environment.systemPackages = with pkgs; [
       micromamba
 
       bat
@@ -31,13 +30,7 @@
       zsh
 
       # julia-bin
-    ]
-    ++ import ../packages/ansible.nix {inherit pkgs;}
-    ++ import ../packages/cpp.nix {inherit pkgs;}
-    ++ import ../packages/go.nix {inherit pkgs;}
-    ++ import ../packages/js.nix {inherit pkgs;}
-    ++ import ../packages/nix.nix {inherit pkgs;}
-    ++ import ../packages/rust.nix {inherit pkgs;};
+  ];
 
   homebrew = {
     enable = true;

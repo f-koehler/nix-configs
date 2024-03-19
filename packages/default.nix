@@ -1,3 +1,3 @@
 {pkgs ? (import ./nixpkgs.nix) {}}: {
-  timetagger = pkgs.callPackage ./timetagger {};
+  swabian-timetagger = pkgs.callPackage ./swabian-timetagger {};
 }

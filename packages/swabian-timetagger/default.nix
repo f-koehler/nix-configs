@@ -6,7 +6,7 @@
   pkgs,
 }:
 stdenv.mkDerivation rec {
-  pname = "timetagger";
+  pname = "swabian-timetagger";
   version = "2.16.2";
   src = fetchurl {
     url = "https://www.swabianinstruments.com/static/downloads/timetagger_${version}_jammy_amd64.deb";

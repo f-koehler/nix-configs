@@ -3,6 +3,7 @@
   autoPatchelfHook,
   fetchurl,
   dpkg,
+  pkgs,
 }:
 stdenv.mkDerivation rec {
   pname = "timetagger";
@@ -16,11 +17,20 @@ stdenv.mkDerivation rec {
     dpkg
     autoPatchelfHook
   ];
-  buildInputs = [
+  buildInputs = with pkgs; [
+    xorg.libxcb
+    systemd
+  ];
+  runtimeDependencies = with pkgs; [
+    lua5_3_compat
+  ];
+  autoPatchelfIgnoreMissingDeps = [
+    "liblua5.3.so.0"
   ];
 
   installPhase = ''
     mkdir -p $out
     dpkg-deb -x $src $out
+    chmod 755 $out
   '';
 }

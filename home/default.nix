@@ -165,7 +165,11 @@ in {
     gh = {
       enable = true;
       settings = {
-        version = 1;
+        settings = {
+          editor = "nvim";
+          git_protocol = "ssh";
+          prompt = "enabled";
+        };
       };
     };
     neovim = {

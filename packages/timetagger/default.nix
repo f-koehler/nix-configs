@@ -28,6 +28,11 @@ stdenv.mkDerivation rec {
     "liblua5.3.so.0"
   ];
 
+  preBuild = ''
+    addAutoPatchelfSearchPath $out/usr/lib/timetagger/x64/driver/
+    addAutoPatchelfSearchPath $out/usr/lib/python3/dist-packages/
+  '';
+
   installPhase = ''
     mkdir -p $out
     dpkg-deb -x $src $out

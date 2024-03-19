@@ -82,6 +82,7 @@
       zotero
       nix-index
       swabian-timetagger
+      home-manager
     ];
   };
   programs.fish.enable = true;

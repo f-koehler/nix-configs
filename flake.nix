@@ -46,16 +46,17 @@
 
   outputs = {self, ...} @ inputs: let
     inherit (self) outputs;
-    systems = [
-      "aarch64-linux"
-      "i686-linux"
-      "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
-    ];
-    forAllSystems = inputs.nixpkgs.lib.genAttrs systems;
+    stateVersion = "23.11";
+    mylib = import ./lib {inherit inputs outputs stateVersion;};
   in
     {
+      homeConfigurations = {
+        "fkoehler@fkt14" = mylib.mkHome {
+          hostname = "fkt14";
+          username = "fkoehler";
+        };
+      };
+
       nixosConfigurations."fkt14" = inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         system = "x86_64-linux";
@@ -67,14 +68,6 @@
           }
           inputs.sops-nix.nixosModules.sops
           ./nixos/fkt14.nix
-          inputs.home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.fkoehler = import ./home;
-            };
-          }
         ];
       };
       nixosConfigurations."homeserver" = inputs.nixpkgs.lib.nixosSystem {

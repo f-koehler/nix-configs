@@ -1,47 +1,62 @@
 {
-  config,
   pkgs,
   lib,
   inputs,
+  outputs,
+  username,
+  stateVersion,
   ...
-}: {
-  imports = [
-    ./alacritty.nix
-    ./atuin.nix
-    ./direnv.nix
-    ./fish.nix
-    ./git.nix
-    ./gpg.nix
-    ./hyprland.nix
-    ./ssh.nix
-    ./starship.nix
-    ./tmux.nix
-    ./vscode.nix
-    ./wezterm.nix
-    ./zoxide.nix
-    ./zsh.nix
-  ];
+}: let
+  inherit (pkgs.stdenv) isDarwin;
+in {
+  imports =
+    [
+      inputs.nix-index-database.hmModules.nix-index
+      inputs.sops-nix.homeManagerModules.sops
+    ]
+    ++ [
+      ./alacritty.nix
+      ./atuin.nix
+      ./direnv.nix
+      ./fish.nix
+      ./git.nix
+      ./gpg.nix
+      # ./hyprland.nix
+      ./ssh.nix
+      ./starship.nix
+      ./tmux.nix
+      ./vscode.nix
+      ./wezterm.nix
+      ./zoxide.nix
+      ./zsh.nix
+    ];
 
-  nix = lib.mkIf pkgs.stdenv.isLinux {
-    settings.experimental-features = ["nix-command" "flakes"];
+  nixpkgs = {
+    overlays = [
+      inputs.nix-vscode-extensions.overlays.default
+      outputs.overlays.additions
+    ];
+    config = {
+      allowUnfree = true;
+    };
   };
-  nixpkgs.overlays = [inputs.nix-vscode-extensions.overlays.default];
+
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = ["nix-command" "flakes"];
+    };
+    package = pkgs.nix;
+  };
 
   fonts.fontconfig.enable = true;
   home = {
-    # Home Manager needs a bit of information about you and the paths it should
-    # manage.
-    # username = "fkoehler";
-    # homeDirectory = if pkgs.stdenv.isDarwin then "/Users/fkoehler" else "/home/fkoehler";
-
-    # This value determines the Home Manager release that your configuration is
-    # compatible with. This helps avoid breakage when a new Home Manager release
-    # introduces backwards incompatible changes.
-    #
-    # You should not change this value, even if you update Home Manager. If you do
-    # want to update the value, then make sure to first check the Home Manager
-    # release notes.
-    stateVersion = "23.05"; # Please read the comment before changing.
+    inherit stateVersion;
+    inherit username;
+    homeDirectory =
+      if isDarwin
+      then "/Users/${username}"
+      else "/home/${username}";
 
     # The home.packages option allows you to install Nix packages into your
     # environment.

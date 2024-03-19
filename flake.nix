@@ -56,19 +56,6 @@
     forAllSystems = inputs.nixpkgs.lib.genAttrs systems;
   in
     {
-      nixosConfigurations."mediapi" = inputs.nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-        modules = [
-          inputs.nixos-hardware.nixosModules.raspberry-pi-4
-          ./nixos/mediapi.nix
-          inputs.sops-nix.nixosModules.sops
-          inputs.home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-          }
-        ];
-      };
       nixosConfigurations."fkt14" = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [

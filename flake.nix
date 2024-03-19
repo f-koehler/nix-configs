@@ -45,7 +45,7 @@
   };
 
   outputs = {self, ...} @ inputs: let
-    # inherit (self) outputs;
+    inherit (self) outputs;
     systems = [
       "aarch64-linux"
       "i686-linux"
@@ -57,6 +57,7 @@
   in
     {
       nixosConfigurations."fkt14" = inputs.nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
         system = "x86_64-linux";
         modules = [
           {

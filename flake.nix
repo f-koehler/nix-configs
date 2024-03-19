@@ -130,6 +130,7 @@
     // inputs.flake-utils.lib.eachDefaultSystem (
       system: {
         packages = let pkgs = inputs.nixpkgs.legacyPackages.${system}; in import ./packages {inherit pkgs;};
+        formatter = inputs.nixpkgs.legacyPackages.${system}.alejandra;
         checks = {
           pre-commit-check = inputs."pre-commit-hooks".lib.${system}.run {
             src = ./.;

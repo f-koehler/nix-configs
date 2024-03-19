@@ -4,6 +4,7 @@
   inputs,
   outputs,
   username,
+  config,
   stateVersion,
   ...
 }: let
@@ -47,6 +48,17 @@ in {
       experimental-features = ["nix-command" "flakes"];
     };
     package = pkgs.nix;
+  };
+
+  sops = {
+    age = {
+      keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+      generateKey = false;
+    };
+    defaultSopsFile = ../secrets/home.yaml;
+    secrets = {
+      "atuin/key".path = "${config.home.homeDirectory}/.local/share/atuin/key";
+    };
   };
 
   fonts.fontconfig.enable = true;

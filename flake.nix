@@ -113,6 +113,8 @@
           }
         ];
       };
+
+      overlays = import ./overlays {inherit inputs;};
     }
     // inputs.flake-utils.lib.eachDefaultSystem (
       system: {

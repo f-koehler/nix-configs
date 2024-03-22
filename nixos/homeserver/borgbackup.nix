@@ -19,8 +19,9 @@
       jellyfin = {
         paths = ["/var/lib/jellyfin"];
         repo = "${config.services.jellyfin.user}@localhost:/${config.services.borgbackup.repos.jellyfin.path}";
+        encryption = "none";
         startAt = "daily";
-        persistentTime = true;
+        persistentTimer = true;
         user = "${config.services.jellyfin.user}";
         group = "${config.services.jellyfin.group}";
         inhibitsSleep = true;

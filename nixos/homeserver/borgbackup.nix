@@ -5,28 +5,13 @@
       group = "${config.services.jellyfin.group}";
     };
   };
-  systemd = {
-    mounts = [
-      {
-        description = "Mount tank0 external USB disk (Borg)";
-        what = "/dev/disk/by-label/tank0-borg";
-        where = "/media/tank0_borg";
-        type = "exfat";
-        wantedBy = ["multi-user.target"];
-        options = "noatime,uid=borg,gid=borg,umask=0";
-      }
-    ];
-    services = {
-      borgbackup-repo-jellyfin.after = ["media-tank0_borg.mount"];
-    };
-  };
   services.borgbackup = {
     repos = {
       jellyfin = {
         user = "${config.services.jellyfin.user}";
         group = "${config.services.jellyfin.group}";
         quota = "50G";
-        path = "/media/tank0/backups/homeserver/jellyfin";
+        path = "/backups/homeserver/jellyfin";
         authorizedKeys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILRgxSe/5JyfZYKV6uF0jw65zpxYcosrua2V6qHa2h3b jellyfin@homeserver"];
       };
     };

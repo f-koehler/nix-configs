@@ -1,14 +1,21 @@
 {config, ...}: {
   services.borgbackup = {
+    repos = {
+      jellyfin = {
+        user = "${config.users.jellyfin.user}";
+        group = "${config.users.jellyfin.group}";
+        quota = "50G";
+        path = "/media/tank0/backups/homeserver/jellyfin";
+      };
+    };
     jobs = {
       jellyfin = {
-        path = "/media/tank0/backups/homeserver/jellyfin";
         paths = ["/var/lib/jellyfin"];
+        repo = "jellyfin";
         startAt = "daily";
         persistentTime = true;
         user = "${config.users.jellyfin.user}";
         group = "${config.users.jellyfin.group}";
-        quota = "50G";
         inhibitsSleep = true;
         prune.keep = {
           within = "14d";

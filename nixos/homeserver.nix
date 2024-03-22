@@ -10,6 +10,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware/homeserver.nix
+    ./homeserver/borgbackup.nix
 
     ./modules/collect-garbage.nix
     ./modules/firmware.nix

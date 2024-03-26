@@ -88,6 +88,7 @@
         };
       };
       "redhat.telemetry.enabled" = false;
+      "remote.SSH.useLocalServer" = false;
       "ruff.path" = ["${pkgs.ruff}/bin/ruff"];
       "terminal.integrated.fontFamily" = "Hack Nerd Font";
       "terminal.integrated.fontSize" = 12;

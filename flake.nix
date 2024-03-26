@@ -48,11 +48,7 @@
     };
   };
 
-  outputs = {
-    self,
-    nix-ld-rs,
-    ...
-  } @ inputs: let
+  outputs = {self, ...} @ inputs: let
     inherit (self) outputs;
     stateVersion = "23.11";
     mylib = import ./lib {inherit inputs outputs stateVersion;};
@@ -80,6 +76,7 @@
       };
       nixosConfigurations."homeserver" = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = {inherit inputs;};
         modules = [
           {
             nixpkgs.overlays = [

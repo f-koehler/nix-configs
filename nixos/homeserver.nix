@@ -3,7 +3,7 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 {
   config,
-  nix-ld-rs,
+  inputs,
   lib,
   pkgs,
   ...

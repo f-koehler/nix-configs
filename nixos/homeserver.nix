@@ -54,7 +54,7 @@
 
   programs.nix-ld = {
     enable = true;
-    package = nix-ld-rs.packages."${pkgs.system}".nix-ld-rs;
+    package = inputs.nix-ld-rs.packages."${pkgs.system}".nix-ld-rs;
   };
 
   # Allow unfree packages

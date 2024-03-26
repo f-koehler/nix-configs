@@ -42,6 +42,10 @@
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
     flake-utils.url = "github:numtide/flake-utils";
+    nix-ld-rs = {
+      url = "github:nix-community/nix-ld-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {self, ...} @ inputs: let

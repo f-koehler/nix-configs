@@ -3,6 +3,7 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -50,7 +51,11 @@
     };
   };
   programs.fish.enable = true;
-  programs.nix-ld.enable = true;
+
+  programs.nix-ld = {
+    enable = true;
+    package = inputs.nix-ld-rs.packages."${pkgs.system}".nix-ld-rs;
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

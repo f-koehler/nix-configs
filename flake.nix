@@ -42,6 +42,7 @@
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
 
     flake-utils.url = "github:numtide/flake-utils";
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
   outputs = {self, ...} @ inputs: let
@@ -68,6 +69,14 @@
           }
           inputs.sops-nix.nixosModules.sops
           ./nixos/fkt14.nix
+          inputs.vscode-server.nixosModules.default
+          ({
+            config,
+            pkgs,
+            ...
+          }: {
+            services.vscode-server.enable = true;
+          })
         ];
       };
       nixosConfigurations."homeserver" = inputs.nixpkgs.lib.nixosSystem {
@@ -85,6 +94,14 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
           }
+          inputs.vscode-server.nixosModules.default
+          ({
+            config,
+            pkgs,
+            ...
+          }: {
+            services.vscode-server.enable = true;
+          })
         ];
       };
 

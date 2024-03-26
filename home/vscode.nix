@@ -3,6 +3,9 @@
   lib,
   ...
 }: {
+  home.packages = [
+    pkgs.ruff
+  ];
   programs.vscode = lib.mkIf pkgs.stdenv.isLinux {
     enable = true;
     enableExtensionUpdateCheck = true;

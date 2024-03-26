@@ -3,7 +3,7 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 {
   config,
-  inputs,
+  nix-ld-rs,
   lib,
   pkgs,
   ...
@@ -54,7 +54,7 @@
 
   programs.nix-ld = {
     enable = true;
-    package = inputs.nix-ld-rs.packages."${pkgs.system}".nix-ld-rs;
+    package = nix-ld-rs.packages."${pkgs.system}".nix-ld-rs;
   };
 
   # Allow unfree packages

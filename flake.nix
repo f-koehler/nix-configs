@@ -48,7 +48,11 @@
     };
   };
 
-  outputs = {self, ...} @ inputs: let
+  outputs = {
+    self,
+    nix-ld-rs,
+    ...
+  } @ inputs: let
     inherit (self) outputs;
     stateVersion = "23.11";
     mylib = import ./lib {inherit inputs outputs stateVersion;};

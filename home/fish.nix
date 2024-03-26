@@ -3,7 +3,6 @@ _: {
     enable = true;
     shellInit = ''
       micromamba shell hook --shell=fish | source
-      direnv hook fish | source
     '';
     functions = {
       "load_secrets" = ''

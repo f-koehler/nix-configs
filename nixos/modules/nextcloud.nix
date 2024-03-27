@@ -9,6 +9,7 @@
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud28;
+    hostName = "cloud.fkoehler.xyz";
     https = true;
     enableBrokenCiphersForSSE = false;
     autoUpdateApps.enable = true;
@@ -24,7 +25,6 @@
     maxUploadSize = "20G";
     settings = {
       default_phone_region = "SG";
-      trusted_domains = ["cloud.fkoehler.xyz"];
     };
   };
 }

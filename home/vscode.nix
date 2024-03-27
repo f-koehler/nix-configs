@@ -27,15 +27,12 @@
         pkgs.vscode-marketplace.mechatroner.rainbow-csv
         pkgs.vscode-marketplace.mkhl.direnv
         pkgs.vscode-marketplace.ms-azuretools.vscode-docker
-        pkgs.vscode-marketplace.ms-pyright.pyright
-        pkgs.vscode-marketplace.ms-python.black-formatter
-        pkgs.vscode-marketplace.ms-python.isort
         pkgs.vscode-marketplace.ms-python.python
         pkgs.vscode-marketplace.ms-python.vscode-pylance
         pkgs.vscode-marketplace.ms-vscode-remote.remote-containers
         pkgs.vscode-marketplace.ms-vscode-remote.remote-ssh
-        pkgs.vscode-marketplace.ms-vscode.cpptools
-        pkgs.vscode-marketplace.ms-vscode.cpptools-extension-pack
+        # pkgs.vscode-marketplace.ms-vscode.cpptools
+        # pkgs.vscode-marketplace.ms-vscode.cpptools-extension-pack
         pkgs.vscode-marketplace.ms-vscode.hexeditor
         pkgs.vscode-marketplace.ms-vsliveshare.vsliveshare
         pkgs.vscode-marketplace.redhat.vscode-xml
@@ -45,10 +42,11 @@
         pkgs.vscode-marketplace.tamasfe.even-better-toml
         pkgs.vscode-marketplace.usernamehw.errorlens
         pkgs.vscode-marketplace.vscode-icons-team.vscode-icons
+        pkgs.vscode-marketplace.ecmel.vscode-html-css
       ]
       ++ [
-        pkgs.vscode-extensions.ms-vscode.cmake-tools
-        pkgs.vscode-extensions.ms-vscode.makefile-tools
+        # pkgs.vscode-extensions.ms-vscode.cmake-tools
+        # pkgs.vscode-extensions.ms-vscode.makefile-tools
       ];
     userSettings = {
       "[nix]" = {
@@ -94,6 +92,9 @@
       "terminal.integrated.fontSize" = 12;
       "vsicons.dontShowNewVersionMessage" = true;
       "workbench.iconTheme" = "vscode-icons";
+      "remote.SSH.remotePlatform" = {
+        "homeserver" = "linux";
+      };
     };
   };
 }

@@ -16,6 +16,7 @@
     ./modules/fstrim.nix
     ./modules/libvirt.nix
     ./modules/locale.nix
+    ./modules/nix.nix
     ./modules/plasma.nix
     ./modules/sound.nix
     ./modules/tailscale.nix

@@ -1,37 +1,9 @@
-{pkgs, ...}: {
+{...}: {
   users.users.fkoehler.home = "/Users/fkoehler";
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [
-    micromamba
-
-    bat
-    direnv
-    eza
-    fzf
-    gh
-    git
-    gnupg
-    htop
-    jq
-    nmap
-    # neovim
-    ghostscript
-    poppler_utils
-    qpdf
-    rsync
-    starship
-    tmux
-    wget
-    yt-dlp
-    zellij
-    zoxide
-    zsh
-    home-manager
-
-    # julia-bin
-  ];
+  environment.systemPackages = [];
 
   homebrew = {
     enable = true;

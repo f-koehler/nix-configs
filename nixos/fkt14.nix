@@ -122,10 +122,10 @@
   environment = {
     sessionVariables.NIXOS_OZONE_WL = "1";
     systemPackages = with pkgs; [
-    neovim
-    cifs-utils
+      neovim
+      cifs-utils
       xwaylandvideobridge
-  ];
+    ];
   };
 
   # Some programs need SUID wrappers, can be configured further or are

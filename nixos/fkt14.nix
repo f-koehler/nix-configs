@@ -105,10 +105,14 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
+  environment = {
+    sessionVariables.NIXOS_OZONE_WL = "1";
+    systemPackages = with pkgs; [
     neovim
     cifs-utils
+      xwaylandvideobridge
   ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

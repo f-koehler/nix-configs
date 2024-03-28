@@ -6,7 +6,7 @@
   home.packages = [
     pkgs.ruff
   ];
-  programs.vscode = lib.mkIf pkgs.stdenv.isLinux {
+  programs.vscode = {
     enable = true;
     enableExtensionUpdateCheck = true;
     enableUpdateCheck = pkgs.stdenv.isDarwin;

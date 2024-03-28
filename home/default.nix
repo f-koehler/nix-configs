@@ -70,8 +70,6 @@ in {
       then "/Users/${username}"
       else "/home/${username}";
 
-    # The home.packages option allows you to install Nix packages into your
-    # environment.
     packages = with pkgs; [
       # awscli2
       # neovim
@@ -96,10 +94,7 @@ in {
       yq-go
       rclone
       nix-tree
-
-      # # Adds the 'hello' command to your environment. It prints a friendly
-      # # "Hello, world!" when run.
-      # pkgs.hello
+      vscode
 
       # It is sometimes useful to fine-tune packages, for example, by applying
       # overrides. You can do that directly here, just don't forget the
@@ -131,16 +126,6 @@ in {
     };
   };
 
-  # You can also manage environment variables but you will have to manually
-  # source
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/fkoehler/etc/profile.d/hm-session-vars.sh
-  #
-  # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
     EDITOR = "nvim";
   };

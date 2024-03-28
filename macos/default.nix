@@ -28,6 +28,7 @@
     zellij
     zoxide
     zsh
+    home-manager
 
     # julia-bin
   ];
@@ -68,7 +69,6 @@
       "thunderbird"
       "transmission"
       "utm"
-      "visual-studio-code"
       "wezterm"
       "whatsapp"
       "tinymediamanager"

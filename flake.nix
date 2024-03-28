@@ -59,6 +59,11 @@
           hostname = "fkt14";
           username = "fkoehler";
         };
+        "fkoehler@mbp2021" = mylib.mkHome {
+          hostname = "mbp2021";
+          username = "fkoehler";
+          system = "aarch64-darwin";
+        };
       };
 
       nixosConfigurations."fkt14" = inputs.nixpkgs.lib.nixosSystem {
@@ -93,23 +98,16 @@
         ];
       };
 
-      darwinConfigurations."mac_arm64" = inputs.nix-darwin.lib.darwinSystem {
+      darwinConfigurations."mbp2021" = inputs.nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
         modules = [
-          {
-            nixpkgs.overlays = [
-              inputs.nix-vscode-extensions.overlays.default
-            ];
-          }
+          # {
+          #   nixpkgs.overlays = [
+          #     inputs.nix-vscode-extensions.overlays.default
+          #   ];
+          # }
           inputs.nix-index-database.darwinModules.nix-index
           ./macos/default.nix
-          inputs.home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.fkoehler = import ./home/default.nix;
-            };
-          }
         ];
       };
 

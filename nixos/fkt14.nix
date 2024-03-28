@@ -19,6 +19,7 @@
     ./modules/plasma.nix
     ./modules/sound.nix
     ./modules/tailscale.nix
+    ./modules/wine.nix
   ];
 
   sops.defaultSopsFile = ../secrets/fkt14.yaml;

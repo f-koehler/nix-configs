@@ -82,8 +82,22 @@
       vscode
       zotero
       nix-index
-      swabian-timetagger
       home-manager
+      cachix
+      distrobox
+      evince
+
+      poetry
+      python311
+      rye
+
+      cmake
+      gcc
+      pkg-config
+      ninja
+      fftw
+
+      super-productivity
     ];
   };
   programs.fish.enable = true;

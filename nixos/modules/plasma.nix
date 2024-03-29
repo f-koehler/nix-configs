@@ -1,4 +1,4 @@
-_: {
+{pkgs, ...}: {
   services = {
     xserver = {
       # Enable the X11 windowing system.
@@ -15,4 +15,7 @@ _: {
     };
     desktopManager.plasma6.enable = true;
   };
+  environment.systemPackages = with pkgs; [
+    kdePackages.skanpage
+  ];
 }

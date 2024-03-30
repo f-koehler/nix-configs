@@ -17,11 +17,6 @@
         port = 22;
         user = "osmc";
       };
-      "zoq45" = {
-        hostname = "100.107.23.113";
-        port = 22;
-        user = "fkoehler";
-      };
       "fk-dev-x86-01" = {
         hostname = "ec2-18-140-197-34.ap-southeast-1.compute.amazonaws.com";
         user = "ubuntu";
@@ -31,6 +26,10 @@
         hostname = "ec2-13-214-148-20.ap-southeast-1.compute.amazonaws.com";
         user = "ubuntu";
         identityFile = "${config.home.homeDirectory}/.ssh/fk.pem";
+      };
+      "homeserver" = {
+        hostname = "100.88.7.127";
+        user = "fkoehler";
       };
     };
   };

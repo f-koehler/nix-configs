@@ -16,10 +16,11 @@
     ./modules/fstrim.nix
     ./modules/libvirt.nix
     ./modules/locale.nix
+    ./modules/nix.nix
     ./modules/plasma.nix
     ./modules/sound.nix
     ./modules/tailscale.nix
-    ./modules/nix.nix
+    ./modules/wine.nix
   ];
 
   sops.defaultSopsFile = ../secrets/fkt14.yaml;
@@ -44,6 +45,11 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   virtualisation.docker.enable = true;
 
@@ -82,8 +88,22 @@
       vscode
       zotero
       nix-index
-      swabian-timetagger
       home-manager
+      cachix
+      distrobox
+      evince
+
+      poetry
+      python311
+      rye
+
+      cmake
+      gcc
+      pkg-config
+      ninja
+      fftw
+
+      super-productivity
     ];
   };
   programs.fish.enable = true;
@@ -105,10 +125,14 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    neovim
-    cifs-utils
-  ];
+  environment = {
+    sessionVariables.NIXOS_OZONE_WL = "1";
+    systemPackages = with pkgs; [
+      neovim
+      cifs-utils
+      xwaylandvideobridge
+    ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

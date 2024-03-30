@@ -31,8 +31,6 @@
         pkgs.vscode-marketplace.ms-python.vscode-pylance
         pkgs.vscode-marketplace.ms-vscode-remote.remote-containers
         pkgs.vscode-marketplace.ms-vscode-remote.remote-ssh
-        # pkgs.vscode-marketplace.ms-vscode.cpptools
-        # pkgs.vscode-marketplace.ms-vscode.cpptools-extension-pack
         pkgs.vscode-marketplace.ms-vscode.hexeditor
         pkgs.vscode-marketplace.ms-vsliveshare.vsliveshare
         pkgs.vscode-marketplace.redhat.vscode-xml

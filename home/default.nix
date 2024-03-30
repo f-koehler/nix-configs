@@ -19,6 +19,7 @@ in {
       ./alacritty.nix
       ./atuin.nix
       ./direnv.nix
+      ./darwin.nix
       ./fish.nix
       ./git.nix
       ./gpg.nix

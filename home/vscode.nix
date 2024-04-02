@@ -6,42 +6,41 @@
     enable = true;
     enableExtensionUpdateCheck = true;
     enableUpdateCheck = pkgs.stdenv.isDarwin;
-    extensions =
-      [
-        pkgs.vscode-marketplace.akiramiyakoda.cppincludeguard
-        pkgs.vscode-marketplace.asvetliakov.vscode-neovim
-        pkgs.vscode-marketplace.charliermarsh.ruff
-        pkgs.vscode-marketplace.eamodio.gitlens
-        pkgs.vscode-marketplace.editorconfig.editorconfig
-        pkgs.vscode-marketplace.efanzh.graphviz-preview
-        pkgs.vscode-marketplace.esbenp.prettier-vscode
-        pkgs.vscode-marketplace.github.copilot
-        pkgs.vscode-marketplace.github.vscode-github-actions
-        pkgs.vscode-marketplace.github.vscode-pull-request-github
-        pkgs.vscode-marketplace.james-yu.latex-workshop
-        pkgs.vscode-marketplace.jnoortheen.nix-ide
-        pkgs.vscode-marketplace.mechatroner.rainbow-csv
-        pkgs.vscode-marketplace.mkhl.direnv
-        pkgs.vscode-marketplace.ms-azuretools.vscode-docker
-        pkgs.vscode-marketplace.ms-python.python
-        pkgs.vscode-marketplace.ms-python.vscode-pylance
-        pkgs.vscode-marketplace.ms-vscode-remote.remote-containers
-        pkgs.vscode-marketplace.ms-vscode-remote.remote-ssh
-        pkgs.vscode-marketplace.ms-vscode.hexeditor
-        pkgs.vscode-marketplace.ms-vsliveshare.vsliveshare
-        pkgs.vscode-marketplace.redhat.vscode-xml
-        pkgs.vscode-marketplace.redhat.vscode-yaml
-        pkgs.vscode-marketplace.stephanvs.dot
-        pkgs.vscode-marketplace.tailscale.vscode-tailscale
-        pkgs.vscode-marketplace.tamasfe.even-better-toml
-        pkgs.vscode-marketplace.usernamehw.errorlens
-        pkgs.vscode-marketplace.vscode-icons-team.vscode-icons
-        pkgs.vscode-marketplace.ecmel.vscode-html-css
-      ]
-      ++ [
-        # pkgs.vscode-extensions.ms-vscode.cmake-tools
-        # pkgs.vscode-extensions.ms-vscode.makefile-tools
-      ];
+    extensions = [
+      pkgs.vscode-marketplace.akiramiyakoda.cppincludeguard
+      pkgs.vscode-marketplace.asvetliakov.vscode-neovim
+      pkgs.vscode-marketplace.charliermarsh.ruff
+      pkgs.vscode-marketplace.eamodio.gitlens
+      pkgs.vscode-marketplace.editorconfig.editorconfig
+      pkgs.vscode-marketplace.efanzh.graphviz-preview
+      pkgs.vscode-marketplace.esbenp.prettier-vscode
+      pkgs.vscode-marketplace.github.copilot
+      pkgs.vscode-marketplace.github.vscode-github-actions
+      pkgs.vscode-marketplace.github.vscode-pull-request-github
+      pkgs.vscode-marketplace.james-yu.latex-workshop
+      pkgs.vscode-marketplace.jnoortheen.nix-ide
+      pkgs.vscode-marketplace.mechatroner.rainbow-csv
+      pkgs.vscode-marketplace.mkhl.direnv
+      pkgs.vscode-marketplace.ms-azuretools.vscode-docker
+      pkgs.vscode-marketplace.ms-python.python
+      pkgs.vscode-marketplace.ms-python.vscode-pylance
+      pkgs.vscode-marketplace.ms-vscode-remote.remote-containers
+      pkgs.vscode-marketplace.ms-vscode-remote.remote-ssh
+      pkgs.vscode-marketplace.ms-vscode.hexeditor
+      pkgs.vscode-marketplace.ms-vsliveshare.vsliveshare
+      pkgs.vscode-marketplace.redhat.vscode-xml
+      pkgs.vscode-marketplace.redhat.vscode-yaml
+      pkgs.vscode-marketplace.stephanvs.dot
+      pkgs.vscode-marketplace.tailscale.vscode-tailscale
+      pkgs.vscode-marketplace.tamasfe.even-better-toml
+      pkgs.vscode-marketplace.usernamehw.errorlens
+      pkgs.vscode-marketplace.vscode-icons-team.vscode-icons
+      pkgs.vscode-marketplace.ecmel.vscode-html-css
+    ];
+    # ++ [
+    #   # pkgs.vscode-extensions.ms-vscode.cmake-tools
+    #   # pkgs.vscode-extensions.ms-vscode.makefile-tools
+    # ];
     userSettings = {
       "[nix]" = {
         "editor.defaultFormatter" = "jnoortheen.nix-ide";

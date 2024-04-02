@@ -29,9 +29,13 @@
   sops.defaultSopsFile = ../secrets/homeserver.yaml;
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  };
 
   networking.hostName = "homeserver"; # Define your hostname.
   # Pick only one of the below networking options.

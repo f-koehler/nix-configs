@@ -127,7 +127,10 @@
             hooks = {
               # nix
               alejandra.enable = true;
-              deadnix.enable = true;
+              deadnix = {
+                enable = true;
+                settings.edit = true;
+              };
               nil.enable = true;
               statix.enable = true;
 

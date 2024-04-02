@@ -126,7 +126,10 @@
             ];
             hooks = {
               # nix
-              alejandra.enable = true;
+              alejandra = {
+                enable = true;
+                settings.quiet = true;
+              };
               deadnix = {
                 enable = true;
                 settings.edit = true;

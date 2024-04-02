@@ -151,6 +151,7 @@
           };
         };
         devShell = inputs.nixpkgs.legacyPackages.${system}.mkShell {
+          packages = let pkgs = inputs.nixpkgs.legacyPackages.${system}; in [pkgs.statix];
           inherit (self.checks.${system}.pre-commit-check) shellHook;
         };
       }

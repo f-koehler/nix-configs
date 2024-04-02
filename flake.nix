@@ -128,7 +128,7 @@
               # nix
               alejandra = {
                 enable = true;
-                settings.quiet = true;
+                settings.verbosity = "quiet";
               };
               deadnix = {
                 enable = true;

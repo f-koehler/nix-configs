@@ -12,6 +12,7 @@
     # Include the results of the hardware scan.
     ./hardware/homeserver.nix
 
+    ./modules/atuin.nix
     ./modules/collect-garbage.nix
     ./modules/firmware.nix
     ./modules/fstrim.nix

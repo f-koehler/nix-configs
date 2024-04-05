@@ -17,6 +17,8 @@
   };
   environment.systemPackages = with pkgs; [
     kdePackages.skanpage
+    kdePackages.tokodon
+    kdePackages.neochat
   ];
   security.pam.services.fkoehler.enableGnomeKeyring = true;
   services.gnome.gnome-keyring.enable = true;

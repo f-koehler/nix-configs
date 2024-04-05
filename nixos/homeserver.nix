@@ -5,6 +5,7 @@
   config,
   inputs,
   pkgs,
+  outputs,
   ...
 }: {
   imports = [
@@ -61,8 +62,13 @@
     package = inputs.nix-ld-rs.packages."${pkgs.system}".nix-ld-rs;
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    # Allow unfree packages
+    config.allowUnfree = true;
+    overlays = [
+      outputs.overlays.additions
+    ];
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

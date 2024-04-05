@@ -15,9 +15,13 @@
     ./modules/collect-garbage.nix
     ./modules/firmware.nix
     ./modules/fstrim.nix
+    ./modules/home-assistant.nix
     ./modules/jellyfin.nix
     ./modules/locale.nix
+    ./modules/nextcloud.nix
     ./modules/nginx.nix
+    ./modules/nix.nix
+    ./modules/podman.nix
     ./modules/samba.nix
     ./modules/tailscale.nix
     ./modules/podman.nix

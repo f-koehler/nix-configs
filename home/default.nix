@@ -20,6 +20,7 @@ in {
       ./atuin.nix
       ./direnv.nix
       ./darwin.nix
+      ./email.nix
       ./fish.nix
       ./git.nix
       ./gpg.nix

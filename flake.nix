@@ -46,6 +46,7 @@
       url = "github:nix-community/nix-ld-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
   outputs = {self, ...} @ inputs: let
@@ -125,8 +126,14 @@
             ];
             hooks = {
               # nix
-              alejandra.enable = true;
-              deadnix.enable = true;
+              alejandra = {
+                enable = true;
+                settings.verbosity = "quiet";
+              };
+              deadnix = {
+                enable = true;
+                settings.edit = true;
+              };
               nil.enable = true;
               statix.enable = true;
 
@@ -147,6 +154,7 @@
           };
         };
         devShell = inputs.nixpkgs.legacyPackages.${system}.mkShell {
+          packages = let pkgs = inputs.nixpkgs.legacyPackages.${system}; in [pkgs.statix];
           inherit (self.checks.${system}.pre-commit-check) shellHook;
         };
       }

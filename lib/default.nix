@@ -18,7 +18,7 @@
       modules =
         [../home]
         ++ (
-          if pkgs.stdenv.isLinux
+          if (pkgs.stdenv.isLinux && isWorkstation)
           then [inputs.nix-flatpak.homeManagerModules.nix-flatpak ../flatpak.nix]
           else []
         );

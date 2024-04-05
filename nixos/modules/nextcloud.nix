@@ -31,7 +31,7 @@
       autoUpdateApps.enable = true;
       extraAppsEnable = true;
       extraApps = with config.services.nextcloud.package.packages.apps; {
-        inherit calendar contacts;
+        inherit calendar contacts tasks;
       };
     };
     nginx.virtualHosts.${config.services.nextcloud.hostName} = {

@@ -12,19 +12,20 @@
     # Include the results of the hardware scan.
     ./hardware/homeserver.nix
 
+    ./modules/atuin.nix
     ./modules/collect-garbage.nix
     ./modules/firmware.nix
     ./modules/fstrim.nix
+    ./modules/home-assistant.nix
     ./modules/jellyfin.nix
     ./modules/locale.nix
+    ./modules/nextcloud.nix
     ./modules/nginx.nix
+    ./modules/nix.nix
+    ./modules/podman.nix
     ./modules/samba.nix
     ./modules/tailscale.nix
-    ./modules/podman.nix
     ./modules/tiny-media-manager
-    ./modules/home-assistant.nix
-    ./modules/nextcloud.nix
-    ./modules/nix.nix
   ];
 
   sops.defaultSopsFile = ../secrets/homeserver.yaml;

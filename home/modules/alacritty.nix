@@ -1,5 +1,10 @@
-{pkgs, ...}: {
-  programs.alacritty = {
+{
+  pkgs,
+  lib,
+  isWorkstation,
+  ...
+}: {
+  programs.alacritty = lib.mkIf isWorkstation {
     enable = true;
     settings = {
       font = {

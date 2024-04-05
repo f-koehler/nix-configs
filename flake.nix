@@ -67,7 +67,7 @@
           system = "aarch64-darwin";
           isWorkstation = true;
         };
-        "fkoehle@homeserver" = mylib.mkHome {
+        "fkoehler@homeserver" = mylib.mkHome {
           hostname = "homeserver";
           username = "fkoehler";
         };

@@ -25,11 +25,7 @@
     ./modules/podman.nix
     ./modules/samba.nix
     ./modules/tailscale.nix
-    ./modules/podman.nix
     ./modules/tiny-media-manager
-    ./modules/home-assistant.nix
-    ./modules/nextcloud.nix
-    ./modules/nix.nix
   ];
 
   sops.defaultSopsFile = ../secrets/homeserver.yaml;

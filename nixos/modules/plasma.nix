@@ -19,6 +19,8 @@
     kdePackages.skanpage
     kdePackages.tokodon
     kdePackages.neochat
+    kdePackages.zanshin
+    kdePackages.merkuro
   ];
   security.pam.services.fkoehler.enableGnomeKeyring = true;
   services.gnome.gnome-keyring.enable = true;

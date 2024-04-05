@@ -59,11 +59,17 @@
         "fkoehler@fkt14" = mylib.mkHome {
           hostname = "fkt14";
           username = "fkoehler";
+          isWorkstation = true;
         };
         "fkoehler@mbp2021" = mylib.mkHome {
           hostname = "mbp2021";
           username = "fkoehler";
           system = "aarch64-darwin";
+          isWorkstation = true;
+        };
+        "fkoehle@homeserver" = mylib.mkHome {
+          hostname = "homeserver";
+          username = "fkoehler";
         };
       };
 

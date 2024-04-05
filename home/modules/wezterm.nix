@@ -1,5 +1,9 @@
-_: {
-  programs.wezterm = {
+{
+  lib,
+  isWorkstation,
+  ...
+}: {
+  programs.wezterm = lib.mkIf isWorkstation {
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;

@@ -1,5 +1,10 @@
-{pkgs, ...}: {
-  accounts.email.accounts = {
+{
+  pkgs,
+  lib,
+  isWorkstation,
+  ...
+}: {
+  accounts.email.accounts = lib.mkIf isWorkstation {
     "me@fkoehler.org" = {
       address = "me@fkoehler.org";
       imap = {
@@ -50,7 +55,7 @@
       userName = "fkoehler";
     };
   };
-  programs.thunderbird = {
+  programs.thunderbird = lib.mkIf isWorkstation {
     enable = true;
     profiles = {
       fkoehler = {
@@ -58,7 +63,11 @@
       };
     };
   };
-  home.packages = with pkgs; [
-    protonmail-bridge-gui
-  ];
+  home.packages =
+    if isWorkstation
+    then
+      with pkgs; [
+        protonmail-bridge-gui
+      ]
+    else [];
 }

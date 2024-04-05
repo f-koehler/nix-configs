@@ -18,4 +18,6 @@
   environment.systemPackages = with pkgs; [
     kdePackages.skanpage
   ];
+  security.pam.services.fkoehler.enableGnomeKeyring = true;
+  services.gnome.gnome-keyring.enable = true;
 }

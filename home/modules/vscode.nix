@@ -93,6 +93,8 @@
       "ruff.path" = ["${pkgs.ruff}/bin/ruff"];
       "terminal.integrated.fontFamily" = "Hack Nerd Font";
       "terminal.integrated.fontSize" = 12;
+      "terminal.integrated.persistentSessionScrollback" = 10000;
+      "terminal.integrated.scrollback" = 100000;
       "vsicons.dontShowNewVersionMessage" = true;
       "workbench.iconTheme" = "vscode-icons";
       "remote.SSH.remotePlatform" = {

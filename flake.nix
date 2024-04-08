@@ -67,7 +67,7 @@
           system = "aarch64-darwin";
           isWorkstation = true;
         };
-        "fkoehle@homeserver" = mylib.mkHome {
+        "fkoehler@homeserver" = mylib.mkHome {
           hostname = "homeserver";
           username = "fkoehler";
         };
@@ -88,7 +88,7 @@
       };
       nixosConfigurations."homeserver" = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs outputs;};
         modules = [
           {
             nixpkgs.overlays = [

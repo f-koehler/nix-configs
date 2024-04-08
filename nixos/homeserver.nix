@@ -39,6 +39,17 @@
     kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   };
 
+  services.zfs = {
+    trim = {
+      enable = true;
+      interval = "weekly";
+    };
+    autoScrub = {
+      enable = true;
+      interval = "weekly";
+    };
+  };
+
   networking.hostName = "homeserver"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

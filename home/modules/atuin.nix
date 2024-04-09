@@ -1,4 +1,9 @@
 {config, ...}: {
+  sops = {
+    secrets = {
+      "atuin/key".path = "${config.home.homeDirectory}/.local/share/atuin/key";
+    };
+  };
   programs.atuin = {
     enable = true;
     enableBashIntegration = true;

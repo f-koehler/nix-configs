@@ -40,9 +40,6 @@ in {
       generateKey = false;
     };
     defaultSopsFile = ../secrets/home.yaml;
-    secrets = {
-      "atuin/key".path = "${config.home.homeDirectory}/.local/share/atuin/key";
-    };
   };
 
   fonts.fontconfig.enable = true;

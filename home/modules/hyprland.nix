@@ -1,9 +1,10 @@
 {
   lib,
   pkgs,
+  isWorkstation,
   ...
 }:
-lib.mkIf pkgs.stdenv.isLinux {
+lib.mkIf (pkgs.stdenv.isLinux && isWorkstation) {
   home.packages = with pkgs; [
     swaynotificationcenter
     waybar

@@ -9,7 +9,7 @@
         (pkgs.home-assistant.override {
           extraPackages = py: with py; [psycopg2];
         })
-        .overrideAttrs (oldAttrs: {
+        .overrideAttrs (_oldAttrs: {
           doInstallCheck = false;
         });
       enable = true;

@@ -44,11 +44,13 @@
   networking.networkmanager.enable = true;
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
+  services = {
+    printing.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
   };
 
   virtualisation.docker.enable = true;
@@ -108,10 +110,6 @@
   };
   programs.fish.enable = true;
   programs.virt-manager.enable = true;
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
   services.xserver.libinput.enable = true;
   services.flatpak.enable = true;
 

@@ -4,35 +4,51 @@
 {
   config,
   inputs,
-  lib,
   pkgs,
+  outputs,
   ...
 }: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware/homeserver.nix
 
+    ./modules/atuin.nix
     ./modules/collect-garbage.nix
     ./modules/firmware.nix
     ./modules/fstrim.nix
+    ./modules/home-assistant.nix
     ./modules/jellyfin.nix
     ./modules/locale.nix
+    ./modules/nextcloud.nix
     ./modules/nginx.nix
+    ./modules/nix.nix
+    ./modules/podman.nix
     ./modules/samba.nix
     ./modules/tailscale.nix
-    ./modules/podman.nix
     ./modules/tiny-media-manager
-    ./modules/home-assistant.nix
-    ./modules/nextcloud.nix
-    ./modules/nix.nix
   ];
 
   sops.defaultSopsFile = ../secrets/homeserver.yaml;
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  };
+
+  services.zfs = {
+    trim = {
+      enable = true;
+      interval = "weekly";
+    };
+    autoScrub = {
+      enable = true;
+      interval = "weekly";
+    };
+  };
 
   networking.hostName = "homeserver"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -58,8 +74,13 @@
     package = inputs.nix-ld-rs.packages."${pkgs.system}".nix-ld-rs;
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    # Allow unfree packages
+    config.allowUnfree = true;
+    overlays = [
+      outputs.overlays.additions
+    ];
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -70,6 +91,7 @@
     tmux
     exfatprogs
     htop
+    home-manager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

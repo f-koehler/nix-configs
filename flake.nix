@@ -46,6 +46,7 @@
       url = "github:nix-community/nix-ld-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
   outputs = {self, ...} @ inputs: let
@@ -58,11 +59,17 @@
         "fkoehler@fkt14" = mylib.mkHome {
           hostname = "fkt14";
           username = "fkoehler";
+          isWorkstation = true;
         };
         "fkoehler@mbp2021" = mylib.mkHome {
           hostname = "mbp2021";
           username = "fkoehler";
           system = "aarch64-darwin";
+          isWorkstation = true;
+        };
+        "fkoehler@homeserver" = mylib.mkHome {
+          hostname = "homeserver";
+          username = "fkoehler";
         };
       };
 
@@ -81,7 +88,7 @@
       };
       nixosConfigurations."homeserver" = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs outputs;};
         modules = [
           {
             nixpkgs.overlays = [
@@ -125,8 +132,14 @@
             ];
             hooks = {
               # nix
-              alejandra.enable = true;
-              deadnix.enable = true;
+              alejandra = {
+                enable = true;
+                settings.verbosity = "quiet";
+              };
+              deadnix = {
+                enable = true;
+                settings.edit = true;
+              };
               nil.enable = true;
               statix.enable = true;
 
@@ -147,6 +160,7 @@
           };
         };
         devShell = inputs.nixpkgs.legacyPackages.${system}.mkShell {
+          packages = let pkgs = inputs.nixpkgs.legacyPackages.${system}; in [pkgs.statix];
           inherit (self.checks.${system}.pre-commit-check) shellHook;
         };
       }

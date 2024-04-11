@@ -10,28 +10,11 @@
 }: let
   inherit (pkgs.stdenv) isDarwin;
 in {
-  imports =
-    [
-      inputs.nix-index-database.hmModules.nix-index
-      inputs.sops-nix.homeManagerModules.sops
-    ]
-    ++ [
-      ./alacritty.nix
-      ./atuin.nix
-      ./direnv.nix
-      ./darwin.nix
-      ./fish.nix
-      ./git.nix
-      ./gpg.nix
-      # ./hyprland.nix
-      ./ssh.nix
-      ./starship.nix
-      ./tmux.nix
-      ./vscode.nix
-      ./wezterm.nix
-      ./zoxide.nix
-      ./zsh.nix
-    ];
+  imports = [
+    inputs.nix-index-database.hmModules.nix-index
+    inputs.sops-nix.homeManagerModules.sops
+    ./modules
+  ];
 
   nixpkgs = {
     overlays = [
@@ -57,9 +40,6 @@ in {
       generateKey = false;
     };
     defaultSopsFile = ../secrets/home.yaml;
-    secrets = {
-      "atuin/key".path = "${config.home.homeDirectory}/.local/share/atuin/key";
-    };
   };
 
   fonts.fontconfig.enable = true;
@@ -93,9 +73,8 @@ in {
       gdu
       hyperfine
       yq-go
-      rclone
       nix-tree
-      vscode
+      ncdu
 
       # It is sometimes useful to fine-tune packages, for example, by applying
       # overrides. You can do that directly here, just don't forget the
@@ -142,42 +121,11 @@ in {
   programs = {
     bash.enable = true;
     bat.enable = true;
-    eza = {
-      enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableZshIntegration = true;
-    };
-    gh = {
-      enable = true;
-      settings = {
-        settings = {
-          editor = "nvim";
-          git_protocol = "ssh";
-          prompt = "enabled";
-        };
-      };
-    };
     neovim = {
       enable = true;
       defaultEditor = true;
     };
     password-store.enable = true;
-    tealdeer = {
-      enable = true;
-      settings = {
-        updates = {
-          auto_update = true;
-          auto_update_interval_hours = 96;
-        };
-      };
-    };
-    yazi = {
-      enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableZshIntegration = true;
-    };
     zellij = {
       enable = true;
     };

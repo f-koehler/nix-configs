@@ -8,12 +8,19 @@
     hostname,
     username,
     system ? "x86_64-linux",
+    isWorkstation ? false,
   }:
-    inputs.home-manager.lib.homeManagerConfiguration {
+    inputs.home-manager.lib.homeManagerConfiguration rec {
       pkgs = inputs.nixpkgs.legacyPackages.${system};
       extraSpecialArgs = {
-        inherit inputs outputs hostname system username stateVersion;
+        inherit inputs outputs hostname system username isWorkstation stateVersion;
       };
-      modules = [../home];
+      modules =
+        [../home]
+        ++ (
+          if (pkgs.stdenv.isLinux && isWorkstation)
+          then [inputs.nix-flatpak.homeManagerModules.nix-flatpak ../flatpak.nix]
+          else []
+        );
     };
 }

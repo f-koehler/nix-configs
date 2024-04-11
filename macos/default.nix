@@ -13,6 +13,8 @@
       "ffmpeg"
       "java"
       "latexindent"
+      "python@3.11"
+      "poetry"
     ];
     casks = [
       "bitwarden"
@@ -43,6 +45,7 @@
       "utm"
       "wezterm"
       "whatsapp"
+      "superproductivity"
       "tinymediamanager"
       "zoom"
       "zotero"

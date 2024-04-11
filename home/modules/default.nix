@@ -12,6 +12,7 @@ _: {
     ./git.nix
     ./gpg.nix
     ./hyprland.nix
+    ./onedrive.nix
     ./ssh.nix
     ./starship.nix
     ./tealdeer.nix

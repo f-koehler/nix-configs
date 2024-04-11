@@ -73,7 +73,6 @@ in {
       gdu
       hyperfine
       yq-go
-      rclone
       nix-tree
       ncdu
 

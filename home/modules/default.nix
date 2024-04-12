@@ -13,6 +13,7 @@ _: {
     ./gpg.nix
     ./hyprland.nix
     ./onedrive.nix
+    ./plasma.nix
     ./ssh.nix
     ./starship.nix
     ./tealdeer.nix

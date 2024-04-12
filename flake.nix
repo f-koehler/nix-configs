@@ -37,6 +37,12 @@
       };
     };
 
+    plasma-manager = {
+      url = "github:pjones/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";

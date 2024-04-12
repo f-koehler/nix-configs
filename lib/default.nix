@@ -19,7 +19,11 @@
         [../home]
         ++ (
           if (pkgs.stdenv.isLinux && isWorkstation)
-          then [inputs.nix-flatpak.homeManagerModules.nix-flatpak ../flatpak.nix]
+          then [
+            inputs.nix-flatpak.homeManagerModules.nix-flatpak
+            inputs.plasma-manager.homeManagerModules.plasma-manager
+            ../flatpak.nix
+          ]
           else []
         );
     };

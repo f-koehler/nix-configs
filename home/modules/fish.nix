@@ -3,6 +3,7 @@ _: {
     enable = true;
     shellInit = ''
       micromamba shell hook --shell=fish | source
+      [ -f ~/.inshellisense/key-bindings.fish ] && source ~/.inshellisense/key-bindings.fish
     '';
     functions = {
       "load_secrets" = ''

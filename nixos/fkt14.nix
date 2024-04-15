@@ -115,6 +115,11 @@
   services.xserver.libinput.enable = true;
   services.flatpak.enable = true;
 
+  programs.nix-ld = {
+    enable = true;
+    package = inputs.nix-ld-rs.packages."${pkgs.system}".nix-ld-rs;
+  };
+
   nixpkgs = {
     # Allow unfree packages
     config.allowUnfree = true;

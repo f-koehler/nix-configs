@@ -31,6 +31,7 @@
     loader.efi.canTouchEfiVariables = true;
     extraModprobeConfig = "options kvm_intel nested=1";
     initrd.luks.devices."luks-113a8b35-5611-48de-8a3a-a9f32fca8d4e".device = "/dev/disk/by-uuid/113a8b35-5611-48de-8a3a-a9f32fca8d4e";
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 
   networking.hostName = "fkt14"; # Define your hostname.

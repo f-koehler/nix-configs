@@ -59,6 +59,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.fkoehler = {
     isNormalUser = true;
+    linger = true;
     description = "Fabian Koehler";
     extraGroups = [
       "libvirtd"

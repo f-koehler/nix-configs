@@ -3,7 +3,8 @@
   lib,
   isWorkstation,
   ...
-}: {
+}:
+lib.mkIf (pkgs.stdenv.isLinux && isWorkstation) {
   accounts.email.accounts = lib.mkIf isWorkstation {
     "me@fkoehler.org" = {
       address = "me@fkoehler.org";
@@ -55,7 +56,7 @@
       userName = "fkoehler";
     };
   };
-  programs.thunderbird = lib.mkIf isWorkstation {
+  programs.thunderbird = {
     enable = true;
     profiles = {
       fkoehler = {
@@ -63,11 +64,7 @@
       };
     };
   };
-  home.packages =
-    if isWorkstation
-    then
-      with pkgs; [
-        protonmail-bridge-gui
-      ]
-    else [];
+  home.packages = with pkgs; [
+    protonmail-bridge-gui
+  ];
 }

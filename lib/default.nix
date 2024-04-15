@@ -16,12 +16,14 @@
         inherit inputs outputs hostname system username isWorkstation stateVersion;
       };
       modules =
-        [../home]
+        [
+          ../home
+          inputs.nix-flatpak.homeManagerModules.nix-flatpak
+          inputs.plasma-manager.homeManagerModules.plasma-manager
+        ]
         ++ (
           if (pkgs.stdenv.isLinux && isWorkstation)
           then [
-            inputs.nix-flatpak.homeManagerModules.nix-flatpak
-            inputs.plasma-manager.homeManagerModules.plasma-manager
             ../flatpak.nix
           ]
           else []

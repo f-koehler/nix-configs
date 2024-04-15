@@ -1,3 +1,3 @@
 {pkgs ? (import ./nixpkgs.nix) {}}: {
-  # swabian-timetagger = pkgs.callPackage ./swabian-timetagger {};
+  inshellisense = pkgs.callPackage ./inshellisense.nix {};
 }

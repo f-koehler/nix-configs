@@ -13,6 +13,7 @@
     ./hardware/homeserver.nix
 
     ./modules/atuin.nix
+    ./modules/audiobookshelf.nix
     ./modules/collect-garbage.nix
     ./modules/firmware.nix
     ./modules/fstrim.nix

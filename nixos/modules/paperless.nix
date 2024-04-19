@@ -4,67 +4,29 @@
   ...
 }: {
   sops.secrets = {
-    "services/paperless/secretKey" = {
-      owner = config.services.paperless.user;
-      group = config.services.paperless.user;
-    };
     "services/paperless/admin/password" = {
       owner = config.services.paperless.user;
       group = config.services.paperless.user;
     };
-    "services/paperless/admin/email" = {
-      owner = config.services.paperless.user;
-      group = config.services.paperless.user;
-    };
-  };
-  users.users.${config.services.paperless.user} = {
-    autoSubUidGidRange = true;
-    linger = true;
-    home = "/var/lib/paperless";
-    shell = pkgs.bashInteractive;
-    extraGroups = ["systemd-journal"];
-  };
-  home-manager.users.${config.services.paperless.user} = {
-    home = {
-      stateVersion = "23.05";
-      # TODO: fix hardcoded path
-      file."/var/lib/paperless/.config/containers/compose/projects/paperless.env".text = ''
-        COMPOSE_PROJECT_DIR=/mnt/configs/nixos/modules/paperless
-        COMPOSE_FILE=docker-compose.yml
-        COMPOSE_PATH_SEPARATOR=:
-        COMPOSE_PROJECT_NAME=paperless
-      '';
-    };
-    programs.bash.enable = true;
   };
   services = {
-    postgresql = {
-      enable = true;
-      ensureUsers = [
-        {
-          name = "paperless";
-          ensureDBOwnership = true;
-        }
-      ];
-      ensureDatabases = ["paperless"];
-    };
     paperless = {
       enable = true;
       package = pkgs.paperless-ngx;
       user = "paperless";
       passwordFile = config.sops.secrets."services/paperless/admin/password".path;
-      port = 8098;
       settings = {
-        PAPERLESS_DBENGINE = "postgresql";
-        PAPERLESS_TIKA_ENABLED = false; # TODO: install tika and gotenberg as container and enable
-        # PAPERLESS_SECRET_KEY = "changeme";
         PAPERLESS_URL = "https://docs.fkoehler.xyz";
+        PAPERLESS_DBENGINE = "postgresql";
         PAPERLESS_ADMIN_USER = "fkoehler";
         PAPERLESS_OCR_LANGUAGE = "deu+eng";
-        PAPERLESS_TASK_WORKERS = 4;
+        #       PAPERLESS_TASK_WORKERS = 4;
         PAPERLESS_TIME_ZONE = "Asia/Singapore";
-        PAPERLESS_USE_X_FORWARD_HOST = true;
-        PAPERLESS_USE_X_FORWARD_PORT = true;
+        #       PAPERLESS_USE_X_FORWARD_HOST = true;
+        #       PAPERLESS_USE_X_FORWARD_PORT = true;
+        PAPERLESS_TIKA_ENABLED = true;
+        PAPERLESS_TIKA_ENDPOINT = "http://localhost:9998";
+        PAPERLESS_TIKA_GOTENBERG_ENDPOINT = "http://localhost:3000";
       };
     };
     nginx = {
@@ -102,6 +64,21 @@
             '';
           };
         };
+      };
+    };
+  };
+  virtualisation.oci-containers.containers = {
+    tika = {
+      ports = ["9998:9998"];
+      image = "docker.io/apache/tika:2.9.2.0-full";
+      autoStart = true;
+    };
+    gotenberg = {
+      ports = ["3000:3000"];
+      image = "docker.io/gotenberg/gotenberg:8.4.0";
+      autoStart = true;
+      environment = {
+        CHROMIUM_DISABLE_ROUTERS = "1";
       };
     };
   };

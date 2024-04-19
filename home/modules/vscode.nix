@@ -91,6 +91,7 @@
       "redhat.telemetry.enabled" = false;
       "remote.SSH.useLocalServer" = false;
       "ruff.path" = ["${pkgs.ruff}/bin/ruff"];
+      "tailscale.portDiscovery.enabled" = false;
       "terminal.integrated.fontFamily" = "Hack Nerd Font";
       "terminal.integrated.fontSize" = 12;
       "terminal.integrated.persistentSessionScrollback" = 10000;

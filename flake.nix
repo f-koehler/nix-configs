@@ -76,6 +76,7 @@
         "fkoehler@homeserver" = mylib.mkHome {
           hostname = "homeserver";
           username = "fkoehler";
+          isWorkstation = false;
         };
       };
 

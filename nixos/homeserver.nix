@@ -23,6 +23,7 @@
     ./modules/nextcloud.nix
     ./modules/nginx.nix
     ./modules/nix.nix
+    ./modules/paperless.nix
     ./modules/podman.nix
     ./modules/samba.nix
     ./modules/tailscale.nix

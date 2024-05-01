@@ -3,6 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   pkgs,
+  inputs,
   outputs,
   ...
 }: {
@@ -97,10 +98,6 @@
       distrobox
       evince
 
-      poetry
-      python311
-      rye
-
       cmake
       gcc
       pkg-config
@@ -108,11 +105,15 @@
       fftw
 
       super-productivity
+
+      conda
+      gnome.nautilus
+      inshellisense
     ];
   };
   programs.fish.enable = true;
   programs.virt-manager.enable = true;
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
   services.flatpak.enable = true;
 
   programs.nix-ld = {

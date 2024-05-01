@@ -17,8 +17,6 @@
   };
   environment.systemPackages = with pkgs; [
     kdePackages.skanpage
-    kdePackages.tokodon
-    kdePackages.neochat
     kdePackages.zanshin
     kdePackages.merkuro
   ];

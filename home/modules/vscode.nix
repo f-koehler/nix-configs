@@ -71,7 +71,8 @@
       "cmake.configureOnOpen" = true;
       "editor.fontSize" = 12;
       "editor.formatOnSave" = true;
-      "editor.fontFamily" = "Hack Nerd Font";
+      "editor.fontFamily" = "Cascadia Code NF";
+      "editor.fontLigatures" = true;
       "editor.minimap.enabled" = false;
       "extensions.experimental.affinity" = {
         "asvetliakov.vscode-neovim" = 1;
@@ -92,7 +93,7 @@
       "remote.SSH.useLocalServer" = false;
       "ruff.path" = ["${pkgs.ruff}/bin/ruff"];
       "tailscale.portDiscovery.enabled" = false;
-      "terminal.integrated.fontFamily" = "Hack Nerd Font";
+      "terminal.integrated.fontFamily" = "Cascadia Code NF";
       "terminal.integrated.fontSize" = 12;
       "terminal.integrated.persistentSessionScrollback" = 10000;
       "terminal.integrated.scrollback" = 100000;

@@ -15,7 +15,7 @@
       end
 
       config.audible_bell = "Disabled"
-      config.font = wezterm.font('Hack Nerd Font')
+      config.font = wezterm.font('Cascadia Code NF')
       config.font_size = 9.0
       config.hide_tab_bar_if_only_one_tab = true
 

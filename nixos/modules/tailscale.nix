@@ -16,4 +16,5 @@
     ];
     authKeyFile = config.sops.secrets."services/tailscale/authKey".path;
   };
+  networking.firewall.checkReversePath = "loose";
 }

@@ -15,6 +15,6 @@
       "--accept-routes"
     ];
     authKeyFile = config.sops.secrets."services/tailscale/authKey".path;
+    useRoutingFeatures = "both";
   };
-  networking.firewall.checkReversePath = "loose";
 }

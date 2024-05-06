@@ -11,15 +11,14 @@ _: {
     ./gh.nix
     ./git.nix
     ./gpg.nix
-    ./hyprland.nix
     ./onedrive.nix
     ./plasma.nix
     ./ssh.nix
     ./starship.nix
+    ./sway.nix
     ./tealdeer.nix
     ./tmux.nix
     ./vscode.nix
-    ./waybar.nix
     ./wezterm.nix
     ./yazi.nix
     ./zoxide.nix

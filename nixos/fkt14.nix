@@ -20,6 +20,7 @@
     ./modules/nix.nix
     ./modules/plasma.nix
     ./modules/sound.nix
+    ./modules/sway.nix
     ./modules/tailscale.nix
     ./modules/wine.nix
   ];

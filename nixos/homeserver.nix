@@ -27,6 +27,7 @@
     ./modules/paperless.nix
     ./modules/podman.nix
     ./modules/samba.nix
+    ./modules/stirling-pdf.nix
     ./modules/tailscale.nix
     ./modules/tiny-media-manager
   ];

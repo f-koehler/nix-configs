@@ -1,5 +1,9 @@
-{pkgs, ...}: {
-  programs.waybar = {
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  programs.waybar = lib.mkIf pkgs.stdenv.isLinux {
     enable = true;
     systemd = {
       enable = true;
@@ -24,7 +28,7 @@
       }
     '';
   };
-  wayland.windowManager.sway = {
+  wayland.windowManager.sway = lib.mkIf pkgs.stdenv.isLinux {
     enable = true;
     systemd = {
       enable = true;

@@ -33,6 +33,7 @@ _: {
       "microsoft-excel"
       "microsoft-word"
       "microsoft-powerpoint"
+      "miniconda"
       "nextcloud"
       "obsidian"
       "protonmail-bridge"

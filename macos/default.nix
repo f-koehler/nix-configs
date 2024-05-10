@@ -23,6 +23,7 @@ _: {
       "drawio"
       "firefox"
       "font-hack-nerd-font"
+      "font-cascadia-code-nf"
       "gimp"
       "gitkraken"
       "inkscape"

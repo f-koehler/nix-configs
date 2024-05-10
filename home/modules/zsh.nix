@@ -31,7 +31,7 @@ _: {
         eval "$(/usr/libexec/path_helper)"
       fi
 
-      eval "$(micromamba shell hook --shell=zsh)"
+      [ -x /opt/homebrew/bin/conda ] && eval "$(/opt/homebrew/bin/conda shell.zsh hook)"
 
       function load-secrets {
         export AWS_ACCESS_KEY_ID="$(pass ls speqtral/aws/access_key_id)"

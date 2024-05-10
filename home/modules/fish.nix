@@ -2,7 +2,9 @@ _: {
   programs.fish = {
     enable = true;
     shellInit = ''
-      micromamba shell hook --shell=fish | source
+      if test -x /opt/homebrew/bin/conda
+        eval (/opt/homebrew/bin/conda shell.fish hook)
+      end
       [ -f ~/.inshellisense/key-bindings.fish ] && source ~/.inshellisense/key-bindings.fish
     '';
     functions = {

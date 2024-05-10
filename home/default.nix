@@ -61,7 +61,6 @@ in {
       hexyl
       inshellisense
       lunarvim
-      micromamba
       pre-commit
       rye
       sops

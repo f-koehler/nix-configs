@@ -11,6 +11,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware/homeserver.nix
+    ./homeserver/downloader.nix
 
     ./modules/atuin.nix
     ./modules/audiobookshelf.nix

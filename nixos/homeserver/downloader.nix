@@ -25,7 +25,6 @@
           ];
         };
         networking.hostName = "homeserver-downloader";
-        networking.useNetworkd = true;
         services = {
           openssh.enable = true;
           transmission = {

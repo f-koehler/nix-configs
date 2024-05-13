@@ -5,6 +5,11 @@
       group = "${config.services.jellyfin.group}";
     };
   };
+  users.users.borg = {
+    isNormalUser = true;
+    home = "/var/lib/borg";
+    createHome = true;
+  };
   services.borgbackup = {
     repos = {
       jellyfin = {

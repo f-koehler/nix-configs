@@ -5,10 +5,10 @@
 }: {
   programs.waybar = lib.mkIf pkgs.stdenv.isLinux {
     enable = true;
-    systemd = {
-      enable = true;
-      target = "sway-session.target";
-    };
+    # systemd = {
+    #   enable = true;
+    #   target = "sway-session.target";
+    # };
     settings = {
       mainBar = {
         height = 22;

@@ -15,7 +15,7 @@ _: {
     ./plasma.nix
     ./ssh.nix
     ./starship.nix
-    ./sway.nix
+    #./sway.nix
     ./tealdeer.nix
     ./tmux.nix
     ./vscode.nix

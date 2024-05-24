@@ -72,10 +72,21 @@
     shell = pkgs.fish;
     packages = with pkgs; [
       bitwarden-desktop
+      cachix
+      chromium
+      cmake
+      conda
+      distrobox
+      evince
+      fftw
       firefox
+      gcc
       gimp
       gitFull
+      gnome.nautilus
+      home-manager
       inkscape
+      inshellisense
       jellyfin-media-player
       kate
       kdePackages.ktorrent
@@ -84,32 +95,19 @@
       libreoffice-fresh
       localsend
       nextcloud-client
+      ninja
+      nix-index
+      pkg-config
       protonmail-bridge
       rsync
       sops
+      super-productivity
       tailscale
       telegram-desktop
       thunderbird
       vlc
       vscode
       zotero
-      nix-index
-      home-manager
-      cachix
-      distrobox
-      evince
-
-      cmake
-      gcc
-      pkg-config
-      ninja
-      fftw
-
-      super-productivity
-
-      conda
-      gnome.nautilus
-      inshellisense
     ];
   };
   programs.fish.enable = true;

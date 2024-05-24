@@ -17,6 +17,8 @@
   };
   environment.systemPackages = with pkgs; [
     kdePackages.skanpage
+    # kdePackages.zanshin
+    # kdePackages.merkuro
     kdePackages.kcharselect
   ];
   security.pam.services.fkoehler.enableGnomeKeyring = true;

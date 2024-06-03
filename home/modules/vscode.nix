@@ -46,6 +46,7 @@
       pkgs.vscode-marketplace.usernamehw.errorlens
       pkgs.vscode-marketplace.vscode-icons-team.vscode-icons
       pkgs.vscode-marketplace.ecmel.vscode-html-css
+      pkgs.vscode-marketplace.rust-lang.rust-analyzer
     ];
     # ++ [
     #   # pkgs.vscode-extensions.ms-vscode.cmake-tools
@@ -69,6 +70,10 @@
       "cmake.options.statusBarVisibility" = "compact";
       "cmake.showOptionsMovedNotification" = false;
       "cmake.configureOnOpen" = true;
+      "cmake.pinnnedCommands" = [
+        "workbench.action.tasks.configureTaskRunner"
+        "workbench.action.tasks.runTask"
+      ];
       "editor.fontSize" = 12;
       "editor.formatOnSave" = true;
       "editor.fontFamily" = "Cascadia Code NF";

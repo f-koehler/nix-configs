@@ -4,6 +4,7 @@
 {
   config,
   lib,
+  pkgs,
   modulesPath,
   ...
 }: {
@@ -32,13 +33,14 @@
     };
 
     "/boot" = {
-      device = "/dev/disk/by-uuid/795A-E43B";
+      device = "/dev/disk/by-uuid/B7DB-124E";
       fsType = "vfat";
+      options = ["fmask=0077" "dmask=0077"];
     };
   };
 
   # swapDevices = [
-  #   {device = "/dev/disk/by-uuid/dd5c3347-d3f6-4afc-88b5-cbf65c558fc2";}
+  #   {device = "/dev/disk/by-uuid/4dd10a1c-a513-4d57-9ec8-a95a9035c860";}
   # ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -47,7 +49,7 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp3s0.useDHCP = lib.mkDefault true;
-  networking.hostId = "a16c2a91";
+  networking.hostId = "9801c032";
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

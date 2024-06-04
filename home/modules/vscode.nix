@@ -70,7 +70,7 @@
       "cmake.options.statusBarVisibility" = "compact";
       "cmake.showOptionsMovedNotification" = false;
       "cmake.configureOnOpen" = true;
-      "cmake.pinnnedCommands" = [
+      "cmake.pinnedCommands" = [
         "workbench.action.tasks.configureTaskRunner"
         "workbench.action.tasks.runTask"
       ];

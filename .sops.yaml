@@ -2,7 +2,7 @@
 keys:
   - &gpg_fkoehler C5DC80511469AD81C84E3564D55A35AFB2900A11
   - &ssh_fkt14 age15qceufnzv3dv2ktnulg7dd2cjwp4cncjkhqznrxadnv44llcaulqajpve7
-  - &ssh_homeserver age1gyxx6vml65mmut2rcuyytsljswvmqprxu02j22kpguqedjkf452qgf4884
+  - &ssh_homeserver age1gltr5ymzr6mzsv5f2sks9sn9x0all9nkzge6ffvuaz9yvxhflflsxsdkx9
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:

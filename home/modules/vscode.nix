@@ -3,16 +3,13 @@
   lib,
   isWorkstation,
   ...
-}: {
-  home.packages =
-    if isWorkstation
-    then
-      with pkgs; [
-        ruff
-        vscode
-      ]
-    else [];
-  programs.vscode = lib.mkIf isWorkstation {
+}:
+lib.mkIf isWorkstation {
+  home.packages = with pkgs; [
+    ruff
+    vscode
+  ];
+  programs.vscode = {
     enable = true;
     enableExtensionUpdateCheck = true;
     enableUpdateCheck = pkgs.stdenv.isDarwin;

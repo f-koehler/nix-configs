@@ -13,12 +13,12 @@
     ./hardware/homeserver.nix
     ./homeserver/downloader.nix
 
-    ./modules/atuin.nix
+    # ./modules/atuin.nix
     ./modules/audiobookshelf.nix
     ./modules/collect-garbage.nix
     ./modules/firmware.nix
     ./modules/fstrim.nix
-    ./modules/home-assistant.nix
+    # ./modules/home-assistant.nix
     ./modules/jellyfin.nix
     ./modules/locale.nix
     ./modules/nextcloud.nix
@@ -27,9 +27,9 @@
     ./modules/paperless.nix
     ./modules/podman.nix
     ./modules/samba.nix
-    ./modules/stirling-pdf.nix
+    # ./modules/stirling-pdf.nix
     ./modules/tailscale.nix
-    ./modules/tiny-media-manager
+    # ./modules/tiny-media-manager
   ];
 
   sops.defaultSopsFile = ../secrets/homeserver.yaml;

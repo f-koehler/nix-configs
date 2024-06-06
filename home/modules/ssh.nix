@@ -31,6 +31,14 @@
         hostname = "100.88.7.127";
         user = "fkoehler";
       };
+      "fk-gha-runner-x64-01" = {
+        hostname = "10.1.128.202";
+        user = "gha";
+      };
+      "fk-gha-runner-x64-02" = {
+        hostname = "10.1.128.203";
+        user = "gha";
+      };
     };
   };
 }

@@ -59,7 +59,6 @@ in {
       du-dust
       fish
       hexyl
-      inshellisense
       lunarvim
       pre-commit
       rye

@@ -5,7 +5,6 @@ _: {
       if test -x /opt/homebrew/bin/conda
         eval (/opt/homebrew/bin/conda shell.fish hook)
       end
-      [ -f ~/.inshellisense/key-bindings.fish ] && source ~/.inshellisense/key-bindings.fish
     '';
     functions = {
       "load_secrets" = ''

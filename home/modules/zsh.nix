@@ -40,7 +40,6 @@ _: {
         export BW_CLIENTSECRET="$(pass ls bitwarden/client_secret)"
         export GH_TOKEN="$(pass ls github/tokens/cli)"
       }
-      [ -f ~/.inshellisense/key-bindings.zsh ] && source ~/.inshellisense/key-bindings.zsh
     '';
   };
 }

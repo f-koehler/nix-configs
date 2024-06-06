@@ -29,7 +29,7 @@
     ./modules/samba.nix
     # ./modules/stirling-pdf.nix
     ./modules/tailscale.nix
-    # ./modules/tiny-media-manager
+    ./modules/tiny-media-manager.nix
   ];
 
   sops.defaultSopsFile = ../secrets/homeserver.yaml;

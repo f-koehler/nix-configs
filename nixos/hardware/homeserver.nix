@@ -28,6 +28,12 @@
     };
   };
 
+  swapDevices = [
+    {
+      device = "/dev/disk/by-label/nix-swap";
+    }
+  ];
+
   # swapDevices = [
   #   {device = "/dev/disk/by-uuid/4dd10a1c-a513-4d57-9ec8-a95a9035c860";}
   # ];

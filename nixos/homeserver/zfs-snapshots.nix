@@ -1,7 +1,7 @@
 _: {
   services = {
     sanoid = {
-      enable = false;
+      enable = true;
       datasets = {
         "rpool/nextcloud" = {
           autosnap = true;

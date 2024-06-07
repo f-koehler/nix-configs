@@ -11,7 +11,8 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware/homeserver.nix
-    ./homeserver/downloader.nix
+    # ./homeserver/downloader.nix
+    ./homeserver/zfs-snapshots.nix
 
     # ./modules/atuin.nix
     ./modules/audiobookshelf.nix
@@ -29,7 +30,7 @@
     ./modules/samba.nix
     # ./modules/stirling-pdf.nix
     ./modules/tailscale.nix
-    ./modules/tiny-media-manager.nix
+    # ./modules/tinymediamanager.nix
   ];
 
   sops.defaultSopsFile = ../secrets/homeserver.yaml;

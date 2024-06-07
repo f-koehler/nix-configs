@@ -22,16 +22,6 @@
   };
 
   fileSystems = {
-    "/" = {
-      device = "rpool/root";
-      fsType = "zfs";
-    };
-
-    "/home" = {
-      device = "rpool/home";
-      fsType = "zfs";
-    };
-
     "/boot" = {
       device = "/dev/disk/by-uuid/B7DB-124E";
       fsType = "vfat";

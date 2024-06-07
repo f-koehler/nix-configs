@@ -34,6 +34,38 @@
 
   sops.defaultSopsFile = ../secrets/homeserver.yaml;
 
+  fileSystems = {
+    "/" = {
+      device = "rpool/root";
+      fsType = "zfs";
+    };
+
+    "/home" = {
+      device = "rpool/home";
+      fsType = "zfs";
+    };
+
+    "/var/lib/audiobookshelf" = {
+      device = "rpool/audiobookshelf";
+      fsType = "zfs";
+    };
+
+    "/var/lib/nextcloud" = {
+      device = "rpool/nextcloud";
+      fsType = "zfs";
+    };
+
+    "/var/lib/paperless" = {
+      device = "rpool/paperless";
+      fsType = "zfs";
+    };
+
+    "/var/lib/postgresql" = {
+      device = "rpool/postgresql";
+      fsType = "zfs";
+    };
+  };
+
   # Use the systemd-boot EFI boot loader.
   boot = {
     loader = {
@@ -132,6 +164,27 @@
       ];
       jellyfin.after = [
         "media-tank0.mount"
+      ];
+      nextcloud-setup.after = [
+        "var-lib-nextcloud.mount"
+      ];
+      postgresql.after = [
+        "var-lib-postgresql.mount"
+      ];
+      audiobookshelf.after = [
+        "var-lib-audiobookshelf.mount"
+      ];
+      paperless-consumer.after = [
+        "var-lib-paperless.mount"
+      ];
+      paperless-scheduler.after = [
+        "var-lib-paperless.mount"
+      ];
+      paperless-task-queue.after = [
+        "var-lib-paperless.mount"
+      ];
+      paperless-web.after = [
+        "var-lib-paperless.mount"
       ];
     };
   };

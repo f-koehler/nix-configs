@@ -4,6 +4,7 @@
     jellyfin-web
     jellyfin-ffmpeg
   ];
+  users.users.jellyfin.extraGroups = ["media"];
   services = {
     jellyfin = {
       enable = true;

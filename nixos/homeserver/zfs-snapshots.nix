@@ -2,38 +2,68 @@ _: {
   services = {
     sanoid = {
       enable = true;
-      datasets = {
-        "rpool/nextcloud" = {
-          autosnap = true;
+      templates = {
+        nextcloud = {
           autoprune = true;
           yearly = 1;
           monthly = 12;
           daily = 7;
           hourly = 48;
         };
-        "rpool/postgresql" = {
-          autosnap = true;
+        postgresql = {
           autoprune = true;
           yearly = 1;
           monthly = 12;
           daily = 7;
           hourly = 48;
         };
-        "rpool/audiobookshelf" = {
-          autosnap = true;
+        audiobookshelf = {
           autoprune = true;
           yearly = 1;
           monthly = 12;
           daily = 7;
           hourly = 48;
         };
-        "rpool/paperless" = {
-          autosnap = true;
+        paperless = {
           autoprune = true;
           yearly = 3;
           monthly = 12;
           daily = 7;
           hourly = 48;
+        };
+      };
+      datasets = {
+        "rpool/nextcloud" = {
+          autosnap = true;
+          useTemplate = ["nextcloud"];
+        };
+        "rpool/postgresql" = {
+          autosnap = true;
+          useTemplate = ["postgresql"];
+        };
+        "rpool/audiobookshelf" = {
+          autosnap = true;
+          useTemplate = ["audiobookshelf"];
+        };
+        "rpool/paperless" = {
+          autosnap = true;
+          useTemplate = ["paperless"];
+        };
+        "tank1/backups/nextcloud" = {
+          autosnap = false;
+          useTemplate = ["nextcloud"];
+        };
+        "tank1/backups/postgresql" = {
+          autosnap = false;
+          useTemplate = ["postgresql"];
+        };
+        "tank1/backups/audiobookshelf" = {
+          autosnap = false;
+          useTemplate = ["audiobookshelf"];
+        };
+        "tank1/backups/paperless" = {
+          autosnap = false;
+          useTemplate = ["paperless"];
         };
       };
     };

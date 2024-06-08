@@ -31,6 +31,7 @@
     # ./modules/stirling-pdf.nix
     ./modules/tailscale.nix
     ./modules/tinymediamanager.nix
+    ./modules/uptime-kuma.nix
   ];
 
   sops.defaultSopsFile = ../secrets/homeserver.yaml;
@@ -73,6 +74,11 @@
 
     "/var/lib/hass" = {
       device = "rpool/hass";
+      fsType = "zfs";
+    };
+
+    "/var/lib/uptime-kuma" = {
+      device = "rpool/uptime-kuma";
       fsType = "zfs";
     };
   };

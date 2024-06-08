@@ -1,4 +1,16 @@
-{config, ...}: {
+{config, lib, ...}: {
+  users = {
+    groups.uptime-kuma = {};
+    users.uptime-kuma = {
+      group = "uptime-kuma";
+      isSystemUser = true;
+    };
+  };
+  systemd.services.uptime-kuma.serviceConfig = {
+    DynamicUser =  lib.mkForce false;
+    User = lib.mkForce "uptime-kuma";
+    Group = lib.mkForce "uptime-kuma";
+  };
   services = {
     uptime-kuma = {
       enable = true;

@@ -9,7 +9,6 @@ _: {
     ];
     packages = [
       "com.jgraph.drawio.desktop"
-      "com.microsoft.Edge"
       "com.spotify.Client"
       "com.valvesoftware.Steam"
       "md.obsidian.Obsidian"

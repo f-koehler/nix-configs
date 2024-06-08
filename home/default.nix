@@ -54,6 +54,7 @@ in {
     packages = with pkgs; [
       # awscli2
       # neovim
+      nh
       age
       bat
       du-dust

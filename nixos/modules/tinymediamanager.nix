@@ -11,22 +11,23 @@
     };
   };
   virtualisation.oci-containers.containers = {
-    tiny-media-manager = {
+    tinymediamanager = {
       image = "docker.io/tinymediamanager/tinymediamanager:5.0.5";
       ports = [
         "5900:5900" # VNC port
-        "4000:4000" # Webinterface
+        "0.0.0.0:4000:4000" # Webinterface
       ];
       environment = {
         ALLOW_DIRECT_VNC = "true";
         LC_ALL = "en_US.UTF-8";
         LANG = "en_US.UTF-8";
         # USER_ID="${config.users.users.jellyfin.uid}";
-        # GROUP_ID="${config.users.groups.jellyfin.gid}";
+        GROUP_ID = "${toString config.users.groups.media.gid}";
       };
       environmentFiles = ["${config.sops.templates."tinymediamanager.env".path}"];
       volumes = [
         "/var/lib/tinymediamanager:/data:rw"
+        "/media/tank1/media:/media/tank1"
       ];
     };
   };

@@ -30,7 +30,7 @@
     ./modules/samba.nix
     # ./modules/stirling-pdf.nix
     ./modules/tailscale.nix
-    # ./modules/tinymediamanager.nix
+    ./modules/tinymediamanager.nix
   ];
 
   sops.defaultSopsFile = ../secrets/homeserver.yaml;
@@ -65,6 +65,12 @@
       device = "rpool/postgresql";
       fsType = "zfs";
     };
+
+    "/var/lib/tinymediamanager" = {
+      device = "rpool/tinymediamanager";
+      fsType = "zfs";
+    };
+
   };
 
   # Use the systemd-boot EFI boot loader.
@@ -95,10 +101,16 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
-    groups.fkoehler = {};
+    groups = {
+      media = {
+        gid = 985;
+      };
+      fkoehler = {};
+    };
     users.fkoehler = {
       isNormalUser = true;
-      extraGroups = ["wheel" "fkoehler"]; # Enable ‘sudo’ for the user.
+      group = "fkoehler";
+      extraGroups = ["wheel" "media"]; # Enable ‘sudo’ for the user.
       packages = with pkgs; [
         tmux
       ];
@@ -188,6 +200,7 @@
       paperless-web.after = [
         "var-lib-paperless.mount"
       ];
+      "podman-tinymediamanager".after = ["var-lib-tinymediamanager.mount"];
     };
   };
 

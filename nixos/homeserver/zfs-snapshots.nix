@@ -37,5 +37,27 @@ _: {
         };
       };
     };
+    syncoid = {
+      enable = true;
+      commonArgs = ["--no-sync-snap"];
+      commands = {
+        "tank1-nextcloud" = {
+          source = "rpool/nextcloud";
+          target = "tank1/backups/nextcloud";
+        };
+        "tank1-postgresql" = {
+          source = "rpool/postgresql";
+          target = "tank1/backups/postgresql";
+        };
+        "tank1-paperless" = {
+          source = "rpool/paperless";
+          target = "tank1/backups/paperless";
+        };
+        "tank1-audiobookshelf" = {
+          source = "rpool/audiobookshelf";
+          target = "tank1/backups/audiobookshelf";
+        };
+      };
+    };
   };
 }

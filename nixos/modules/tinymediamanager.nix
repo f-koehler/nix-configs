@@ -12,7 +12,7 @@
   };
   virtualisation.oci-containers.containers = {
     tinymediamanager = {
-      image = "docker.io/tinymediamanager/tinymediamanager:5.0.5";
+      image = "docker.io/tinymediamanager/tinymediamanager:5.0.6";
       ports = [
         "5900:5900" # VNC port
         "0.0.0.0:4000:4000" # Webinterface

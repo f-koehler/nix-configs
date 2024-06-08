@@ -45,11 +45,6 @@
       device = "rpool/home";
       fsType = "zfs";
     };
-    
-    "/media/tank1" = {
-      device = "tank1";
-      fsType = "zfs";
-    };
 
     "/var/lib/audiobookshelf" = {
       device = "rpool/audiobookshelf";
@@ -70,26 +65,6 @@
       device = "rpool/postgresql";
       fsType = "zfs";
     };
-    
-    "/media/tank1/backups/audiobookshelf" = {
-      device = "tank1/audiobookshelf_backups";
-      fsType = "zfs";
-    };
-
-    "/media/tank1/backups/nextcloud" = {
-      device = "tank1/nextcloud_backups";
-      fsType = "zfs";
-    };
-
-    "/media/tank1/backups/paperless" = {
-      device = "tank1/nextcloud_paperless";
-      fsType = "zfs";
-    };
-
-    "/media/tank1/backups/postgresql" = {
-      device = "tank1/nextcloud_paperless";
-      fsType = "zfs";
-    };
   };
 
   # Use the systemd-boot EFI boot loader.
@@ -99,9 +74,7 @@
       efi.canTouchEfiVariables = true;
     };
     kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-    zfs.extraPools = [
-      "tank1"
-    ];
+    zfs.extraPools = ["tank1"];
   };
 
   services.zfs = {

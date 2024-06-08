@@ -19,7 +19,7 @@
     ./modules/collect-garbage.nix
     ./modules/firmware.nix
     ./modules/fstrim.nix
-    # ./modules/home-assistant.nix
+    ./modules/home-assistant.nix
     ./modules/jellyfin.nix
     ./modules/locale.nix
     ./modules/nextcloud.nix
@@ -71,6 +71,10 @@
       fsType = "zfs";
     };
 
+    "/var/lib/hass" = {
+      device = "rpool/hass";
+      fsType = "zfs";
+    };
   };
 
   # Use the systemd-boot EFI boot loader.
@@ -201,6 +205,7 @@
         "var-lib-paperless.mount"
       ];
       "podman-tinymediamanager".after = ["var-lib-tinymediamanager.mount"];
+      "podman-hass".after = ["var-lib-hass.mount"];
     };
   };
 

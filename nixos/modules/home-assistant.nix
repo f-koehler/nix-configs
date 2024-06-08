@@ -3,46 +3,23 @@
   config,
   ...
 }: {
+  virtualisation.oci-containers.containers = {
+    hass = {
+      image = "ghcr.io/home-assistant/home-assistant:2024.6.1";
+      extraOptions = [
+        "--privileged"
+        "--network=host"
+      ];
+      environment = {
+        TZ = "Asia/Singapore";
+      };
+      volumes = [
+        "/var/lib/hass:/config"
+        "/run/dbus:/run/dbus:ro"
+      ];
+    };
+  };
   # services = {
-  #   home-assistant = {
-  #     # package =
-  #     #   (pkgs.home-assistant.override {
-  #     #     extraPackages = py: with py; [psycopg2];
-  #     #   })
-  #     #   .overrideAttrs (_oldAttrs: {
-  #     #     doInstallCheck = false;
-  #     #   });
-  #     enable = false;
-  #     config = {
-  #       home-assistant = {
-  #         unit_system = "metric";
-  #         time_zone = "Asia/Singapore";
-  #         temperature_unit = "C";
-  #         longitude = 103.79852573812971;
-  #         latitute = 1.311684998498273;
-  #       };
-  #       # recorder.db_url = "postgresql://@/hass";
-  #     };
-  #     extraComponents = [
-  #       "default_config"
-  #       #   "met"
-  #       #   "esphome"
-  #       #   "homekit"
-  #       "homekit_controller"
-  #       "homeassistant"
-  #       "lovelace"
-  #     ];
-  #   };
-  #   # postgresql = {
-  #   #   enable = true;
-  #   #   ensureDatabases = ["hass"];
-  #   #   ensureUsers = [
-  #   #     {
-  #   #       name = "hass";
-  #   #       ensureDBOwnership = true;
-  #   #     }
-  #   #   ];
-  #   # };
   #   nginx = {
   #     upstreams."hass" = {
   #       servers = {

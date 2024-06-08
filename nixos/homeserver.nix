@@ -19,7 +19,7 @@
     ./modules/collect-garbage.nix
     ./modules/firmware.nix
     ./modules/fstrim.nix
-    # ./modules/home-assistant.nix
+    ./modules/home-assistant.nix
     ./modules/jellyfin.nix
     ./modules/locale.nix
     ./modules/nextcloud.nix
@@ -30,7 +30,7 @@
     ./modules/samba.nix
     # ./modules/stirling-pdf.nix
     ./modules/tailscale.nix
-    # ./modules/tinymediamanager.nix
+    ./modules/tinymediamanager.nix
   ];
 
   sops.defaultSopsFile = ../secrets/homeserver.yaml;
@@ -43,11 +43,6 @@
 
     "/home" = {
       device = "rpool/home";
-      fsType = "zfs";
-    };
-    
-    "/media/tank1" = {
-      device = "tank1";
       fsType = "zfs";
     };
 
@@ -70,24 +65,14 @@
       device = "rpool/postgresql";
       fsType = "zfs";
     };
-    
-    "/media/tank1/backups/audiobookshelf" = {
-      device = "tank1/audiobookshelf_backups";
+
+    "/var/lib/tinymediamanager" = {
+      device = "rpool/tinymediamanager";
       fsType = "zfs";
     };
 
-    "/media/tank1/backups/nextcloud" = {
-      device = "tank1/nextcloud_backups";
-      fsType = "zfs";
-    };
-
-    "/media/tank1/backups/paperless" = {
-      device = "tank1/nextcloud_paperless";
-      fsType = "zfs";
-    };
-
-    "/media/tank1/backups/postgresql" = {
-      device = "tank1/nextcloud_paperless";
+    "/var/lib/hass" = {
+      device = "rpool/hass";
       fsType = "zfs";
     };
   };
@@ -99,9 +84,7 @@
       efi.canTouchEfiVariables = true;
     };
     kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-    zfs.extraPools = [
-      "tank1"
-    ];
+    zfs.extraPools = ["tank1"];
   };
 
   services.zfs = {
@@ -122,10 +105,16 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
-    groups.fkoehler = {};
+    groups = {
+      media = {
+        gid = 985;
+      };
+      fkoehler = {};
+    };
     users.fkoehler = {
       isNormalUser = true;
-      extraGroups = ["wheel" "fkoehler"]; # Enable ‘sudo’ for the user.
+      group = "fkoehler";
+      extraGroups = ["wheel" "media"]; # Enable ‘sudo’ for the user.
       packages = with pkgs; [
         tmux
       ];
@@ -215,6 +204,8 @@
       paperless-web.after = [
         "var-lib-paperless.mount"
       ];
+      "podman-tinymediamanager".after = ["var-lib-tinymediamanager.mount"];
+      "podman-hass".after = ["var-lib-hass.mount"];
     };
   };
 

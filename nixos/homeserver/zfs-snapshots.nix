@@ -2,38 +2,128 @@ _: {
   services = {
     sanoid = {
       enable = true;
-      datasets = {
-        "rpool/nextcloud" = {
-          autosnap = true;
+      templates = {
+        nextcloud = {
           autoprune = true;
           yearly = 1;
           monthly = 12;
           daily = 7;
           hourly = 48;
         };
-        "rpool/postgresql" = {
-          autosnap = true;
+        postgresql = {
           autoprune = true;
           yearly = 1;
           monthly = 12;
           daily = 7;
           hourly = 48;
         };
-        "rpool/audiobookshelf" = {
-          autosnap = true;
+        audiobookshelf = {
           autoprune = true;
           yearly = 1;
           monthly = 12;
           daily = 7;
           hourly = 48;
         };
-        "rpool/paperless" = {
-          autosnap = true;
+        paperless = {
           autoprune = true;
           yearly = 3;
           monthly = 12;
           daily = 7;
           hourly = 48;
+        };
+        tinymediamanager = {
+          autoprune = true;
+          yearly = 1;
+          monthly = 12;
+          daily = 10;
+          hourly = 72;
+        };
+        hass = {
+          autoprune = true;
+          yearly = 1;
+          monthly = 12;
+          daily = 30;
+          hourly = 96;
+        };
+      };
+      datasets = {
+        "rpool/nextcloud" = {
+          autosnap = true;
+          useTemplate = ["nextcloud"];
+        };
+        "rpool/postgresql" = {
+          autosnap = true;
+          useTemplate = ["postgresql"];
+        };
+        "rpool/audiobookshelf" = {
+          autosnap = true;
+          useTemplate = ["audiobookshelf"];
+        };
+        "rpool/paperless" = {
+          autosnap = true;
+          useTemplate = ["paperless"];
+        };
+        "rpool/tinymediamanager" = {
+          autosnap = true;
+          useTemplate = ["tinymediamanager"];
+        };
+        "rpool/hass" = {
+          autosnap = true;
+          useTemplate = ["hass"];
+        };
+        "tank1/backups/nextcloud" = {
+          autosnap = false;
+          useTemplate = ["nextcloud"];
+        };
+        "tank1/backups/postgresql" = {
+          autosnap = false;
+          useTemplate = ["postgresql"];
+        };
+        "tank1/backups/audiobookshelf" = {
+          autosnap = false;
+          useTemplate = ["audiobookshelf"];
+        };
+        "tank1/backups/paperless" = {
+          autosnap = false;
+          useTemplate = ["paperless"];
+        };
+        "tank1/backups/tinymediamanager" = {
+          autosnap = false;
+          useTemplate = ["tinymediamanager"];
+        };
+        "tank1/backups/hass" = {
+          autosnap = false;
+          useTemplate = ["hass"];
+        };
+      };
+    };
+    syncoid = {
+      enable = true;
+      commonArgs = ["--no-sync-snap"];
+      commands = {
+        "tank1-nextcloud" = {
+          source = "rpool/nextcloud";
+          target = "tank1/backups/nextcloud";
+        };
+        "tank1-postgresql" = {
+          source = "rpool/postgresql";
+          target = "tank1/backups/postgresql";
+        };
+        "tank1-paperless" = {
+          source = "rpool/paperless";
+          target = "tank1/backups/paperless";
+        };
+        "tank1-audiobookshelf" = {
+          source = "rpool/audiobookshelf";
+          target = "tank1/backups/audiobookshelf";
+        };
+        "tank1-tinymediamanager" = {
+          source = "rpool/tinymediamanager";
+          target = "tank1/backups/tinymediamanager";
+        };
+        "tank1-hass" = {
+          source = "rpool/hass";
+          target = "tank1/backups/hass";
         };
       };
     };

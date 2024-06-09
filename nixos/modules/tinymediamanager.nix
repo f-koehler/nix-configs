@@ -21,7 +21,7 @@
         ALLOW_DIRECT_VNC = "true";
         LC_ALL = "en_US.UTF-8";
         LANG = "en_US.UTF-8";
-        # USER_ID="${config.users.users.jellyfin.uid}";
+        USER_ID = "993";
         GROUP_ID = "${toString config.users.groups.media.gid}";
       };
       environmentFiles = ["${config.sops.templates."tinymediamanager.env".path}"];

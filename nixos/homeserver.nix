@@ -90,7 +90,7 @@
       efi.canTouchEfiVariables = true;
     };
     kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-    zfs.extraPools = ["tank1"];
+    zfs.extraPools = ["tank0" "tank1"];
   };
 
   services.zfs = {

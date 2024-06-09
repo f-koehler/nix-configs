@@ -27,7 +27,7 @@
     ./modules/nix.nix
     ./modules/paperless.nix
     ./modules/podman.nix
-    ./modules/samba.nix
+    # ./modules/samba.nix
     # ./modules/stirling-pdf.nix
     ./modules/tailscale.nix
     ./modules/tinymediamanager.nix
@@ -169,26 +169,16 @@
   services.openssh.openFirewall = true;
 
   systemd = {
-    mounts = [
-      {
-        description = "Mount tank0 external USB disk";
-        what = "/dev/disk/by-label/tank0";
-        where = "/media/tank0";
-        type = "exfat";
-        wantedBy = ["multi-user.target"];
-        options = "noatime,uid=fkoehler,gid=fkoehler,umask=0";
-      }
-    ];
     services = {
-      samba-smbd.after = [
-        "media-tank0.mount"
-      ];
-      samba-nmbd.after = [
-        "media-tank0.mount"
-      ];
-      jellyfin.after = [
-        "media-tank0.mount"
-      ];
+      # samba-smbd.after = [
+      #   "media-tank0.mount"
+      # ];
+      # samba-nmbd.after = [
+      #   "media-tank0.mount"
+      # ];
+      # jellyfin.after = [
+      #   "media-tank0.mount"
+      # ];
       nextcloud-setup.after = [
         "var-lib-nextcloud.mount"
       ];

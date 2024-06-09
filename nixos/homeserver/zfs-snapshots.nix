@@ -155,6 +155,10 @@ _: {
           source = "rpool/hass";
           target = "tank1/backups/hass";
         };
+        "tank1-uptime-kuma" = {
+          source = "rpool/uptime-kuma";
+          target = "tank1/backups/uptime-kuma";
+        };
         "tank1-jellyfin" = {
           source = "rpool/jellyfin";
           target = "tank1/backups/jellyfin";

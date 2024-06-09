@@ -52,6 +52,13 @@ _: {
           daily = 30;
           hourly = 96;
         };
+        jellyfin = {
+          autorune = true;
+          yearly = 0;
+          monthly = 2;
+          daily = 7;
+          hourly = 24;
+        };
       };
       datasets = {
         "rpool/nextcloud" = {
@@ -82,6 +89,10 @@ _: {
           autosnap = true;
           useTemplate = ["uptime-kuma"];
         };
+        "rpool/jellyfin" = {
+          autosnap = true;
+          useTemplate = ["jellyfin"];
+        };
         "tank1/backups/nextcloud" = {
           autosnap = false;
           useTemplate = ["nextcloud"];
@@ -109,6 +120,10 @@ _: {
         "tank1/backups/uptime-kuma" = {
           autosnap = false;
           useTemplate = ["uptime-kuma"];
+        };
+        "tank1/backups/jellyfin" = {
+          autosnap = false;
+          useTemplate = ["jellyfin"];
         };
       };
     };
@@ -139,6 +154,10 @@ _: {
         "tank1-hass" = {
           source = "rpool/hass";
           target = "tank1/backups/hass";
+        };
+        "tank1-jellyfin" = {
+          source = "rpool/jellyfin";
+          target = "tank1/backups/jellyfin";
         };
       };
     };

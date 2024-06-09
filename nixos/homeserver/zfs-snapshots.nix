@@ -93,6 +93,38 @@ _: {
           autosnap = true;
           useTemplate = ["jellyfin"];
         };
+        "tank0/backups/nextcloud" = {
+          autosnap = false;
+          useTemplate = ["nextcloud"];
+        };
+        "tank0/backups/postgresql" = {
+          autosnap = false;
+          useTemplate = ["postgresql"];
+        };
+        "tank0/backups/audiobookshelf" = {
+          autosnap = false;
+          useTemplate = ["audiobookshelf"];
+        };
+        "tank0/backups/paperless" = {
+          autosnap = false;
+          useTemplate = ["paperless"];
+        };
+        "tank0/backups/tinymediamanager" = {
+          autosnap = false;
+          useTemplate = ["tinymediamanager"];
+        };
+        "tank0/backups/hass" = {
+          autosnap = false;
+          useTemplate = ["hass"];
+        };
+        "tank0/backups/uptime-kuma" = {
+          autosnap = false;
+          useTemplate = ["uptime-kuma"];
+        };
+        "tank0/backups/jellyfin" = {
+          autosnap = false;
+          useTemplate = ["jellyfin"];
+        };
         "tank1/backups/nextcloud" = {
           autosnap = false;
           useTemplate = ["nextcloud"];
@@ -131,6 +163,38 @@ _: {
       enable = true;
       commonArgs = ["--no-sync-snap"];
       commands = {
+        "tank0-nextcloud" = {
+          source = "rpool/nextcloud";
+          target = "tank0/backups/nextcloud";
+        };
+        "tank0-postgresql" = {
+          source = "rpool/postgresql";
+          target = "tank0/backups/postgresql";
+        };
+        "tank0-paperless" = {
+          source = "rpool/paperless";
+          target = "tank0/backups/paperless";
+        };
+        "tank0-audiobookshelf" = {
+          source = "rpool/audiobookshelf";
+          target = "tank0/backups/audiobookshelf";
+        };
+        "tank0-tinymediamanager" = {
+          source = "rpool/tinymediamanager";
+          target = "tank0/backups/tinymediamanager";
+        };
+        "tank0-hass" = {
+          source = "rpool/hass";
+          target = "tank0/backups/hass";
+        };
+        "tank0-uptime-kuma" = {
+          source = "rpool/uptime-kuma";
+          target = "tank0/backups/uptime-kuma";
+        };
+        "tank0-jellyfin" = {
+          source = "rpool/jellyfin";
+          target = "tank0/backups/jellyfin";
+        };
         "tank1-nextcloud" = {
           source = "rpool/nextcloud";
           target = "tank1/backups/nextcloud";

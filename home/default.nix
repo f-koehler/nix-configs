@@ -6,6 +6,7 @@
   username,
   config,
   stateVersion,
+  isWorkstation,
   ...
 }: let
   inherit (pkgs.stdenv) isDarwin;
@@ -104,6 +105,8 @@ in {
       #   org.gradle.console=verbose
       #   org.gradle.daemon.idletimeout=3600000
       # '';
+
+      ".local/share/jellyfinmediaplayer/scripts/mpris.so".source = lib.mkIf (pkgs.stdenv.isLinux && isWorkstation) "${pkgs.mpvScripts.mpris}/share/mpv/scripts/mpris.so";
     };
   };
 

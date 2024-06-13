@@ -17,6 +17,9 @@
           github:
             - token:
               user: f-koehler
+              exclude:
+                - nixpkgs
+                - LibreELEC.tv
         destination:
           local:
             - path: /var/lib/gickup
@@ -36,15 +39,24 @@
       createHome = true;
     };
   };
-  systemd.services.gickup = {
-    description = "Backup git repositories with gickup";
-    wantedBy = ["default.target"];
-    after = ["var-lib-gickup.mount"];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.gickup}/bin/gickup ${config.sops.templates."gickup.yaml".path}";
-      User = "gickup";
-      Group = "gickup";
+  systemd = {
+    services.gickup = {
+      description = "git backups with gickup";
+      wantedBy = ["default.target"];
+      after = ["var-lib-gickup.mount"];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${pkgs.gickup}/bin/gickup ${config.sops.templates."gickup.yaml".path}";
+        User = "gickup";
+        Group = "gickup";
+      };
+    };
+    timers.gickup = {
+      description = "Periodic git backups with gickup";
+      timerConfig = {
+        Unit = "gickup.service";
+        OnCalendar = "daily";
+      };
     };
   };
 }

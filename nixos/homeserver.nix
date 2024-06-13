@@ -82,6 +82,11 @@
       device = "rpool/uptime-kuma";
       fsType = "zfs";
     };
+
+    "/var/lib/gickup" = {
+      device = "rpool/gickup";
+      fsType = "zfs";
+    };
   };
 
   # Use the systemd-boot EFI boot loader.

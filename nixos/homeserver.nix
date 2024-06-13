@@ -19,6 +19,7 @@
     ./modules/collect-garbage.nix
     ./modules/firmware.nix
     ./modules/fstrim.nix
+    ./modules/gickup.nix
     ./modules/home-assistant.nix
     ./modules/jellyfin.nix
     ./modules/locale.nix

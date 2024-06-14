@@ -59,6 +59,13 @@ _: {
           daily = 7;
           hourly = 24;
         };
+        gickup = {
+          autorune = true;
+          yearly = 1;
+          monthly = 12;
+          daily = 7;
+          hourly = 24;
+        };
       };
       datasets = {
         "rpool/nextcloud" = {
@@ -93,6 +100,10 @@ _: {
           autosnap = true;
           useTemplate = ["jellyfin"];
         };
+        "rpool/gickup" = {
+          autosnap = true;
+          useTemplate = ["gickup"];
+        };
         "tank0/backups/nextcloud" = {
           autosnap = false;
           useTemplate = ["nextcloud"];
@@ -125,6 +136,10 @@ _: {
           autosnap = false;
           useTemplate = ["jellyfin"];
         };
+        "tank0/backups/gickup" = {
+          autosnap = false;
+          useTemplate = ["gickup"];
+        };
         "tank1/backups/nextcloud" = {
           autosnap = false;
           useTemplate = ["nextcloud"];
@@ -156,6 +171,10 @@ _: {
         "tank1/backups/jellyfin" = {
           autosnap = false;
           useTemplate = ["jellyfin"];
+        };
+        "tank1/backups/gickup" = {
+          autosnap = false;
+          useTemplate = ["gickup"];
         };
       };
     };
@@ -195,6 +214,10 @@ _: {
           source = "rpool/jellyfin";
           target = "tank0/backups/jellyfin";
         };
+        "tank0-gickup" = {
+          source = "rpool/gickup";
+          target = "tank0/backups/gickup";
+        };
         "tank1-nextcloud" = {
           source = "rpool/nextcloud";
           target = "tank1/backups/nextcloud";
@@ -226,6 +249,10 @@ _: {
         "tank1-jellyfin" = {
           source = "rpool/jellyfin";
           target = "tank1/backups/jellyfin";
+        };
+        "tank1-gickup" = {
+          source = "rpool/gickup";
+          target = "tank1/backups/gickup";
         };
       };
     };

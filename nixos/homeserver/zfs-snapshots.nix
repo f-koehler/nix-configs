@@ -1,7 +1,10 @@
 {lib, ...}: let
   hostedServices = [
     {name = "audiobookshelf";}
-    {name = "gickup";}
+    {
+      name = "gickup";
+      dense = true;
+    }
     {
       name = "hass";
       units = ["podman-hass"];
@@ -39,101 +42,67 @@ in {
       datasets = lib.mkMerge [
         (builtins.listToAttrs
           (map (
-              service: {
+              service: let
+                template =
+                  if (builtins.hasAttr "dense" service) && service.dense
+                  then "dense"
+                  else "sparse";
+              in {
                 name = "rpool/${service.name}";
                 value = {
                   autosnap = true;
-                  useTemplate = ["${service.name}"];
+                  useTemplate = [template];
                 };
               }
             )
             hostedServices))
         (builtins.listToAttrs
           (map (
-              service: {
+              service: let
+                template =
+                  if (builtins.hasAttr "dense" service) && service.dense
+                  then "dense"
+                  else "sparse";
+              in {
                 name = "tank0/backups/${service.name}";
                 value = {
                   autosnap = false;
-                  useTemplate = ["${service.name}"];
+                  useTemplate = [template];
                 };
               }
             )
             hostedServices))
         (builtins.listToAttrs
           (map (
-              service: {
+              service: let
+                template =
+                  if (builtins.hasAttr "dense" service) && service.dense
+                  then "dense"
+                  else "sparse";
+              in {
                 name = "tank1/backups/${service.name}";
                 value = {
                   autosnap = false;
-                  useTemplate = ["${service.name}"];
+                  useTemplate = [template];
                 };
               }
             )
             hostedServices))
       ];
       templates = {
-        nextcloud = {
+        dense = {
           autoprune = true;
-          yearly = 1;
-          monthly = 12;
-          daily = 7;
-          hourly = 48;
-        };
-        postgresql = {
-          autoprune = true;
-          yearly = 1;
-          monthly = 12;
-          daily = 7;
-          hourly = 48;
-        };
-        audiobookshelf = {
-          autoprune = true;
-          yearly = 1;
-          monthly = 12;
-          daily = 7;
-          hourly = 48;
-        };
-        paperless = {
-          autoprune = true;
-          yearly = 3;
-          monthly = 12;
-          daily = 7;
-          hourly = 48;
-        };
-        tinymediamanager = {
-          autoprune = true;
-          yearly = 1;
-          monthly = 12;
-          daily = 10;
-          hourly = 72;
-        };
-        hass = {
-          autoprune = true;
-          yearly = 1;
-          monthly = 12;
-          daily = 30;
+          yearly = 10;
+          monthly = 24;
+          daily = 60;
           hourly = 96;
         };
-        uptime-kuma = {
+        sparse = {
           autoprune = true;
           yearly = 1;
           monthly = 12;
-          daily = 30;
+          daily = 21;
           hourly = 96;
-        };
-        jellyfin = {
-          autorune = true;
-          yearly = 0;
-          monthly = 2;
-          daily = 7;
-          hourly = 24;
-        };
-        gickup = {
-          autorune = true;
-          yearly = 1;
-          monthly = 12;
-          daily = 7;
-          hourly = 24;
         };
       };
     };

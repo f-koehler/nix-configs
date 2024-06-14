@@ -47,46 +47,6 @@
       device = "rpool/home";
       fsType = "zfs";
     };
-
-    "/var/lib/audiobookshelf" = {
-      device = "rpool/audiobookshelf";
-      fsType = "zfs";
-    };
-
-    "/var/lib/nextcloud" = {
-      device = "rpool/nextcloud";
-      fsType = "zfs";
-    };
-
-    "/var/lib/paperless" = {
-      device = "rpool/paperless";
-      fsType = "zfs";
-    };
-
-    "/var/lib/postgresql" = {
-      device = "rpool/postgresql";
-      fsType = "zfs";
-    };
-
-    "/var/lib/tinymediamanager" = {
-      device = "rpool/tinymediamanager";
-      fsType = "zfs";
-    };
-
-    "/var/lib/hass" = {
-      device = "rpool/hass";
-      fsType = "zfs";
-    };
-
-    "/var/lib/uptime-kuma" = {
-      device = "rpool/uptime-kuma";
-      fsType = "zfs";
-    };
-
-    "/var/lib/gickup" = {
-      device = "rpool/gickup";
-      fsType = "zfs";
-    };
   };
 
   # Use the systemd-boot EFI boot loader.

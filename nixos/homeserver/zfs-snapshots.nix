@@ -1,7 +1,76 @@
-_: {
+{lib, ...}: let
+  hostedServices = [
+    {name = "audiobookshelf";}
+    {name = "gickup";}
+    {
+      name = "hass";
+      units = ["podman-hass"];
+    }
+    {name = "jellyfin";}
+    {
+      name = "nextcloud";
+      units = ["nextcloud-setup"];
+      dense = true;
+    }
+    {
+      name = "paperless";
+      units = ["paperless-web" "paperless-consumer" "paperless-scheduler" "paperless-task-queue"];
+      dense = true;
+    }
+    {name = "postgresql";}
+    {
+      name = "tinymediamanager";
+      units = ["podman-tinymediamanager"];
+    }
+    {name = "uptime-kuma";}
+  ];
+in {
+  fileSystems = builtins.listToAttrs (map (service: {
+      name = "/var/lib/${service.name}";
+      value = {
+        device = "rpool/${service.name}";
+        fsType = "zfs";
+      };
+    })
+    hostedServices);
   services = {
     sanoid = {
       enable = true;
+      datasets = lib.mkMerge [
+        (builtins.listToAttrs
+          (map (
+              service: {
+                name = "rpool/${service.name}";
+                value = {
+                  autosnap = true;
+                  useTemplate = ["${service.name}"];
+                };
+              }
+            )
+            hostedServices))
+        (builtins.listToAttrs
+          (map (
+              service: {
+                name = "tank0/backups/${service.name}";
+                value = {
+                  autosnap = false;
+                  useTemplate = ["${service.name}"];
+                };
+              }
+            )
+            hostedServices))
+        (builtins.listToAttrs
+          (map (
+              service: {
+                name = "tank1/backups/${service.name}";
+                value = {
+                  autosnap = false;
+                  useTemplate = ["${service.name}"];
+                };
+              }
+            )
+            hostedServices))
+      ];
       templates = {
         nextcloud = {
           autoprune = true;
@@ -67,194 +136,34 @@ _: {
           hourly = 24;
         };
       };
-      datasets = {
-        "rpool/nextcloud" = {
-          autosnap = true;
-          useTemplate = ["nextcloud"];
-        };
-        "rpool/postgresql" = {
-          autosnap = true;
-          useTemplate = ["postgresql"];
-        };
-        "rpool/audiobookshelf" = {
-          autosnap = true;
-          useTemplate = ["audiobookshelf"];
-        };
-        "rpool/paperless" = {
-          autosnap = true;
-          useTemplate = ["paperless"];
-        };
-        "rpool/tinymediamanager" = {
-          autosnap = true;
-          useTemplate = ["tinymediamanager"];
-        };
-        "rpool/hass" = {
-          autosnap = true;
-          useTemplate = ["hass"];
-        };
-        "rpool/uptime-kuma" = {
-          autosnap = true;
-          useTemplate = ["uptime-kuma"];
-        };
-        "rpool/jellyfin" = {
-          autosnap = true;
-          useTemplate = ["jellyfin"];
-        };
-        "rpool/gickup" = {
-          autosnap = true;
-          useTemplate = ["gickup"];
-        };
-        "tank0/backups/nextcloud" = {
-          autosnap = false;
-          useTemplate = ["nextcloud"];
-        };
-        "tank0/backups/postgresql" = {
-          autosnap = false;
-          useTemplate = ["postgresql"];
-        };
-        "tank0/backups/audiobookshelf" = {
-          autosnap = false;
-          useTemplate = ["audiobookshelf"];
-        };
-        "tank0/backups/paperless" = {
-          autosnap = false;
-          useTemplate = ["paperless"];
-        };
-        "tank0/backups/tinymediamanager" = {
-          autosnap = false;
-          useTemplate = ["tinymediamanager"];
-        };
-        "tank0/backups/hass" = {
-          autosnap = false;
-          useTemplate = ["hass"];
-        };
-        "tank0/backups/uptime-kuma" = {
-          autosnap = false;
-          useTemplate = ["uptime-kuma"];
-        };
-        "tank0/backups/jellyfin" = {
-          autosnap = false;
-          useTemplate = ["jellyfin"];
-        };
-        "tank0/backups/gickup" = {
-          autosnap = false;
-          useTemplate = ["gickup"];
-        };
-        "tank1/backups/nextcloud" = {
-          autosnap = false;
-          useTemplate = ["nextcloud"];
-        };
-        "tank1/backups/postgresql" = {
-          autosnap = false;
-          useTemplate = ["postgresql"];
-        };
-        "tank1/backups/audiobookshelf" = {
-          autosnap = false;
-          useTemplate = ["audiobookshelf"];
-        };
-        "tank1/backups/paperless" = {
-          autosnap = false;
-          useTemplate = ["paperless"];
-        };
-        "tank1/backups/tinymediamanager" = {
-          autosnap = false;
-          useTemplate = ["tinymediamanager"];
-        };
-        "tank1/backups/hass" = {
-          autosnap = false;
-          useTemplate = ["hass"];
-        };
-        "tank1/backups/uptime-kuma" = {
-          autosnap = false;
-          useTemplate = ["uptime-kuma"];
-        };
-        "tank1/backups/jellyfin" = {
-          autosnap = false;
-          useTemplate = ["jellyfin"];
-        };
-        "tank1/backups/gickup" = {
-          autosnap = false;
-          useTemplate = ["gickup"];
-        };
-      };
     };
     syncoid = {
       enable = true;
       commonArgs = ["--no-sync-snap"];
-      commands = {
-        "tank0-nextcloud" = {
-          source = "rpool/nextcloud";
-          target = "tank0/backups/nextcloud";
-        };
-        "tank0-postgresql" = {
-          source = "rpool/postgresql";
-          target = "tank0/backups/postgresql";
-        };
-        "tank0-paperless" = {
-          source = "rpool/paperless";
-          target = "tank0/backups/paperless";
-        };
-        "tank0-audiobookshelf" = {
-          source = "rpool/audiobookshelf";
-          target = "tank0/backups/audiobookshelf";
-        };
-        "tank0-tinymediamanager" = {
-          source = "rpool/tinymediamanager";
-          target = "tank0/backups/tinymediamanager";
-        };
-        "tank0-hass" = {
-          source = "rpool/hass";
-          target = "tank0/backups/hass";
-        };
-        "tank0-uptime-kuma" = {
-          source = "rpool/uptime-kuma";
-          target = "tank0/backups/uptime-kuma";
-        };
-        "tank0-jellyfin" = {
-          source = "rpool/jellyfin";
-          target = "tank0/backups/jellyfin";
-        };
-        "tank0-gickup" = {
-          source = "rpool/gickup";
-          target = "tank0/backups/gickup";
-        };
-        "tank1-nextcloud" = {
-          source = "rpool/nextcloud";
-          target = "tank1/backups/nextcloud";
-        };
-        "tank1-postgresql" = {
-          source = "rpool/postgresql";
-          target = "tank1/backups/postgresql";
-        };
-        "tank1-paperless" = {
-          source = "rpool/paperless";
-          target = "tank1/backups/paperless";
-        };
-        "tank1-audiobookshelf" = {
-          source = "rpool/audiobookshelf";
-          target = "tank1/backups/audiobookshelf";
-        };
-        "tank1-tinymediamanager" = {
-          source = "rpool/tinymediamanager";
-          target = "tank1/backups/tinymediamanager";
-        };
-        "tank1-hass" = {
-          source = "rpool/hass";
-          target = "tank1/backups/hass";
-        };
-        "tank1-uptime-kuma" = {
-          source = "rpool/uptime-kuma";
-          target = "tank1/backups/uptime-kuma";
-        };
-        "tank1-jellyfin" = {
-          source = "rpool/jellyfin";
-          target = "tank1/backups/jellyfin";
-        };
-        "tank1-gickup" = {
-          source = "rpool/gickup";
-          target = "tank1/backups/gickup";
-        };
-      };
+      commands = lib.mkMerge [
+        (builtins.listToAttrs
+          (map (
+              service: {
+                name = "tank0-${service.name}";
+                value = {
+                  source = "rpool/${service.name}";
+                  target = "tank0/backups/${service.name}";
+                };
+              }
+            )
+            hostedServices))
+        (builtins.listToAttrs
+          (map (
+              service: {
+                name = "tank1-${service.name}";
+                value = {
+                  source = "rpool/${service.name}";
+                  target = "tank1/backups/${service.name}";
+                };
+              }
+            )
+            hostedServices))
+      ];
     };
   };
 }

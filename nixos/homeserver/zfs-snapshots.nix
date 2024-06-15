@@ -121,30 +121,14 @@ in {
     syncoid = {
       enable = true;
       commonArgs = ["--no-sync-snap"];
-      commands = lib.mkMerge [
-        (builtins.listToAttrs
-          (map (
-              service: {
-                name = "tank0-${service.name}";
-                value = {
-                  source = "rpool/${service.name}";
-                  target = "tank0/backups/${service.name}";
-                };
-              }
-            )
-            hostedServices))
-        (builtins.listToAttrs
-          (map (
-              service: {
-                name = "tank1-${service.name}";
-                value = {
-                  source = "rpool/${service.name}";
-                  target = "tank1/backups/${service.name}";
-                };
-              }
-            )
-            hostedServices))
-      ];
+      commands = builtins.listToAttrs (lib.flatten (map (pool: (map (service: {
+          name = "${pool}-${service.name}";
+          value = {
+            source = "rpool/${service.name}";
+            target = "${pool}/backups/${service.name}";
+          };
+        })
+        hostedServices)) ["tank0" "tank1"]));
     };
   };
 }

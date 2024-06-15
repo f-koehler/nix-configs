@@ -36,6 +36,18 @@ in {
       };
     })
     hostedServices);
+  systemd.services = builtins.listToAttrs (lib.flatten (map (service: let
+    units =
+      if (builtins.hasAttr "units" service)
+      then service.units
+      else ["${service.name}"];
+  in (map (unit: {
+      name = "${unit}";
+      value = {after = ["var-lib-${service.name}.mount"];};
+    })
+    units))
+  hostedServices));
+
   services = {
     sanoid = {
       enable = true;

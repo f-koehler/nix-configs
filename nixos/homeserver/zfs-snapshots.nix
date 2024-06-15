@@ -51,15 +51,19 @@ in {
   services = {
     sanoid = {
       enable = true;
-      datasets = builtins.listToAttrs (lib.flatten (map (pool: (map (service: {
-          name = "${pool}/${service.name}";
-          value = let
-            template =
-              if (builtins.hasAttr "dense" service) && service.dense
-              then "dense"
-              else "sparse";
-            autosnap = pool == "rpool";
-          in {
+      datasets = builtins.listToAttrs (lib.flatten (map (pool: (map (service: let
+          template =
+            if (builtins.hasAttr "dense" service) && service.dense
+            then "dense"
+            else "sparse";
+          autosnap = pool == "rpool";
+          poolPath =
+            if pool == "rpool"
+            then "rpool"
+            else "${pool}/backups";
+        in {
+          name = "${poolPath}/${service.name}";
+          value = {
             inherit autosnap;
             useTemplate = [template];
           };

@@ -51,56 +51,20 @@ in {
   services = {
     sanoid = {
       enable = true;
-      datasets = lib.mkMerge [
-        (builtins.listToAttrs
-          (map (
-              service: let
-                template =
-                  if (builtins.hasAttr "dense" service) && service.dense
-                  then "dense"
-                  else "sparse";
-              in {
-                name = "rpool/${service.name}";
-                value = {
-                  autosnap = true;
-                  useTemplate = [template];
-                };
-              }
-            )
-            hostedServices))
-        (builtins.listToAttrs
-          (map (
-              service: let
-                template =
-                  if (builtins.hasAttr "dense" service) && service.dense
-                  then "dense"
-                  else "sparse";
-              in {
-                name = "tank0/backups/${service.name}";
-                value = {
-                  autosnap = false;
-                  useTemplate = [template];
-                };
-              }
-            )
-            hostedServices))
-        (builtins.listToAttrs
-          (map (
-              service: let
-                template =
-                  if (builtins.hasAttr "dense" service) && service.dense
-                  then "dense"
-                  else "sparse";
-              in {
-                name = "tank1/backups/${service.name}";
-                value = {
-                  autosnap = false;
-                  useTemplate = [template];
-                };
-              }
-            )
-            hostedServices))
-      ];
+      datasets = builtins.listToAttrs (lib.flatten (map (pool: (map (service: {
+          name = "${pool}/${service.name}";
+          value = let
+            template =
+              if (builtins.hasAttr "dense" service) && service.dense
+              then "dense"
+              else "sparse";
+            autosnap = pool == "rpool";
+          in {
+            inherit autosnap;
+            useTemplate = [template];
+          };
+        })
+        hostedServices)) ["rpool" "tank0" "tank1"]));
       templates = {
         dense = {
           autoprune = true;

@@ -13,6 +13,7 @@
     ./hardware/homeserver.nix
     # ./homeserver/downloader.nix
     ./homeserver/zfs-snapshots.nix
+    ./homeserver/samba.nix
 
     # ./modules/atuin.nix
     ./modules/audiobookshelf.nix
@@ -28,7 +29,6 @@
     ./modules/nix.nix
     ./modules/paperless.nix
     ./modules/podman.nix
-    # ./modules/samba.nix
     # ./modules/stirling-pdf.nix
     ./modules/tailscale.nix
     ./modules/tinymediamanager.nix

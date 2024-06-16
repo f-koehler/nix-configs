@@ -17,4 +17,7 @@
       };
     };
   };
+  environment.systemPackages = with pkgs; [
+    virtiofsd
+  ];
 }

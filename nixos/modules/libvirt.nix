@@ -17,4 +17,5 @@
       };
     };
   };
+  environment.systemPackages = [pkgs.virtiofsd];
 }

@@ -33,6 +33,16 @@
       hosts allow = 100.64.0.0/10, 192.168.50., localhost, 127.0.0.1
     '';
     shares = {
+      media0 = {
+        path = "/media/tank0/media";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "force user" = "fkoehler";
+        "force group" = "fkoehler";
+        "write list" = "fkoehler";
+        comment = "Media on tank0";
+      };
       media1 = {
         path = "/media/tank1/media";
         browseable = "yes";

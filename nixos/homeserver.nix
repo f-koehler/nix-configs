@@ -24,6 +24,7 @@
     ./modules/home-assistant.nix
     ./modules/jellyfin.nix
     ./modules/locale.nix
+    ./modules/libvirt.nix
     ./modules/nextcloud.nix
     ./modules/nginx.nix
     ./modules/nix.nix
@@ -86,7 +87,11 @@
     users.fkoehler = {
       isNormalUser = true;
       group = "fkoehler";
-      extraGroups = ["wheel" "media"]; # Enable ‘sudo’ for the user.
+      extraGroups = [
+        "wheel"
+        "media"
+        "libvirtd"
+      ];
       packages = with pkgs; [
         tmux
       ];

@@ -27,7 +27,8 @@
       environmentFiles = ["${config.sops.templates."tinymediamanager.env".path}"];
       volumes = [
         "/var/lib/tinymediamanager:/data:rw"
-        "/media/tank1/media:/media/tank1"
+        "/media/tank0/media:/media/tank0:rw"
+        "/media/tank1/media:/media/tank1:rw"
       ];
     };
   };

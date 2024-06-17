@@ -118,4 +118,39 @@
       }
     ];
   };
+  services.nginx = {
+    upstreams.homepage = {
+      servers = {
+        "127.0.0.1:8082" = {};
+      };
+    };
+    virtualHosts."homepage.fkoehler.xyz" = {
+      default = true;
+      forceSSL = true;
+      kTLS = true;
+      sslCertificate = "/var/lib/acme/fkoehler.xyz/fullchain.pem";
+      sslCertificateKey = "/var/lib/acme/fkoehler.xyz/key.pem";
+      http2 = true;
+      listen = [
+        {
+          addr = "0.0.0.0";
+          port = 443;
+          ssl = true;
+        }
+      ];
+      locations = {
+        "/" = {
+          proxyPass = "http://homepage/";
+          extraConfig = ''
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   Host $host;
+            proxy_http_version 1.1;
+            proxy_set_header   Upgrade $http_upgrade;
+            proxy_set_header   Connection "upgrade";
+          '';
+        };
+      };
+    };
+  };
 }

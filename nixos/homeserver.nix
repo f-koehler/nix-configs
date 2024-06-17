@@ -22,6 +22,7 @@
     ./modules/fstrim.nix
     ./modules/gickup.nix
     ./modules/home-assistant.nix
+    ./modules/homepage.nix
     ./modules/jellyfin.nix
     ./modules/locale.nix
     ./modules/libvirt.nix

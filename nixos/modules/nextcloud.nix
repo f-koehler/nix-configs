@@ -22,6 +22,7 @@
         adminuser = "fkoehler";
         adminpassFile = config.sops.secrets."services/nextcloud/admin/password".path;
       };
+      phpOptions."opcache.interned_strings_buffer" = "32";
       caching.redis = true;
       database.createLocally = true;
       maxUploadSize = "20G";

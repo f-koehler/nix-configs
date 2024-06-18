@@ -53,6 +53,7 @@
     certs."fkoehler.xyz" = {
       dnsProvider = "cloudflare";
       domain = "*.fkoehler.xyz";
+      extraDomainNames = ["fkoehler.xyz"];
       environmentFile = "${config.sops.templates."cloudflare-credentials".path}";
       inherit (config.services.nginx) group;
     };

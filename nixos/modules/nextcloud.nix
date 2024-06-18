@@ -28,6 +28,7 @@
       maxUploadSize = "20G";
       settings = {
         default_phone_region = "SG";
+        maintenance_window_start = 0;
       };
       autoUpdateApps.enable = true;
       extraAppsEnable = true;

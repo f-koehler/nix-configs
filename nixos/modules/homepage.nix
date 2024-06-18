@@ -65,7 +65,7 @@
         "Productivity" = [
           {
             "Nextcloud" = {
-            icon = "nextcloud.svg";
+              icon = "nextcloud.svg";
               href = nextcloud_url;
               description = "Personal cloud";
               widget = {

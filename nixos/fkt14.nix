@@ -110,14 +110,21 @@
       zotero
     ];
   };
-  programs.fish.enable = true;
-  programs.virt-manager.enable = true;
-  services.libinput.enable = true;
-  services.flatpak.enable = true;
-
-  programs.nix-ld = {
+  programs = {
+    fish.enable = true;
+    virt-manager.enable = true;
+    xfconf.enable = true;
+    nix-ld = {
     enable = true;
     package = inputs.nix-ld-rs.packages."${pkgs.system}".nix-ld-rs;
+    };
+  };
+  services = {
+    libinput.enable = true;
+    flatpak.enable = true;
+    gvfs.enable = true;
+    tumbler.enable = true;
+    openssh.enable = true;
   };
 
   nixpkgs = {
@@ -146,11 +153,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

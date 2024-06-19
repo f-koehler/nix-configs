@@ -41,11 +41,12 @@ in {
       if (builtins.hasAttr "units" service)
       then service.units
       else ["${service.name}"];
-  in (map (unit: {
+  in
+    map (unit: {
       name = "${unit}";
       value = {after = ["var-lib-${service.name}.mount"];};
     })
-    units))
+    units)
   hostedServices));
 
   services = {

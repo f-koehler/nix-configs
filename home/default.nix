@@ -60,6 +60,7 @@ in {
       bat
       du-dust
       fish
+      jq
       hexyl
       lunarvim
       pre-commit

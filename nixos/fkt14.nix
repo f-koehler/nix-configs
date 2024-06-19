@@ -108,6 +108,10 @@
       vlc
       vscode
       zotero
+      transmission-remote-gtk
+      xfce.thunar
+      xfce.thunar-volman
+      gvfs
     ];
   };
   programs = {

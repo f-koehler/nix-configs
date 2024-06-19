@@ -2,6 +2,7 @@
   sops = {
     secrets = {
       "services/homepage/audiobookshelf_api_key" = {};
+      "services/homepage/jellyseerr_api_key" = {};
       "services/homepage/jellyfin_api_key" = {};
       "services/homepage/nextcloud_api_key" = {};
       "services/homepage/paperless_api_key" = {};
@@ -9,6 +10,7 @@
     templates."homepage-dashboard.env" = {
       content = ''
         HOMEPAGE_VAR_AUDIOBOOKSHELF_API_KEY=${config.sops.placeholder."services/homepage/audiobookshelf_api_key"}
+        HOMEPAGE_VAR_JELLYSEERR_API_KEY=${config.sops.placeholder."services/homepage/jellyseerr_api_key"}
         HOMEPAGE_VAR_JELLYFIN_API_KEY=${config.sops.placeholder."services/homepage/jellyfin_api_key"}
         HOMEPAGE_VAR_NEXTCLOUD_API_KEY=${config.sops.placeholder."services/homepage/nextcloud_api_key"}
         HOMEPAGE_VAR_PAPERLESS_API_KEY=${config.sops.placeholder."services/homepage/paperless_api_key"}
@@ -20,6 +22,7 @@
     environmentFile = "${config.sops.templates."homepage-dashboard.env".path}";
     services = let
       audiobookshelf_url = "https://audiobooks.fkoehler.xyz";
+      jellyseerr_url = "https://wishlist.fkoehler.xyz";
       jellyfin_url = "https://media.fkoehler.xyz";
       nextcloud_url = "https://cloud.fkoehler.xyz";
       paperless_url = "https://docs.fkoehler.xyz";
@@ -50,6 +53,18 @@
                 type = "audiobookshelf";
                 url = audiobookshelf_url;
                 key = "{{HOMEPAGE_VAR_AUDIOBOOKSHELF_API_KEY}}";
+              };
+            };
+          }
+          {
+            "Jellyseer" = {
+              icon = "jellyseerr.svg";
+              href = jellyseerr_url;
+              description = "Media wishlist";
+              widget = {
+                type = "jellyseerr";
+                url = jellyseerr_url;
+                key = "{{HOMEPAGE_VAR_JELLYSEERR_API_KEY}}";
               };
             };
           }

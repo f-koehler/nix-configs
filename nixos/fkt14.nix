@@ -90,7 +90,6 @@
       inshellisense
       jellyfin-media-player
       kate
-      kdePackages.ktorrent
       kdePackages.plasma-browser-integration
       krdc
       libreoffice-fresh

@@ -15,6 +15,7 @@
     ./modules/collect-garbage.nix
     ./modules/firmware.nix
     ./modules/fstrim.nix
+    ./modules/fwupd.nix
     ./modules/libvirt.nix
     ./modules/locale.nix
     ./modules/nix.nix

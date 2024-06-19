@@ -77,6 +77,7 @@
       chromium
       cmake
       conda
+      devenv
       distrobox
       evince
       fftw

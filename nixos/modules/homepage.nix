@@ -20,6 +20,26 @@
   services.homepage-dashboard = {
     enable = true;
     environmentFile = "${config.sops.templates."homepage-dashboard.env".path}";
+    widgets = [
+      {
+        search = {
+          provider = "google";
+          focus = true;
+          showSearchSuggestions = true;
+          target = "_blank";
+        };
+      }
+      {
+        resources = {
+          cpu = true;
+          memory = true;
+          cputemp = true;
+          tempmin = 0;
+          tempmax = 100;
+          units = "metric";
+        };
+      }
+    ];
     services = let
       audiobookshelf_url = "https://audiobooks.fkoehler.xyz";
       jellyseerr_url = "https://wishlist.fkoehler.xyz";

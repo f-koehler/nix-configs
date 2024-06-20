@@ -36,20 +36,26 @@
       media0 = {
         path = "/media/tank0/media";
         browseable = "yes";
+        writeable = "yes";
         "read only" = "no";
         "guest ok" = "no";
-        "force user" = "fkoehler";
-        "force group" = "fkoehler";
+        "force user" = "jellyfin";
+        "force group" = "media";
+        "valid users" = "fkoehler";
+        "read list" = "fkoehler";
         "write list" = "fkoehler";
         comment = "Media on tank0";
       };
       media1 = {
         path = "/media/tank1/media";
         browseable = "yes";
+        writeable = "yes";
         "read only" = "no";
         "guest ok" = "no";
-        "force user" = "fkoehler";
-        "force group" = "fkoehler";
+        "force user" = "jellyfin";
+        "force group" = "media";
+        "valid users" = "fkoehler";
+        "read list" = "fkoehler";
         "write list" = "fkoehler";
         comment = "Media on tank1";
       };

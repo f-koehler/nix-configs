@@ -31,6 +31,7 @@
     ./modules/nix.nix
     ./modules/paperless.nix
     ./modules/podman.nix
+    ./modules/ssh.nix
     # ./modules/stirling-pdf.nix
     ./modules/tailscale.nix
     ./modules/tinymediamanager.nix
@@ -135,12 +136,6 @@
   # };
 
   # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    openFirewall = true;
-  };
 
   systemd = {
     services = {

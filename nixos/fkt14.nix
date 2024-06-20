@@ -21,6 +21,7 @@
     ./modules/nix.nix
     ./modules/plasma.nix
     ./modules/sound.nix
+    ./modules/ssh.nix
     # ./modules/sway.nix
     ./modules/tailscale.nix
     ./modules/wine.nix
@@ -120,8 +121,8 @@
     virt-manager.enable = true;
     xfconf.enable = true;
     nix-ld = {
-    enable = true;
-    package = inputs.nix-ld-rs.packages."${pkgs.system}".nix-ld-rs;
+      enable = true;
+      package = inputs.nix-ld-rs.packages."${pkgs.system}".nix-ld-rs;
     };
   };
   services = {
@@ -129,7 +130,6 @@
     flatpak.enable = true;
     gvfs.enable = true;
     tumbler.enable = true;
-    openssh.enable = true;
   };
 
   nixpkgs = {

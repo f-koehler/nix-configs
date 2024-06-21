@@ -18,6 +18,7 @@
     ./modules/fwupd.nix
     ./modules/libvirt.nix
     ./modules/locale.nix
+    ./modules/netdata.nix
     ./modules/nix.nix
     ./modules/plasma.nix
     ./modules/sound.nix

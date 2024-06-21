@@ -28,6 +28,7 @@ in {
     modules/gh.nix
     modules/git.nix
     modules/gpg.nix
+    modules/kanshi.nix
     modules/onedrive.nix
     modules/plasma.nix
     modules/ssh.nix

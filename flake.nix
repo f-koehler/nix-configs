@@ -71,17 +71,20 @@
           hostname = "fkt14";
           username = "fkoehler";
           isWorkstation = true;
+          isTrusted = true;
         };
         "fkoehler@mbp2021" = mylib.mkHome {
           hostname = "mbp2021";
           username = "fkoehler";
           system = "aarch64-darwin";
           isWorkstation = true;
+          isTrusted = true;
         };
         "fkoehler@homeserver" = mylib.mkHome {
           hostname = "homeserver";
           username = "fkoehler";
           isWorkstation = false;
+          isTrusted = true;
         };
       };
 

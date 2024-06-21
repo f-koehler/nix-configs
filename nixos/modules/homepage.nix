@@ -149,6 +149,13 @@
               };
             };
           }
+          {
+            "Netdata" = {
+              icon = "netdata.svg";
+              href = "http://100.64.220.85:19999";
+              description = "System monitoring";
+            };
+          }
         ];
       }
     ];

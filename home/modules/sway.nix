@@ -4,13 +4,9 @@
   isWorkstation,
   ...
 }: let
-  swaync = pkgs.swaynotificationcenter;
+  inherit (pkgs) kanshi swayosd swaylock wezterm;
   rofi = pkgs.rofi-wayland;
-  wezterm = pkgs.wezterm;
-  kanshi = pkgs.kanshi;
-  waybar = pkgs.waybar;
-  swayosd = pkgs.swayosd;
-  swaylock = pkgs.swaylock;
+  swaync = pkgs.swaynotificationcenter;
 in
   lib.mkIf (isWorkstation && pkgs.stdenv.isLinux) {
     programs = {

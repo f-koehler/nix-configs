@@ -9,11 +9,12 @@
     username,
     system ? "x86_64-linux",
     isWorkstation ? false,
+    isTrusted ? false,
   }:
     inputs.home-manager.lib.homeManagerConfiguration rec {
       pkgs = inputs.nixpkgs.legacyPackages.${system};
       extraSpecialArgs = {
-        inherit inputs outputs hostname system username isWorkstation stateVersion;
+        inherit inputs outputs hostname system username isWorkstation isTrusted stateVersion;
       };
       modules =
         [

@@ -1,10 +1,15 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  isTrusted,
+  ...
+}: {
   sops = {
     secrets = {
       "atuin/key".path = "${config.home.homeDirectory}/.local/share/atuin/key";
     };
   };
-  programs.atuin = {
+  programs.atuin = lib.mkIf isTrusted {
     enable = true;
     enableBashIntegration = true;
     enableFishIntegration = true;

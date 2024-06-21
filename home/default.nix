@@ -7,6 +7,7 @@
   config,
   stateVersion,
   isWorkstation,
+  isTrusted,
   ...
 }: let
   inherit (pkgs.stdenv) isDarwin;
@@ -14,7 +15,31 @@ in {
   imports = [
     inputs.nix-index-database.hmModules.nix-index
     inputs.sops-nix.homeManagerModules.sops
-    ./modules
+    modules/alacritty.nix
+    modules/aliases.nix
+    modules/env.nix
+    modules/atuin.nix
+    modules/darwin.nix
+    modules/direnv.nix
+    modules/email.nix
+    modules/eza.nix
+    modules/fish.nix
+    modules/fzf.nix
+    modules/gh.nix
+    modules/git.nix
+    modules/gpg.nix
+    modules/onedrive.nix
+    modules/plasma.nix
+    modules/ssh.nix
+    modules/starship.nix
+    # modules/sway.nix
+    modules/tealdeer.nix
+    modules/tmux.nix
+    modules/vscode.nix
+    modules/wezterm.nix
+    modules/yazi.nix
+    modules/zoxide.nix
+    modules/zsh.nix
   ];
 
   nixpkgs = {
@@ -35,7 +60,7 @@ in {
     package = pkgs.nix;
   };
 
-  sops = {
+  sops = lib.mkIf isTrusted {
     age = {
       keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
       generateKey = false;
@@ -107,21 +132,10 @@ in {
       #   org.gradle.daemon.idletimeout=3600000
       # '';
 
-      ".local/share/jellyfinmediaplayer/scripts/mpris.so".source = lib.mkIf (pkgs.stdenv.isLinux && isWorkstation) "${pkgs.mpvScripts.mpris}/share/mpv/scripts/mpris.so";
+      #".local/share/jellyfinmediaplayer/scripts/mpris.so".source = lib.mkIf (pkgs.stdenv.isLinux && isWorkstation) "${pkgs.mpvScripts.mpris}/share/mpv/scripts/mpris.so";
     };
   };
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
-  home.shellAliases = {
-    "cp" = "cp -i";
-    "mv" = "mv -i";
-    "rm" = "rm -i";
-    "cat" = "bat --style=plain --paging=never";
-    "tailscale" = lib.mkIf pkgs.stdenv.isDarwin "/Applications/Tailscale.app/Contents/MacOS/Tailscale";
-    "open" = lib.mkIf pkgs.stdenv.isLinux "xdg-open";
-  };
 
   programs = {
     bash.enable = true;

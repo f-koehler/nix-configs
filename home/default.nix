@@ -33,7 +33,7 @@ in {
     modules/plasma.nix
     modules/ssh.nix
     modules/starship.nix
-    # modules/sway.nix
+    modules/sway.nix
     modules/tealdeer.nix
     modules/tmux.nix
     modules/vscode.nix
@@ -133,7 +133,7 @@ in {
       #   org.gradle.daemon.idletimeout=3600000
       # '';
 
-      #".local/share/jellyfinmediaplayer/scripts/mpris.so".source = lib.mkIf (pkgs.stdenv.isLinux && isWorkstation) "${pkgs.mpvScripts.mpris}/share/mpv/scripts/mpris.so";
+      #".local/share/jellyfinmediaplayer/scripts/mpris.so".source = lib.mkIf (isLinux && isWorkstation) "${pkgs.mpvScripts.mpris}/share/mpv/scripts/mpris.so";
     };
   };
 

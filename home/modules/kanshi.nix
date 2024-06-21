@@ -1,10 +1,10 @@
 {
   lib,
-  pkgs,
+  isLinux,
   isWorkstation,
   ...
 }:
-lib.mkIf (isWorkstation && pkgs.stdenv.isLinux) {
+lib.mkIf (isWorkstation && isLinux) {
   services.kanshi = {
     enable = true;
     settings = [

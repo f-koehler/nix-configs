@@ -2,9 +2,10 @@
   pkgs,
   isWorkstation,
   lib,
+  isLinux,
   ...
 }: {
-  programs.plasma = lib.mkIf (pkgs.stdenv.isLinux && isWorkstation) {
+  programs.plasma = lib.mkIf (isLinux && isWorkstation) {
     enable = true;
     workspace = {
       clickItemTo = "select";

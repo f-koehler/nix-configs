@@ -1,12 +1,14 @@
 {
   pkgs,
   lib,
+  isDarwin,
+  isLinux,
   ...
 }: {
   home.packages = with pkgs; [
     gnupg
   ];
-  services.gpg-agent = lib.mkIf pkgs.stdenv.isLinux {
+  services.gpg-agent = lib.mkIf isLinux {
     enable = true;
     enableBashIntegration = true;
     enableFishIntegration = true;
@@ -15,7 +17,7 @@
     grabKeyboardAndMouse = true;
     maxCacheTtl = 18000;
     pinentryPackage =
-      if pkgs.stdenv.isDarwin
+      if isDarwin
       then pkgs.pinentry_mac
       else pkgs.pinentry-qt;
   };

@@ -2,13 +2,14 @@
   pkgs,
   lib,
   isWorkstation,
+  isLinux,
   ...
 }: let
   inherit (pkgs) kanshi swayosd swaylock wezterm;
   rofi = pkgs.rofi-wayland;
   swaync = pkgs.swaynotificationcenter;
 in
-  lib.mkIf (isWorkstation && pkgs.stdenv.isLinux) {
+  lib.mkIf (isWorkstation && isLinux) {
     programs = {
       swaylock = {
         enable = true;

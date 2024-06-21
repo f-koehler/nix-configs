@@ -2,9 +2,10 @@
   lib,
   pkgs,
   isWorkstation,
+  isLinux,
   ...
 }:
-lib.mkIf (pkgs.stdenv.isLinux && isWorkstation) {
+lib.mkIf (isLinux && isWorkstation) {
   home.packages = with pkgs; [
     swaynotificationcenter
     waybar
@@ -15,7 +16,7 @@ lib.mkIf (pkgs.stdenv.isLinux && isWorkstation) {
     plugins = with pkgs.hyprlandPlugins; [
       hy3
     ];
-    settings = lib.mkIf pkgs.stdenv.isLinux {
+    settings = lib.mkIf isLinux {
       "$mod" = "SUPER";
       "exec-once" = [
         "${pkgs.swaynotificationcenter}/bin/swaync"

@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  isDarwin,
   isWorkstation,
   ...
 }:
@@ -12,7 +13,7 @@ lib.mkIf isWorkstation {
   programs.vscode = {
     enable = true;
     enableExtensionUpdateCheck = true;
-    enableUpdateCheck = pkgs.stdenv.isDarwin;
+    enableUpdateCheck = isDarwin;
     extensions = [
       pkgs.vscode-marketplace.akiramiyakoda.cppincludeguard
       pkgs.vscode-marketplace.asvetliakov.vscode-neovim

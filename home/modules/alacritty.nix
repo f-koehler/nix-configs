@@ -1,7 +1,7 @@
 {
-  pkgs,
   lib,
   isWorkstation,
+  isDarwin,
   ...
 }: {
   programs.alacritty = lib.mkIf isWorkstation {
@@ -9,7 +9,7 @@
     settings = {
       font = {
         size =
-          if pkgs.stdenv.isDarwin
+          if isDarwin
           then 12
           else 9;
         normal = {

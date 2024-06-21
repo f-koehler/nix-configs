@@ -15,6 +15,7 @@
       pkgs = inputs.nixpkgs.legacyPackages.${system};
       extraSpecialArgs = {
         inherit inputs outputs hostname system username isWorkstation isTrusted stateVersion;
+        inherit (pkgs.stdenv) isLinux isDarwin;
       };
       modules =
         [

@@ -88,6 +88,10 @@
           hostname = "homeserver";
           username = "fkoehler";
         };
+        "downloader" = mylib.mkNixOS {
+          hostname = "downloader";
+          username = "downloader";
+        };
       };
 
       darwinConfigurations."mbp2021" = inputs.nix-darwin.lib.darwinSystem {

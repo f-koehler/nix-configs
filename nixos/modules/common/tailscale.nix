@@ -1,20 +1,16 @@
-{config, ...}: {
-  sops.secrets."services/tailscale/authKey" = {
-    sopsFile = ../../../secrets/common.yaml;
-    restartUnits = [
-      "tailscaled.service"
-      "tailscaled-autoconnect.service"
-    ];
-  };
+{
+  config,
+  username,
+  ...
+}: {
   services.tailscale = {
     enable = true;
     extraUpFlags = [
       "--ssh"
       "--hostname=${config.networking.hostName}"
-      "--operator=fkoehler"
+      "--operator=${username}"
       "--accept-routes"
     ];
-    authKeyFile = config.sops.secrets."services/tailscale/authKey".path;
     useRoutingFeatures = "both";
   };
 }

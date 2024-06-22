@@ -17,7 +17,7 @@ in
       };
       waybar = {
         enable = true;
-      #   package = waybar;
+        #   package = waybar;
         settings = {
           mainBar = {
             height = 34;
@@ -26,7 +26,6 @@ in
             modules-right = ["custom/notifications" "tray" "clock" "battery#BAT0"];
             tray = {
               spacing = 5;
-
             };
             "custom/notification" = {
               "tooltip" = false;
@@ -99,7 +98,6 @@ in
           hideEdgeBorders = "smart";
           titlebar = false;
         };
-
       };
       extraConfig = ''
         bindsym ${config.modifier}+Shift+n exec ${swaync}/bin/swaync-client -t -sw

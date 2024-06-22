@@ -5,7 +5,7 @@
   isLinux,
   ...
 }: let
-  inherit (pkgs) kanshi swayosd swaylock wezterm;
+  inherit (pkgs) kanshi swayosd swaylock wezterm networkmanagerapplet blueman waybar;
   rofi = pkgs.rofi-wayland;
   swaync = pkgs.swaynotificationcenter;
 in
@@ -17,17 +17,17 @@ in
       };
       waybar = {
         enable = true;
-        package = waybar;
+      #   package = waybar;
         settings = {
           mainBar = {
-            height = 22;
+            height = 34;
             spacing = 15;
             modules-left = ["sway/workspaces" "sway/mode"];
-            modules-right = ["custom/notifications" "tray" "clock" "battery#BAT0" "custom/power"];
+            modules-right = ["custom/notifications" "tray" "clock" "battery#BAT0"];
             tray = {
               spacing = 5;
-            };
 
+            };
             "custom/notification" = {
               "tooltip" = false;
               "format" = "{icon}";
@@ -51,9 +51,8 @@ in
         };
         style = ''
           * {
-            font-family: Cascadia Code NF;
-            font-size: 10px;
-            margin: 0;
+            font-family: Noto Sans, Cascadia Mono NF;
+            font-size: 18px;
           }
         '';
       };
@@ -82,7 +81,25 @@ in
           {
             command = "${swayosd}/bin/swaysosd-server";
           }
+          {
+            command = "${networkmanagerapplet}/bin/networkmanagerapplet --indicator";
+          }
+          {
+            command = "${blueman}/bin/blueman-applet";
+          }
         ];
+        gaps.smartBorders = "no_gaps";
+        workspaceAutoBackAndForth = true;
+        floating = {
+          border = 2;
+          titlebar = true;
+        };
+        window = {
+          border = 2;
+          hideEdgeBorders = "smart";
+          titlebar = false;
+        };
+
       };
       extraConfig = ''
         bindsym ${config.modifier}+Shift+n exec ${swaync}/bin/swaync-client -t -sw

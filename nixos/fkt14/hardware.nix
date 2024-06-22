@@ -15,6 +15,7 @@
     initrd = {
       availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "uas" "sd_mod"];
       kernelModules = [];
+      luks.devices."luks-113a8b35-5611-48de-8a3a-a9f32fca8d4e".device = "/dev/disk/by-uuid/113a8b35-5611-48de-8a3a-a9f32fca8d4e";
     };
     kernelModules = ["kvm-intel"];
     extraModulePackages = [];

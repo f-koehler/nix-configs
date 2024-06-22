@@ -88,55 +88,21 @@
         };
       };
 
-      nixosConfigurations."fkt14" = inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs;
-          isWorkstation = true;
+      nixosConfigurations = {
+        "fkt14" = mylib.mkNixOS {
           hostname = "fkt14";
+          username = "fkoehler";
+          isWorkstation = true;
         };
-        system = "x86_64-linux";
-        modules = [
-          {
-            nixpkgs.overlays = [
-              inputs.nix-vscode-extensions.overlays.default
-            ];
-          }
-          inputs.sops-nix.nixosModules.sops
-          ./nixos
-        ];
-      };
-      nixosConfigurations."homeserver" = inputs.nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs outputs;
-          isWorkstation = false;
+        "homeserver" = mylib.mkNixOS {
           hostname = "homeserver";
+          username = "fkoehler";
         };
-        modules = [
-          inputs.microvm.nixosModules.host
-          {
-            nixpkgs.overlays = [
-              inputs.nix-vscode-extensions.overlays.default
-            ];
-          }
-          inputs.sops-nix.nixosModules.sops
-          ./nixos
-          inputs.home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-          }
-        ];
       };
 
       darwinConfigurations."mbp2021" = inputs.nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
-          # {
-          #   nixpkgs.overlays = [
-          #     inputs.nix-vscode-extensions.overlays.default
-          #   ];
-          # }
           inputs.nix-index-database.darwinModules.nix-index
           ./macos/default.nix
         ];

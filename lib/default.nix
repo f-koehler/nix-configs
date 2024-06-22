@@ -31,4 +31,31 @@
           else []
         );
     };
+  mkNixOS = {
+    hostname,
+    username,
+    system ? "x86_64-linux",
+    isWorkstation ? false,
+  }:
+    inputs.nixpkgs.lib.nixosSystem {
+      specialArgs = {
+        inherit inputs outputs hostname system username isWorkstation;
+      };
+      modules =
+        [
+          inputs.sops-nix.nixosModules.sops
+          ../nixos
+        ]
+        ++ (
+          if isWorkstation
+          then [
+            {
+              nixpkgs.overlays = [
+                inputs.nix-vscode-extensions.overlays.default
+              ];
+            }
+          ]
+          else []
+        );
+    };
 }

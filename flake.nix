@@ -89,7 +89,11 @@
       };
 
       nixosConfigurations."fkt14" = inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {
+          inherit inputs outputs;
+          isWorkstation = true;
+          hostname = "fkt14";
+        };
         system = "x86_64-linux";
         modules = [
           {
@@ -98,12 +102,16 @@
             ];
           }
           inputs.sops-nix.nixosModules.sops
-          ./nixos/fkt14.nix
+          ./nixos
         ];
       };
       nixosConfigurations."homeserver" = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit inputs outputs;};
+        specialArgs = {
+          inherit inputs outputs;
+          isWorkstation = false;
+          hostname = "homeserver";
+        };
         modules = [
           inputs.microvm.nixosModules.host
           {
@@ -112,7 +120,7 @@
             ];
           }
           inputs.sops-nix.nixosModules.sops
-          ./nixos/homeserver.nix
+          ./nixos
           inputs.home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

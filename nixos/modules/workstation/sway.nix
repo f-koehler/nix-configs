@@ -3,7 +3,7 @@
     enable = true;
     wrapperFeatures.gtk = true;
   };
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
   services.gnome.gnome-keyring.enable = true;
   xdg.portal = {
     enable = true;

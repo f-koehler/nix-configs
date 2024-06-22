@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  username,
+  ...
+}: {
   imports = [
     ./hardware.nix
   ];
@@ -24,32 +28,36 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.fkoehler = {
-    isNormalUser = true;
-    linger = true;
-    description = "Fabian Koehler";
-    extraGroups = [
-      "libvirtd"
-      "networkmanager"
-      "wheel"
-    ];
-    shell = pkgs.fish;
-    packages = with pkgs; [
-      cachix
-      cmake
-      conda
-      devenv
-      fftw
-      gcc
-      home-manager
-      inshellisense
-      ninja
-      nix-index
-      pkg-config
-      rsync
-      sops
-      tailscale
-    ];
+  users = {
+    groups."${username}" = {};
+    users."${username}" = {
+      isNormalUser = true;
+      linger = true;
+      description = "Fabian Koehler";
+      group = "${username}";
+      extraGroups = [
+        "libvirtd"
+        "networkmanager"
+        "wheel"
+      ];
+      shell = pkgs.fish;
+      packages = with pkgs; [
+        cachix
+        cmake
+        conda
+        devenv
+        fftw
+        gcc
+        home-manager
+        inshellisense
+        ninja
+        nix-index
+        pkg-config
+        rsync
+        sops
+        tailscale
+      ];
+    };
   };
   programs = {
     fish.enable = true;

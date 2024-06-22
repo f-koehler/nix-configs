@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  username,
   ...
 }: {
   imports = [
@@ -58,11 +59,11 @@
       media = {
         gid = 985;
       };
-      fkoehler = {};
+      "${username}" = {};
     };
-    users.fkoehler = {
+    users."${username}" = {
       isNormalUser = true;
-      group = "fkoehler";
+      group = "${username}";
       extraGroups = [
         "wheel"
         "media"

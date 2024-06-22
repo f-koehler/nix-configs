@@ -7,27 +7,7 @@
 }: {
   imports = [
     ./homeserver
-
-    # ./modules/atuin.nix
-    ./modules/audiobookshelf.nix
-    ./modules/collect-garbage.nix
-    ./modules/firmware.nix
-    ./modules/fstrim.nix
-    ./modules/gickup.nix
-    ./modules/homepage.nix
-    ./modules/jellyfin.nix
-    ./modules/locale.nix
-    ./modules/libvirt.nix
-    ./modules/nextcloud.nix
-    ./modules/nginx.nix
-    ./modules/nix.nix
-    ./modules/paperless.nix
-    ./modules/podman.nix
-    ./modules/ssh.nix
-    # ./modules/stirling-pdf.nix
-    ./modules/tailscale.nix
-    ./modules/tinymediamanager.nix
-    ./modules/uptime-kuma.nix
+    ./common
   ];
 
   sops.defaultSopsFile = ../secrets/homeserver.yaml;

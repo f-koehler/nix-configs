@@ -1,6 +1,10 @@
-{config, ...}: {
+{
+  config,
+  self,
+  ...
+}: {
   sops.secrets."services/tailscale/authKey" = {
-    sopsFile = ../../secrets/common.yaml;
+    sopsFile = ../../../secrets/common.yaml;
     restartUnits = [
       "tailscaled.service"
       "tailscaled-autoconnect.service"

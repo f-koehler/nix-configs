@@ -55,8 +55,16 @@
         incomplete-dir = "/var/lib/transmission/Downloads/Incomplete";
       };
     };
-    sonarr.enable = true;
-    radarr.enable = true;
+    sonarr = {
+      enable = true;
+      user = "transmission";
+      group = "transmission";
+    };
+    radarr = {
+      enable = true;
+      user = "transmission";
+      group = "transmission";
+    };
     prowlarr.enable = true;
   };
   systemd = {

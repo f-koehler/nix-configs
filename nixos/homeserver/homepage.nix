@@ -152,13 +152,6 @@
               };
             };
           }
-          {
-            "Netdata" = {
-              icon = "netdata.svg";
-              href = "http://100.64.220.85:19999";
-              description = "System monitoring";
-            };
-          }
         ];
       }
       {
@@ -202,6 +195,32 @@
                 type = "prowlarr";
                 url = prowlarr_url;
                 key = "{{HOMEPAGE_VAR_PROWLARR_API_KEY}}";
+              };
+            };
+          }
+        ];
+      }
+      {
+        "Netdata" = [
+          {
+            "homeserver" = {
+              icon = "netdata.svg";
+              href = "http://homeserver.corgi-dojo.ts.net:19999";
+              description = "Monitoring for homeserver";
+              widget = {
+                type = "netdata";
+                url = "http://homeserver.corgi-dojo.ts.net:19999";
+              };
+            };
+          }
+          {
+            "downloader" = {
+              icon = "netdata.svg";
+              href = "http://downloader.corgi-dojo.ts.net:19999";
+              description = "Monitoring for downloader";
+              widget = {
+                type = "netdata";
+                url = "http://downloader.corgi-dojo.ts.net:19999";
               };
             };
           }

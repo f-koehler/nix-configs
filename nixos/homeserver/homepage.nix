@@ -6,6 +6,9 @@
       "services/homepage/jellyfin_api_key" = {};
       "services/homepage/nextcloud_api_key" = {};
       "services/homepage/paperless_api_key" = {};
+      "services/homepage/sonarr_api_key" = {};
+      "services/homepage/radarr_api_key" = {};
+      "services/homepage/prowlarr_api_key" = {};
     };
     templates."homepage-dashboard.env" = {
       content = ''
@@ -14,6 +17,9 @@
         HOMEPAGE_VAR_JELLYFIN_API_KEY=${config.sops.placeholder."services/homepage/jellyfin_api_key"}
         HOMEPAGE_VAR_NEXTCLOUD_API_KEY=${config.sops.placeholder."services/homepage/nextcloud_api_key"}
         HOMEPAGE_VAR_PAPERLESS_API_KEY=${config.sops.placeholder."services/homepage/paperless_api_key"}
+        HOMEPAGE_VAR_SONARR_API_KEY=${config.sops.placeholder."services/homepage/sonarr_api_key"}
+        HOMEPAGE_VAR_RADARR_API_KEY=${config.sops.placeholder."services/homepage/radarr_api_key"}
+        HOMEPAGE_VAR_PROWLARR_API_KEY=${config.sops.placeholder."services/homepage/prowlarr_api_key"}
       '';
     };
   };
@@ -47,8 +53,11 @@
       nextcloud_url = "https://cloud.fkoehler.xyz";
       paperless_url = "https://docs.fkoehler.xyz";
       tinymediamanager_url = "https://tinymediamanager.fkoehler.xyz";
-      transmission_url = "http://100.117.111.97:9091";
       uptime_kuma_url = "https://uptime.fkoehler.xyz";
+      sonarr_url = "http://100.117.111.97:8989";
+      radarr_url = "http://100.117.111.97:7878";
+      prowlarr_url = "http://100.117.111.97:9696";
+      transmission_url = "http://100.117.111.97:9091";
     in [
       {
         "Media" = [
@@ -86,12 +95,6 @@
                 url = jellyseerr_url;
                 key = "{{HOMEPAGE_VAR_JELLYSEERR_API_KEY}}";
               };
-            };
-          }
-          {
-            "tinyMediaManager" = {
-              href = tinymediamanager_url;
-              description = "Manage media";
             };
           }
         ];
@@ -154,6 +157,52 @@
               icon = "netdata.svg";
               href = "http://100.64.220.85:19999";
               description = "System monitoring";
+            };
+          }
+        ];
+      }
+      {
+        "Media Management" = [
+          {
+            "tinyMediaManager" = {
+              href = tinymediamanager_url;
+              description = "Manage media";
+            };
+          }
+          {
+            "Sonarr" = {
+              icon = "sonarr.svg";
+              href = sonarr_url;
+              description = "Recorder for TV Shows";
+              widget = {
+                type = "sonarr";
+                url = sonarr_url;
+                key = "{{HOMEPAGE_VAR_SONARR_API_KEY}}";
+              };
+            };
+          }
+          {
+            "Radarr" = {
+              icon = "radarr.svg";
+              href = radarr_url;
+              description = "Recorder for Movies";
+              widget = {
+                type = "radarr";
+                url = radarr_url;
+                key = "{{HOMEPAGE_VAR_RADARR_API_KEY}}";
+              };
+            };
+          }
+          {
+            "Prowlarr" = {
+              icon = "prowlarr.svg";
+              href = prowlarr_url;
+              description = "Indexer for Sonarr & Radarr";
+              widget = {
+                type = "prowlarr";
+                url = prowlarr_url;
+                key = "{{HOMEPAGE_VAR_PROWLARR_API_KEY}}";
+              };
             };
           }
         ];

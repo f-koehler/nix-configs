@@ -8,12 +8,15 @@
     ./hardware.nix
   ];
 
-  boot.loader.grub = {
-    enable = true;
-    device = "/dev/vda";
+  boot = {
+    loader.grub = {
+      enable = true;
+      device = "/dev/vda";
+    };
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true;
 
   time.timeZone = "Asia/Singapore";
 

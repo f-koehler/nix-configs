@@ -32,13 +32,14 @@ lib.mkIf (isWorkstation && isLinux) {
             {
               criteria = "eDP-1";
               mode = "1920x1200";
-              position = "-1920,900";
+              position = "-1920,500";
+              scale = 1.5;
             }
             {
               criteria = "LG Electronics LG ULTRAGEAR+ 202NTDV2S306";
               mode = "3840x2160@120";
               position = "0,0";
-              scale = 1.25;
+              scale = 1.5;
             }
           ];
         };

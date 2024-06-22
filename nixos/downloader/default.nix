@@ -41,18 +41,23 @@
     flood-for-transmission
   ];
 
-  services.transmission = {
-    enable = true;
-    package = pkgs.transmission_4;
-    performanceNetParameters = true;
-    webHome = pkgs.flood-for-transmission;
-    settings = {
-      utp-enabled = true;
-      rpc-bind-address = "0.0.0.0";
-      rpc-whitelist = "*.*.*.*";
-      download-dir = "/var/lib/transmission/Downloads/Complete";
-      incomplete-dir = "/var/lib/transmission/Downloads/Incomplete";
+  services = {
+    transmission = {
+      enable = true;
+      package = pkgs.transmission_4;
+      performanceNetParameters = true;
+      webHome = pkgs.flood-for-transmission;
+      settings = {
+        utp-enabled = true;
+        rpc-bind-address = "0.0.0.0";
+        rpc-whitelist = "*.*.*.*";
+        download-dir = "/var/lib/transmission/Downloads/Complete";
+        incomplete-dir = "/var/lib/transmission/Downloads/Incomplete";
+      };
     };
+    sonarr.enable = true;
+    radarr.enable = true;
+    prowlarr.enable = true;
   };
   systemd = {
     mounts = [

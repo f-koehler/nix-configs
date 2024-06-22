@@ -12,5 +12,5 @@
     ++ lib.optional isWorkstation ./modules/workstation;
   networking.hostName = hostname;
   sops.defaultSopsFile = ../secrets/${hostname}.yaml;
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 }

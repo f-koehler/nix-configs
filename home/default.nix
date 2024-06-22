@@ -8,6 +8,7 @@
   stateVersion,
   isWorkstation,
   isTrusted,
+  isLinux,
   ...
 }: let
   inherit (pkgs.stdenv) isDarwin;
@@ -121,20 +122,22 @@ in {
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.
-    file = {
-      # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-      # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-      # # symlink to the Nix store copy.
-      # ".screenrc".source = dotfiles/screenrc;
+    file =
+      {
+        # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+        # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+        # # symlink to the Nix store copy.
+        # ".screenrc".source = dotfiles/screenrc;
 
-      # # You can also set the file content immediately.
-      # ".gradle/gradle.properties".text = ''
-      #   org.gradle.console=verbose
-      #   org.gradle.daemon.idletimeout=3600000
-      # '';
-
-      #".local/share/jellyfinmediaplayer/scripts/mpris.so".source = lib.mkIf (isLinux && isWorkstation) "${pkgs.mpvScripts.mpris}/share/mpv/scripts/mpris.so";
-    };
+        # # You can also set the file content immediately.
+        # ".gradle/gradle.properties".text = ''
+        #   org.gradle.console=verbose
+        #   org.gradle.daemon.idletimeout=3600000
+        # '';
+      }
+      // lib.mkIf (isWorkstation && isLinux) {
+        ".local/share/jellyfinmediaplayer/scripts/mpris.so".source = lib.mkIf (isLinux && isWorkstation) "${pkgs.mpvScripts.mpris}/share/mpv/scripts/mpris.so";
+      };
   };
 
   programs = {

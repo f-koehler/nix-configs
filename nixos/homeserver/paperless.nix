@@ -10,6 +10,15 @@
     };
   };
   services = {
+    postgresql = {
+      ensureDatabases = ["paperless"];
+      ensureUsers = [
+        {
+          name = "paperless";
+          ensureDBOwnership = true;
+        }
+      ];
+    };
     paperless = {
       enable = true;
       package = pkgs.paperless-ngx;
@@ -18,6 +27,8 @@
       settings = {
         PAPERLESS_URL = "https://docs.fkoehler.xyz";
         PAPERLESS_DBENGINE = "postgresql";
+        PAPERLESS_DBHOST = "/run/postgresql";
+        PAPERLESS_DBUSER = "paperless";
         PAPERLESS_ADMIN_USER = "fkoehler";
         PAPERLESS_OCR_LANGUAGE = "deu+eng";
         #       PAPERLESS_TASK_WORKERS = 4;

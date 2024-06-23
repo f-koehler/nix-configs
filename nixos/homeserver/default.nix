@@ -15,6 +15,8 @@
     ./nextcloud.nix
     ./nginx.nix
     ./paperless.nix
+    ./postgresql.nix
+    ./pgadmin.nix
     ./samba.nix
     # ./stirling-pdf.nix
     ./tinymediamanager.nix

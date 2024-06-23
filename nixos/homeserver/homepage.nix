@@ -52,6 +52,7 @@
       jellyfin_url = "https://media.fkoehler.xyz";
       nextcloud_url = "https://cloud.fkoehler.xyz";
       paperless_url = "https://docs.fkoehler.xyz";
+      pgadmin_url = "https://pgadmin.fkoehler.xyz";
       tinymediamanager_url = "https://tinymediamanager.fkoehler.xyz";
       uptime_kuma_url = "https://uptime.fkoehler.xyz";
       sonarr_url = "http://100.117.111.97:8989";
@@ -150,6 +151,13 @@
                 url = uptime_kuma_url;
                 slug = "homeserver";
               };
+            };
+          }
+          {
+            "pgadmin" = {
+              icon = "pgadmin.svg";
+              href = pgadmin_url;
+              description = "Manage Postgres SQL";
             };
           }
         ];

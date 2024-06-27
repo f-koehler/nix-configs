@@ -3,8 +3,12 @@
     enable = true;
     wrapperFeatures.gtk = true;
   };
+  services = {
+    blueman.enable = true;
+    gnome.gnome-keyring.enable = true;
+  };
+  security.polkit.enable = true;
   hardware.graphics.enable = true;
-  services.gnome.gnome-keyring.enable = true;
   xdg.portal = {
     enable = true;
     wlr.enable = true;

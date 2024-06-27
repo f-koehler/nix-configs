@@ -1,12 +1,7 @@
-{
-  lib,
-  isLinux,
-  isWorkstation,
-  ...
-}:
-lib.mkIf (isWorkstation && isLinux) {
+_: {
   services.kanshi = {
     enable = true;
+    systemdTarget = "sway-session.target";
     settings = [
       {
         profile = {

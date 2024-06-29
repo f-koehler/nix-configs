@@ -44,6 +44,17 @@ in {
   ];
   # ++ lib.optionals (isWorkstation && isLinux) [modules/sway];
 
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+    accent = "mauve";
+    pointerCursor = {
+      enable = true;
+      accent = "mauve";
+      flavor = "mocha";
+    };
+  };
+
   nixpkgs = {
     overlays = [
       inputs.nix-vscode-extensions.overlays.default

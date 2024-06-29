@@ -4,6 +4,8 @@
 
     nixos-hardware .url = "github:NixOS/nixos-hardware/master";
 
+    catppuccin.url = "github:catppuccin/nix";
+
     nix-darwin = {
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";

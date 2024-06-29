@@ -45,6 +45,8 @@ lib.mkIf isWorkstation {
       pkgs.vscode-marketplace.vscode-icons-team.vscode-icons
       pkgs.vscode-marketplace.ecmel.vscode-html-css
       pkgs.vscode-marketplace.rust-lang.rust-analyzer
+      pkgs.vscode-marketplace.catppuccin.catppuccin-vsc
+      pkgs.vscode-marketplace.catppuccin.catppuccin-vsc-icons
     ];
     # ++ [
     #   # pkgs.vscode-extensions.ms-vscode.cmake-tools
@@ -101,7 +103,9 @@ lib.mkIf isWorkstation {
       "terminal.integrated.persistentSessionScrollback" = 10000;
       "terminal.integrated.scrollback" = 100000;
       "vsicons.dontShowNewVersionMessage" = true;
-      "workbench.iconTheme" = "vscode-icons";
+      "window.titleBarStyle" = "custom";
+      "workbench.iconTheme" = "catppuccin-mocha";
+      "workbench.colorTheme" = "Catppuccin Mocha";
       "remote.SSH.remotePlatform" = {
         "homeserver" = "linux";
       };

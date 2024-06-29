@@ -1,23 +1,13 @@
 {pkgs, ...}: let
-  inherit (pkgs) kanshi swayosd swaylock wezterm networkmanagerapplet blueman;
+  inherit (pkgs) kanshi swayosd swaylock wezterm;
   rofi = pkgs.rofi-wayland;
   swaync = pkgs.swaynotificationcenter;
 in {
-  programs = {
-    swaylock = {
-      enable = true;
-      package = swaylock;
-    };
-  };
   wayland.windowManager.sway = rec {
     enable = true;
     wrapperFeatures = {
       base = true;
       gtk = true;
-    };
-    systemd = {
-      enable = true;
-      # xdgAutostart = true;
     };
     config = {
       bars = [];
@@ -25,20 +15,18 @@ in {
       menu = "${rofi}/bin/rofi -show drun";
       modifier = "Mod4";
       terminal = "${wezterm}/bin/wezterm";
-      startup = [
-        {
-          command = "${swaync}/bin/swaync";
-        }
-        {
-          command = "${swayosd}/bin/swaysosd-server";
-        }
-        {
-          command = "${networkmanagerapplet}/bin/networkmanagerapplet --indicator";
-        }
-        {
-          command = "${blueman}/bin/blueman-applet";
-        }
-      ];
+      startup = let
+        services = [
+          # "blueman-applet"
+          "kanshi"
+          # "networkmanagerapplet"
+          "swaync"
+          "swayosd"
+          "waybar"
+        ];
+        toStartup = service: {command = "systemctl start --user ${service}.service";};
+      in
+        map toStartup services;
       gaps.smartBorders = "no_gaps";
       workspaceAutoBackAndForth = true;
       floating = {
@@ -64,10 +52,6 @@ in {
       bindsym XF86MonBrightnessUp   exec ${swayosd}/bin/swayosd-client --brightness raise
       bindsym XF86MonBrightnessDown exec ${swayosd}/bin/swayosd-client --brightness lower
     '';
-  };
-  services = {
-    swaync.enable = true;
-    swayosd.enable = true;
   };
 
   home.packages = [kanshi];

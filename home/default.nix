@@ -13,36 +13,35 @@
 }: let
   inherit (pkgs.stdenv) isDarwin;
 in {
-  imports =
-    [
-      inputs.nix-index-database.hmModules.nix-index
-      inputs.sops-nix.homeManagerModules.sops
-      modules/alacritty.nix
-      modules/aliases.nix
-      modules/env.nix
-      modules/atuin.nix
-      modules/darwin.nix
-      modules/direnv.nix
-      modules/email.nix
-      modules/eza.nix
-      modules/fish.nix
-      modules/fzf.nix
-      modules/gh.nix
-      modules/git.nix
-      modules/gpg.nix
-      modules/onedrive.nix
-      modules/plasma.nix
-      modules/ssh.nix
-      modules/starship.nix
-      modules/tealdeer.nix
-      modules/tmux.nix
-      modules/vscode.nix
-      modules/wezterm.nix
-      modules/yazi.nix
-      modules/zoxide.nix
-      modules/zsh.nix
-    ]
-    ++ lib.optionals (isWorkstation && isLinux) [modules/sway];
+  imports = [
+    inputs.nix-index-database.hmModules.nix-index
+    inputs.sops-nix.homeManagerModules.sops
+    modules/alacritty.nix
+    modules/aliases.nix
+    modules/env.nix
+    modules/atuin.nix
+    modules/darwin.nix
+    modules/direnv.nix
+    modules/email.nix
+    modules/eza.nix
+    modules/fish.nix
+    modules/fzf.nix
+    modules/gh.nix
+    modules/git.nix
+    modules/gpg.nix
+    modules/onedrive.nix
+    modules/plasma.nix
+    modules/ssh.nix
+    modules/starship.nix
+    modules/tealdeer.nix
+    modules/tmux.nix
+    modules/vscode.nix
+    modules/wezterm.nix
+    modules/yazi.nix
+    modules/zoxide.nix
+    modules/zsh.nix
+  ];
+  # ++ lib.optionals (isWorkstation && isLinux) [modules/sway];
 
   nixpkgs = {
     overlays = [

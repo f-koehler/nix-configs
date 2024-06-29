@@ -5,7 +5,7 @@ _: {
     ./packages.nix
     ./plasma.nix
     ./sound.nix
-    ./sway.nix
+    # ./sway.nix
     ./wine.nix
   ];
   services = {

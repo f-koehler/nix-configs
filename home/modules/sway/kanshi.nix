@@ -1,7 +1,6 @@
 _: {
   services.kanshi = {
-    enable = true;
-    systemdTarget = "sway-session.target";
+  enable = true;
     settings = [
       {
         profile = {

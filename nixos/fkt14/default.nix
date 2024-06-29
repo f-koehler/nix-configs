@@ -70,6 +70,7 @@
       neovim
       cifs-utils
       xwaylandvideobridge
+      boost
     ];
   };
 }

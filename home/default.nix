@@ -38,6 +38,7 @@ in {
     modules/vscode.nix
     modules/wezterm.nix
     modules/yazi.nix
+    modules/zellij.nix
     modules/zoxide.nix
     modules/zsh.nix
   ];

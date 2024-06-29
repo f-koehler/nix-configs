@@ -1,6 +1,6 @@
 _: {
   services.kanshi = {
-  enable = true;
+    enable = true;
     settings = [
       {
         profile = {

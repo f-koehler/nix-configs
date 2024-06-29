@@ -22,6 +22,7 @@
           ../home
           inputs.nix-flatpak.homeManagerModules.nix-flatpak
           inputs.plasma-manager.homeManagerModules.plasma-manager
+          inputs.catppuccin.homeManagerModules.catppuccin
         ]
         ++ (
           if (pkgs.stdenv.isLinux && isWorkstation)
@@ -44,6 +45,7 @@
       modules =
         [
           inputs.sops-nix.nixosModules.sops
+          inputs.catppuccin.nixosModules.catppuccin
           ../nixos
         ]
         ++ (

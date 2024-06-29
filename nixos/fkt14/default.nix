@@ -9,8 +9,15 @@
 
   boot = {
     loader = {
-      systemd-boot.enable = true;
+      grub = {
+        enable = true;
+        efiSupport = true;
+        device = "nodev";
+      };
       efi.canTouchEfiVariables = true;
+    };
+    plymouth = {
+      enable = true;
     };
     kernelPackages = pkgs.linuxPackages_latest;
   };

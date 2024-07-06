@@ -24,6 +24,7 @@
         # kdePackages.zanshin
         # kdePackages.merkuro
         kdePackages.kcharselect
+        kdePackages.filelight
         catppuccin-cursors
         catppuccin-sddm
         kdePackages.sddm-kcm

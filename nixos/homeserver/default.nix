@@ -9,7 +9,6 @@
     ./audiobookshelf.nix
     ./gickup.nix
     ./hardware.nix
-    ./home-assistant.nix
     ./homepage.nix
     ./jellyfin.nix
     ./nextcloud.nix

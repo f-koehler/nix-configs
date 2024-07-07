@@ -1,6 +1,7 @@
 _: {
   imports = [
     ./collect-garbage.nix
+    ./docker.nix
     ./firmware.nix
     ./fstrim.nix
     ./fwupd.nix
@@ -9,7 +10,6 @@ _: {
     ./netdata.nix
     ./nix-ld.nix
     ./nix.nix
-    ./podman.nix
     ./ssh.nix
     ./tailscale.nix
   ];

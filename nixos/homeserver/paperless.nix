@@ -80,12 +80,12 @@
   };
   virtualisation.oci-containers.containers = {
     tika = {
-      ports = ["9998:9998"];
+      ports = ["127.0.0.1:9998:9998"];
       image = "docker.io/apache/tika:2.9.2.0-full";
       autoStart = true;
     };
     gotenberg = {
-      ports = ["3000:3000"];
+      ports = ["127.0.0.1:3000:3000"];
       image = "docker.io/gotenberg/gotenberg:7.10.2";
       autoStart = true;
       environment = {

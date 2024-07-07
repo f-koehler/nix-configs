@@ -2,6 +2,7 @@ _: {
   imports = [
     ./collect-garbage.nix
     ./docker.nix
+    ./firewall.nix
     ./firmware.nix
     ./fstrim.nix
     ./fwupd.nix

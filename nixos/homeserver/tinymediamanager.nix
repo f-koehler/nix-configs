@@ -14,8 +14,8 @@
     tinymediamanager = {
       image = "docker.io/tinymediamanager/tinymediamanager:5.0.6";
       ports = [
-        "5900:5900" # VNC port
-        "0.0.0.0:4000:4000" # Webinterface
+        "127.0.0.1:5900:5900" # VNC port
+        "127.0.0.1:4000:4000" # Webinterface
       ];
       environment = {
         ALLOW_DIRECT_VNC = "true";

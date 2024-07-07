@@ -4,9 +4,19 @@
   ...
 }: {
   sops = {
-    secrets."services/gickup/github_token" = {
-      owner = "gickup";
-      group = "gickup";
+    secrets = {
+      "services/gickup/github_token" = {
+        owner = "gickup";
+        group = "gickup";
+      };
+      "services/gickup/bitbucket/password" = {
+        owner = "gickup";
+        group = "gickup";
+      };
+      "services/gickup/bitbucket/sshkey" = {
+        owner = "gickup";
+        group = "gickup";
+      };
     };
     templates."gickup.yaml" = {
       owner = "gickup";
@@ -15,17 +25,22 @@
         ---
         source:
           github:
-            - token:
+            - token: "${config.sops.placeholder."services/gickup/github_token"}"
               user: f-koehler
               exclude:
                 - nixpkgs
                 - LibreELEC.tv
+          bitbucket:
+            - url: https://bitbucket.org
+              user: f-koehler
+              username: f-koehler
+              sshkey: ${config.sops.secrets."services/gickup/bitbucket/sshkey".path}
+              password: ${config.sops.placeholder."services/gickup/bitbucket/password"}
         destination:
           local:
             - path: /var/lib/gickup
               structured: true
               bare: true
-              token: "${config.sops.placeholder."services/gickup/github_token"}"
       '';
     };
   };
@@ -42,8 +57,8 @@
   systemd = {
     services.gickup = {
       description = "git backups with gickup";
-      wantedBy = ["default.target"];
-      after = ["var-lib-gickup.mount"];
+      wantedBy = ["multi-user.target"];
+      after = ["var-lib-gickup.mount" "tailscaled.service"];
       serviceConfig = {
         Type = "oneshot";
         ExecStart = "${pkgs.gickup}/bin/gickup ${config.sops.templates."gickup.yaml".path}";

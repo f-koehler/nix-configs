@@ -86,7 +86,7 @@
     };
     gotenberg = {
       ports = ["3000:3000"];
-      image = "docker.io/gotenberg/gotenberg:8.4.0";
+      image = "docker.io/gotenberg/gotenberg:7.10.2";
       autoStart = true;
       environment = {
         CHROMIUM_DISABLE_ROUTERS = "1";

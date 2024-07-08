@@ -29,6 +29,7 @@ in {
     modules/gh.nix
     modules/git.nix
     modules/gpg.nix
+    modules/neovim.nix
     modules/onedrive.nix
     modules/plasma.nix
     modules/ssh.nix
@@ -154,10 +155,6 @@ in {
   programs = {
     bash.enable = true;
     bat.enable = true;
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-    };
     password-store.enable = true;
 
     # Let Home Manager install and manage itself.

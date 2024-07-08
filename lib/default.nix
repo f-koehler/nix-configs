@@ -23,6 +23,7 @@
           inputs.nix-flatpak.homeManagerModules.nix-flatpak
           inputs.plasma-manager.homeManagerModules.plasma-manager
           inputs.catppuccin.homeManagerModules.catppuccin
+          inputs.nixvim.homeManagerModules.nixvim
         ]
         ++ (
           if (pkgs.stdenv.isLinux && isWorkstation)

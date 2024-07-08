@@ -26,6 +26,8 @@
       xfce.thunar
       xfce.thunar-volman
       zotero
+      exiftool
+      digikam
     ];
   };
 }

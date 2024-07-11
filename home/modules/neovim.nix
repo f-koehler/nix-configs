@@ -4,20 +4,47 @@ _: {
     defaultEditor = true;
     vimdiffAlias = true;
     colorschemes.catppuccin.enable = true;
+    globals.mapleader = " ";
     plugins = {
-      cmp.enable = true;
+      copilot-cmp.enable = true;
+      cmp = {
+        enable = true;
+        autoEnableSources = true;
+        settings = {
+          sources = [
+            {name = "nvim_lsp";}
+            {name = "copilot";}
+            {name = "path";}
+            {name = "buffer";}
+            {name = "luasnip";}
+          ];
+        };
+      };
       cmp-nvim-lsp.enable = true;
       gitsigns.enable = true;
-      lsp.enable = true;
+      lsp = {
+        enable = true;
+        servers = {
+          bashls.enable = true;
+          clangd.enable = true;
+          cmake.enable = true;
+          gopls.enable = true;
+          nil-ls.enable = true;
+          pyright.enable = true;
+          rust-analyzer.enable = true;
+        };
+      };
       lualine = {
         enable = true;
         globalstatus = true;
         iconsEnabled = true;
       };
+      luasnip.enable = true;
       notify.enable = true;
       nvim-tree = {
         enable = true;
         autoClose = true;
+        openOnSetup = true;
         hijackCursor = true;
       };
       telescope = {

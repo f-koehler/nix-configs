@@ -23,6 +23,7 @@ lib.mkIf isWorkstation {
       pkgs.vscode-marketplace.efanzh.graphviz-preview
       pkgs.vscode-marketplace.esbenp.prettier-vscode
       pkgs.vscode-marketplace.github.copilot
+      pkgs.vscode-marketplace.github.copilot-chat
       pkgs.vscode-marketplace.github.vscode-github-actions
       pkgs.vscode-marketplace.github.vscode-pull-request-github
       pkgs.vscode-marketplace.james-yu.latex-workshop

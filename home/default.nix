@@ -18,6 +18,7 @@ in {
     inputs.sops-nix.homeManagerModules.sops
     modules/alacritty.nix
     modules/aliases.nix
+    modules/aws.nix
     modules/env.nix
     modules/atuin.nix
     modules/darwin.nix

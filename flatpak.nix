@@ -14,6 +14,8 @@ _: {
       "md.obsidian.Obsidian"
       "org.fkoehler.KTailctl"
       "org.onlyoffice.desktopeditors"
+      "us.zoom.Zoom"
+      "net.werwolv.ImHex"
     ];
   };
 }

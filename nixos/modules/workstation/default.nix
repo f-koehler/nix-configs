@@ -4,6 +4,7 @@ _: {
     ./distrobox.nix
     ./packages.nix
     ./plasma.nix
+    # ./sshfs.nix
     ./sound.nix
     # ./sway.nix
     ./wine.nix

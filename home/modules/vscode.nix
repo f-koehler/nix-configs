@@ -110,6 +110,7 @@ lib.mkIf isWorkstation {
       "remote.SSH.remotePlatform" = {
         "homeserver" = "linux";
       };
+      "vscode-neovim.neovimInitVimPaths.linux" = "/dev/null";
     };
   };
 }

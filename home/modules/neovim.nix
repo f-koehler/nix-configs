@@ -31,7 +31,11 @@ _: {
           gopls.enable = true;
           nil-ls.enable = true;
           pyright.enable = true;
-          rust-analyzer.enable = true;
+          rust-analyzer = {
+            enable = true;
+            installCargo = false;
+            installRustc = false;
+          };
         };
       };
       lualine = {
@@ -59,7 +63,7 @@ _: {
       todo-comments.enable = true;
       treesitter = {
         enable = true;
-        indent = true;
+        settings.indent.enable = true;
       };
       trouble = {
         enable = true;

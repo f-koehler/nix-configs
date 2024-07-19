@@ -18,7 +18,7 @@ lib.mkIf isWorkstation {
         user = "fkoehler";
       };
       "homeserver" = {
-        hostname = "100.88.7.127";
+        hostname = "100.64.220.85";
         user = "fkoehler";
       };
       "fk-gha-runner-x64-01" = {

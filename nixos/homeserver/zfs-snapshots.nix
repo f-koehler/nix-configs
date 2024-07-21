@@ -5,10 +5,6 @@
       name = "gickup";
       dense = true;
     }
-    {
-      name = "hass";
-      units = ["podman-hass"];
-    }
     {name = "jellyfin";}
     {
       name = "nextcloud";

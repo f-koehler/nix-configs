@@ -55,6 +55,12 @@
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+
+    nil.url = "github:oxalica/nil";
+    alejandra = {
+      url = "github:kamadorueda/alejandra";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {self, ...} @ inputs: let
@@ -112,9 +118,11 @@
       overlays = import ./overlays {inherit inputs;};
     }
     // inputs.flake-utils.lib.eachDefaultSystem (
-      system: {
-        packages = let pkgs = inputs.nixpkgs.legacyPackages.${system}; in import ./packages {inherit pkgs;};
-        formatter = inputs.nixpkgs.legacyPackages.${system}.alejandra;
+      system: let
+        pkgs = inputs.nixpkgs.legacyPackages.${system};
+      in {
+        packages = import ./packages {inherit pkgs;};
+        formatter = inputs.alejandra.defaultPackage.${system};
         checks = {
           pre-commit-check = inputs."pre-commit-hooks".lib.${system}.run {
             src = ./.;
@@ -150,9 +158,8 @@
             };
           };
         };
-        devShell = inputs.nixpkgs.legacyPackages.${system}.mkShell {
-          packages = let pkgs = inputs.nixpkgs.legacyPackages.${system}; in [pkgs.statix];
-          inherit (self.checks.${system}.pre-commit-check) shellHook;
+        devShells.default = pkgs.mkShell {
+          packages = [pkgs.bashInteractive inputs.nil.packages.${system}.nil];
         };
       }
     );

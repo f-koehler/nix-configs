@@ -159,7 +159,11 @@
           };
         };
         devShells.default = pkgs.mkShell {
-          packages = [pkgs.bashInteractive inputs.nil.packages.${system}.nil];
+          packages = [
+            pkgs.bashInteractive
+            inputs.nil.packages.${system}.nil
+            inputs.alejandra.defaultPackage.${system}
+          ];
         };
       }
     );

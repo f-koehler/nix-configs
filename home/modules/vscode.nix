@@ -3,6 +3,8 @@
   lib,
   isDarwin,
   isWorkstation,
+  inputs,
+  system,
   ...
 }:
 lib.mkIf isWorkstation {
@@ -87,11 +89,11 @@ lib.mkIf isWorkstation {
       "latex-workshop.latex.recipe.default" = "latexmk (lualatex)";
       "latex-workshop.hover.preview.mathjax.extensions" = ["braket"];
       "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "${pkgs.nil}/bin/nil";
+      "nix.serverPath" = "${inputs.nil.packages.${system}.nil}";
       "nix.serverSettings" = {
         "nil" = {
           "formatting" = {
-            "command" = ["${pkgs.alejandra}/bin/alejandra"];
+            "command" = ["${inputs.alejandra.defaultPackage.${system}}"];
           };
         };
       };

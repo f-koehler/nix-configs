@@ -20,20 +20,6 @@
 
   time.timeZone = "Asia/Singapore";
 
-  users = {
-    groups = {
-      "${username}" = {};
-      transmission.gid = lib.mkForce 985;
-    };
-    users = {
-      "${username}" = {
-        isNormalUser = true;
-        extraGroups = ["wheel"];
-      };
-      transmission.uid = lib.mkForce 993;
-    };
-  };
-
   environment.systemPackages = with pkgs; [
     neovim
     wget
@@ -67,5 +53,24 @@
       }
     ];
     services.transmission.after = ["var-lib-transmission-Downloads.mount"];
+  };
+
+  users = {
+    mutableUsers = false;
+    groups = {
+      "${username}" = {};
+      transmission.gid = lib.mkForce 985;
+    };
+    users = {
+      "${username}" = {
+        isNormalUser = true;
+        group = "${username}";
+        extraGroups = ["wheel"];
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGmEylYhkqefvyTDMtNuRYZxCAbD2qcM2IHnPZ+NONYZ fkoehler@mbp2021"
+        ];
+      };
+      transmission.uid = lib.mkForce 993;
+    };
   };
 }

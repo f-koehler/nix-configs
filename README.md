@@ -1,3 +1,11 @@
+# Images
+
+## VM Image for Downloader
+
+```shell
+nix run github:nix-community/nixos-generators -- --flake ".#downloader" -f qcow
+```
+
 # Firefox Settings
 
 ## GUI

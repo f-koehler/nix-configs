@@ -19,6 +19,10 @@
         }
       ];
     };
+    tika = {
+      enable = true;
+      enableOcr = true;
+    };
     paperless = {
       enable = true;
       package = pkgs.paperless-ngx;
@@ -79,11 +83,6 @@
     };
   };
   virtualisation.oci-containers.containers = {
-    tika = {
-      ports = ["127.0.0.1:9998:9998"];
-      image = "docker.io/apache/tika:2.9.2.0-full";
-      autoStart = true;
-    };
     gotenberg = {
       ports = ["127.0.0.1:3000:3000"];
       image = "docker.io/gotenberg/gotenberg:7.10.2";

@@ -32,19 +32,30 @@ in {
       };
     })
     hostedServices);
-  systemd.services = builtins.listToAttrs (lib.flatten (map (service: let
-    units =
-      if (builtins.hasAttr "units" service)
-      then service.units
-      else ["${service.name}"];
-  in
-    map (unit: {
-      name = "${unit}";
-      value = {after = ["var-lib-${service.name}.mount"];};
-    })
-    units)
-  hostedServices));
-
+  systemd.services =
+    builtins.listToAttrs (lib.flatten (map (service: let
+      units =
+        if (builtins.hasAttr "units" service)
+        then service.units
+        else ["${service.name}"];
+    in
+      map (unit: {
+        name = "${unit}";
+        value = {
+          after = ["var-lib-${service.name}.mount"];
+          wants = ["var-lib-${service.name}.mount"];
+        };
+      })
+      units)
+    hostedServices))
+    // builtins.listToAttrs (lib.flatten (map (pool: (map (service: {
+        name = "syncoid-${pool}-${service.name}.service";
+        value = {
+          wants = ["var-lib-${service.name}.mount" "zfs-import-${pool}.service"];
+          after = ["var-lib-${service.name}.mount" "zfs-import-${pool}.service"];
+        };
+      })
+      hostedServices)) ["tank0" "tank1"]));
   services = {
     sanoid = {
       enable = true;

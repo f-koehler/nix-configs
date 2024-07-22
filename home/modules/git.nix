@@ -16,12 +16,6 @@ _: {
       color = {
         ui = "auto";
       };
-      "url \"https://invent.kde.org/\"" = {
-        insteadOf = "kde:";
-      };
-      "url \"ssh://git@invent.kde.org/\"" = {
-        pushInsteadOf = "kde:";
-      };
     };
   };
 }

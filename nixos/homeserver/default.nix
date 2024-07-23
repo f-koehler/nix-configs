@@ -86,5 +86,6 @@
     exfatprogs
     htop
     home-manager
+    devenv
   ];
 }

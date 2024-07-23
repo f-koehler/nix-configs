@@ -123,48 +123,6 @@
       in {
         packages = import ./packages {inherit pkgs;};
         formatter = inputs.alejandra.defaultPackage.${system};
-        checks = {
-          pre-commit-check = inputs."pre-commit-hooks".lib.${system}.run {
-            src = ./.;
-            excludes = [
-              "secrets/.*"
-            ];
-            hooks = {
-              # nix
-              alejandra = {
-                enable = true;
-                settings.verbosity = "quiet";
-              };
-              deadnix = {
-                enable = true;
-                settings.edit = true;
-              };
-              nil.enable = true;
-              statix.enable = true;
-
-              # shell
-              shellcheck.enable = true;
-              shfmt.enable = true;
-
-              # yaml
-              yamllint.enable = true;
-
-              # toml
-              taplo.enable = true;
-
-              # other
-              prettier.enable = true;
-              actionlint.enable = true;
-            };
-          };
-        };
-        devShells.default = pkgs.mkShell {
-          packages = [
-            pkgs.bashInteractive
-            inputs.nil.packages.${system}.nil
-            inputs.alejandra.defaultPackage.${system}
-          ];
-        };
       }
     );
 }

@@ -1,11 +1,10 @@
 {lib, ...}: let
   hostedServices = [
-    {name = "audiobookshelf";}
     {
       name = "gickup";
       dense = true;
     }
-    {name = "jellyfin";}
+    # {name = "jellyfin";}
     {
       name = "nextcloud";
       units = ["nextcloud-setup"];

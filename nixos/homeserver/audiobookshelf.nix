@@ -16,14 +16,18 @@ in {
         isReadOnly = false;
       };
     };
-    config = _: {
-      services.audiobookshelf = {
-        inherit port;
-        enable = true;
-        host = "0.0.0.0";
-        user = "audiobookshelf";
-        group = "audiobookshelf";
+    config = {lib, ...}: {
+      services = {
+        audiobookshelf = {
+          inherit port;
+          enable = true;
+          host = "0.0.0.0";
+          user = "audiobookshelf";
+          group = "audiobookshelf";
+        };
+        resolved.enable = true;
       };
+      networking.useHostResolvConf = lib.mkForce false;
     };
   };
   fileSystems = {

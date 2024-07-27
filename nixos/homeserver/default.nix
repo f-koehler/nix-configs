@@ -5,9 +5,7 @@
   ...
 }: {
   imports = [
-    # ./atuin.nix
     ./audiobookshelf.nix
-    ./gickup.nix
     ./hardware.nix
     ./homepage.nix
     ./jellyfin.nix
@@ -15,9 +13,7 @@
     ./nginx.nix
     ./paperless.nix
     ./postgresql.nix
-    ./pgadmin.nix
     ./samba.nix
-    # ./stirling-pdf.nix
     ./tinymediamanager.nix
     ./uptime-kuma.nix
     ./zfs-snapshots.nix

@@ -31,7 +31,6 @@ in {
       modules/git.nix
       modules/gpg.nix
       modules/neovim.nix
-      modules/onedrive.nix
       modules/plasma.nix
       modules/ssh.nix
       modules/starship.nix
@@ -108,7 +107,6 @@ in {
       sops
       zsh
       pandoc
-      yt-dlp
       aria
       onefetch
       gdu

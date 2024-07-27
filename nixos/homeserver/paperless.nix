@@ -23,6 +23,9 @@
       enable = true;
       enableOcr = true;
     };
+    gotenberg = {
+      enable = true;
+    };
     paperless = {
       enable = true;
       package = pkgs.paperless-ngx;
@@ -79,16 +82,6 @@
             '';
           };
         };
-      };
-    };
-  };
-  virtualisation.oci-containers.containers = {
-    gotenberg = {
-      ports = ["127.0.0.1:3000:3000"];
-      image = "docker.io/gotenberg/gotenberg:7.10.2";
-      autoStart = true;
-      environment = {
-        CHROMIUM_DISABLE_ROUTERS = "1";
       };
     };
   };

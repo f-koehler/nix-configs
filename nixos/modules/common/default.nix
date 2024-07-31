@@ -11,6 +11,7 @@ _: {
     ./nix-ld.nix
     ./nix.nix
     ./podman.nix
+    ./smartd.nix
     ./ssh.nix
     ./tailscale.nix
   ];

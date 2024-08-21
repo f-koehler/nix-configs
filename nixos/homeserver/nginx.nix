@@ -32,7 +32,7 @@
     serverTokens = false;
     recommendedTlsSettings = true;
     recommendedOptimisation = true;
-    clientMaxBodySize = "10G";
+    clientMaxBodySize = "20G";
     sslDhparam = "${config.security.dhparams.params.nginx.path}";
     appendHttpConfig = ''
       proxy_headers_hash_max_size 2048;

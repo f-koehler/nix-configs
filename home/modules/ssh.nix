@@ -22,11 +22,11 @@ lib.mkIf isWorkstation {
         user = "fkoehler";
       };
       "fk-gha-runner-x64-01" = {
-        hostname = "10.1.128.202";
+        hostname = "fk-gha-runner-x64-01.corgi-dojo.ts.net";
         user = "gha";
       };
       "fk-gha-runner-x64-02" = {
-        hostname = "10.1.128.203";
+        hostname = "fk-gha-runner-x64-02.corgi-dojo.ts.net";
         user = "gha";
       };
     };

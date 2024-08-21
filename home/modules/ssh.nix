@@ -8,17 +8,12 @@ lib.mkIf isWorkstation {
     enable = true;
     matchBlocks = {
       "mbp2021" = {
-        hostname = "100.101.7.60";
+        hostname = "mbp2021.corgi-dojo.ts.net";
         port = 22;
         user = "fkoehler";
       };
-      "vps" = {
-        hostname = "100.74.108.18";
-        port = 20257;
-        user = "fkoehler";
-      };
       "homeserver" = {
-        hostname = "100.64.220.85";
+        hostname = "homeserver.corgi-dojo.ts.net";
         user = "fkoehler";
       };
       "fk-gha-runner-x64-01" = {

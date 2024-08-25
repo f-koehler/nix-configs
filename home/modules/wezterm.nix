@@ -1,10 +1,13 @@
 {
   lib,
   isWorkstation,
+  system,
+  inputs,
   ...
 }: {
   programs.wezterm = lib.mkIf isWorkstation {
     enable = true;
+    package = inputs.wezterm.packages.${system}.default;
     enableBashIntegration = true;
     enableZshIntegration = true;
     extraConfig = ''

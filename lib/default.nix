@@ -26,6 +26,7 @@
           inputs.nixvim.homeManagerModules.nixvim
         ]
         ++ (
+          # TODO: simplify with lib.optionals
           if (pkgs.stdenv.isLinux && isWorkstation)
           then [
             ../flatpak.nix
@@ -38,10 +39,11 @@
     username,
     system ? "x86_64-linux",
     isWorkstation ? false,
+    containerBackend ? "podman",
   }:
     inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit inputs outputs hostname system username isWorkstation;
+        inherit inputs outputs hostname system username isWorkstation containerBackend;
       };
       modules =
         [
@@ -50,6 +52,7 @@
           ../nixos
         ]
         ++ (
+          # TODO: simplify with lib.optionals
           if isWorkstation
           then [
             {

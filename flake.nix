@@ -101,6 +101,7 @@
           hostname = "fkt14";
           username = "fkoehler";
           isWorkstation = true;
+          containerBackend = "docker";
         };
         "homeserver" = mylib.mkNixOS {
           hostname = "homeserver";

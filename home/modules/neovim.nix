@@ -40,8 +40,10 @@ _: {
       };
       lualine = {
         enable = true;
-        globalstatus = true;
-        iconsEnabled = true;
+        settings.options = {
+          globalstatus = true;
+          icons_enabled = true;
+        };
       };
       luasnip.enable = true;
       notify.enable = true;

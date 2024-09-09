@@ -9,6 +9,7 @@
     ./hardware.nix
     ./homepage.nix
     ./jellyfin.nix
+    ./navidrome.nix
     ./nextcloud.nix
     ./nginx.nix
     ./paperless.nix

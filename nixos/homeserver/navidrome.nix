@@ -14,6 +14,10 @@ in {
         hostPath = "/media/tank1/media/";
         isReadOnly = true;
       };
+      "/data" = {
+        hostPath = "/containers/navidrome/";
+        isReadOnly = false;
+      };
     };
     config = {lib, ...}: {
       services = {
@@ -23,6 +27,7 @@ in {
             Port = port;
             Address = "0.0.0.0";
             MusicFolder = "/tank1/soundtracks";
+            DataFolder = "/data";
             BaseUrl = "https://music.fkoehler.xyz";
           };
         };
@@ -31,6 +36,13 @@ in {
       networking.useHostResolvConf = lib.mkForce false;
     };
   };
+  fileSystems = {
+    "/containers/navidrome" = {
+      device = "rpool/navidrome";
+      fsType = "zfs";
+    };
+  };
+
   services = {
     nginx = {
       upstreams."navidrome" = {

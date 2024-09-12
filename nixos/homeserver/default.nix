@@ -2,9 +2,12 @@
   config,
   pkgs,
   username,
+  inputs,
   ...
 }: {
   imports = [
+    inputs.microvm.nixosModules.host
+
     ./audiobookshelf.nix
     ./hardware.nix
     ./homepage.nix
@@ -16,7 +19,7 @@
     ./postgresql.nix
     # ./samba.nix
     ./tinymediamanager.nix
-    #./transmission.nix
+    ./transmission.nix
     ./uptime-kuma.nix
     ./zfs-snapshots.nix
   ];

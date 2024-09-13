@@ -3,7 +3,52 @@
   outputs,
   stateVersion,
   ...
-}: {
+}: let
+  mkNixOSConfig = {
+    hostname,
+    username,
+    system ? "x86_64-linux",
+    isWorkstation ? false,
+    containerBackend ? "podman",
+    ...
+  }: {
+    specialArgs = {
+      inherit inputs outputs hostname system username isWorkstation containerBackend;
+    };
+    modules =
+      [
+        inputs.sops-nix.nixosModules.sops
+        inputs.catppuccin.nixosModules.catppuccin
+        ../nixos
+      ]
+      ++ (
+        # TODO: simplify with lib.optionals
+        if isWorkstation
+        then [
+          {
+            nixpkgs.overlays = [
+              inputs.nix-vscode-extensions.overlays.default
+            ];
+          }
+        ]
+        else []
+      );
+  };
+
+  mkNixOS = args:
+    inputs.nixpkgs.lib.nixosSystem (mkNixOSConfig args);
+
+  mkNixOSImage = {
+    system ? "x86_64-linux",
+    format,
+    ...
+  } @ args:
+    inputs.nixos-generators.nixosGenerate ({
+        inherit system;
+        inherit format;
+      }
+      // (mkNixOSConfig (args // {inherit system;})));
+
   mkHome = {
     hostname,
     username,
@@ -34,34 +79,9 @@
           else []
         );
     };
-  mkNixOS = {
-    hostname,
-    username,
-    system ? "x86_64-linux",
-    isWorkstation ? false,
-    containerBackend ? "podman",
-  }:
-    inputs.nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        inherit inputs outputs hostname system username isWorkstation containerBackend;
-      };
-      modules =
-        [
-          inputs.sops-nix.nixosModules.sops
-          inputs.catppuccin.nixosModules.catppuccin
-          ../nixos
-        ]
-        ++ (
-          # TODO: simplify with lib.optionals
-          if isWorkstation
-          then [
-            {
-              nixpkgs.overlays = [
-                inputs.nix-vscode-extensions.overlays.default
-              ];
-            }
-          ]
-          else []
-        );
-    };
+in {
+  inherit mkNixOS;
+  inherit mkNixOSConfig;
+  inherit mkNixOSImage;
+  inherit mkHome;
 }

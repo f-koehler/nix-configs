@@ -1,4 +1,8 @@
-_: {
+{
+  lib,
+  isWorkstation,
+  ...
+}: {
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
@@ -6,18 +10,21 @@ _: {
     colorschemes.catppuccin.enable = true;
     globals.mapleader = " ";
     plugins = {
-      copilot-cmp.enable = true;
+      copilot-cmp.enable = isWorkstation;
       cmp = {
         enable = true;
         autoEnableSources = true;
         settings = {
-          sources = [
-            {name = "nvim_lsp";}
-            {name = "copilot";}
-            {name = "path";}
-            {name = "buffer";}
-            {name = "luasnip";}
-          ];
+          sources =
+            [
+              {name = "nvim_lsp";}
+              {name = "path";}
+              {name = "buffer";}
+              {name = "luasnip";}
+            ]
+            ++ (lib.optionals isWorkstation [
+              {name = "copilot";}
+            ]);
         };
       };
       cmp-nvim-lsp.enable = true;
@@ -25,14 +32,14 @@ _: {
       lsp = {
         enable = true;
         servers = {
-          bashls.enable = true;
-          clangd.enable = true;
-          cmake.enable = true;
-          gopls.enable = true;
+          bashls.enable = isWorkstation;
+          clangd.enable = isWorkstation;
+          cmake.enable = isWorkstation;
+          gopls.enable = isWorkstation;
           nil-ls.enable = true;
-          pyright.enable = true;
+          pyright.enable = isWorkstation;
           rust-analyzer = {
-            enable = true;
+            enable = isWorkstation;
             installCargo = false;
             installRustc = false;
           };

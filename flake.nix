@@ -67,8 +67,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    microvm = {
-      url = "github:astro/microvm.nix";
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -77,63 +77,60 @@
     inherit (self) outputs;
     stateVersion = "24.05";
     mylib = import ./lib {inherit inputs outputs stateVersion;};
-  in
-    {
-      homeConfigurations = {
-        "fkoehler@fkt14" = mylib.mkHome {
-          hostname = "fkt14";
-          username = "fkoehler";
-          isWorkstation = true;
-          isTrusted = true;
-        };
-        "fkoehler@mbp2021" = mylib.mkHome {
-          hostname = "mbp2021";
-          username = "fkoehler";
-          system = "aarch64-darwin";
-          isWorkstation = true;
-          isTrusted = true;
-        };
-        "fkoehler@homeserver" = mylib.mkHome {
-          hostname = "homeserver";
-          username = "fkoehler";
-          isWorkstation = false;
-          isTrusted = true;
-        };
-      };
 
-      nixosConfigurations = {
-        "fkt14" = mylib.mkNixOS {
-          hostname = "fkt14";
-          username = "fkoehler";
-          isWorkstation = true;
-          containerBackend = "docker";
-        };
-        "homeserver" = mylib.mkNixOS {
-          hostname = "homeserver";
-          username = "fkoehler";
-        };
-        "downloader" = mylib.mkNixOS {
-          hostname = "downloader";
-          username = "downloader";
-        };
+    nixos-downloader = {
+      hostname = "downloader";
+      username = "downloader";
+    };
+  in {
+    homeConfigurations = {
+      "fkoehler@fkt14" = mylib.mkHome {
+        hostname = "fkt14";
+        username = "fkoehler";
+        isWorkstation = true;
+        isTrusted = true;
       };
-
-      darwinConfigurations."mbp2021" = inputs.nix-darwin.lib.darwinSystem {
+      "fkoehler@mbp2021" = mylib.mkHome {
+        hostname = "mbp2021";
+        username = "fkoehler";
         system = "aarch64-darwin";
-        modules = [
-          inputs.nix-index-database.darwinModules.nix-index
-          ./macos/default.nix
-        ];
+        isWorkstation = true;
+        isTrusted = true;
       };
+      "fkoehler@homeserver" = mylib.mkHome {
+        hostname = "homeserver";
+        username = "fkoehler";
+        isWorkstation = false;
+        isTrusted = true;
+      };
+    };
 
-      overlays = import ./overlays {inherit inputs;};
-    }
-    // inputs.flake-utils.lib.eachDefaultSystem (
-      system: let
-        pkgs = inputs.nixpkgs.legacyPackages.${system};
-      in {
-        packages = import ./packages {inherit pkgs;};
-        formatter = inputs.alejandra.defaultPackage.${system};
-      }
-    );
+    nixosConfigurations = {
+      "fkt14" = mylib.mkNixOS {
+        hostname = "fkt14";
+        username = "fkoehler";
+        isWorkstation = true;
+        containerBackend = "docker";
+      };
+      "homeserver" = mylib.mkNixOS {
+        hostname = "homeserver";
+        username = "fkoehler";
+      };
+      "downloader" = mylib.mkNixOS nixos-downloader;
+    };
+
+    darwinConfigurations."mbp2021" = inputs.nix-darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      modules = [
+        inputs.nix-index-database.darwinModules.nix-index
+        ./macos/default.nix
+      ];
+    };
+
+    packages.x86_64-linux = {
+      downloader-qcow = mylib.mkNixOSImage ({format = "qcow";} // nixos-downloader);
+    };
+
+    overlays = import ./overlays {inherit inputs;};
+  };
 }

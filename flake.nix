@@ -78,45 +78,41 @@
     stateVersion = "24.05";
     mylib = import ./lib {inherit inputs outputs stateVersion;};
 
-    nixos-downloader = {
+    config-fkt14 = {
+      hostname = "fkt14";
+      username = "fkoehler";
+      isWorkstation = true;
+      isTrusted = true;
+      containerBackend = "docker";
+    };
+    config-mbp2021 = {
+      hostname = "mbp2021";
+      username = "fkoehler";
+      system = "aarch64-darwin";
+      isWorkstation = true;
+      isTrusted = true;
+    };
+    config-homeserver = {
+      hostname = "homeserver";
+      username = "fkoehler";
+      isWorkstation = false;
+      isTrusted = true;
+    };
+    config-downloader = {
       hostname = "downloader";
       username = "downloader";
     };
   in {
     homeConfigurations = {
-      "fkoehler@fkt14" = mylib.mkHome {
-        hostname = "fkt14";
-        username = "fkoehler";
-        isWorkstation = true;
-        isTrusted = true;
-      };
-      "fkoehler@mbp2021" = mylib.mkHome {
-        hostname = "mbp2021";
-        username = "fkoehler";
-        system = "aarch64-darwin";
-        isWorkstation = true;
-        isTrusted = true;
-      };
-      "fkoehler@homeserver" = mylib.mkHome {
-        hostname = "homeserver";
-        username = "fkoehler";
-        isWorkstation = false;
-        isTrusted = true;
-      };
+      "fkoehler@fkt14" = mylib.mkHome config-fkt14;
+      "fkoehler@mbp2021" = mylib.mkHome config-mbp2021;
+      "fkoehler@homeserver" = mylib.mkHome config-homeserver;
     };
 
     nixosConfigurations = {
-      "fkt14" = mylib.mkNixOS {
-        hostname = "fkt14";
-        username = "fkoehler";
-        isWorkstation = true;
-        containerBackend = "docker";
-      };
-      "homeserver" = mylib.mkNixOS {
-        hostname = "homeserver";
-        username = "fkoehler";
-      };
-      "downloader" = mylib.mkNixOS nixos-downloader;
+      "fkt14" = mylib.mkNixOS config-fkt14;
+      "homeserver" = mylib.mkNixOS config-homeserver;
+      "downloader" = mylib.mkNixOS config-downloader;
     };
 
     darwinConfigurations."mbp2021" = inputs.nix-darwin.lib.darwinSystem {
@@ -128,7 +124,7 @@
     };
 
     packages.x86_64-linux = {
-      downloader-qcow = mylib.mkNixOSImage ({format = "qcow";} // nixos-downloader);
+      downloader-qcow = mylib.mkNixOSImage ({format = "qcow";} // config-downloader);
     };
 
     overlays = import ./overlays {inherit inputs;};

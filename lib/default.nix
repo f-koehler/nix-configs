@@ -4,6 +4,7 @@
   stateVersion,
   ...
 }: let
+  inherit (inputs.nixpkgs) lib;
   mkNixOSConfig = {
     hostname,
     username,
@@ -21,22 +22,17 @@
         inputs.catppuccin.nixosModules.catppuccin
         ../nixos
       ]
-      ++ (
-        # TODO: simplify with lib.optionals
-        if isWorkstation
-        then [
-          {
-            nixpkgs.overlays = [
-              inputs.nix-vscode-extensions.overlays.default
-            ];
-          }
-        ]
-        else []
-      );
+      ++ (lib.optionals isWorkstation [
+        {
+          nixpkgs.overlays = [
+            inputs.nix-vscode-extensions.overlays.default
+          ];
+        }
+      ]);
   };
 
   mkNixOS = args:
-    inputs.nixpkgs.lib.nixosSystem (mkNixOSConfig args);
+    lib.nixosSystem (mkNixOSConfig args);
 
   mkNixOSImage = {
     system ? "x86_64-linux",
@@ -70,14 +66,7 @@
           inputs.catppuccin.homeManagerModules.catppuccin
           inputs.nixvim.homeManagerModules.nixvim
         ]
-        ++ (
-          # TODO: simplify with lib.optionals
-          if (pkgs.stdenv.isLinux && isWorkstation)
-          then [
-            ../flatpak.nix
-          ]
-          else []
-        );
+        ++ (lib.optionals (pkgs.stdenv.isLinux && isWorkstation) [../flatpak.nix]);
     };
 in {
   inherit mkNixOS;

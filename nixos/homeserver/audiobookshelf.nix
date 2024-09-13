@@ -15,6 +15,10 @@ in {
         hostPath = "/containers/audiobookshelf/app";
         isReadOnly = false;
       };
+      "/tank1-audiobooks" = {
+        hostPath = "/media/tank1/media/audiobooks";
+        isReadOnly = true;
+      };
     };
     config = {lib, ...}: {
       services = {

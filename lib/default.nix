@@ -51,6 +51,7 @@
     system ? "x86_64-linux",
     isWorkstation ? false,
     isTrusted ? false,
+    ...
   }:
     inputs.home-manager.lib.homeManagerConfiguration rec {
       pkgs = inputs.nixpkgs.legacyPackages.${system};

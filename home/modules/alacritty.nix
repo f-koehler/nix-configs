@@ -1,11 +1,10 @@
 {
-  lib,
   isWorkstation,
   isDarwin,
   ...
 }: {
-  programs.alacritty = lib.mkIf isWorkstation {
-    enable = true;
+  programs.alacritty = {
+    enable = isWorkstation;
     settings = {
       font = {
         size =

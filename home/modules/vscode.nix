@@ -11,6 +11,8 @@ lib.mkIf isWorkstation {
   home.packages = with pkgs; [
     ruff
     vscode
+
+    clang-tools
   ];
   programs.vscode = {
     enable = true;
@@ -50,6 +52,7 @@ lib.mkIf isWorkstation {
       pkgs.vscode-marketplace.rust-lang.rust-analyzer
       pkgs.vscode-marketplace.catppuccin.catppuccin-vsc
       pkgs.vscode-marketplace.catppuccin.catppuccin-vsc-icons
+      #pkgs.vscode-marketplace.llvm-vs-code-extensions.vscode-clangd
     ];
     # ++ [
     #   # pkgs.vscode-extensions.ms-vscode.cmake-tools
@@ -67,8 +70,11 @@ lib.mkIf isWorkstation {
       "C/C++ Include Guard.Path Skip" = 1;
       "C/C++ Include Guard.Remove Extension" = false;
       "C_Cpp.clang_format_fallbackStyle" = "LLVM";
+      #"C_Cpp.intelliSenseEngine" = "disabled";
+      "C_Cpp.loggingLevel" = "Debug";
       "C_Cpp.codeAnalysis.clangTidy.enabled" = true;
-      "C_Cpp.formatting" = "clangFormat";
+      "C_Cpp.codeAnalysis.clangTidy.path" = "${pkgs.clang-tools}/bin/clang-tidy";
+      "C_Cpp.clang_format_path" = "${pkgs.clang-tools}/bin/clang-format";
 
       "cmake.options.statusBarVisibility" = "compact";
       "cmake.showOptionsMovedNotification" = false;

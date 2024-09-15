@@ -75,7 +75,7 @@
 
   outputs = {self, ...} @ inputs: let
     inherit (self) outputs;
-    stateVersion = "24.05";
+    stateVersion = "24.11";
     mylib = import ./lib {inherit inputs outputs stateVersion;};
 
     config-fkt14 = {

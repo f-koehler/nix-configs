@@ -2,6 +2,7 @@
   hostname,
   lib,
   isWorkstation,
+  stateVersion,
   ...
 }: {
   imports =
@@ -19,5 +20,5 @@
     accent = "mauve";
   };
 
-  system.stateVersion = "24.05";
+  system.stateVersion = stateVersion;
 }

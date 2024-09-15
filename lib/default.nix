@@ -14,7 +14,7 @@
     ...
   }: {
     specialArgs = {
-      inherit inputs outputs hostname system username isWorkstation containerBackend;
+      inherit inputs outputs hostname system username isWorkstation containerBackend stateVersion;
     };
     modules =
       [

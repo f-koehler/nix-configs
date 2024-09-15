@@ -2,13 +2,11 @@
   config,
   pkgs,
   username,
-  inputs,
   ...
 }: {
   imports = [
-    inputs.microvm.nixosModules.host
-
     ./audiobookshelf.nix
+    ./digikam-db.nix
     ./hardware.nix
     ./homepage.nix
     ./jellyfin.nix
@@ -19,7 +17,6 @@
     ./postgresql.nix
     # ./samba.nix
     ./tinymediamanager.nix
-    ./transmission.nix
     ./uptime-kuma.nix
     ./zfs-snapshots.nix
   ];

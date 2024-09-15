@@ -34,6 +34,7 @@ in {
       modules/plasma.nix
       modules/ssh.nix
       modules/starship.nix
+      # modules/sway
       modules/tealdeer.nix
       modules/tmux.nix
       modules/vscode.nix

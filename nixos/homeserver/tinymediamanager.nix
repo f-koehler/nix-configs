@@ -1,12 +1,8 @@
 {config, ...}: {
   sops = {
     secrets."services/tinymediamanager/password" = {
-      owner = "jellyfin";
-      group = "jellyfin";
     };
     templates."tinymediamanager.env" = {
-      owner = "jellyfin";
-      group = "jellyfin";
       content = "PASSWORD=${config.sops.placeholder."services/tinymediamanager/password"}";
     };
   };

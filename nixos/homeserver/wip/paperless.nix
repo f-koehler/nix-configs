@@ -44,7 +44,7 @@
         #       PAPERLESS_USE_X_FORWARD_PORT = true;
         PAPERLESS_TIKA_ENABLED = true;
         PAPERLESS_TIKA_ENDPOINT = "http://localhost:${toString config.services.gotenberg.port}";
-        PAPERLESS_TIKA_GOTENBERG_ENDPOINT = "http://localhost:${toString config.services.tika.port}";
+        # PAPERLESS_TIKA_GOTENBERG_ENDPOINT = "http://localhost:${toString config.services.tika.port}";
       };
     };
     nginx = {

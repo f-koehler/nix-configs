@@ -6,19 +6,19 @@
 }: {
   imports = [
     ./audiobookshelf.nix
-    ./digikam-db.nix
+    # ./digikam-db.nix
     ./hardware.nix
     # ./homepage.nix
     ./jellyfin.nix
     ./navidrome.nix
     ./nextcloud.nix
     ./nginx.nix
-    ./paperless.nix
+    # ./paperless.nix
     ./postgresql.nix
     # ./samba.nix
     ./tinymediamanager.nix
-    ./uptime-kuma.nix
-    ./zfs-snapshots.nix
+    # ./uptime-kuma.nix
+    # ./zfs-snapshots.nix
   ];
 
   fileSystems = {

@@ -12,26 +12,26 @@
   services.samba = {
     package = pkgs.samba4;
     enable = true;
-    enableNmbd = true;
+    nmbd.enable = true;
     openFirewall = true;
     nsswins = true;
-    extraConfig = ''
-      log level = 5
-      server string = homeserver
-      netbios name = homeserver
-      workgroup = WORKGROUP
-      security = user
+    settings.global = {
+      "log level" = 5;
+      "server string" = "homeserver";
+      "netbios name" = "homeserver";
+      "workgroup" = "WORKGROUP";
+      "security" = "usser";
 
-      create mask = 0664
-      force create mode 0664
-      directory mask = 0775
-      force directory mode = 0775
-      follow symlinks = yes
+      "create mask" = "0664";
+      "force create mode" = "0664";
+      "directory mask" = "0775";
+      "force directory mode" = "0775";
+      "follow symlinks" = "yes";
 
-      guest account = nobody
-      map to guest = bad user
-      hosts allow = 100.64.0.0/10, 192.168.50., localhost, 127.0.0.1
-    '';
+      "guest account" = "nobody";
+      "map to guest" = "bad user";
+      "hosts allow" = "100.64.0.0/10, 192.168.50., localhost, 127.0.0.1";
+    };
     shares = {
       media0 = {
         path = "/media/tank0/media";

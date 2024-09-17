@@ -11,4 +11,12 @@
       superuser_map      /^(.*)$   \1
     '';
   };
+
+  fileSystems = {
+    "/var/lib/postgresql" = {
+      device = "rpool/postgresql";
+      fsType = "zfs";
+      neededForBoot = true;
+    };
+  };
 }

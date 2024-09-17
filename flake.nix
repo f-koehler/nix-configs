@@ -101,6 +101,8 @@
     config-downloader = {
       hostname = "downloader";
       username = "downloader";
+      isWorkstation = false;
+      isTrusted = false;
     };
   in {
     homeConfigurations = {
@@ -112,7 +114,6 @@
     nixosConfigurations = {
       "fkt14" = mylib.mkNixOS config-fkt14;
       "homeserver" = mylib.mkNixOS config-homeserver;
-      "downloader" = mylib.mkNixOS config-downloader;
     };
 
     darwinConfigurations."mbp2021" = inputs.nix-darwin.lib.darwinSystem {

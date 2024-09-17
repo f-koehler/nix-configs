@@ -33,7 +33,7 @@
       autoUpdateApps.enable = true;
       extraAppsEnable = true;
       extraApps = with config.services.nextcloud.package.packages.apps; {
-        inherit calendar contacts tasks;
+        inherit contacts tasks;
       };
     };
     nginx.virtualHosts.${config.services.nextcloud.hostName} = {
@@ -41,6 +41,14 @@
       kTLS = true;
       sslCertificate = "/var/lib/acme/fkoehler.xyz/fullchain.pem";
       sslCertificateKey = "/var/lib/acme/fkoehler.xyz/key.pem";
+    };
+  };
+
+  fileSystems = {
+    "/var/lib/nextcloud" = {
+      device = "rpool/nextcloud";
+      fsType = "zfs";
+      neededForBoot = true;
     };
   };
 }

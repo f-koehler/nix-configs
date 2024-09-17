@@ -4,17 +4,11 @@
       name = "gickup";
       dense = true;
     }
-    # {name = "jellyfin";}
-    {
-      name = "nextcloud";
-      units = ["nextcloud-setup"];
-      dense = true;
-    }
-    {
-      name = "paperless";
-      units = ["paperless-web" "paperless-consumer" "paperless-scheduler" "paperless-task-queue"];
-      dense = true;
-    }
+    # {
+    #   name = "paperless";
+    #   units = ["paperless-web" "paperless-consumer" "paperless-scheduler" "paperless-task-queue"];
+    #   dense = true;
+    # }
     {name = "postgresql";}
     {
       name = "tinymediamanager";

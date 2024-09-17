@@ -1,51 +1,15 @@
-{config, ...}: let
-  port = 8097;
-in {
-  containers.audiobookshelf = {
-    ephemeral = true;
-    autoStart = true;
-    forwardPorts = [
-      {
-        hostPort = port;
-        containerPort = port;
-      }
-    ];
-    bindMounts = {
-      "/var/lib/audiobookshelf" = {
-        hostPath = "/containers/audiobookshelf/app";
-        isReadOnly = false;
-      };
-      "/tank1-audiobooks" = {
-        hostPath = "/media/tank1/media/audiobooks";
-        isReadOnly = true;
-      };
-    };
-    config = {lib, ...}: {
-      services = {
-        audiobookshelf = {
-          inherit port;
-          enable = true;
-          host = "0.0.0.0";
-          user = "audiobookshelf";
-          group = "audiobookshelf";
-        };
-        resolved.enable = true;
-      };
-      networking.useHostResolvConf = lib.mkForce false;
-    };
-  };
-  fileSystems = {
-    "/containers/audiobookshelf/app" = {
-      device = "rpool/audiobookshelf";
-      fsType = "zfs";
-    };
-  };
-
+{config, ...}: {
   services = {
+    audiobookshelf = {
+      enable = true;
+      host = "0.0.0.0";
+      user = "audiobookshelf";
+      group = "audiobookshelf";
+    };
     nginx = {
       upstreams."audiobookshelf" = {
         servers = {
-          "127.0.0.1:${toString port}" = {};
+          "127.0.0.1:${toString config.services.audiobookshelf.port}" = {};
         };
       };
       virtualHosts."audiobooks.fkoehler.xyz" = {
@@ -75,6 +39,13 @@ in {
           };
         };
       };
+    };
+  };
+  fileSystems = {
+    "/var/lib/audiobookshelf" = {
+      device = "rpool/audiobookshelf";
+      fsType = "zfs";
+      neededForBoot = true;
     };
   };
 }

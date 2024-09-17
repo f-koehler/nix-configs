@@ -1,6 +1,8 @@
 {
   pkgs,
   lib,
+  stateVersion,
+  system,
   ...
 }: {
   services = {
@@ -15,6 +17,8 @@
         incomplete-dir-enabled = true;
         incomplete-dir = "/downloads/incomplete";
         download-dir = "/downloads/complete";
+        user = "downloader";
+        group = "downloader";
       };
       performanceNetParameters = true;
     };
@@ -33,8 +37,16 @@
     resolved.enable = true;
   };
   users = {
-    users.transmission.uid = lib.mkForce 993;
-    groups.transmission.gid = lib.mkForce 985;
+    users.downloader = {
+      isNormalUser = lib.mkForce true;
+      group = "downloader";
+      extraGroups = ["wheel"];
+      uid = lib.mkForce 993;
+    };
+    groups.downloader = {
+      gid = lib.mkForce 985;
+    };
   };
-  system.stateVersion = "24.11";
+  nixpkgs.hostPlatform = lib.mkDefault system;
+  system.stateVersion = stateVersion;
 }

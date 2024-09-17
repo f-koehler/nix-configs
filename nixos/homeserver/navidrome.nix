@@ -1,49 +1,17 @@
 _: let
   port = 4533;
 in {
-  containers.navidrome = {
-    ephemeral = true;
-    autoStart = true;
-
-    bindMounts = {
-      "/tank0" = {
-        hostPath = "/media/tank0/media/";
-        isReadOnly = true;
-      };
-      "/tank1" = {
-        hostPath = "/media/tank1/media/";
-        isReadOnly = true;
-      };
-      "/data" = {
-        hostPath = "/containers/navidrome/";
-        isReadOnly = false;
-      };
-    };
-    config = {lib, ...}: {
-      services = {
-        navidrome = {
-          enable = true;
-          settings = {
-            Port = port;
-            Address = "0.0.0.0";
-            MusicFolder = "/tank1/soundtracks";
-            DataFolder = "/data";
-            BaseUrl = "https://music.fkoehler.xyz";
-          };
-        };
-        resolved.enable = true;
-      };
-      networking.useHostResolvConf = lib.mkForce false;
-    };
-  };
-  fileSystems = {
-    "/containers/navidrome" = {
-      device = "rpool/navidrome";
-      fsType = "zfs";
-    };
-  };
-
   services = {
+    navidrome = {
+      enable = true;
+      settings = {
+        Port = port;
+        Address = "0.0.0.0";
+        MusicFolder = "/media/tank1/media/soundtracks";
+        DataFolder = "/data";
+        BaseUrl = "https://music.fkoehler.xyz";
+      };
+    };
     nginx = {
       upstreams."navidrome" = {
         servers = {
@@ -77,6 +45,14 @@ in {
           };
         };
       };
+    };
+  };
+
+  fileSystems = {
+    "/var/lib/navidrome" = {
+      device = "rpool/navidrome";
+      fsType = "zfs";
+      neededForBoot = true;
     };
   };
 }

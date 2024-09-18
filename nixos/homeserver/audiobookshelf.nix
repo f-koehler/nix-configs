@@ -5,6 +5,7 @@
       host = "0.0.0.0";
       user = "audiobookshelf";
       group = "audiobookshelf";
+      port = 8097;
     };
     nginx = {
       upstreams."audiobookshelf" = {

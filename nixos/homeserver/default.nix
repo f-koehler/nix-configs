@@ -13,7 +13,7 @@
     ./navidrome.nix
     ./nextcloud.nix
     ./nginx.nix
-    # ./paperless.nix
+    ./paperless.nix
     ./postgresql.nix
     # ./samba.nix
     ./tinymediamanager.nix

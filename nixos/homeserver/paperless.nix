@@ -20,7 +20,6 @@
         }
       ];
     };
-    redis.enable = true;
     tika = {
       enable = true;
       enableOcr = true;

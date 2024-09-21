@@ -8,7 +8,7 @@
     ./audiobookshelf.nix
     # ./digikam-db.nix
     ./hardware.nix
-    # ./homepage.nix
+    ./homepage.nix
     ./jellyfin.nix
     ./navidrome.nix
     ./nextcloud.nix

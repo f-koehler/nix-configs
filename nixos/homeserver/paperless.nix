@@ -11,6 +11,7 @@
   };
   services = {
     postgresql = {
+      enable = true;
       ensureDatabases = ["paperless"];
       ensureUsers = [
         {
@@ -19,32 +20,50 @@
         }
       ];
     };
+    redis.enable = true;
     tika = {
       enable = true;
       enableOcr = true;
     };
-    gotenberg = {
-      enable = true;
-    };
+    # gotenberg = {
+    #   enable = true;
+    # };
     paperless = {
       enable = true;
       package = pkgs.paperless-ngx;
       user = "paperless";
       passwordFile = config.sops.secrets."services/paperless/admin/password".path;
       settings = {
-        PAPERLESS_URL = "https://docs.fkoehler.xyz";
+        # Database
         PAPERLESS_DBENGINE = "postgresql";
         PAPERLESS_DBHOST = "/run/postgresql";
         PAPERLESS_DBUSER = "paperless";
-        PAPERLESS_ADMIN_USER = "fkoehler";
-        PAPERLESS_OCR_LANGUAGE = "deu+eng";
-        #       PAPERLESS_TASK_WORKERS = 4;
-        PAPERLESS_TIME_ZONE = "Asia/Singapore";
-        #       PAPERLESS_USE_X_FORWARD_HOST = true;
-        #       PAPERLESS_USE_X_FORWARD_PORT = true;
+
+        # Tika/Gotenberg
         PAPERLESS_TIKA_ENABLED = true;
-        PAPERLESS_TIKA_ENDPOINT = "http://localhost:${toString config.services.gotenberg.port}";
-        # PAPERLESS_TIKA_GOTENBERG_ENDPOINT = "http://localhost:${toString config.services.tika.port}";
+        PAPERLESS_TIKA_ENDPOINT = "http://localhost:${toString config.services.tika.port}";
+        # PAPERLESS_TIKA_GOTENBERG_ENDPOINT = "http://localhost:${toString config.services.gotenberg.port}";
+
+        # Hosting & security
+        PAPERLESS_URL = "https://docs.fkoehler.xyz";
+        PAPERLESS_ADMIN_USER = "fkoehler";
+
+        # OCR
+        PAPERLESS_OCR_LANGUAGE = "deu+eng";
+        PAPERLESS_OCR_USER_ARGS = {
+          invalidate_digital_signatures = true;
+        };
+
+        # Tweaks
+        PAPERLESS_TASK_WORKERS = 2;
+        PAPERLESS_THREADS_PER_WORKER = 2;
+        PAPERLESS_TIME_ZONE = "Asia/Singapore";
+
+        # Document Consumption
+        PAPERLESS_CONSUMER_RECURSIVE = true;
+
+        # PAPERLESS_USE_X_FORWARD_HOST = true;
+        # PAPERLESS_USE_X_FORWARD_PORT = true;
       };
     };
     nginx = {

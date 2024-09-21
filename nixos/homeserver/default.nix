@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   username,
   ...
@@ -38,7 +37,6 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     zfs.extraPools = ["tank0" "tank1"];
   };
 

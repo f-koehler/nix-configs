@@ -28,6 +28,13 @@
       ];
     };
   };
+  fileSystems = {
+    "/var/lib/tinymediamanager" = {
+      device = "rpool/tinymediamanager";
+      fsType = "zfs";
+      neededForBoot = true;
+    };
+  };
   services.nginx = {
     upstreams.tinymediamanager = {
       servers = {

@@ -1,10 +1,22 @@
-{pkgs, ...}: {
-  # environment.systemPackages = with pkgs; [
-  #   config.services.samba.package
-  #   cifs-utils
-  #   nfstrace
-  # ];
-
+{pkgs, ...}: let
+  mkDefaultShare = {
+    path,
+    comment ? "",
+    ...
+  }: {
+    inherit path;
+    inherit comment;
+    browseable = "yes";
+    writeable = "yes";
+    "read only" = "no";
+    "guest ok" = "no";
+    "force user" = "jellyfin";
+    "force group" = "media";
+    "valid users" = "fkoehler";
+    "read list" = "fkoehler";
+    "write list" = "fkoehler";
+  };
+in {
   services = {
     samba-wsdd = {
       enable = true;
@@ -30,65 +42,15 @@
           "force directory mode" = "0775";
           "follow symlinks" = "yes";
         };
-        media0 = {
+        media0 = mkDefaultShare {
           path = "/media/tank0/media";
-          browseable = "yes";
-          writeable = "yes";
-          "read only" = "no";
-          "guest ok" = "no";
-          "force user" = "jellyfin";
-          "force group" = "media";
-          "valid users" = "fkoehler";
-          "read list" = "fkoehler";
-          "write list" = "fkoehler";
           comment = "Media on tank0";
         };
+        media1 = mkDefaultShare {
+          path = "/media/tank1/media";
+          comment = "Media on tank1";
+        };
       };
-
-      #   settings.global = {
-      #     "log level" = 5;
-      #     "server string" = "homeserver";
-      #     "netbios name" = "homeserver";
-      #     "workgroup" = "WORKGROUP";
-      #     "security" = "usser";
-
-      #     "guest account" = "nobody";
-      #     "map to guest" = "bad user";
-      #     "hosts allow" = "100.64.0.0/10, 192.168.50., localhost, 127.0.0.1";
-      #   };
-      #   shares = {
-      #     media0 = {
-      #       path = "/media/tank0/media";
-      #       browseable = "yes";
-      #       writeable = "yes";
-      #       "read only" = "no";
-      #       "guest ok" = "no";
-      #       "force user" = "jellyfin";
-      #       "force group" = "media";
-      #       "valid users" = "fkoehler";
-      #       "read list" = "fkoehler";
-      #       "write list" = "fkoehler";
-      #       comment = "Media on tank0";
-      #     };
-      #     media1 = {
-      #       path = "/media/tank1/media";
-      #       browseable = "yes";
-      #       writeable = "yes";
-      #       "read only" = "no";
-      #       "guest ok" = "no";
-      #       "force user" = "jellyfin";
-      #       "force group" = "media";
-      #       "valid users" = "fkoehler";
-      #       "read list" = "fkoehler";
-      #       "write list" = "fkoehler";
-      #       comment = "Media on tank1";
-      #     };
-      #   };
     };
   };
-  # services.samba-wsdd = {
-  #   enable = true;
-  #   openFirewall = true;
-  #   discovery = true;
-  # };
 }

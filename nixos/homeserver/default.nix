@@ -15,7 +15,7 @@
     ./nginx.nix
     ./paperless.nix
     ./postgresql.nix
-    # ./samba.nix
+    ./samba.nix
     ./tinymediamanager.nix
     # ./uptime-kuma.nix
     # ./zfs-snapshots.nix

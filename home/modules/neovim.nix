@@ -81,6 +81,10 @@
           icons = true;
         };
       };
+      web-devicons = {
+        enable = true;
+        settings.color_icons = true;
+      };
     };
     opts = {
       number = true;

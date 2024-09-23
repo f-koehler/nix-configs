@@ -117,6 +117,7 @@ lib.mkIf isWorkstation {
       "workbench.colorTheme" = "Catppuccin Mocha";
       "remote.SSH.remotePlatform" = {
         "homeserver" = "linux";
+        "homeserver.corgi-dojo.ts.net" = "linux";
       };
       "vscode-neovim.neovimInitVimPaths.linux" = "/dev/null";
     };

@@ -9,7 +9,6 @@
     enable = true;
     workspace = {
       clickItemTo = "select";
-      lookAndFeel = "org.kde.breezedark.desktop";
       wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Mountain/contents/images_dark/5120x2880.png";
     };
     hotkeys.commands."launch-wezterm" = {
@@ -24,6 +23,39 @@
     };
     configFile = {
       "baloofilerc"."Basic Settings"."Indexing-Enabled".value = false;
+    };
+    powerdevil = {
+      AC = {
+        autoSuspend.action = "nothing";
+        dimDisplay = {
+          enable = true;
+          idleTimeout = 300;
+        };
+
+        whenLaptopLidClosed = "sleep";
+        inhibitLidActionWhenExternalMonitorConnected = true;
+
+        turnOffDisplay = {
+          idleTimeout = 600;
+          idleTimeoutWhenLocked = 120;
+        };
+      };
+      battery = {
+        autoSuspend.action = "sleep";
+        dimDisplay = {
+          enable = true;
+          idleTimeout = 120;
+        };
+
+        whenLaptopLidClosed = "sleep";
+        inhibitLidActionWhenExternalMonitorConnected = true;
+
+        turnOffDisplay = {
+          idleTimeout = 300;
+          idleTimeoutWhenLocked = 60;
+        };
+      };
+      general.pausePlayersOnSuspend = true;
     };
   };
 }

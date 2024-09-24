@@ -103,4 +103,12 @@
       };
     };
   };
+
+  fileSystems = {
+    "/var/lib/paperless" = {
+      device = "rpool/paperless";
+      fsType = "zfs";
+      neededForBoot = true;
+    };
+  };
 }

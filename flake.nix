@@ -56,7 +56,6 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
-    nil.url = "github:oxalica/nil";
     alejandra = {
       url = "github:kamadorueda/alejandra";
       inputs.nixpkgs.follows = "nixpkgs";

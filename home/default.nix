@@ -95,29 +95,32 @@ in {
     packages = with pkgs; [
       # awscli2
       # neovim
-      nh
-      age
-      bat
-      du-dust
-      fish
-      jq
-      hexyl
-      lunarvim
-      pre-commit
-      rye
-      sops
-      zsh
-      pandoc
-      aria
-      onefetch
-      gdu
-      hyperfine
-      yq-go
-      nix-tree
-      ncdu
-      htop
-      cascadia-code
-      devenv
+      pkgs.nh
+      pkgs.age
+      pkgs.bat
+      pkgs.du-dust
+      pkgs.fish
+      pkgs.jq
+      pkgs.hexyl
+      pkgs.lunarvim
+      pkgs.pre-commit
+      pkgs.rye
+      pkgs.sops
+      pkgs.zsh
+      pkgs.pandoc
+      pkgs.aria
+      pkgs.onefetch
+      pkgs.gdu
+      pkgs.hyperfine
+      pkgs.yq-go
+      pkgs.nix-tree
+      pkgs.ncdu
+      pkgs.htop
+      pkgs.cascadia-code
+      pkgs.devenv
+
+      pkgs.nil
+      inputs.alejandra.defaultPackage.${system}
 
       # It is sometimes useful to fine-tune packages, for example, by applying
       # overrides. You can do that directly here, just don't forget the

@@ -53,6 +53,7 @@ in {
       nextcloudUrl = "https://cloud.fkoehler.xyz";
       paperlessUrl = "https://docs.fkoehler.xyz";
       tinymediamanagerUrl = "https://tinymediamanager.fkoehler.xyz";
+      invidiousUrl = "https://youtube.fkoehler.xyz";
     in [
       {
         "Media" = [
@@ -92,6 +93,13 @@ in {
                 token = "{{HOMEPAGE_VAR_NAVIDROME_API_KEY}}";
                 salt = "{{HOMEPAGE_VAR_NAVIDROME_SALT}}";
               };
+            };
+          }
+          {
+            "Invidious" = {
+              icon = "invidious.svg";
+              href = invidiousUrl;
+              description = "Watch YouTube without distractions";
             };
           }
           {

@@ -8,6 +8,7 @@
     # ./digikam-db.nix
     ./hardware.nix
     ./homepage.nix
+    ./invidious.nix
     ./jellyfin.nix
     ./navidrome.nix
     ./nextcloud.nix

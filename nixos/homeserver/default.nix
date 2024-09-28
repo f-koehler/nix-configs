@@ -18,7 +18,7 @@
     ./samba.nix
     ./tinymediamanager.nix
     # ./uptime-kuma.nix
-    # ./zfs-snapshots.nix
+    ./zfs-snapshots.nix
   ];
 
   fileSystems = {
@@ -50,6 +50,7 @@
       enable = true;
       interval = "weekly";
     };
+    autoSnapshot.enable = false;
   };
 
   users = {

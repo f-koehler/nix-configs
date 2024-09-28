@@ -19,6 +19,14 @@ fileSystems."/<mountpoint>" = {
 };
 ```
 
+### `tankX` datasets
+
+#### Backup Dataset
+
+```bash
+sudo zfs create -o canmount=on <bool>/backups/<name>
+```
+
 ## Services
 
 ### Nextcloud

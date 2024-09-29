@@ -6,6 +6,7 @@ _: {
     ./packages.nix
     ./plasma.nix
     # ./sshfs.nix
+    ./samba-shares.nix
     ./sound.nix
     # ./sway.nix
     ./wine.nix

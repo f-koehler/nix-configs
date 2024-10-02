@@ -11,6 +11,10 @@
     globals.mapleader = " ";
     plugins = {
       copilot-cmp.enable = isWorkstation;
+      copilot-lua = {
+        suggestion.enabled = false;
+        panel.enabled = false;
+      };
       cmp = {
         enable = true;
         autoEnableSources = true;

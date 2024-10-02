@@ -11,7 +11,21 @@
       clickItemTo = "select";
       wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Mountain/contents/images_dark/5120x2880.png";
     };
-    kwin.virtualDesktops.number = 10;
+    kwin = {
+      virtualDesktops.number = 10;
+      nightLight = {
+        enable = true;
+        location = {
+          latitude = "1.310956915456913";
+          longitude = "103.79518562283889";
+        };
+        mode = "location";
+        temperature = {
+          day = 6500;
+          night = 4200;
+        };
+      };
+    };
     shortcuts = {
       kwin = {
         "Switch to Desktop 1" = "Meta+1";
@@ -49,7 +63,8 @@
       command = "krunner";
     };
     configFile = {
-      "baloofilerc"."Basic Settings"."Indexing-Enabled".value = false;
+      baloofilerc."Basic Settings".Indexing-Enabled.value = false;
+      kwinrc.Plugins.krohnkiteEnabled = true;
     };
     powerdevil = {
       AC = {

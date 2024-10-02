@@ -76,7 +76,6 @@
       todo-comments.enable = true;
       treesitter = {
         enable = true;
-        settings.indent.enable = true;
       };
       trouble = {
         enable = true;

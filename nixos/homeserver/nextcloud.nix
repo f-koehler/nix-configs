@@ -12,7 +12,7 @@
   services = {
     nextcloud = {
       enable = true;
-      package = pkgs.nextcloud29;
+      package = pkgs.nextcloud30;
       hostName = "cloud.fkoehler.xyz";
       https = true;
       enableImagemagick = true;
@@ -33,7 +33,7 @@
       autoUpdateApps.enable = true;
       extraAppsEnable = true;
       extraApps = with config.services.nextcloud.package.packages.apps; {
-        inherit contacts tasks;
+        inherit contacts tasks calendar;
       };
     };
     nginx.virtualHosts.${config.services.nextcloud.hostName} = {

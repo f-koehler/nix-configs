@@ -15,6 +15,7 @@
         suggestion.enabled = false;
         panel.enabled = false;
       };
+      cmake-tools.enable = true;
       cmp = {
         enable = true;
         autoEnableSources = true;
@@ -29,10 +30,22 @@
             ++ (lib.optionals isWorkstation [
               {name = "copilot";}
             ]);
+          mapping = {
+            "<C-Space>" = "cmp.mapping.complete()";
+            "<C-d>" = "cmp.mapping.scroll_docs(-4)";
+            "<C-e>" = "cmp.mapping.close()";
+            "<C-f>" = "cmp.mapping.scroll_docs(4)";
+            "<CR>" = "cmp.mapping.confirm({ select = true })";
+            "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+            "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+          };
         };
       };
       cmp-nvim-lsp.enable = true;
       gitsigns.enable = true;
+      indent-blankline = {
+        enable = true;
+      };
       lsp = {
         enable = true;
         servers = {
@@ -64,6 +77,7 @@
         openOnSetup = true;
         hijackCursor = true;
       };
+      overseer.enable = true;
       telescope = {
         enable = true;
         keymaps = {
@@ -91,6 +105,12 @@
     };
     opts = {
       number = true;
+      tabstop = 4;
+      softtabstop = -1;
+      shiftwidth = 0;
+      shiftround = true;
+      expandtab = true;
+      autoindent = true;
     };
   };
 }

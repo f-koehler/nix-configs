@@ -21,13 +21,14 @@
     with pkgs;
       [
         kdePackages.skanpage
-        # kdePackages.zanshin
-        # kdePackages.merkuro
         kdePackages.kcharselect
         kdePackages.filelight
+        kdePackages.qtwayland
+        kdePackages.krohnkite
+        kdePackages.purpose
+        kdePackages.merkuro
+        kdePackages.zanshin
         catppuccin-cursors
-        catppuccin-sddm
-        kdePackages.sddm-kcm
         catppuccin-kde
         catppuccin-cursors
       ]

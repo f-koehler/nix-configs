@@ -35,6 +35,18 @@
     openFirewall = true;
   };
 
+  fonts = {
+    enableDefaultPackages = true;
+    packages = with pkgs; [
+      liberation_ttf
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      source-sans-pro
+      ubuntu-sans
+    ];
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
     groups."${username}" = {};

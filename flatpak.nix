@@ -8,14 +8,11 @@ _: {
       }
     ];
     packages = [
-      "com.jgraph.drawio.desktop"
       "com.spotify.Client"
       "com.valvesoftware.Steam"
       "md.obsidian.Obsidian"
       "org.fkoehler.KTailctl"
-      "org.onlyoffice.desktopeditors"
       "us.zoom.Zoom"
-      "net.werwolv.ImHex"
     ];
   };
 }

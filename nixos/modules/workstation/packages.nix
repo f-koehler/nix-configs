@@ -21,7 +21,6 @@
       super-productivity
       telegram-desktop
       thunderbird
-      transmission-remote-gtk
       vlc
       vscode
       xfce.thunar
@@ -29,6 +28,7 @@
       zotero
       exiftool
       digikam
+      ktorrent
     ];
   };
 }

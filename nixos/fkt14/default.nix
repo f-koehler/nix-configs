@@ -76,6 +76,10 @@
         rsync
         sops
         tailscale
+        usbutils
+        onlyoffice-desktopeditors
+        imhex
+        drawio
       ];
     };
   };

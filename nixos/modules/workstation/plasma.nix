@@ -10,8 +10,9 @@
         variant = "";
       };
 
-      # displayManager.sddm.enable = true;
-      displayManager.gdm.enable = true;
+      displayManager.lightdm.enable = true;
+      displayManager.lightdm.greeters.slick.enable = true;
+      # displayManager.gdm.enable = true;
     };
     desktopManager.plasma6.enable = true;
   };

@@ -111,6 +111,7 @@
       shiftround = true;
       expandtab = true;
       autoindent = true;
+      cursorline = true;
     };
   };
 }

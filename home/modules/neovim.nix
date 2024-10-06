@@ -9,6 +9,7 @@
     vimdiffAlias = true;
     colorschemes.catppuccin.enable = true;
     globals.mapleader = " ";
+    editorconfig.enable = true;
     plugins = {
       copilot-cmp.enable = isWorkstation;
       copilot-lua = {

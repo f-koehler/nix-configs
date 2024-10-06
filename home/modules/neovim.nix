@@ -114,5 +114,11 @@
       autoindent = true;
       cursorline = true;
     };
+    autoCmd = [
+      {
+        command = "lua vim.lsp.buf.format()";
+        event = ["BufWritePre"];
+      }
+    ];
   };
 }

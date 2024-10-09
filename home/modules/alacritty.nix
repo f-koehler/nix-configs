@@ -12,19 +12,19 @@
           then 12
           else 9;
         normal = {
-          family = "Hack Nerd Font";
+          family = "Cascadia Code NF";
           style = "Regular";
         };
         bold = {
-          family = "Hack Nerd Font";
+          family = "Cascadia Code NF";
           style = "Bold";
         };
         italic = {
-          family = "Hack Nerd Font";
+          family = "Cascadia Code NF";
           style = "Italic";
         };
         bold_italic = {
-          family = "Hack Nerd Font";
+          family = "Cascadia Code NF";
           style = "Bold Italic";
         };
       };

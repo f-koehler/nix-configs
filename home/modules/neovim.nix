@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   isWorkstation,
   ...
 }: {
@@ -71,6 +72,9 @@
         };
       };
       luasnip.enable = true;
+      neotest = {
+        enable = true;
+      };
       notify.enable = true;
       nvim-tree = {
         enable = true;
@@ -120,6 +124,29 @@
         command = "lua vim.lsp.buf.format()";
         event = ["BufWritePre"];
       }
+    ];
+    keymaps = [
+      {
+        action = "lua vim.lsp.buf.definition()";
+        key = "gd";
+        mode = "n";
+      }
+      {
+        action = "lua vim.lsp.buf.declaration()";
+        key = "gD";
+        mode = "n";
+      }
+    ];
+    extraPlugins = [
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "neotest-ctest";
+        src = pkgs.fetchFromGitHub {
+          owner = "orjangj";
+          repo = "neotest-ctest";
+          rev = "885b270f3398f61c8196d0ac0b45744a45507737";
+          hash = "sha256-gtektgnJoVSwP8B18ZNF50PJKQ+R/FCC8NzjuPNM57Q=";
+        };
+      })
     ];
   };
 }

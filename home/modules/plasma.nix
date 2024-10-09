@@ -52,10 +52,10 @@
       };
     };
     spectacle.shortcuts.launch = "Print";
-    hotkeys.commands."launch-wezterm" = {
-      name = "Launch wezterm";
+    hotkeys.commands."launch-alacritty" = {
+      name = "Launch alacritty";
       key = "Meta+Return";
-      command = "wezterm";
+      command = "alacritty";
     };
     hotkeys.commands."launch-krunner" = {
       name = "Launch krunner";
@@ -64,7 +64,7 @@
     };
     configFile = {
       baloofilerc."Basic Settings".Indexing-Enabled.value = false;
-      kwinrc.Plugins.krohnkiteEnabled = true;
+      kwinrc.Plugins.krohnkiteEnabled = false;
     };
     powerdevil = {
       AC = {

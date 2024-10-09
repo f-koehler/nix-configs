@@ -9,11 +9,7 @@
         owner = "gickup";
         group = "gickup";
       };
-      "services/gickup/bitbucket/password" = {
-        owner = "gickup";
-        group = "gickup";
-      };
-      "services/gickup/bitbucket/sshkey" = {
+      "services/gickup/forgejo_token" = {
         owner = "gickup";
         group = "gickup";
       };
@@ -30,17 +26,22 @@
               exclude:
                 - nixpkgs
                 - LibreELEC.tv
-          bitbucket:
-            - url: https://bitbucket.org
-              user: f-koehler
-              username: f-koehler
-              sshkey: ${config.sops.secrets."services/gickup/bitbucket/sshkey".path}
-              password: ${config.sops.placeholder."services/gickup/bitbucket/password"}
+              excludeorgs:
+                - SpeQtral
+                - Parallel-in-Time
+                - flathub
+                - majorpb
+              filter:
+                excludeforks: true
         destination:
-          local:
-            - path: /var/lib/gickup
-              structured: true
-              bare: true
+          gitea:
+            - token: "${config.sops.placeholder."services/gickup/forgejo_token"}"
+              url: https://git.fkoehler.xyz
+              user: fkoehler
+              mirror:
+                mirrorinterval: 8h
+                enabled: false
+              createorg: true
       '';
     };
   };
@@ -58,7 +59,7 @@
     services.gickup = {
       description = "git backups with gickup";
       wantedBy = ["multi-user.target"];
-      after = ["var-lib-gickup.mount" "tailscaled.service"];
+      # after = ["var-lib-gickup.mount" "tailscaled.service"];
       serviceConfig = {
         Type = "oneshot";
         ExecStart = "${pkgs.gickup}/bin/gickup ${config.sops.templates."gickup.yaml".path}";

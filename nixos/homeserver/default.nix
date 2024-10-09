@@ -7,6 +7,7 @@
     ./audiobookshelf.nix
     # ./digikam-db.nix
     ./forgejo.nix
+    ./gickup.nix
     ./hardware.nix
     ./homepage.nix
     ./invidious.nix

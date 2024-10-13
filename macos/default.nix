@@ -1,75 +1,134 @@
-_: {
+{
+  pkgs,
+  hostname,
+  username,
+  ...
+}: {
   users.users.fkoehler.home = "/Users/fkoehler";
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = [];
+  environment.systemPackages = with pkgs; [
+    telegram-desktop
+  ];
+
+  system = {
+    defaults = {
+      CustomUserPreferences = {
+        "com.apple.AdLib" = {
+          allowApplePersonalizedAdvertising = false;
+        };
+        "com.apple.controlcenter" = {
+          BatteryShowPercentage = true;
+        };
+        "com.apple.desktopservices" = {
+          # Avoid creating .DS_Store files on network or USB volumes
+          DSDontWriteNetworkStores = true;
+          DSDontWriteUSBStores = true;
+        };
+        "com.apple.finder" = {
+          _FXSortFoldersFirst = true;
+          FXDefaultSearchScope = "SCcf"; # Search current folder by default
+          ShowExternalHardDrivesOnDesktop = true;
+          ShowHardDrivesOnDesktop = false;
+          ShowMountedServersOnDesktop = true;
+          ShowRemovableMediaOnDesktop = true;
+        };
+        "com.apple.SoftwareUpdate" = {
+          AutomaticCheckEnabled = true;
+          # Check for software updates daily, not just once per week
+          ScheduleFrequency = 1;
+          # Download newly available updates in background
+          AutomaticDownload = 0;
+          # Install System data files & security updates
+          CriticalUpdateInstall = 1;
+        };
+        "com.apple.TimeMachine".DoNotOfferNewDisksForBackup = true;
+        # Turn on app auto-update
+        "com.apple.commerce".AutoUpdate = true;
+      };
+      dock = {
+        autohide = true;
+        minimize-to-application = true;
+        persistent-apps = [
+          "/Users/${username}/Applications/Home Manager Apps/Visual Studio Code.app"
+          "/Users/${username}/Applications/Home Manager Apps/Wezterm.app"
+          "/Applications/Safari.app"
+        ];
+        tilesize = 32;
+      };
+      finder = {
+        AppleShowAllExtensions = true;
+        FXPreferredViewStyle = "Nlsv";
+        ShowPathbar = true;
+        ShowStatusBar = true;
+        QuitMenuItem = true;
+      };
+      NSGlobalDomain = {
+        "com.apple.swipescrolldirection" = false;
+        AppleICUForce24HourTime = true;
+        AppleInterfaceStyle = "Dark";
+        AppleInterfaceStyleSwitchesAutomatically = false;
+        AppleMeasurementUnits = "Centimeters";
+        AppleMetricUnits = 1;
+        AppleTemperatureUnit = "Celsius";
+      };
+      menuExtraClock = {
+        Show24Hour = true;
+        ShowAMPM = true;
+        ShowDate = 1; # 1 = always
+        ShowSeconds = false;
+      };
+      smb.NetBIOSName = hostname;
+    };
+  };
+  networking = {
+    hostName = hostname;
+    computerName = hostname;
+  };
+  nix = {
+    gc.automatic = true;
+    optimise.automatic = true;
+    settings = {
+      trusted-users = ["root" "${username}"];
+      auto-optimise-store = true;
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+    };
+  };
+  nixpkgs = {
+    config.allowUnfree = true;
+  };
+  security.pam.enableSudoTouchIdAuth = true;
+  services = {
+    activate-system.enable = true;
+    nix-daemon.enable = true;
+    tailscale.enable = true;
+  };
 
   homebrew = {
     enable = true;
-    brewPrefix = "/opt/homebrew/bin";
     onActivation.cleanup = "zap";
-    brews = [
-      "ffmpeg"
-      "java"
-      "latexindent"
-      "python@3.11"
-      "poetry"
-    ];
     casks = [
-      "bitwarden"
       "docker"
-      "discord"
-      "drawio"
-      "firefox"
-      "font-hack-nerd-font"
-      "font-cascadia-code-nf"
-      "gimp"
-      "gitkraken"
-      "inkscape"
-      "libreoffice"
-      "mactex"
-      "microsoft-teams"
-      "microsoft-excel"
-      "microsoft-word"
-      "microsoft-powerpoint"
-      "miniconda"
       "nextcloud"
       "obsidian"
-      "protonmail-bridge"
-      "skim"
       "spotify"
-      "steam"
-      "telegram"
-      "threema-beta"
-      "thunderbird"
-      "transmission"
-      "utm"
-      "wezterm"
-      "whatsapp"
-      "superproductivity"
-      "tinymediamanager"
-      "zoom"
-      "zotero"
     ];
     masApps = {
       "Magnet" = 441258766;
-      "Tailscale" = 1475387142;
-      "Xcode" = 497799835;
-      "Microsoft Remote Desktop" = 1295203466;
+      "Infuse • Video Player" = 1136220934;
+      "Bitwarden" = 1352778147;
+      "AdGuard for Safari" = 1440147259;
+      "Wireless@SGx" = 1449928544;
     };
-    taps = [
-      "homebrew/cask-fonts"
-      "homebrew/cask-versions"
-    ];
+    #   taps = [
+    #     "homebrew/cask-fonts"
+    #     "homebrew/cask-versions"
+    #   ];
   };
-
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
-  # nix.package = pkgs.nix;
-
-  # Necessary for using flakes on this system.
-  nix.settings.experimental-features = "nix-command flakes";
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true; # default shell on catalina

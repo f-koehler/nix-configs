@@ -79,8 +79,8 @@
       isTrusted = true;
       containerBackend = "docker";
     };
-    config-mbp2021 = {
-      hostname = "mbp2021";
+    config-mbp21 = {
+      hostname = "mbp21";
       username = "fkoehler";
       system = "aarch64-darwin";
       isWorkstation = true;
@@ -101,7 +101,7 @@
   in {
     homeConfigurations = {
       "fkoehler@fkt14" = mylib.mkHome config-fkt14;
-      "fkoehler@mbp2021" = mylib.mkHome config-mbp2021;
+      "fkoehler@mbp21" = mylib.mkHome config-mbp21;
       "fkoehler@homeserver" = mylib.mkHome config-homeserver;
     };
 
@@ -110,11 +110,16 @@
       "homeserver" = mylib.mkNixOS config-homeserver;
     };
 
-    darwinConfigurations."mbp2021" = inputs.nix-darwin.lib.darwinSystem {
+    darwinConfigurations."mbp21" = inputs.nix-darwin.lib.darwinSystem rec {
       system = "aarch64-darwin";
+      pkgs = inputs.nixpkgs.legacyPackages.${system};
       modules = [
         inputs.nix-index-database.darwinModules.nix-index
-        ./macos/default.nix
+        (import ./macos/default.nix {
+          hostname = "mbp21";
+          username = "fkoehler";
+          inherit pkgs;
+        })
       ];
     };
 

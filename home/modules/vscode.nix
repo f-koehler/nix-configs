@@ -90,6 +90,7 @@ lib.mkIf isWorkstation {
         "asvetliakov.vscode-neovim" = 1;
       };
       "git.autofetch" = true;
+      "git.path" = "${pkgs.git}/bin/git";
       "latex-workshop.latex.recipe.default" = "latexmk (lualatex)";
       "latex-workshop.hover.preview.mathjax.extensions" = ["braket"];
       "nix.enableLanguageServer" = true;

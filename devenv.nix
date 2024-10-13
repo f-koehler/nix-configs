@@ -3,14 +3,40 @@
   env.GREET = "devenv";
 
   # https://devenv.sh/packages/
-  packages = [pkgs.git];
+  packages = with pkgs; [
+    fastfetch
+    git
+  ];
 
   # https://devenv.sh/scripts/
-  scripts.hello.exec = "echo hello from $GREET";
+  scripts = {
+    refresh.exec = ''
+      nix flake update
+      devenv update
+    '';
+    rebuild.exec = ''
+      if [ "$(uname)" == "Darwin" ]; then
+        nix run nix-darwin -- switch --flake .
+        nix run home-manager -- switch --flake .
+      else
+        nix run nh -- os switch .
+        nix run nh -- home switch .
+      fi
+    '';
+  };
 
   enterShell = ''
-    hello
-    git --version
+    ${pkgs.fastfetch}/bin/fastfetch
+
+    # Custom greeting message with color
+    echo -e "\033[1;32mWelcome to the development environment, Fabian!\033[0m"
+
+    # Display two commonly used commands with color
+    echo ""
+    echo -e "\033[1;34mUseful commands:\033[0m"
+    echo -e "\033[1;36m  1. refresh  - \033[0m\033[0;33m🔄 Updates nix flake & devenv\033[0m"
+    echo -e "\033[1;36m  2. rebuild  - \033[0m\033[0;33m🏗️  Rebuilds and switches system and user config\033[0m"
+    echo ""
   '';
 
   # https://devenv.sh/tests/

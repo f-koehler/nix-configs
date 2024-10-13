@@ -55,9 +55,9 @@
           clangd.enable = isWorkstation;
           cmake.enable = isWorkstation;
           gopls.enable = isWorkstation;
-          nil-ls.enable = true;
+          nil_ls.enable = true;
           pyright.enable = isWorkstation;
-          rust-analyzer = {
+          rust_analyzer = {
             enable = isWorkstation;
             installCargo = false;
             installRustc = false;
@@ -101,7 +101,6 @@
         enable = true;
         settings = {
           auto_close = true;
-          icons = true;
         };
       };
       web-devicons = {

@@ -112,10 +112,14 @@
     enable = true;
     onActivation.cleanup = "zap";
     casks = [
+      "chatgpt"
+      "digikam"
       "docker"
       "nextcloud"
       "obsidian"
+      "protonmail-bridge"
       "spotify"
+      "thunderbird"
     ];
     masApps = {
       "Magnet" = 441258766;

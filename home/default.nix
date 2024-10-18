@@ -118,6 +118,7 @@ in {
       pkgs.htop
       pkgs.cascadia-code
       pkgs.devenv
+      pkgs.fd
 
       pkgs.nil
       inputs.alejandra.defaultPackage.${system}
@@ -159,6 +160,7 @@ in {
   programs = {
     bash.enable = true;
     bat.enable = true;
+    fd.enable = true;
     password-store.enable = true;
 
     # Let Home Manager install and manage itself.

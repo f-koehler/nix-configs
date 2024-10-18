@@ -11,6 +11,7 @@
     colorschemes.catppuccin.enable = true;
     globals.mapleader = " ";
     editorconfig.enable = true;
+    clipboard.providers.wl-copy.enable = true;
     plugins = {
       copilot-cmp.enable = isWorkstation;
       copilot-lua = {

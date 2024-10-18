@@ -133,16 +133,31 @@
     ];
     keymaps = [
       {
-        action = "lua vim.lsp.buf.definition()";
+        action = ":lua vim.lsp.buf.definition()<CR>";
         key = "gd";
         mode = "n";
+        options = {
+          silent = true;
+          desc = "Go to definition.";
+        };
       }
       {
-        action = "lua vim.lsp.buf.declaration()";
+        action = ":lua vim.lsp.buf.declaration()<CR>";
         key = "gD";
         mode = "n";
+        options = {
+          silent = true;
+          desc = "Go to declaration.";
+        };
       }
     ];
+    performance = {
+      byteCompileLua = {
+        enable = true;
+        initLua = true;
+      };
+      combinePlugins.enable = true;
+    };
     extraPlugins = [
       (pkgs.vimUtils.buildVimPlugin {
         name = "neotest-ctest";

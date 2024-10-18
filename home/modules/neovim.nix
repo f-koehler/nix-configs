@@ -11,6 +11,7 @@
     colorschemes.catppuccin.enable = true;
     globals.mapleader = " ";
     editorconfig.enable = true;
+    clipboard.providers.wl-copy.enable = true;
     plugins = {
       copilot-cmp.enable = isWorkstation;
       copilot-lua = {
@@ -111,6 +112,13 @@
         enable = true;
         settings.color_icons = true;
       };
+      which-key = {
+        enable = true;
+        settings = {
+          expand = 1;
+          show_keys = true;
+        };
+      };
     };
     opts = {
       number = true;
@@ -130,16 +138,31 @@
     ];
     keymaps = [
       {
-        action = "lua vim.lsp.buf.definition()";
+        action = ":lua vim.lsp.buf.definition()<CR>";
         key = "gd";
         mode = "n";
+        options = {
+          silent = true;
+          desc = "Go to definition.";
+        };
       }
       {
-        action = "lua vim.lsp.buf.declaration()";
+        action = ":lua vim.lsp.buf.declaration()<CR>";
         key = "gD";
         mode = "n";
+        options = {
+          silent = true;
+          desc = "Go to declaration.";
+        };
       }
     ];
+    performance = {
+      byteCompileLua = {
+        enable = true;
+        initLua = true;
+      };
+      combinePlugins.enable = true;
+    };
     extraPlugins = [
       (pkgs.vimUtils.buildVimPlugin {
         name = "neotest-ctest";

@@ -96,6 +96,7 @@ in {
       # awscli2
       # neovim
       pkgs.nh
+      pkgs.git
       pkgs.age
       pkgs.bat
       pkgs.du-dust

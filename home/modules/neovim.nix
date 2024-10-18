@@ -107,6 +107,13 @@
         enable = true;
         settings.color_icons = true;
       };
+      which-key = {
+        enable = true;
+        settings = {
+          expand = 1;
+          show_keys = true;
+        };
+      };
     };
     opts = {
       number = true;

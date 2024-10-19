@@ -88,7 +88,7 @@
   };
   nix = {
     gc.automatic = true;
-    optimise.automatic = true;
+    # optimise.automatic = true; # relevant issue: https://github.com/NixOS/nix/issues/7273
     settings = {
       trusted-users = ["root" "${username}"];
       auto-optimise-store = true;

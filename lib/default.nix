@@ -34,6 +34,24 @@
   mkNixOS = args:
     lib.nixosSystem (mkNixOSConfig args);
 
+  mkDarwin = {
+    hostname,
+    username,
+    system ? "aarch64-darwin",
+    ...
+  }:
+    inputs.nix-darwin.lib.darwinSystem rec {
+      inherit system;
+      pkgs = inputs.nixpkgs.legacyPackages.${system};
+      modules = [
+        inputs.mac-app-util.darwinModules.default
+        inputs.nix-index-database.darwinModules.nix-index
+        (import ../macos {
+          inherit pkgs hostname username;
+        })
+      ];
+    };
+
   mkNixOSImage = {
     system ? "x86_64-linux",
     format,
@@ -75,4 +93,5 @@ in {
   inherit mkNixOSConfig;
   inherit mkNixOSImage;
   inherit mkHome;
+  inherit mkDarwin;
 }

@@ -107,18 +107,8 @@
       "homeserver" = mylib.mkNixOS config-homeserver;
     };
 
-    darwinConfigurations."mbp21" = inputs.nix-darwin.lib.darwinSystem rec {
-      system = "aarch64-darwin";
-      pkgs = inputs.nixpkgs.legacyPackages.${system};
-      modules = [
-        inputs.mac-app-util.darwinModules.default
-        inputs.nix-index-database.darwinModules.nix-index
-        (import ./macos/default.nix {
-          hostname = "mbp21";
-          username = "fkoehler";
-          inherit pkgs;
-        })
-      ];
+    darwinConfigurations = {
+      "mbp21" = mylib.mkDarwin config-mbp21;
     };
 
     packages.x86_64-linux = {

@@ -9,7 +9,6 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    telegram-desktop
   ];
 
   system = {
@@ -119,6 +118,7 @@
       "obsidian"
       "protonmail-bridge"
       "spotify"
+      "telegram"
       "thunderbird"
     ];
     masApps = {

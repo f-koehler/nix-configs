@@ -112,7 +112,7 @@
     onActivation.cleanup = "zap";
     casks = [
       "chatgpt"
-      "digikam"
+      # "digikam" currently using 8.5.0 prebuild for native M1 support and improved ML features
       "docker"
       "nextcloud"
       "obsidian"

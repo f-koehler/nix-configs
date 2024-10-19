@@ -120,6 +120,7 @@ in {
       pkgs.cascadia-code
       pkgs.devenv
       pkgs.fd
+      pkgs.comma
 
       pkgs.nil
       inputs.alejandra.defaultPackage.${system}

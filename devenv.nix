@@ -19,8 +19,8 @@
         nix run nix-darwin -- switch --flake .
         nix run home-manager -- switch --flake .
       else
-        nix run nh -- os switch .
-        nix run nh -- home switch .
+        nix-shell -p nh --run "nh os boot ."
+        nix-shell -p nh --run "nh home switch ."
       fi
     '';
   };

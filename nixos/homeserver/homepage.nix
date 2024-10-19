@@ -9,6 +9,7 @@ in {
       "services/navidrome/salt" = {};
       "services/nextcloud/apiKey" = {};
       "services/paperless/apiKey" = {};
+      "services/forgejo/apiKey" = {};
     };
     templates."homepage-dashboard.env" = {
       content = ''
@@ -18,6 +19,7 @@ in {
         HOMEPAGE_VAR_NAVIDROME_SALT=${config.sops.placeholder."services/navidrome/salt"}
         HOMEPAGE_VAR_NEXTCLOUD_API_KEY=${config.sops.placeholder."services/nextcloud/apiKey"}
         HOMEPAGE_VAR_PAPERLESS_API_KEY=${config.sops.placeholder."services/paperless/apiKey"}
+        HOMEPAGE_VAR_FORGEJO_API_KEY=${config.sops.placeholder."services/forgejo/apiKey"}
       '';
     };
   };
@@ -54,6 +56,7 @@ in {
       paperlessUrl = "https://docs.fkoehler.xyz";
       tinymediamanagerUrl = "https://tinymediamanager.fkoehler.xyz";
       invidiousUrl = "https://youtube.fkoehler.xyz";
+      forgejoUrl = "https://git.fkoehler.xyz";
     in [
       {
         "Media" = [
@@ -133,6 +136,18 @@ in {
                 type = "paperlessngx";
                 url = paperlessUrl;
                 key = "{{HOMEPAGE_VAR_PAPERLESS_API_KEY}}";
+              };
+            };
+          }
+          {
+            "Forgejo" = {
+              icon = "forgejo.svg";
+              href = forgejoUrl;
+              description = "Git";
+              widget = {
+                type = "gitea";
+                url = forgejoUrl;
+                key = "{{HOMEPAGE_VAR_FORGEJO_API_KEY}}";
               };
             };
           }

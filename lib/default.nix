@@ -66,6 +66,7 @@
           inputs.plasma-manager.homeManagerModules.plasma-manager
           inputs.catppuccin.homeManagerModules.catppuccin
           inputs.nixvim.homeManagerModules.nixvim
+          inputs.mac-app-util.homeManagerModules.default
         ]
         ++ (lib.optionals (pkgs.stdenv.isLinux && isWorkstation) [../flatpak.nix]);
     };

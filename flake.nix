@@ -11,6 +11,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    mac-app-util.url = "github:hraban/mac-app-util";
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -109,6 +111,7 @@
       system = "aarch64-darwin";
       pkgs = inputs.nixpkgs.legacyPackages.${system};
       modules = [
+        inputs.mac-app-util.darwinModules.default
         inputs.nix-index-database.darwinModules.nix-index
         (import ./macos/default.nix {
           hostname = "mbp21";

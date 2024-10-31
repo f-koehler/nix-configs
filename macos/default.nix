@@ -117,12 +117,16 @@
       "chatgpt"
       # "digikam" currently using 8.5.0 prebuild for native M1 support and improved ML features
       "docker"
+      "libreoffice"
+      "microsoft-teams"
       "nextcloud"
       "obsidian"
       "protonmail-bridge"
+      "qgis"
       "spotify"
       "telegram"
       "thunderbird"
+      "whatsapp"
     ];
     masApps = {
       "Magnet" = 441258766;

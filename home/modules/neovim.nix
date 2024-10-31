@@ -84,7 +84,7 @@
       nvim-tree = {
         enable = true;
         autoClose = true;
-        openOnSetup = true;
+        openOnSetup = false;
         hijackCursor = true;
       };
       overseer.enable = true;

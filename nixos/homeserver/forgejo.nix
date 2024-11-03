@@ -55,4 +55,12 @@ in {
       };
     };
   };
+
+  fileSystems = {
+    "/var/lib/forgejo" = {
+      device = "rpool/forgejo";
+      fsType = "zfs";
+      neededForBoot = true;
+    };
+  };
 }

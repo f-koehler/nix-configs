@@ -63,6 +63,9 @@ lib.mkIf isWorkstation {
       "[python]" = {
         "editor.defaultFormatter" = "charliermarsh.ruff";
       };
+      "[json]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
 
       "C/C++ Include Guard.Macro Type" = "Filepath";
       "C/C++ Include Guard.Path Skip" = 1;

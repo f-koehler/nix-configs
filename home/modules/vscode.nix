@@ -51,6 +51,7 @@ lib.mkIf isWorkstation {
       pkgs.vscode-marketplace.catppuccin.catppuccin-vsc
       pkgs.vscode-marketplace.catppuccin.catppuccin-vsc-icons
       #pkgs.vscode-marketplace.llvm-vs-code-extensions.vscode-clangd
+      pkgs.vscode-marketplace.myriad-dreamin.tinymist
     ];
     # ++ [
     #   # pkgs.vscode-extensions.ms-vscode.cmake-tools
@@ -65,6 +66,9 @@ lib.mkIf isWorkstation {
       };
       "[json]" = {
         "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
+      "[typst]" = {
+        "editor.formatOnSave" = true;
       };
 
       "C/C++ Include Guard.Macro Type" = "Filepath";
@@ -113,6 +117,7 @@ lib.mkIf isWorkstation {
       "terminal.integrated.fontSize" = 12;
       "terminal.integrated.persistentSessionScrollback" = 10000;
       "terminal.integrated.scrollback" = 100000;
+      "tinymist.formatterMode" = "typstyle";
       "vsicons.dontShowNewVersionMessage" = true;
       "window.titleBarStyle" = "custom";
       "workbench.iconTheme" = "catppuccin-mocha";

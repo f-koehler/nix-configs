@@ -13,6 +13,7 @@ _: {
       "md.obsidian.Obsidian"
       "org.fkoehler.KTailctl"
       "us.zoom.Zoom"
+      "com.bitwarden.desktop"
     ];
   };
 }

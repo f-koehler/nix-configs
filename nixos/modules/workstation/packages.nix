@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   environment = {
     systemPackages = with pkgs; [
-      bitwarden-desktop
+      # bitwarden-desktop
       chromium
       distrobox
       evince
@@ -29,6 +29,8 @@
       exiftool
       digikam
       ktorrent
+      vistafonts
+      corefonts
     ];
   };
 }

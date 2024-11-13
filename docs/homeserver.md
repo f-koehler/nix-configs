@@ -2,6 +2,15 @@
 
 ## Hardware
 
+| Component           | Model                            |
+| ------------------- | -------------------------------- |
+| System              | Geekom NucBox G3                 |
+| CPU                 | Intel N100 (4 cores, no HT)      |
+| RAM                 | 32 GB                            |
+| Disk `/`            | Kioxia 2TB PCIe 4.0 x4 SSD (ZFS) |
+| Disk `/media/tank0` | Seagate Exos 18 TB via USB (ZFS) |
+| Disk `/media/tank1` | Seagate Exos 18 TB via USB (ZFS) |
+
 ## Hosted Services
 
 | :name_badge: Name | :snowflake: Module                                                 | :link: Links                                                                                                                                                                       | :speech_balloon: Purpose                                              |

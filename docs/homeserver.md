@@ -52,7 +52,7 @@ sudo -u nextcloud -g nextcloud nextcloud-occ <args>
 The paperless management utilities (see [Paperless documentation](https://docs.paperless-ngx.com/administration/#management-commands)) can be run via:
 
 ```bash
-sudo -u paperless -g paperless /var/lib/paperless/paperless-manage document_exporter <command> <args>
+sudo -u paperless -g paperless /var/lib/paperless/paperless-manage <program> <args>
 ```
 
 Example:
@@ -62,6 +62,8 @@ sudo -u paperless -g paperless /var/lib/paperless/paperless-manage document_sani
 ```
 
 ## ZFS Filesystem
+
+Each self-hosted service that needs persistent storage on disk gets its own ZFS dataset `rpool/<service>` which is mounted at the corresponding location, typically `/var/lib/<service>`.
 
 ### `rpool` Datasets
 
@@ -84,6 +86,4 @@ fileSystems."/<mountpoint>" = {
 
 #### Backup Dataset
 
-```bash
-sudo zfs create -o canmount=on <bool>/backups/<name>
-```
+The backup datasets `tankX/backups<service>` are created automatically by Syncoid.

@@ -1,28 +1,9 @@
-# Images
+# Nix Configurations
 
-## VM Image for Downloader
+## Hosts
 
-```shell
-nix run github:nix-community/nixos-generators -- --flake ".#downloader" -f qcow
-```
-
-# Firefox Settings
-
-## GUI
-
-- Enable `General > Always ask you where to save files`
-- Enable `General > Play DRM-controlled content`
-
-## `about:config`
-
-### Compact Mode
-
-`browser.compactmode.show = true`
-
-Right-click on the toolbar and select `Customize Toolbar...`. At the bottom under `Density` select `Compact`.
-
-## Environment Variables
-
-### Wayland Mode
-
-`MOZ_ENABLE_WAYLAND=1`
+| :computer: Name                                         | :floppy_disk: OS  | :speech_balloon: Comment     |
+| ------------------------------------------------------- | ----------------- | ---------------------------- |
+| `fkt14`                                                 | :snowflake: NixOS | Work laptop at SpeQtral      |
+| `homeserver` ([:closed_book: docs](docs/homeserver.md)) | :snowflake: NixOS | Home server for self-hosting |
+| `mbp21` ([:closed_book: docs](docs/mbp21.md))           | :apple: Mac OS    | Personal laptop              |

@@ -48,6 +48,10 @@
         "com.apple.TimeMachine".DoNotOfferNewDisksForBackup = true;
         # Turn on app auto-update
         "com.apple.commerce".AutoUpdate = true;
+
+        com.microsoft.VSCode = {
+          ApplePressAndHoldEnabled = false;
+        };
       };
       dock = {
         autohide = true;
@@ -107,7 +111,6 @@
   services = {
     activate-system.enable = true;
     nix-daemon.enable = true;
-    tailscale.enable = true;
   };
 
   homebrew = {
@@ -124,7 +127,10 @@
       "protonmail-bridge"
       "qgis"
       "spotify"
+      "superproductivity"
+      "submariner"
       "telegram"
+      "transmission"
       "thunderbird"
       "whatsapp"
     ];

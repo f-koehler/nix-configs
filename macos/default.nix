@@ -94,10 +94,9 @@
   };
   nix = {
     gc.automatic = true;
-    # optimise.automatic = true; # relevant issue: https://github.com/NixOS/nix/issues/7273
+    optimise.automatic = true; # relevant issue: https://github.com/NixOS/nix/issues/7273
     settings = {
       trusted-users = ["root" "${username}"];
-      auto-optimise-store = true;
       experimental-features = [
         "nix-command"
         "flakes"
@@ -109,7 +108,6 @@
   };
   security.pam.enableSudoTouchIdAuth = true;
   services = {
-    activate-system.enable = true;
     nix-daemon.enable = true;
   };
 

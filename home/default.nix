@@ -122,6 +122,7 @@ in {
       pkgs.devenv
       pkgs.fd
       pkgs.comma
+      pkgs.typst
 
       pkgs.nil
       inputs.alejandra.defaultPackage.${system}

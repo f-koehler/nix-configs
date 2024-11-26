@@ -10,6 +10,7 @@
     ./gickup.nix
     ./hardware.nix
     ./homepage.nix
+    # ./immich.nix
     ./invidious.nix
     ./jellyfin.nix
     ./navidrome.nix

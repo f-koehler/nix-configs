@@ -126,7 +126,7 @@ lib.mkIf isWorkstation {
         "homeserver" = "linux";
         "homeserver.corgi-dojo.ts.net" = "linux";
       };
-      "vscode-neovim.neovimInitVimPaths.linux" = "/dev/null";
+      "vscode-neovim.neovimInitVimPaths.linux" = "/home/fkoehler/.config/nvim/vscode.lua";
     };
   };
 }

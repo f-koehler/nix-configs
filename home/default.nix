@@ -68,7 +68,6 @@ in {
   };
 
   nix = {
-    optimise.automatic = true;
     settings = {
       auto-optimise-store = true;
       experimental-features = ["nix-command" "flakes"];
@@ -123,15 +122,10 @@ in {
       pkgs.fd
       pkgs.comma
       pkgs.typst
+      pkgs.nerd-fonts.hack
 
       pkgs.nil
       inputs.alejandra.defaultPackage.${system}
-
-      # It is sometimes useful to fine-tune packages, for example, by applying
-      # overrides. You can do that directly here, just don't forget the
-      # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-      # fonts?
-      (pkgs.nerdfonts.override {fonts = ["Hack"];})
 
       # # You can also create simple shell scripts directly inside your
       # # configuration. For example, this adds a command 'my-hello' to your

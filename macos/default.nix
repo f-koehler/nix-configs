@@ -59,6 +59,7 @@
         persistent-apps = [
           "/Users/${username}/Applications/Home Manager Apps/Visual Studio Code.app"
           "/Users/${username}/Applications/Home Manager Apps/Wezterm.app"
+          "/Users/${username}/Applications/Home Manager Apps/Zed.app"
           "/Applications/Safari.app"
         ];
         tilesize = 32;
@@ -125,12 +126,15 @@
       "protonmail-bridge"
       "qgis"
       "spotify"
+      "steam"
       "superproductivity"
       "submariner"
       "telegram"
       "transmission"
       "thunderbird"
+      "utm"
       "whatsapp"
+      "zotero"
     ];
     masApps = {
       "Magnet" = 441258766;

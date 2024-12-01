@@ -72,6 +72,7 @@ in {
       };
       syncoid = {
         enable = true;
+        interval = "daily";
         commonArgs = ["--no-sync-snap"];
         commands = lib.mkMerge (
           (map (service: (mkSyncoidCommand {

@@ -40,6 +40,7 @@ in {
       modules/vscode.nix
       modules/wezterm.nix
       modules/yazi.nix
+      modules/zed.nix
       modules/zellij.nix
       modules/zoxide.nix
       modules/zsh.nix

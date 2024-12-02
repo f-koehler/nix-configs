@@ -2,7 +2,14 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
-    nixos-hardware .url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
 
     catppuccin.url = "github:catppuccin/nix";
 
@@ -105,6 +112,20 @@
     nixosConfigurations = {
       "fkt14" = mylib.mkNixOS config-fkt14;
       "homeserver" = mylib.mkNixOS config-homeserver;
+      "vps" = inputs.nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          inputs.disko.nixosModules.disko
+          ./nixos/vps
+          inputs.nixos-facter-modules.nixosModules.facter
+          {
+            config.facter.reportPath =
+              if builtins.pathExists ./nixos/vps/facter.json
+              then ./nixos/vps/facter.json
+              else throw "Have you forgotten to run nixos-anywhere with `--generate-hardware-config nixos-facter ./facter.json`?";
+          }
+        ];
+      };
     };
 
     darwinConfigurations = {

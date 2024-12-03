@@ -1,6 +1,6 @@
-_: {
+{isWorkstation, ...}: {
   programs.zed-editor = {
-    enable = true;
+    enable = isWorkstation;
     extensions = ["nix"];
     userSettings = {
       buffer_font_family = "Cascadia Code NF";

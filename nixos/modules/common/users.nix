@@ -1,4 +1,6 @@
 {
+  lib,
+  config,
   pkgs,
   username,
   ...
@@ -15,7 +17,10 @@ in {
         isNormalUser = true;
         description = "Fabian Koehler";
         group = "${username}";
-        extraGroups = ["wheel"];
+        extraGroups =
+          ["wheel"]
+          ++ (lib.optional config.virtualisation.libvirtd.enable) "libvirtd"
+          ++ (lib.optional config.networking.networkmanager.enable) "networkmanager";
         shell = pkgs.zsh;
         openssh.authorizedKeys.keys = sshKeys;
       };
@@ -24,5 +29,7 @@ in {
       };
     };
   };
-  programs.zsh.enable = true;
+  programs = {
+    zsh.enable = true;
+  };
 }

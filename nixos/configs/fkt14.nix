@@ -39,10 +39,6 @@
     groups."${username}" = {};
     users."${username}" = {
       linger = true;
-      extraGroups = [
-        "libvirtd"
-        "networkmanager"
-      ];
       packages = with pkgs; [
         cachix
         cmake
@@ -66,7 +62,6 @@
     };
   };
   programs = {
-    virt-manager.enable = true;
     xfconf.enable = true;
   };
 

@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  isWorkstation,
+  ...
+}: {
   virtualisation.libvirtd = {
     enable = true;
     qemu = {
@@ -25,4 +30,5 @@
   environment.systemPackages = with pkgs; [
     virtiofsd
   ];
+  programs.virt-manager.enable = isWorkstation && config.virtualisation.libvirtd.enable;
 }

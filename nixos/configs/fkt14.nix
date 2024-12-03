@@ -4,7 +4,6 @@
   ...
 }: {
   imports = [
-    ./hardware.nix
   ];
 
   boot = {
@@ -35,32 +34,15 @@
     openFirewall = true;
   };
 
-  fonts = {
-    enableDefaultPackages = true;
-    packages = with pkgs; [
-      liberation_ttf
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-emoji
-      source-sans-pro
-      ubuntu-sans
-    ];
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
     groups."${username}" = {};
     users."${username}" = {
-      isNormalUser = true;
       linger = true;
-      description = "Fabian Koehler";
-      group = "${username}";
       extraGroups = [
         "libvirtd"
         "networkmanager"
-        "wheel"
       ];
-      shell = pkgs.fish;
       packages = with pkgs; [
         cachix
         cmake

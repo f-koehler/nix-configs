@@ -18,6 +18,8 @@
     };
     modules =
       [
+        inputs.disko.nixosModules.disko
+        inputs.nixos-facter-modules.nixosModules.facter
         inputs.sops-nix.nixosModules.sops
         inputs.catppuccin.nixosModules.catppuccin
         ../nixos

@@ -4,27 +4,8 @@
   ...
 }: {
   imports = [
-    ./audiobookshelf.nix
-    # ./digikam-db.nix
-    ./forgejo.nix
-    ./gickup.nix
-    ./hardware.nix
-    ./homepage.nix
-    # ./immich.nix
-    ./invidious.nix
-    ./jellyfin.nix
-    ./navidrome.nix
-    ./nextcloud.nix
-    ./nginx.nix
-    ./paperless.nix
-    ./postgresql.nix
-    ./samba.nix
-    ./searx.nix
-    ./tinymediamanager.nix
-    # ./uptime-kuma.nix
-    ./zfs-snapshots.nix
+    ./homeserver
   ];
-
   fileSystems = {
     "/" = {
       device = "rpool/root";
@@ -65,17 +46,13 @@
       "${username}" = {};
     };
     users."${username}" = {
-      isNormalUser = true;
-      group = "${username}";
       extraGroups = [
-        "wheel"
         "media"
         "libvirtd"
       ];
       packages = with pkgs; [
         tmux
       ];
-      shell = pkgs.fish;
     };
   };
   programs.fish.enable = true;

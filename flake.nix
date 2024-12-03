@@ -96,44 +96,28 @@
       isWorkstation = false;
       isTrusted = true;
     };
-    config-downloader = {
-      hostname = "downloader";
-      username = "downloader";
+    config-vps = {
+      hostname = "vps";
+      username = "fkoehler";
       isWorkstation = false;
-      isTrusted = false;
+      isTrusted = true;
     };
   in {
     homeConfigurations = {
       "fkoehler@fkt14" = mylib.mkHome config-fkt14;
       "fkoehler@mbp21" = mylib.mkHome config-mbp21;
       "fkoehler@homeserver" = mylib.mkHome config-homeserver;
+      "fkoehler@vps" = mylib.mkHome config-vps;
     };
 
     nixosConfigurations = {
       "fkt14" = mylib.mkNixOS config-fkt14;
       "homeserver" = mylib.mkNixOS config-homeserver;
-      "vps" = inputs.nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          inputs.disko.nixosModules.disko
-          ./nixos/vps
-          inputs.nixos-facter-modules.nixosModules.facter
-          {
-            config.facter.reportPath =
-              if builtins.pathExists ./nixos/vps/facter.json
-              then ./nixos/vps/facter.json
-              else throw "Have you forgotten to run nixos-anywhere with `--generate-hardware-config nixos-facter ./facter.json`?";
-          }
-        ];
-      };
+      "vps" = mylib.mkNixOS config-vps;
     };
 
     darwinConfigurations = {
       "mbp21" = mylib.mkDarwin config-mbp21;
-    };
-
-    packages.x86_64-linux = {
-      downloader-qcow = mylib.mkNixOSImage ({format = "qcow";} // config-downloader);
     };
 
     overlays = import ./overlays {inherit inputs;};

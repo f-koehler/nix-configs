@@ -14,6 +14,7 @@ _: {
     ./podman.nix
     ./smartd.nix
     ./ssh.nix
+    ./user.nix
     ./tailscale.nix
   ];
 }

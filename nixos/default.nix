@@ -16,11 +16,6 @@
   networking.hostName = hostname;
   sops.defaultSopsFile = ../secrets/${hostname}.yaml;
 
-  facter.reportPath =
-    if builtins.pathExists ../nixos/hardware/${hostname}.json
-    then ./hardware/${hostname}.json
-    else throw "Missing facter.json for host ${hostname}";
-
   catppuccin = {
     enable = true;
     flavor = "mocha";

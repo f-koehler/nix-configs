@@ -1,5 +1,5 @@
 ```shell
-FLAKEREF=<flakeref> nix run github:nix-community/nixos-anywhere -- --build-on-remote --flake ".#$FLAKEREF" --generate-hardware-config nixos-facter nixos/$FLAKEREF/facter.json root@<HOST>
+HOST=<HOST> nix run github:nix-community/nixos-anywhere -- --build-on-remote --flake ".#$HOST" --generate-hardware-config nixos-generate-config ./nixos/hardware/$HOST.nix root@$HOST
 ```
 
 ```shell

@@ -2,6 +2,7 @@ _: {
   imports = [
     ./bluetooth.nix
     ./distrobox.nix
+    # ./hyprland.nix
     ./ios.nix
     ./packages.nix
     ./plasma.nix

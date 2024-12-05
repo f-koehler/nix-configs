@@ -11,6 +11,17 @@ lib.mkIf (isLinux && isWorkstation) {
     waybar
     rofi-wayland
   ];
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    Unit.Description = "polkit-gnome-authentication-agent-1";
+    Install.WantedBy = ["hyprland-session.target"];
+    Service = {
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
+    };
+  };
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = with pkgs.hyprlandPlugins; [
@@ -18,21 +29,17 @@ lib.mkIf (isLinux && isWorkstation) {
     ];
     settings = lib.mkIf isLinux {
       "$mod" = "SUPER";
-      "exec-once" = [
-        "${pkgs.swaynotificationcenter}/bin/swaync"
-        "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
-        "${pkgs.waybar}/bin/waybar"
-      ];
       animations = {
         enabled = "yes";
       };
       bindl = [
-        ", switch:off:Lid Switch,exec,hyprctl keyword monitor \"eDP-1, 1920x1080@60, 0x0, 1\""
-        ", switch:on:Lid Switch,exec,hyprctl keyword monitor \"eDP-1, disable\""
+        ", XF86AudioPlay, exec, ${lib.getExe pkgs.playerctl} play-pause"
+        ", XF86AudioPrev, exec, ${lib.getExe pkgs.playerctl} previous"
+        ", XF86AudioNext, exec, ${lib.getExe pkgs.playerctl} next"
       ];
       bind = [
-        "$mod, return, exec, ${pkgs.wezterm}/bin/wezterm"
-        "$mod, d, exec, ${pkgs.rofi-wayland}/bin/rofi -show drun"
+        "$mod, return, exec, ${lib.getExe pkgs.wezterm}"
+        "$mod, d, exec, ${lib.getExe pkgs.rofi-wayland} -show drun"
         "$mod+SHIFT, q, hy3:killactive"
         "$mod+SHIFT, e, exit"
 
@@ -82,16 +89,6 @@ lib.mkIf (isLinux && isWorkstation) {
         "$mod, 8, workspace, 08"
         "$mod, 9, workspace, 09"
         "$mod, 0, workspace, 10"
-        "$mod, F1, workspace, 11"
-        "$mod, F2, workspace, 12"
-        "$mod, F3, workspace, 13"
-        "$mod, F4, workspace, 14"
-        "$mod, F5, workspace, 15"
-        "$mod, F6, workspace, 16"
-        "$mod, F7, workspace, 17"
-        "$mod, F8, workspace, 18"
-        "$mod, F9, workspace, 19"
-        "$mod, F10, workspace, 20"
 
         "$mod+SHIFT, 1, hy3:movetoworkspace, 01"
         "$mod+SHIFT, 2, hy3:movetoworkspace, 02"
@@ -103,16 +100,6 @@ lib.mkIf (isLinux && isWorkstation) {
         "$mod+SHIFT, 8, hy3:movetoworkspace, 08"
         "$mod+SHIFT, 9, hy3:movetoworkspace, 09"
         "$mod+SHIFT, 0, hy3:movetoworkspace, 10"
-        "$mod+SHIFT, F1, hy3:movetoworkspace, 11"
-        "$mod+SHIFT, F2, hy3:movetoworkspace, 12"
-        "$mod+SHIFT, F3, hy3:movetoworkspace, 13"
-        "$mod+SHIFT, F4, hy3:movetoworkspace, 14"
-        "$mod+SHIFT, F5, hy3:movetoworkspace, 15"
-        "$mod+SHIFT, F6, hy3:movetoworkspace, 16"
-        "$mod+SHIFT, F7, hy3:movetoworkspace, 17"
-        "$mod+SHIFT, F8, hy3:movetoworkspace, 18"
-        "$mod+SHIFT, F9, hy3:movetoworkspace, 19"
-        "$mod+SHIFT, F10, hy3:movetoworkspace, 20"
 
         "$mod+CONTROL, 1, hy3:focustab, index, 01"
         "$mod+CONTROL, 2, hy3:focustab, index, 02"

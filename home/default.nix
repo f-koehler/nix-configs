@@ -30,6 +30,7 @@ in {
       modules/gh.nix
       modules/git.nix
       modules/gpg.nix
+      # modules/hyprland
       modules/neovim.nix
       modules/plasma.nix
       modules/ssh.nix

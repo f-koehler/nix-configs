@@ -4,6 +4,8 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    deploy-rs.url = "github:serokell/deploy-rs";
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -112,13 +114,37 @@
 
     nixosConfigurations = {
       "fkt14" = mylib.mkNixOS config-fkt14;
-      "homeserver" = mylib.mkNixOS config-homeserver;
+      # "homeserver" = mylib.mkNixOS config-homeserver;
       "vps" = mylib.mkNixOS config-vps;
     };
 
     darwinConfigurations = {
       "mbp21" = mylib.mkDarwin config-mbp21;
     };
+
+    deploy = {
+      remoteBuild = true;
+      nodes = {
+        # vps = {
+        #   profiles = {
+        #     system = {
+        #       path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.vps;
+        #     };
+        #   };
+        # };
+        mpb21 = {
+          profiles = {
+            system = {
+              user = "fkoehler";
+              path = inputs.deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.mbp21;
+              hostname = "mbp21";
+            };
+          };
+        };
+      };
+    };
+
+    # checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
 
     overlays = import ./overlays {inherit inputs;};
   };

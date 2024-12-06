@@ -9,12 +9,16 @@
   imports = [
     # ./waybar.nix
     ./swayosd.nix
+    ./swaync.nix
+    ./hyprlock.nix
   ];
   home.packages = [
     pkgs.swaynotificationcenter
     pkgs.waybar
     pkgs.rofi-wayland
+
     inputs.ashell.defaultPackage."${pkgs.system}"
+    pkgs.nerd-fonts.symbols-only
   ];
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     Unit.Description = "polkit-gnome-authentication-agent-1";
@@ -55,6 +59,12 @@
         ", XF86AudioPlay, exec, ${lib.getExe pkgs.playerctl} play-pause"
         ", XF86AudioPrev, exec, ${lib.getExe pkgs.playerctl} previous"
         ", XF86AudioNext, exec, ${lib.getExe pkgs.playerctl} next"
+      ];
+      binde = [
+        "$mod, comma, resizeactive, -10 0"
+        "$mod, period, resizeactive, 10 0"
+        "$mod, less, resizeactive, 0 -10"
+        "$mod, greater, resizeactive, 0 10"
       ];
       bind = [
         "$mod, return, exec, ${lib.getExe pkgs.wezterm}"
@@ -130,6 +140,14 @@
         "$mod+CONTROL, 8, hy3:focustab, index, 08"
         "$mod+CONTROL, 9, hy3:focustab, index, 09"
         "$mod+CONTROL, 0, hy3:focustab, index, 10"
+
+        "$mod, f, fullscreen, 1"
+        "$mod+SHIFT, SPACE, togglefloating"
+
+        "$mod, v, hy3:makegroup, v"
+        "$mod, h, hy3:makegroup, h"
+        "$mod, w, hy3:changegroup, tab"
+        "$mod, e, hy3:changegroup, untab"
       ];
       decoration = {
         rounding = 5;
@@ -145,6 +163,14 @@
       };
       general = {
         layout = "hy3";
+      };
+      input = {
+        follow_mouse = 2;
+      };
+      plugin = {
+        hy3 = {
+          no_gaps_when_only = 2;
+        };
       };
     };
   };

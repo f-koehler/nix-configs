@@ -1,3 +1,3 @@
 _: {
-  additions = final: _prev: import ../packages {pkgs = final;};
+  additions = final: _prev: import ../packages final.pkgs;
 }

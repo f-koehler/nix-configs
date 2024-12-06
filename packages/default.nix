@@ -1,4 +1,3 @@
-# {pkgs ? (import ./nixpkgs.nix) {}}: {
-#   # inshellisense = pkgs.callPackage ./inshellisense.nix {};
-# }
-_: {}
+pkgs: {
+  ashell = (pkgs.callPackage ./ashell.nix {}).out;
+}

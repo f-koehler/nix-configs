@@ -1,10 +1,6 @@
-{
-  isWorkstation,
-  isDarwin,
-  ...
-}: {
+{isDarwin, ...}: {
   programs.alacritty = {
-    enable = isWorkstation;
+    enable = true;
     settings = {
       font = {
         size =

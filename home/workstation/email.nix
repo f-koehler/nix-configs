@@ -2,11 +2,10 @@
   pkgs,
   lib,
   isLinux,
-  isWorkstation,
   ...
 }:
-lib.mkIf (isLinux && isWorkstation) {
-  accounts.email.accounts = lib.mkIf isWorkstation {
+lib.mkIf isLinux {
+  accounts.email.accounts = {
     "me@fkoehler.org" = {
       address = "me@fkoehler.org";
       imap = {

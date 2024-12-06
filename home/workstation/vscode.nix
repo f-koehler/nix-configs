@@ -1,11 +1,8 @@
 {
   pkgs,
-  lib,
   isDarwin,
-  isWorkstation,
   ...
-}:
-lib.mkIf isWorkstation {
+}: {
   home.packages = with pkgs; [
     ruff
     vscode

@@ -1,4 +1,9 @@
-_: {
+{
+  lib,
+  isLinux,
+  ...
+}:
+lib.mkIf isLinux {
   programs.plasma = {
     configFile = {
       kwinrc = {

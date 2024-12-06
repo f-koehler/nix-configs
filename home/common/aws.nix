@@ -1,8 +1,11 @@
 {
+  lib,
   pkgs,
   config,
+  isTrusted,
   ...
-}: {
+}:
+lib.mkIf isTrusted {
   sops.secrets = {
     "aws/key_id".path = "${config.home.homeDirectory}/.local/share/aws/key_id";
     "aws/key".path = "${config.home.homeDirectory}/.local/share/aws/key";

@@ -17,36 +17,9 @@ in {
     [
       inputs.nix-index-database.hmModules.nix-index
       inputs.sops-nix.homeManagerModules.sops
-      modules/alacritty.nix
-      modules/aliases.nix
-      modules/env.nix
-      modules/atuin.nix
-      modules/darwin.nix
-      modules/direnv.nix
-      modules/email.nix
-      modules/eza.nix
-      modules/fish.nix
-      modules/fzf.nix
-      modules/gh.nix
-      modules/git.nix
-      modules/gpg.nix
-      # modules/hyprland
-      modules/neovim.nix
-      modules/plasma.nix
-      modules/ssh.nix
-      modules/starship.nix
-      # modules/sway
-      modules/tealdeer.nix
-      modules/tmux.nix
-      modules/vscode.nix
-      modules/wezterm.nix
-      modules/yazi.nix
-      modules/zed.nix
-      modules/zellij.nix
-      modules/zoxide.nix
-      modules/zsh.nix
+      ./common
     ]
-    ++ lib.optionals isTrusted [modules/aws.nix];
+    ++ lib.optional isWorkstation ./workstation;
 
   catppuccin = {
     enable = true;

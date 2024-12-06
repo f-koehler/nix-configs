@@ -1,10 +1,6 @@
-{
-  isWorkstation,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.wezterm = {
-    enable = isWorkstation;
+    enable = true;
     package = pkgs.wezterm;
     enableBashIntegration = true;
     enableZshIntegration = true;

@@ -1,15 +1,20 @@
 {
+  inputs,
   lib,
   pkgs,
-  isWorkstation,
+  config,
   isLinux,
   ...
-}:
-lib.mkIf (isLinux && isWorkstation) {
-  home.packages = with pkgs; [
-    swaynotificationcenter
-    waybar
-    rofi-wayland
+}: {
+  imports = [
+    # ./waybar.nix
+    ./swayosd.nix
+  ];
+  home.packages = [
+    pkgs.swaynotificationcenter
+    pkgs.waybar
+    pkgs.rofi-wayland
+    inputs.ashell.defaultPackage."${pkgs.system}"
   ];
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     Unit.Description = "polkit-gnome-authentication-agent-1";
@@ -24,10 +29,24 @@ lib.mkIf (isLinux && isWorkstation) {
   };
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd = {
+      enable = true;
+      enableXdgAutostart = true;
+      variables = ["--all"];
+    };
+    xwayland.enable = true;
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+      accent = "mauve";
+    };
     plugins = with pkgs.hyprlandPlugins; [
       hy3
     ];
     settings = lib.mkIf isLinux {
+      monitor = [
+        "eDP-1, 1920x1200@60Hz, auto, 1"
+      ];
       "$mod" = "SUPER";
       animations = {
         enabled = "yes";
@@ -123,15 +142,27 @@ lib.mkIf (isLinux && isWorkstation) {
           contrast = 0.8916;
           brightness = 0.8;
         };
-
-        drop_shadow = "yes";
-        shadow_range = 4;
-        shadow_render_power = 3;
-        # col.shadow = "rgba(1a1a1aee)"
       };
       general = {
         layout = "hy3";
       };
     };
+  };
+
+  xdg.portal = {
+    config = {
+      common = {
+        default = ["hyprland" "gtk"];
+        "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
+      };
+    };
+    configPackages = [config.wayland.windowManager.hyprland.package];
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-hyprland
+    ];
+    xdgOpenUsePortal = true;
   };
 }

@@ -119,7 +119,7 @@
 
     nixosConfigurations = {
       "fkt14" = mylib.mkNixOS config-fkt14;
-      # "homeserver" = mylib.mkNixOS config-homeserver;
+      "homeserver" = mylib.mkNixOS config-homeserver;
       "vps" = mylib.mkNixOS config-vps;
     };
 

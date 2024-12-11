@@ -10,11 +10,12 @@
     username,
     system ? "x86_64-linux",
     isWorkstation ? false,
+    isTrusted ? false,
     containerBackend ? "podman",
     ...
   }: {
     specialArgs = {
-      inherit inputs outputs hostname system username isWorkstation containerBackend stateVersion;
+      inherit inputs outputs hostname system username isWorkstation isTrusted containerBackend stateVersion;
     };
     modules =
       [
@@ -23,6 +24,14 @@
         inputs.sops-nix.nixosModules.sops
         inputs.catppuccin.nixosModules.catppuccin
         ../nixos
+
+        inputs.home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+          };
+        }
       ]
       ++ (lib.optionals isWorkstation [
         {

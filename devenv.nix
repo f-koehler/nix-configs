@@ -6,6 +6,7 @@
   packages = with pkgs; [
     fastfetch
     git
+    just
   ];
 
   # https://devenv.sh/scripts/

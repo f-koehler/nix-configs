@@ -71,6 +71,8 @@
       cifs-utils
       xwaylandvideobridge
       boost
+      ntfs3g
+      exfatprogs
     ];
   };
 }

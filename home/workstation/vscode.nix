@@ -21,8 +21,6 @@
       pkgs.vscode-marketplace.editorconfig.editorconfig
       pkgs.vscode-marketplace.efanzh.graphviz-preview
       pkgs.vscode-marketplace.esbenp.prettier-vscode
-      pkgs.vscode-marketplace.github.copilot
-      pkgs.vscode-marketplace.github.copilot-chat
       pkgs.vscode-marketplace.github.vscode-github-actions
       pkgs.vscode-marketplace.github.vscode-pull-request-github
       pkgs.vscode-marketplace.james-yu.latex-workshop
@@ -47,13 +45,9 @@
       pkgs.vscode-marketplace.rust-lang.rust-analyzer
       pkgs.vscode-marketplace.catppuccin.catppuccin-vsc
       pkgs.vscode-marketplace.catppuccin.catppuccin-vsc-icons
-      #pkgs.vscode-marketplace.llvm-vs-code-extensions.vscode-clangd
       pkgs.vscode-marketplace.myriad-dreamin.tinymist
+      pkgs.vscode-marketplace.codeium.codeium
     ];
-    # ++ [
-    #   # pkgs.vscode-extensions.ms-vscode.cmake-tools
-    #   # pkgs.vscode-extensions.ms-vscode.makefile-tools
-    # ];
     userSettings = {
       "[nix]" = {
         "editor.defaultFormatter" = "jnoortheen.nix-ide";

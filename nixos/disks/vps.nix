@@ -39,7 +39,7 @@
       rpool = {
         type = "zpool";
         rootFsOptions = {
-          "com.sun:auto-snapshot" = "true";
+          "com.sun:auto-snapshot" = "false";
         };
         mountpoint = "/";
       };

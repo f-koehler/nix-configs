@@ -26,8 +26,8 @@
   sops = {
     secrets = {
       "syncoid/ssh_key" = {
-        owner = config.services.syncoid.user;
-        group = config.services.syncoid.group;
+        inherit (config.services.syncoid) user;
+        inherit (config.services.syncoid) group;
       };
     };
   };

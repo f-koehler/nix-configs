@@ -59,7 +59,7 @@ in {
   fonts.fontconfig.enable = true;
   home = {
     inherit stateVersion;
-    username = nodeConfig.username;
+    inherit (nodeConfig) username;
     homeDirectory =
       if isDarwin
       then "/Users/${nodeConfig.username}"

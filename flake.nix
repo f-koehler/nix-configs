@@ -89,6 +89,7 @@
       isWorkstation = true;
       isTrusted = true;
       containerBackend = "docker";
+      virtualisation = true;
     };
     config-mbp21 = {
       hostname = "mbp21";

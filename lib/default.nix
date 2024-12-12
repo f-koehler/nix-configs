@@ -11,10 +11,11 @@
     system ? "x86_64-linux",
     isWorkstation ? false,
     isTrusted ? false,
+    virtualisation ? false,
     containerBackend ? "podman",
   }: {
     inherit inputs outputs stateVersion;
-    inherit hostname username system isWorkstation isTrusted containerBackend;
+    inherit hostname username system isWorkstation isTrusted containerBackend virtualisation;
   };
 
   mkNixOSConfig = config: let

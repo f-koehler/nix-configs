@@ -1,9 +1,11 @@
 {
+  lib,
   config,
   pkgs,
   nodeConfig,
   ...
-}: {
+}:
+lib.mkIf nodeConfig.virtualisation {
   virtualisation.libvirtd = {
     enable = true;
     qemu = {

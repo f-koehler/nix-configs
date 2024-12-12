@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   nodeConfig,
   ...
@@ -13,26 +12,17 @@
     editorconfig.enable = true;
     clipboard.providers.wl-copy.enable = true;
     plugins = {
-      copilot-cmp.enable = nodeConfig.isWorkstation;
-      copilot-lua = {
-        suggestion.enabled = false;
-        panel.enabled = false;
-      };
       cmake-tools.enable = true;
       cmp = {
         enable = true;
         autoEnableSources = true;
         settings = {
-          sources =
-            [
-              {name = "nvim_lsp";}
-              {name = "path";}
-              {name = "buffer";}
-              {name = "luasnip";}
-            ]
-            ++ (lib.optionals nodeConfig.isWorkstation [
-              {name = "copilot";}
-            ]);
+          sources = [
+            {name = "nvim_lsp";}
+            {name = "path";}
+            {name = "buffer";}
+            {name = "luasnip";}
+          ];
           mapping = {
             "<C-Space>" = "cmp.mapping.complete()";
             "<C-d>" = "cmp.mapping.scroll_docs(-4)";
@@ -45,6 +35,9 @@
         };
       };
       cmp-nvim-lsp.enable = true;
+      codeium-nvim = {
+        enable = nodeConfig.isWorkstation;
+      };
       gitsigns.enable = true;
       indent-blankline = {
         enable = true;

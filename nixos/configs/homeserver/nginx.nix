@@ -5,7 +5,7 @@
         owner = config.services.nginx.user;
         inherit (config.services.nginx) group;
       };
-      "security/acme/cloudflare/apiKey" = {
+      "security/acme/cloudflare/apiToken" = {
         owner = config.services.nginx.user;
         inherit (config.services.nginx) group;
       };
@@ -14,8 +14,9 @@
       owner = "acme";
       group = "acme";
       content = ''
-        CLOUDFLARE_EMAIL="${config.sops.placeholder."security/acme/cloudflare/email"}"
-        CLOUDFLARE_API_KEY="${config.sops.placeholder."security/acme/cloudflare/apiKey"}"
+        CF_API_EMAIL="${config.sops.placeholder."security/acme/cloudflare/email"}"
+        CF_DNS_API_TOKEN="${config.sops.placeholder."security/acme/cloudflare/apiToken"}"
+        CF_ZONE_API_TOKEN="${config.sops.placeholder."security/acme/cloudflare/apiToken"}"
       '';
     };
   };

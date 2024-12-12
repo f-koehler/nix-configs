@@ -16,8 +16,12 @@
     extensions = [
       pkgs.vscode-marketplace.akiramiyakoda.cppincludeguard
       pkgs.vscode-marketplace.asvetliakov.vscode-neovim
+      pkgs.vscode-marketplace.catppuccin.catppuccin-vsc
+      pkgs.vscode-marketplace.catppuccin.catppuccin-vsc-icons
       pkgs.vscode-marketplace.charliermarsh.ruff
+      pkgs.vscode-marketplace.codeium.codeium
       pkgs.vscode-marketplace.eamodio.gitlens
+      pkgs.vscode-marketplace.ecmel.vscode-html-css
       pkgs.vscode-marketplace.editorconfig.editorconfig
       pkgs.vscode-marketplace.efanzh.graphviz-preview
       pkgs.vscode-marketplace.esbenp.prettier-vscode
@@ -34,19 +38,17 @@
       pkgs.vscode-marketplace.ms-vscode-remote.remote-ssh
       pkgs.vscode-marketplace.ms-vscode.hexeditor
       pkgs.vscode-marketplace.ms-vsliveshare.vsliveshare
+      pkgs.vscode-marketplace.myriad-dreamin.tinymist
       pkgs.vscode-marketplace.redhat.vscode-xml
       pkgs.vscode-marketplace.redhat.vscode-yaml
+      pkgs.vscode-marketplace.rust-lang.rust-analyzer
+      pkgs.vscode-marketplace.snakemake.snakemake-lang
       pkgs.vscode-marketplace.stephanvs.dot
       pkgs.vscode-marketplace.tailscale.vscode-tailscale
       pkgs.vscode-marketplace.tamasfe.even-better-toml
+      pkgs.vscode-marketplace.tfehlmann.snakefmt
       pkgs.vscode-marketplace.usernamehw.errorlens
       pkgs.vscode-marketplace.vscode-icons-team.vscode-icons
-      pkgs.vscode-marketplace.ecmel.vscode-html-css
-      pkgs.vscode-marketplace.rust-lang.rust-analyzer
-      pkgs.vscode-marketplace.catppuccin.catppuccin-vsc
-      pkgs.vscode-marketplace.catppuccin.catppuccin-vsc-icons
-      pkgs.vscode-marketplace.myriad-dreamin.tinymist
-      pkgs.vscode-marketplace.codeium.codeium
     ];
     userSettings = {
       "[nix]" = {

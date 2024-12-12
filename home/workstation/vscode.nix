@@ -79,6 +79,10 @@
         "workbench.action.tasks.configureTaskRunner"
         "workbench.action.tasks.runTask"
       ];
+      "codeium.enableConfig" = {
+        "*" = true;
+        "nix" = true;
+      };
       "editor.fontSize" = 12;
       "editor.formatOnSave" = true;
       "editor.fontFamily" = "Cascadia Code NF";

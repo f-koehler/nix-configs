@@ -1,6 +1,6 @@
 {
   pkgs,
-  username,
+  nodeConfig,
   ...
 }: {
   imports = [
@@ -36,8 +36,8 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
-    groups."${username}" = {};
-    users."${username}" = {
+    groups."${nodeConfig.username}" = {};
+    users."${nodeConfig.username}" = {
       linger = true;
       packages = with pkgs; [
         cachix

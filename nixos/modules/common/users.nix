@@ -2,7 +2,7 @@
   lib,
   config,
   pkgs,
-  username,
+  nodeConfig,
   ...
 }: let
   sshKeys = [
@@ -11,12 +11,12 @@
   ];
 in {
   users = {
-    groups."${username}" = {};
+    groups."${nodeConfig.username}" = {};
     users = {
-      "${username}" = {
+      "${nodeConfig.username}" = {
         isNormalUser = true;
         description = "Fabian Koehler";
-        group = "${username}";
+        group = "${nodeConfig.username}";
         extraGroups =
           ["wheel"]
           ++ (lib.optional config.virtualisation.libvirtd.enable) "libvirtd"

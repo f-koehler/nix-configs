@@ -1,11 +1,9 @@
 {
   lib,
-  username,
-  isWorkstation,
-  containerBackend,
+  nodeConfig,
   ...
 }:
-lib.mkIf (containerBackend == "docker") {
+lib.mkIf (nodeConfig.containerBackend == "docker") {
   virtualisation = {
     docker = {
       enable = true;
@@ -13,5 +11,5 @@ lib.mkIf (containerBackend == "docker") {
     };
     oci-containers.backend = "docker";
   };
-  users.users.${username}.extraGroups = lib.optionals isWorkstation ["docker"];
+  users.users.${nodeConfig.username}.extraGroups = lib.optionals nodeConfig.isWorkstation ["docker"];
 }

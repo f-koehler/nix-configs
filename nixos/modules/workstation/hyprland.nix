@@ -2,7 +2,7 @@
   lib,
   pkgs,
   config,
-  username,
+  nodeConfig,
   ...
 }: let
   hyprlandLaunch = pkgs.writeShellScriptBin "hyprland-launch" ''
@@ -10,8 +10,8 @@
 
     # Correctly clean up the session
     ${pkgs.hyprland}/bin/hyprctl dispatch exit
-    systemctl --user --machine=${username}@.host stop dbus-broker
-    systemctl --user --machine=${username}@.host stop hyprland-session.target
+    systemctl --user --machine=${nodeConfig.username}@.host stop dbus-broker
+    systemctl --user --machine=${nodeConfig.username}@.host stop hyprland-session.target
   '';
 in {
   environment = {

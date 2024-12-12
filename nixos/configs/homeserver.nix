@@ -1,6 +1,6 @@
 {
   pkgs,
-  username,
+  nodeConfig,
   ...
 }: {
   imports = [
@@ -43,9 +43,9 @@
       media = {
         gid = 985;
       };
-      "${username}" = {};
+      "${nodeConfig.username}" = {};
     };
-    users."${username}" = {
+    users."${nodeConfig.username}" = {
       extraGroups = [
         "media"
         "libvirtd"

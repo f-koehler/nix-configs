@@ -3,12 +3,10 @@
   lib,
   inputs,
   outputs,
-  username,
   config,
   stateVersion,
-  isWorkstation,
-  isTrusted,
   isLinux,
+  nodeConfig,
   ...
 }: let
   inherit (pkgs.stdenv) isDarwin;
@@ -19,7 +17,7 @@ in {
       inputs.sops-nix.homeManagerModules.sops
       ./common
     ]
-    ++ lib.optional isWorkstation ./workstation;
+    ++ lib.optional nodeConfig.isWorkstation ./workstation;
 
   catppuccin = {
     enable = true;
@@ -50,7 +48,7 @@ in {
     package = pkgs.nix;
   };
 
-  sops = lib.mkIf isTrusted {
+  sops = lib.mkIf nodeConfig.isTrusted {
     age = {
       keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
       generateKey = false;
@@ -61,11 +59,11 @@ in {
   fonts.fontconfig.enable = true;
   home = {
     inherit stateVersion;
-    inherit username;
+    username = nodeConfig.username;
     homeDirectory =
       if isDarwin
-      then "/Users/${username}"
-      else "/home/${username}";
+      then "/Users/${nodeConfig.username}"
+      else "/home/${nodeConfig.username}";
 
     packages = with pkgs; [
       # awscli2
@@ -125,8 +123,8 @@ in {
         #   org.gradle.daemon.idletimeout=3600000
         # '';
       }
-      // lib.mkIf (isWorkstation && isLinux) {
-        ".local/share/jellyfinmediaplayer/scripts/mpris.so".source = lib.mkIf (isLinux && isWorkstation) "${pkgs.mpvScripts.mpris}/share/mpv/scripts/mpris.so";
+      // lib.mkIf (nodeConfig.isWorkstation && isLinux) {
+        ".local/share/jellyfinmediaplayer/scripts/mpris.so".source = lib.mkIf (isLinux && nodeConfig.isWorkstation) "${pkgs.mpvScripts.mpris}/share/mpv/scripts/mpris.so";
       };
   };
 

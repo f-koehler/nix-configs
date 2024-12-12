@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  isWorkstation,
+  nodeConfig,
   ...
 }: {
   virtualisation.libvirtd = {
@@ -30,5 +30,5 @@
   environment.systemPackages = with pkgs; [
     virtiofsd
   ];
-  programs.virt-manager.enable = isWorkstation && config.virtualisation.libvirtd.enable;
+  programs.virt-manager.enable = nodeConfig.isWorkstation && config.virtualisation.libvirtd.enable;
 }

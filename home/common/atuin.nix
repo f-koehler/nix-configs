@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  isTrusted,
+  nodeConfig,
   ...
 }: {
   sops = {
@@ -9,7 +9,7 @@
       "atuin/key".path = "${config.home.homeDirectory}/.local/share/atuin/key";
     };
   };
-  programs.atuin = lib.mkIf isTrusted {
+  programs.atuin = lib.mkIf nodeConfig.isTrusted {
     enable = true;
     enableBashIntegration = true;
     enableFishIntegration = true;

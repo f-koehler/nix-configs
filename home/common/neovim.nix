@@ -1,7 +1,7 @@
 {
   lib,
   pkgs,
-  isWorkstation,
+  nodeConfig,
   ...
 }: {
   programs.nixvim = {
@@ -13,7 +13,7 @@
     editorconfig.enable = true;
     clipboard.providers.wl-copy.enable = true;
     plugins = {
-      copilot-cmp.enable = isWorkstation;
+      copilot-cmp.enable = nodeConfig.isWorkstation;
       copilot-lua = {
         suggestion.enabled = false;
         panel.enabled = false;
@@ -30,7 +30,7 @@
               {name = "buffer";}
               {name = "luasnip";}
             ]
-            ++ (lib.optionals isWorkstation [
+            ++ (lib.optionals nodeConfig.isWorkstation [
               {name = "copilot";}
             ]);
           mapping = {
@@ -52,14 +52,14 @@
       lsp = {
         enable = true;
         servers = {
-          bashls.enable = isWorkstation;
-          clangd.enable = isWorkstation;
-          cmake.enable = isWorkstation;
-          gopls.enable = isWorkstation;
+          bashls.enable = nodeConfig.isWorkstation;
+          clangd.enable = nodeConfig.isWorkstation;
+          cmake.enable = nodeConfig.isWorkstation;
+          gopls.enable = nodeConfig.isWorkstation;
           nil_ls.enable = true;
-          pyright.enable = isWorkstation;
+          pyright.enable = nodeConfig.isWorkstation;
           rust_analyzer = {
-            enable = isWorkstation;
+            enable = nodeConfig.isWorkstation;
             installCargo = false;
             installRustc = false;
           };

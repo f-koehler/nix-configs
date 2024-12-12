@@ -1,15 +1,11 @@
-{
-  config,
-  username,
-  ...
-}: {
+{nodeConfig, ...}: {
   services.tailscale = {
     enable = true;
     openFirewall = true;
     extraUpFlags = [
       "--ssh"
-      "--hostname=${config.networking.hostName}"
-      "--operator=${username}"
+      "--hostname=${nodeConfig.hostname}"
+      "--operator=${nodeConfig.username}"
       "--accept-routes"
     ];
     useRoutingFeatures = "both";

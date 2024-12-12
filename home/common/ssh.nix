@@ -1,9 +1,9 @@
 {
-  isWorkstation,
   lib,
+  nodeConfig,
   ...
 }:
-lib.mkIf isWorkstation {
+lib.mkIf nodeConfig.isWorkstation {
   programs.ssh = {
     enable = true;
     matchBlocks = {

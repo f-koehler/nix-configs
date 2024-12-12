@@ -1,12 +1,10 @@
 {
   lib,
   pkgs,
-  username,
-  isWorkstation,
-  containerBackend,
+  nodeConfig,
   ...
 }:
-lib.mkIf (containerBackend == "podman") {
+lib.mkIf (nodeConfig.containerBackend == "podman") {
   virtualisation = {
     podman = {
       enable = true;
@@ -19,5 +17,5 @@ lib.mkIf (containerBackend == "podman") {
   environment.systemPackages = with pkgs; [
     podman-compose
   ];
-  users.users.${username}.extraGroups = lib.optionals isWorkstation ["podman"];
+  users.users.${nodeConfig.username}.extraGroups = lib.optionals nodeConfig.isWorkstation ["podman"];
 }

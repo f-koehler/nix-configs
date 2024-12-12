@@ -1,20 +1,19 @@
 {
-  hostname,
   lib,
-  isWorkstation,
   stateVersion,
+  nodeConfig,
   ...
 }: {
   imports =
     [
-      ./disks/${hostname}.nix
-      ./configs/${hostname}.nix
+      ./disks/${nodeConfig.hostname}.nix
+      ./configs/${nodeConfig.hostname}.nix
       ./modules/common
     ]
-    ++ lib.optional isWorkstation ./modules/workstation
-    ++ lib.optional (builtins.pathExists ./hardware/${hostname}.nix) ./hardware/${hostname}.nix;
-  networking.hostName = hostname;
-  sops.defaultSopsFile = ../secrets/${hostname}.yaml;
+    ++ lib.optional nodeConfig.isWorkstation ./modules/workstation
+    ++ lib.optional (builtins.pathExists ./hardware/${nodeConfig.hostname}.nix) ./hardware/${nodeConfig.hostname}.nix;
+  networking.hostName = nodeConfig.hostname;
+  sops.defaultSopsFile = ../secrets/${nodeConfig.hostname}.yaml;
 
   catppuccin = {
     enable = true;

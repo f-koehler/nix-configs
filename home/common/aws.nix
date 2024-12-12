@@ -2,10 +2,10 @@
   lib,
   pkgs,
   config,
-  isTrusted,
+  nodeConfig,
   ...
 }:
-lib.mkIf isTrusted {
+lib.mkIf nodeConfig.isTrusted {
   sops.secrets = {
     "aws/key_id".path = "${config.home.homeDirectory}/.local/share/aws/key_id";
     "aws/key".path = "${config.home.homeDirectory}/.local/share/aws/key";

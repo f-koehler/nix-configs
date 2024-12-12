@@ -5,17 +5,24 @@
   ...
 }: let
   inherit (inputs.nixpkgs) lib;
-  mkNixOSConfig = {
+  mkNodeConfig = {
     hostname,
     username,
     system ? "x86_64-linux",
     isWorkstation ? false,
     isTrusted ? false,
     containerBackend ? "podman",
-    ...
   }: {
+    inherit inputs outputs stateVersion;
+    inherit hostname username system isWorkstation isTrusted containerBackend;
+  };
+
+  mkNixOSConfig = config: let
+    nodeConfig = mkNodeConfig config;
+  in {
     specialArgs = {
-      inherit inputs outputs hostname system username isWorkstation isTrusted containerBackend stateVersion;
+      inherit inputs outputs stateVersion;
+      inherit nodeConfig;
     };
     modules =
       [
@@ -33,7 +40,7 @@
           };
         }
       ]
-      ++ (lib.optionals isWorkstation [
+      ++ (lib.optionals nodeConfig.isWorkstation [
         {
           nixpkgs.overlays = [
             inputs.nix-vscode-extensions.overlays.default
@@ -74,19 +81,15 @@
       }
       // (mkNixOSConfig (args // {inherit system;})));
 
-  mkHome = {
-    hostname,
-    username,
-    system ? "x86_64-linux",
-    isWorkstation ? false,
-    isTrusted ? false,
-    ...
-  }:
+  mkHome = config: let
+    nodeConfig = mkNodeConfig config;
+  in
     inputs.home-manager.lib.homeManagerConfiguration rec {
-      pkgs = inputs.nixpkgs.legacyPackages.${system};
+      pkgs = inputs.nixpkgs.legacyPackages.${nodeConfig.system};
       extraSpecialArgs = {
-        inherit inputs outputs hostname system username isWorkstation isTrusted stateVersion;
+        inherit inputs outputs stateVersion;
         inherit (pkgs.stdenv) isLinux isDarwin;
+        inherit nodeConfig;
       };
       modules =
         [
@@ -97,7 +100,7 @@
           inputs.nixvim.homeManagerModules.nixvim
           inputs.mac-app-util.homeManagerModules.default
         ]
-        ++ (lib.optionals (pkgs.stdenv.isLinux && isWorkstation) [../flatpak.nix]);
+        ++ (lib.optionals (pkgs.stdenv.isLinux && nodeConfig.isWorkstation) [../flatpak.nix]);
     };
 in {
   inherit mkNixOS;
@@ -105,6 +108,7 @@ in {
   inherit mkNixOSImage;
   inherit mkHome;
   inherit mkDarwin;
+  inherit mkNodeConfig;
 
   forAllSystems = inputs.nixpkgs.lib.genAttrs [
     "aarch64-linux"

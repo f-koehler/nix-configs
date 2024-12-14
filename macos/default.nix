@@ -5,6 +5,11 @@
   username,
   ...
 }: {
+  imports = [
+    ./aerospace.nix
+    ./sketchybar.nix
+  ];
+
   users.users.fkoehler.home = "/Users/fkoehler";
 
   # List packages installed in system profile. To search by name, run:
@@ -115,148 +120,6 @@
   security.pam.enableSudoTouchIdAuth = true;
   services = {
     nix-daemon.enable = true;
-    aerospace = {
-      enable = true;
-      settings = {
-        after-startup-command = ["exec-and-forget sketchybar"];
-
-        # TODO(fk): disable the next two settings and rexplore the recommendation from the aerospace warning
-        enable-normalization-flatten-containers = false;
-        enable-normalization-opposite-orientation-for-nested-containers = false;
-
-        exec-on-workspace-change = [
-          "/bin/bash"
-          "-c"
-          "sketchybar --trigger aerospace_workspace_change FOCUSED=$AEROSPACE_FOCUSED_WORKSPACE"
-        ];
-        on-focused-monitor-changed = [
-          "move-mouse monitor-lazy-center"
-        ];
-        mode = {
-          main.binding = {
-            # Move focus
-            alt-h = "focus --boundaries-action wrap-around-the-workspace left";
-            alt-j = "focus --boundaries-action wrap-around-the-workspace down";
-            alt-k = "focus --boundaries-action wrap-around-the-workspace up";
-            alt-l = "focus --boundaries-action wrap-around-the-workspace right";
-            # alt-left = "focus --boundaries-action wrap-around-the-workspace left";
-            # alt-down = "focus --boundaries-action wrap-around-the-workspace down";
-            # alt-up = "focus --boundaries-action wrap-around-the-workspace up";
-            # alt-right = "focus --boundaries-action wrap-around-the-workspace right";
-
-            # Move window
-            alt-shift-h = "move left";
-            alt-shift-j = "move down";
-            alt-shift-k = "move up";
-            alt-shift-l = "move right";
-            # alt-shift-left = "move left";
-            # alt-shift-down = "move down";
-            # alt-shift-up = "move up";
-            # alt-shift-right = "move right";
-
-            # Change layout
-            alt-g = "split horizontal";
-            alt-v = "split vertical";
-            alt-f = "fullscreen";
-            alt-s = "layout v_accordion";
-            alt-w = "layout h_accordion";
-            alt-e = "layout tiles horizontal vertical";
-            alt-shift-space = "layout floating tiling";
-
-            # Change workspace
-            alt-1 = "workspace 1";
-            alt-2 = "workspace 2";
-            alt-3 = "workspace 3";
-            alt-4 = "workspace 4";
-            alt-5 = "workspace 5";
-            alt-6 = "workspace 6";
-            alt-7 = "workspace 7";
-            alt-8 = "workspace 8";
-            alt-9 = "workspace 9";
-            alt-0 = "workspace 10";
-
-            # Move window to workspace
-            alt-shift-1 = "move-node-to-workspace 1";
-            alt-shift-2 = "move-node-to-workspace 2";
-            alt-shift-3 = "move-node-to-workspace 3";
-            alt-shift-4 = "move-node-to-workspace 4";
-            alt-shift-5 = "move-node-to-workspace 5";
-            alt-shift-6 = "move-node-to-workspace 6";
-            alt-shift-7 = "move-node-to-workspace 7";
-            alt-shift-8 = "move-node-to-workspace 8";
-            alt-shift-9 = "move-node-to-workspace 9";
-            alt-shift-0 = "move-node-to-workspace 10";
-
-            alt-shift-c = "reload-config";
-            alt-r = "mode resize";
-          };
-          resize.binding = {
-            h = "resize width -50";
-            j = "resize height +50";
-            k = "resize height -50";
-            l = "resize width +50";
-            left = "resize width -50";
-            down = "resize height +50";
-            up = "resize height -50";
-            right = "resize width +50";
-            enter = "mode main";
-            esc = "mode main";
-          };
-        };
-      };
-    };
-    sketchybar = {
-      enable = true;
-      config = ''
-        sketchybar --bar position=top height=40 blur_radius=30 color=0x40000000
-
-        default=(
-          padding_left=5
-          padding_right=5
-          icon.font="Hack Nerd Font:Bold:17.0"
-          label.font="Hack Nerd Font:Bold:14.0"
-          icon.color=0xffffffff
-          label.color=0xffffffff
-          icon.padding_left=4
-          icon.padding_right=4
-          label.padding_left=4
-          label.padding_right=4
-        )
-        sketchybar --default "''${default[@]}"
-
-        sketchybar --add event aerospace_workspace_change
-        for sid in $(aerospace list-workspaces --all); do
-            sketchybar --add item space.$sid left \
-                --subscribe space.$sid aerospace_workspace_change \
-                --set space.$sid \
-                background.color=0x44ffffff \
-                background.corner_radius=5 \
-                background.height=20 \
-                background.drawing=off \
-                label="$sid" \
-                click_script="aerospace workspace $sid" \
-                script="/Users/${username}/.config/sketchybar/plugins/aerospace.sh $sid"
-        done
-
-        sketchybar --add item chevron left \
-           --set chevron icon= label.drawing=off \
-           --add item front_app left \
-           --set front_app icon.drawing=off script="$PLUGIN_DIR/front_app.sh" \
-           --subscribe front_app front_app_switched
-
-        sketchybar --add item clock right \
-           --set clock update_freq=10 icon=  script="$PLUGIN_DIR/clock.sh" \
-           --add item volume right \
-           --set volume script="$PLUGIN_DIR/volume.sh" \
-           --subscribe volume volume_change \
-           --add item battery right \
-           --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
-           --subscribe battery system_woke power_source_change
-
-
-        sketchybar --update
-      '';
-    };
   };
 
   homebrew = {

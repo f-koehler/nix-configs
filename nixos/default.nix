@@ -1,4 +1,5 @@
 {
+  outputs,
   lib,
   stateVersion,
   nodeConfig,
@@ -14,6 +15,13 @@
     ++ lib.optional (builtins.pathExists ./hardware/${nodeConfig.hostname}.nix) ./hardware/${nodeConfig.hostname}.nix;
   networking.hostName = nodeConfig.hostname;
   sops.defaultSopsFile = ../secrets/${nodeConfig.hostname}.yaml;
+
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.additions
+      outputs.overlays.modifications
+    ];
+  };
 
   catppuccin = {
     enable = true;

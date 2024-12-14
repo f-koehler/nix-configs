@@ -34,6 +34,7 @@ in {
     overlays = [
       inputs.nix-vscode-extensions.overlays.default
       outputs.overlays.additions
+      outputs.overlays.modifications
     ];
     config = {
       allowUnfree = true;

@@ -60,13 +60,16 @@
     ...
   }:
     inputs.nix-darwin.lib.darwinSystem rec {
+      specialArgs = {
+        inherit inputs outputs stateVersion;
+      };
       inherit system;
       pkgs = inputs.nixpkgs.legacyPackages.${system};
       modules = [
         inputs.mac-app-util.darwinModules.default
         inputs.nix-index-database.darwinModules.nix-index
         (import ../macos {
-          inherit pkgs hostname username;
+          inherit pkgs hostname username inputs outputs;
         })
       ];
     };

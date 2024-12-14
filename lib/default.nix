@@ -92,6 +92,7 @@
       pkgs = inputs.nixpkgs.legacyPackages.${nodeConfig.system};
       extraSpecialArgs = {
         inherit inputs outputs stateVersion;
+        inherit (inputs) self;
         inherit (pkgs.stdenv) isLinux isDarwin;
         inherit nodeConfig;
       };

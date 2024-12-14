@@ -2,8 +2,7 @@
   inputs,
   outputs,
   pkgs,
-  hostname,
-  username,
+  nodeConfig,
   ...
 }: {
   imports = [
@@ -21,7 +20,7 @@
     config.allowUnfree = true;
   };
 
-  users.users.${username}.home = "/Users/${username}";
+  users.users.${nodeConfig.username}.home = "/Users/${nodeConfig.username}";
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -74,9 +73,9 @@
         autohide = true;
         minimize-to-application = true;
         persistent-apps = [
-          "/Users/${username}/Applications/Home Manager Apps/Visual Studio Code.app"
-          "/Users/${username}/Applications/Home Manager Apps/Wezterm.app"
-          "/Users/${username}/Applications/Home Manager Apps/Zed.app"
+          "/Users/${nodeConfig.username}/Applications/Home Manager Apps/Visual Studio Code.app"
+          "/Users/${nodeConfig.username}/Applications/Home Manager Apps/Wezterm.app"
+          "/Users/${nodeConfig.username}/Applications/Home Manager Apps/Zed.app"
           "/Applications/Safari.app"
         ];
         tilesize = 32;
@@ -103,18 +102,18 @@
         ShowDate = 1; # 1 = always
         ShowSeconds = false;
       };
-      smb.NetBIOSName = hostname;
+      smb.NetBIOSName = nodeConfig.hostname;
     };
   };
   networking = {
-    hostName = hostname;
-    computerName = hostname;
+    hostName = nodeConfig.hostname;
+    computerName = nodeConfig.hostname;
   };
   nix = {
     gc.automatic = true;
     optimise.automatic = true; # relevant issue: https://github.com/NixOS/nix/issues/7273
     settings = {
-      trusted-users = ["root" "${username}"];
+      trusted-users = ["root" "${nodeConfig.username}"];
       experimental-features = [
         "nix-command"
         "flakes"

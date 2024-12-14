@@ -1,11 +1,11 @@
 {
-  pkgs,
-  username,
+  # pkgs,
+  nodeConfig,
   ...
 }: {
-  environment.systemPackages = with pkgs; [
-    # sketchybar-plugins
-  ];
+  # environment.systemPackages = with pkgs; [
+  #   # sketchybar-plugins
+  # ];
   services = {
     sketchybar = {
       enable = true;
@@ -37,7 +37,7 @@
                 background.drawing=off \
                 label="$sid" \
                 click_script="aerospace workspace $sid" \
-                script="/Users/${username}/.config/sketchybar/plugins/aerospace.sh $sid"
+                script="/Users/${nodeConfig.username}/.config/sketchybar/plugins/aerospace.sh $sid"
         done
 
         sketchybar --add item chevron left \

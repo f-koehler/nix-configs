@@ -31,35 +31,17 @@
   mkNixOS = args:
     lib.nixosSystem (mkNixOSConfig args);
 
-  mkDarwin = {
-    hostname,
-    username,
-    system ? "aarch64-darwin",
-    ...
-  }:
-    inputs.nix-darwin.lib.darwinSystem rec {
+  mkDarwin = config: let
+    nodeConfig = mkNodeConfig config;
+  in
+    inputs.nix-darwin.lib.darwinSystem {
       specialArgs = {
-        inherit inputs outputs stateVersion;
+        inherit inputs outputs stateVersion nodeConfig;
       };
-      inherit system;
-      pkgs = inputs.nixpkgs.legacyPackages.${system};
-      modules = [
-        (import ../macos {
-          inherit pkgs hostname username inputs outputs;
-        })
-      ];
+      inherit (nodeConfig) system;
+      pkgs = inputs.nixpkgs.legacyPackages.${nodeConfig.system};
+      modules = [../macos];
     };
-
-  mkNixOSImage = {
-    system ? "x86_64-linux",
-    format,
-    ...
-  } @ args:
-    inputs.nixos-generators.nixosGenerate ({
-        inherit system;
-        inherit format;
-      }
-      // (mkNixOSConfig (args // {inherit system;})));
 
   mkHome = config: let
     nodeConfig = mkNodeConfig config;
@@ -74,6 +56,17 @@
       };
       modules = [../home];
     };
+
+  mkNixOSImage = {
+    system ? "x86_64-linux",
+    format,
+    ...
+  } @ args:
+    inputs.nixos-generators.nixosGenerate ({
+        inherit system;
+        inherit format;
+      }
+      // (mkNixOSConfig (args // {inherit system;})));
 in {
   inherit mkNixOS;
   inherit mkNixOSConfig;

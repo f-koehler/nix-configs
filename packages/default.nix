@@ -1,3 +1,3 @@
 pkgs: {
-  ashell = (pkgs.callPackage ./ashell.nix {}).out;
+  sketchybar-plugins = pkgs.callPackage ./sketchybar-plugins {};
 }

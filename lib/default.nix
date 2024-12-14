@@ -25,29 +25,7 @@
       inherit inputs outputs stateVersion;
       inherit nodeConfig;
     };
-    modules =
-      [
-        inputs.disko.nixosModules.disko
-        inputs.nixos-facter-modules.nixosModules.facter
-        inputs.sops-nix.nixosModules.sops
-        inputs.catppuccin.nixosModules.catppuccin
-        ../nixos
-
-        inputs.home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-          };
-        }
-      ]
-      ++ (lib.optionals nodeConfig.isWorkstation [
-        {
-          nixpkgs.overlays = [
-            inputs.nix-vscode-extensions.overlays.default
-          ];
-        }
-      ]);
+    modules = [../nixos];
   };
 
   mkNixOS = args:
@@ -66,8 +44,6 @@
       inherit system;
       pkgs = inputs.nixpkgs.legacyPackages.${system};
       modules = [
-        inputs.mac-app-util.darwinModules.default
-        inputs.nix-index-database.darwinModules.nix-index
         (import ../macos {
           inherit pkgs hostname username inputs outputs;
         })
@@ -96,16 +72,7 @@
         inherit (pkgs.stdenv) isLinux isDarwin;
         inherit nodeConfig;
       };
-      modules =
-        [
-          ../home
-          inputs.nix-flatpak.homeManagerModules.nix-flatpak
-          inputs.plasma-manager.homeManagerModules.plasma-manager
-          inputs.catppuccin.homeManagerModules.catppuccin
-          inputs.nixvim.homeManagerModules.nixvim
-          inputs.mac-app-util.homeManagerModules.default
-        ]
-        ++ (lib.optionals (pkgs.stdenv.isLinux && nodeConfig.isWorkstation) [../flatpak.nix]);
+      modules = [../home];
     };
 in {
   inherit mkNixOS;

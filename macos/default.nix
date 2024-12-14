@@ -1,4 +1,5 @@
 {
+  inputs,
   outputs,
   pkgs,
   hostname,
@@ -6,9 +7,19 @@
   ...
 }: {
   imports = [
+    inputs.mac-app-util.darwinModules.default
+    inputs.nix-index-database.darwinModules.nix-index
     ./aerospace.nix
     ./sketchybar.nix
   ];
+
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.additions
+      outputs.overlays.modifications
+    ];
+    config.allowUnfree = true;
+  };
 
   users.users.${username}.home = "/Users/${username}";
 
@@ -109,13 +120,6 @@
         "flakes"
       ];
     };
-  };
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
-    ];
-    config.allowUnfree = true;
   };
   security.pam.enableSudoTouchIdAuth = true;
   services = {

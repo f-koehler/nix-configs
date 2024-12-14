@@ -10,7 +10,7 @@
     ./sketchybar.nix
   ];
 
-  users.users.fkoehler.home = "/Users/fkoehler";
+  users.users.${username}.home = "/Users/${username}";
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget

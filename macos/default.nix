@@ -148,7 +148,6 @@
       "zotero"
     ];
     masApps = {
-      "Magnet" = 441258766;
       "Infuse • Video Player" = 1136220934;
       "Bitwarden" = 1352778147;
       "AdGuard for Safari" = 1440147259;

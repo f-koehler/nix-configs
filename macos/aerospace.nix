@@ -17,6 +17,19 @@ _: {
         on-focused-monitor-changed = [
           "move-mouse monitor-lazy-center"
         ];
+        workspace-to-monitor-force-assignment = {
+          "1" = "main";
+          "2" = "main";
+          "3" = "main";
+          "4" = "main";
+          "5" = "main";
+          "6" = "secondary";
+          "7" = "secondary";
+          "8" = "secondary";
+          "9" = "secondary";
+          "10" = "secondary";
+        };
+
         mode = {
           main.binding = {
             # Move focus

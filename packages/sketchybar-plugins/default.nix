@@ -3,9 +3,9 @@ stdenv.mkDerivation {
   name = "sketchybar-plugins";
   src = ./.;
   installPhase = ''
-    mkdir -p $out
-    cp aerospace.sh $out
-    cp clock.sh $out
-    cp volume.sh $out
+    mkdir -p $out/bin
+    cp aerospace.sh $out/bin
+    cp clock.sh $out/bin
+    cp volume.sh $out/bin
   '';
 }

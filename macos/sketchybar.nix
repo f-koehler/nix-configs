@@ -1,11 +1,15 @@
 {
   # pkgs,
+  outputs,
   nodeConfig,
   ...
-}: {
-  # environment.systemPackages = with pkgs; [
-  #   # sketchybar-plugins
-  # ];
+}: let
+  inherit (outputs.packages.${nodeConfig.system}) sketchybar-plugins;
+in {
+  environment.systemPackages = [
+    # TODO(fk): figure out why we cannot use pkgs.sketchybar-plugins
+    sketchybar-plugins
+  ];
   services = {
     sketchybar = {
       enable = true;
@@ -37,7 +41,7 @@
                 background.drawing=off \
                 label="$sid" \
                 click_script="aerospace workspace $sid" \
-                script="/Users/${nodeConfig.username}/.config/sketchybar/plugins/aerospace.sh $sid"
+                script="${sketchybar-plugins}/bin/aerospace.sh $sid"
         done
 
         sketchybar --add item chevron left \
@@ -47,12 +51,12 @@
            --subscribe front_app front_app_switched
 
         sketchybar --add item clock right \
-           --set clock update_freq=10 icon=  script="$PLUGIN_DIR/clock.sh" \
+           --set clock update_freq=10 icon=  script="${sketchybar-plugins}/bin/clock.sh" \
            --add item volume right \
-           --set volume script="$PLUGIN_DIR/volume.sh" \
+           --set volume script="${sketchybar-plugins}/bin/volume.sh" \
            --subscribe volume volume_change \
            --add item battery right \
-           --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
+           --set battery update_freq=120 script="${sketchybar-plugins}/bin/battery.sh" \
            --subscribe battery system_woke power_source_change
 
 

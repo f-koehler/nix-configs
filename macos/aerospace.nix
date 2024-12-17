@@ -23,11 +23,11 @@ _: {
           "3" = "main";
           "4" = "main";
           "5" = "main";
-          "6" = "secondary";
-          "7" = "secondary";
-          "8" = "secondary";
-          "9" = "secondary";
-          "10" = "secondary";
+          "6" = ["secondary" "main"];
+          "7" = ["secondary" "main"];
+          "8" = ["secondary" "main"];
+          "9" = ["secondary" "main"];
+          "10" = ["secondary" "main"];
         };
 
         mode = {

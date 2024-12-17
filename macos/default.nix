@@ -9,6 +9,7 @@
     inputs.mac-app-util.darwinModules.default
     inputs.nix-index-database.darwinModules.nix-index
     ./aerospace.nix
+    ./jankyborders.nix
     ./sketchybar.nix
   ];
 

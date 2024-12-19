@@ -120,6 +120,7 @@
         "nix-command"
         "flakes"
       ];
+      warn-dirty = false;
     };
   };
   security.pam.enableSudoTouchIdAuth = true;

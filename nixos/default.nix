@@ -23,6 +23,7 @@
   sops.defaultSopsFile = ../secrets/${nodeConfig.hostname}.yaml;
 
   nixpkgs = {
+    config.allowUnfree = true;
     overlays = [
       outputs.overlays.additions
       outputs.overlays.modifications

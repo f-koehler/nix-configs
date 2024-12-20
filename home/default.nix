@@ -28,7 +28,7 @@ in {
     enable = true;
     flavor = "mocha";
     accent = "mauve";
-    pointerCursor = lib.mkIf (!isDarwin) {
+    cursors = lib.mkIf (!isDarwin) {
       enable = true;
       accent = "mauve";
       flavor = "mocha";

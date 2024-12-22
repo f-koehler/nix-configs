@@ -14,7 +14,8 @@ stdenv.mkDerivation {
     sha256 = "sha256-F0UfNxHM389GhiPQ6/GFbeKQq5EvpiqQdvyf7ygzkPg=";
   };
 
-  buildInputs = [gcc readline.dev];
+  nativeBuildInputs = [readline];
+  buildInputs = [gcc];
 
   patchPhase = ''
     substituteInPlace Makefile \

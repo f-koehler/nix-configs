@@ -1,4 +1,4 @@
-pkgs: {
+pkgs: rec {
   sketchybar-lua = pkgs.callPackage ./sketchybar-lua {};
-  sketchybar-plugins = pkgs.callPackage ./sketchybar-plugins {};
+  sketchybar-config = pkgs.callPackage ./sketchybar-config {inherit sketchybar-lua;};
 }

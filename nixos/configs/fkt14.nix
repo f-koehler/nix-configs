@@ -47,7 +47,6 @@
         fftw
         gcc
         home-manager
-        inshellisense
         ninja
         nix-index
         pkg-config

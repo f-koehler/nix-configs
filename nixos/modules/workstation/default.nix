@@ -2,11 +2,10 @@ _: {
   imports = [
     ./bluetooth.nix
     ./distrobox.nix
-    ./gnome.nix
+    # ./gnome.nix
     #./hyprland.nix
-    ./ios.nix
     ./packages.nix
-    # ./plasma.nix
+    ./plasma.nix
     # ./sshfs.nix
     ./samba-shares.nix
     ./sound.nix

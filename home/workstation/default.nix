@@ -6,13 +6,13 @@
   imports =
     [
       ./alacritty.nix
-      ./email.nix
+      # ./email.nix
       ./vscode.nix
       ./wezterm.nix
       ./zed.nix
     ]
     ++ lib.optionals isLinux [
-      ./hyprland
+      # ./hyprland
       # ./sway
       # ./krohnkite.nix
       # ./plasma.nix

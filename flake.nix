@@ -164,7 +164,12 @@
     # checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
 
     overlays = import ./overlays {inherit inputs;};
-    packages = mylib.forAllSystems (system: import ./packages inputs.nixpkgs.legacyPackages.${system});
+    packages = mylib.forAllSystems (system:
+      (import ./packages inputs.nixpkgs.legacyPackages.${system})
+      // {
+        devenv-up = self.devShells.${system}.default.config.procfileScript;
+        devenv-test = self.devShells.${system}.default.config.test;
+      });
 
     devShells =
       mylib.forAllSystems

@@ -1,6 +1,6 @@
 {
   stdenv,
-  lua,
+  lua5_4_compat,
   sketchybar-lua,
   ...
 }:
@@ -8,7 +8,14 @@ stdenv.mkDerivation {
   name = "sketchybar-config";
   src = ./.;
 
-  buildInputs = [lua sketchybar-lua];
+  buildInputs = [lua5_4_compat sketchybar-lua];
+
+  patchPhase = ''
+    substituteInPlace init.lua \
+      --replace 'SBAR_LUA_PATH' '${sketchybar-lua}/lib/'; \
+    substituteInPlace sketchybarrc \
+      --replace 'LUA_EXECUTABLE' '${lua5_4_compat}/bin/lua'
+  '';
 
   buildPhase = ''
     pushd helpers && make && popd

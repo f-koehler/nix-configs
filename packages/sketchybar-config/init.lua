@@ -1,3 +1,5 @@
+package.cpath = package.cpath .. ";SBAR_LUA_PATH/?.so"
+
 -- Require the sketchybar module
 sbar = require("sketchybar")
 

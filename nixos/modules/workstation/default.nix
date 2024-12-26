@@ -4,7 +4,6 @@ _: {
     ./distrobox.nix
     # ./gnome.nix
     #./hyprland.nix
-    ./ios.nix
     ./packages.nix
     ./plasma.nix
     # ./sshfs.nix

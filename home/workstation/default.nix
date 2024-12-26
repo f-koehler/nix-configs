@@ -12,7 +12,7 @@
       ./zed.nix
     ]
     ++ lib.optionals isLinux [
-      ./hyprland
+      # ./hyprland
       # ./sway
       # ./krohnkite.nix
       # ./plasma.nix

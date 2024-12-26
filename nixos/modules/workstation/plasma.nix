@@ -25,7 +25,7 @@
         kdePackages.kcharselect
         kdePackages.filelight
         kdePackages.qtwayland
-        kdePackages.krohnkite
+        # kdePackages.krohnkite
         kdePackages.purpose
         catppuccin-cursors
         catppuccin-kde

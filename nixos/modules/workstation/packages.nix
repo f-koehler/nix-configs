@@ -5,7 +5,6 @@
       chromium
       distrobox
       evince
-      feishin
       firefox
       gimp
       gvfs

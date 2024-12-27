@@ -15,7 +15,6 @@ in {
     [
       inputs.catppuccin.homeManagerModules.catppuccin
       inputs.mac-app-util.homeManagerModules.default
-      inputs.nix-flatpak.homeManagerModules.nix-flatpak
       inputs.nix-index-database.hmModules.nix-index
       inputs.nixvim.homeManagerModules.nixvim
       inputs.plasma-manager.homeManagerModules.plasma-manager

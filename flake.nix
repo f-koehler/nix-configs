@@ -66,7 +66,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
     alejandra = {
       url = "github:kamadorueda/alejandra";
@@ -100,7 +100,7 @@
       isWorkstation = true;
       isTrusted = true;
       containerBackend = "docker";
-      virtualisation = true;
+      # virtualisation = true;
     };
     config-mbp21 = {
       hostname = "mbp21";

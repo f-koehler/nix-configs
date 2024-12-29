@@ -226,6 +226,9 @@
                 # trim-trailing-whitespace = true;
                 # end-of-file-fixer = true;
 
+                # lua
+                stylua.enable = true;
+
                 # nix
                 alejandra.enable = true;
                 deadnix.enable = true;

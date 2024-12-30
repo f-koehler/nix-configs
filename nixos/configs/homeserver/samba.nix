@@ -26,7 +26,8 @@ in {
     samba = {
       enable = true;
       openFirewall = true;
-      package = pkgs.samba4Full;
+      # package = pkgs.samba4Full;
+      package = pkgs.samba;
       nmbd.enable = true;
       nsswins = true;
       settings = {

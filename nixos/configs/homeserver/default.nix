@@ -7,7 +7,6 @@ _: {
     # ./immich.nix
     ./invidious.nix
     ./jellyfin.nix
-    ./mpd.nix
     ./navidrome.nix
     ./nextcloud.nix
     ./nginx.nix

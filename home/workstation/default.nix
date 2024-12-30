@@ -7,6 +7,7 @@
     [
       ./alacritty.nix
       # ./email.nix
+      ./mpd.nix
       ./vscode.nix
       ./wezterm.nix
       ./zed.nix

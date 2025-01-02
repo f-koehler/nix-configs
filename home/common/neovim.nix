@@ -99,6 +99,9 @@
       todo-comments.enable = true;
       treesitter = {
         enable = true;
+        settings.highlight = {
+          enable = true;
+        };
       };
       trouble = {
         enable = true;

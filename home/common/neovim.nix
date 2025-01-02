@@ -11,6 +11,11 @@
     globals.mapleader = " ";
     editorconfig.enable = true;
     clipboard.providers.wl-copy.enable = true;
+    filetype = {
+      filename = {
+        "Snakefile" = "snakemake";
+      };
+    };
     plugins = {
       cmake-tools.enable = true;
       cmp = {

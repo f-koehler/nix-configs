@@ -1,4 +1,10 @@
-{nodeConfig, ...}: {
+{
+  lib,
+  isLinux,
+  nodeConfig,
+  ...
+}:
+lib.mkIf isLinux {
   services = {
     mpd = {
       enable = true;

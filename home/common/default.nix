@@ -1,5 +1,7 @@
 _: {
   imports = [
+    ./neovim
+
     ./aliases.nix
     ./atuin.nix
     ./aws.nix
@@ -12,7 +14,6 @@ _: {
     ./gh.nix
     ./git.nix
     ./gpg.nix
-    ./neovim.nix
     ./ssh.nix
     ./starship.nix
     ./tealdeer.nix

@@ -5,10 +5,10 @@ _: {
       autoEnableSources = true;
       settings = {
         sources = [
-          {name = "nvim_lsp";}
-          {name = "path";}
-          {name = "buffer";}
-          {name = "luasnip";}
+          { name = "nvim_lsp"; }
+          { name = "path"; }
+          { name = "buffer"; }
+          { name = "luasnip"; }
         ];
         mapping = {
           "<C-Space>" = "cmp.mapping.complete()";

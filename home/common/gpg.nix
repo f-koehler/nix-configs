@@ -4,7 +4,8 @@
   isDarwin,
   isLinux,
   ...
-}: {
+}:
+{
   home.packages = with pkgs; [
     gnupg
   ];
@@ -16,9 +17,6 @@
     defaultCacheTtl = 18000;
     grabKeyboardAndMouse = true;
     maxCacheTtl = 18000;
-    pinentryPackage =
-      if isDarwin
-      then pkgs.pinentry_mac
-      else pkgs.pinentry-qt;
+    pinentryPackage = if isDarwin then pkgs.pinentry_mac else pkgs.pinentry-qt;
   };
 }

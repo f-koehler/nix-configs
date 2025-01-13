@@ -15,7 +15,11 @@ stdenv.mkDerivation {
     sha256 = "sha256-F0UfNxHM389GhiPQ6/GFbeKQq5EvpiqQdvyf7ygzkPg=";
   };
 
-  buildInputs = [gcc readline.dev lua5_4_compat];
+  buildInputs = [
+    gcc
+    readline.dev
+    lua5_4_compat
+  ];
 
   patchPhase = ''
     substituteInPlace Makefile \

@@ -3,7 +3,8 @@
   pkgs,
   nodeConfig,
   ...
-}: {
+}:
+{
   programs.nixvim.plugins.codeium-nvim = {
     enable = nodeConfig.isWorkstation;
     settings = {

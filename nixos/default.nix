@@ -5,7 +5,8 @@
   stateVersion,
   nodeConfig,
   ...
-}: {
+}:
+{
   imports =
     [
       inputs.disko.nixosModules.disko

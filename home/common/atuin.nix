@@ -3,7 +3,8 @@
   lib,
   nodeConfig,
   ...
-}: {
+}:
+{
   sops = {
     secrets = {
       "atuin/key".path = "${config.home.homeDirectory}/.local/share/atuin/key";

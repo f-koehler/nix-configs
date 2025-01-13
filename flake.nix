@@ -89,174 +89,178 @@
     extra-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = {self, ...} @ inputs: let
-    inherit (self) outputs;
-    stateVersion = "24.11";
-    mylib = import ./lib {inherit inputs outputs stateVersion;};
+  outputs =
+    { self, ... }@inputs:
+    let
+      inherit (self) outputs;
+      stateVersion = "24.11";
+      mylib = import ./lib { inherit inputs outputs stateVersion; };
 
-    config-fkt14 = {
-      hostname = "fkt14";
-      username = "fkoehler";
-      isWorkstation = true;
-      isTrusted = true;
-      containerBackend = "docker";
-      # virtualisation = true;
-    };
-    config-mbp21 = {
-      hostname = "mbp21";
-      username = "fkoehler";
-      system = "aarch64-darwin";
-      isWorkstation = true;
-      isTrusted = true;
-    };
-    config-homeserver = {
-      hostname = "homeserver";
-      username = "fkoehler";
-      isWorkstation = false;
-      isTrusted = true;
-    };
-    config-vps = {
-      hostname = "vps";
-      username = "fkoehler";
-      isWorkstation = false;
-      isTrusted = true;
-    };
-  in {
-    homeConfigurations = {
-      "fkoehler@fkt14" = mylib.mkHome config-fkt14;
-      "fkoehler@mbp21" = mylib.mkHome config-mbp21;
-      "fkoehler@homeserver" = mylib.mkHome config-homeserver;
-      "fkoehler@vps" = mylib.mkHome config-vps;
-    };
+      config-fkt14 = {
+        hostname = "fkt14";
+        username = "fkoehler";
+        isWorkstation = true;
+        isTrusted = true;
+        containerBackend = "docker";
+        # virtualisation = true;
+      };
+      config-mbp21 = {
+        hostname = "mbp21";
+        username = "fkoehler";
+        system = "aarch64-darwin";
+        isWorkstation = true;
+        isTrusted = true;
+      };
+      config-homeserver = {
+        hostname = "homeserver";
+        username = "fkoehler";
+        isWorkstation = false;
+        isTrusted = true;
+      };
+      config-vps = {
+        hostname = "vps";
+        username = "fkoehler";
+        isWorkstation = false;
+        isTrusted = true;
+      };
+    in
+    {
+      homeConfigurations = {
+        "fkoehler@fkt14" = mylib.mkHome config-fkt14;
+        "fkoehler@mbp21" = mylib.mkHome config-mbp21;
+        "fkoehler@homeserver" = mylib.mkHome config-homeserver;
+        "fkoehler@vps" = mylib.mkHome config-vps;
+      };
 
-    nixosConfigurations = {
-      "fkt14" = mylib.mkNixOS config-fkt14;
-      "homeserver" = mylib.mkNixOS config-homeserver;
-      "vps" = mylib.mkNixOS config-vps;
-    };
+      nixosConfigurations = {
+        "fkt14" = mylib.mkNixOS config-fkt14;
+        "homeserver" = mylib.mkNixOS config-homeserver;
+        "vps" = mylib.mkNixOS config-vps;
+      };
 
-    darwinConfigurations = {
-      "mbp21" = mylib.mkDarwin config-mbp21;
-    };
+      darwinConfigurations = {
+        "mbp21" = mylib.mkDarwin config-mbp21;
+      };
 
-    deploy = {
-      remoteBuild = true;
-      nodes = {
-        # vps = {
-        #   profiles = {
-        #     system = {
-        #       path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.vps;
-        #     };
-        #   };
-        # };
-        mpb21 = {
-          profiles = {
-            system = {
-              user = "fkoehler";
-              path = inputs.deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.mbp21;
-              hostname = "mbp21";
+      deploy = {
+        remoteBuild = true;
+        nodes = {
+          # vps = {
+          #   profiles = {
+          #     system = {
+          #       path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.vps;
+          #     };
+          #   };
+          # };
+          mpb21 = {
+            profiles = {
+              system = {
+                user = "fkoehler";
+                path = inputs.deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.mbp21;
+                hostname = "mbp21";
+              };
             };
           };
         };
       };
+
+      # checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
+
+      overlays = import ./overlays { inherit inputs; };
+      packages = mylib.forAllSystems (
+        system:
+        (import ./packages inputs.nixpkgs.legacyPackages.${system})
+        // {
+          devenv-up = self.devShells.${system}.default.config.procfileScript;
+          devenv-test = self.devShells.${system}.default.config.test;
+        }
+      );
+      formatter = mylib.forAllSystems (system: inputs.nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
+
+      devShells = mylib.forAllSystems (
+        system:
+        let
+          pkgs = inputs.nixpkgs.legacyPackages.${system};
+        in
+        {
+          default = inputs.devenv.lib.mkShell {
+            inherit inputs pkgs;
+            modules = [
+              {
+                packages = with pkgs; [
+                  fastfetch
+                  git
+                  just
+                ];
+
+                scripts = {
+                  refresh.exec = ''
+                    nix flake update
+                  '';
+                  rebuild.exec = ''
+                    if [ "$(uname)" == "Darwin" ]; then
+                      nix run nix-darwin -- switch --flake .
+                      nix run home-manager -- switch --flake .
+                    else
+                      nix-shell -p nh --run "nh os boot ."
+                      nix-shell -p nh --run "nh home switch ."
+                    fi
+                  '';
+                };
+
+                enterShell = ''
+                  ${pkgs.fastfetch}/bin/fastfetch
+
+                  # Custom greeting message with color
+                  echo -e "\033[1;32mWelcome to the development environment, Fabian!\033[0m"
+
+                  # Display two commonly used commands with color
+                  echo ""
+                  echo -e "\033[1;34mUseful commands:\033[0m"
+                  echo -e "\033[1;36m  1. refresh  - \033[0m\033[0;33m🔄 Updates nix flake & devenv\033[0m"
+                  echo -e "\033[1;36m  2. rebuild  - \033[0m\033[0;33m🏗️  Rebuilds and switches system and user config\033[0m"
+                  echo ""
+                '';
+
+                languages.nix.enable = true;
+
+                pre-commit.hooks = {
+                  check-added-large-files.enable = true;
+                  check-executables-have-shebangs.enable = true;
+                  check-merge-conflicts.enable = true;
+                  check-symlinks.enable = true;
+                  # end-of-line-fixer.enable = true;
+                  # trim-trailing-whitespace = true;
+                  # end-of-file-fixer = true;
+
+                  # lua
+                  stylua.enable = true;
+
+                  # nix
+                  nixfmt-rfc-style.enable = true;
+                  deadnix.enable = true;
+                  flake-checker.enable = true;
+                  nil.enable = true;
+                  statix.enable = true;
+
+                  # shell
+                  shellcheck.enable = true;
+                  shfmt.enable = true;
+
+                  # yaml
+                  yamllint.enable = true;
+
+                  # toml
+                  taplo.enable = true;
+
+                  # other
+                  prettier.enable = true;
+                  actionlint.enable = true;
+                };
+              }
+            ];
+          };
+        }
+      );
     };
-
-    # checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
-
-    overlays = import ./overlays {inherit inputs;};
-    packages = mylib.forAllSystems (system:
-      (import ./packages inputs.nixpkgs.legacyPackages.${system})
-      // {
-        devenv-up = self.devShells.${system}.default.config.procfileScript;
-        devenv-test = self.devShells.${system}.default.config.test;
-      });
-    formatter = mylib.forAllSystems (
-      system:
-        inputs.nixpkgs.legacyPackages.${system}.nixfmt-rfc-style
-    );
-
-    devShells =
-      mylib.forAllSystems
-      (system: let
-        pkgs = inputs.nixpkgs.legacyPackages.${system};
-      in {
-        default = inputs.devenv.lib.mkShell {
-          inherit inputs pkgs;
-          modules = [
-            {
-              packages = with pkgs; [
-                fastfetch
-                git
-                just
-              ];
-
-              scripts = {
-                refresh.exec = ''
-                  nix flake update
-                '';
-                rebuild.exec = ''
-                  if [ "$(uname)" == "Darwin" ]; then
-                    nix run nix-darwin -- switch --flake .
-                    nix run home-manager -- switch --flake .
-                  else
-                    nix-shell -p nh --run "nh os boot ."
-                    nix-shell -p nh --run "nh home switch ."
-                  fi
-                '';
-              };
-
-              enterShell = ''
-                ${pkgs.fastfetch}/bin/fastfetch
-
-                # Custom greeting message with color
-                echo -e "\033[1;32mWelcome to the development environment, Fabian!\033[0m"
-
-                # Display two commonly used commands with color
-                echo ""
-                echo -e "\033[1;34mUseful commands:\033[0m"
-                echo -e "\033[1;36m  1. refresh  - \033[0m\033[0;33m🔄 Updates nix flake & devenv\033[0m"
-                echo -e "\033[1;36m  2. rebuild  - \033[0m\033[0;33m🏗️  Rebuilds and switches system and user config\033[0m"
-                echo ""
-              '';
-
-              languages.nix.enable = true;
-
-              pre-commit.hooks = {
-                check-added-large-files.enable = true;
-                check-executables-have-shebangs.enable = true;
-                check-merge-conflicts.enable = true;
-                check-symlinks.enable = true;
-                # end-of-line-fixer.enable = true;
-                # trim-trailing-whitespace = true;
-                # end-of-file-fixer = true;
-
-                # lua
-                stylua.enable = true;
-
-                # nix
-                nixfmt-rfc-style.enable = true;
-                deadnix.enable = true;
-                flake-checker.enable = true;
-                nil.enable = true;
-                statix.enable = true;
-
-                # shell
-                shellcheck.enable = true;
-                shfmt.enable = true;
-
-                # yaml
-                yamllint.enable = true;
-
-                # toml
-                taplo.enable = true;
-
-                # other
-                prettier.enable = true;
-                actionlint.enable = true;
-              };
-            }
-          ];
-        };
-      });
-  };
 }

@@ -8,7 +8,10 @@ stdenv.mkDerivation {
   name = "sketchybar-config";
   src = ./.;
 
-  buildInputs = [lua5_4_compat sketchybar-lua];
+  buildInputs = [
+    lua5_4_compat
+    sketchybar-lua
+  ];
 
   patchPhase = ''
     substituteInPlace init.lua \

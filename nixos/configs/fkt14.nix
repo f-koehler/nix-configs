@@ -2,7 +2,8 @@
   pkgs,
   nodeConfig,
   ...
-}: {
+}:
+{
   imports = [
   ];
 
@@ -36,7 +37,7 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
-    groups."${nodeConfig.username}" = {};
+    groups."${nodeConfig.username}" = { };
     users."${nodeConfig.username}" = {
       linger = true;
       packages = with pkgs; [

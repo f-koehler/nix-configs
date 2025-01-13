@@ -4,7 +4,8 @@
   pkgs,
   nodeConfig,
   ...
-}: {
+}:
+{
   imports = [
     inputs.mac-app-util.darwinModules.default
     inputs.nix-index-database.darwinModules.nix-index
@@ -115,7 +116,10 @@
     gc.automatic = true;
     optimise.automatic = true; # relevant issue: https://github.com/NixOS/nix/issues/7273
     settings = {
-      trusted-users = ["root" "${nodeConfig.username}"];
+      trusted-users = [
+        "root"
+        "${nodeConfig.username}"
+      ];
       experimental-features = [
         "nix-command"
         "flakes"

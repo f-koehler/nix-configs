@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   sops = {
     secrets = {
       "services/jellystat/password" = {
@@ -35,18 +36,18 @@
       volumes = [
         "/var/lib/jellystat/db:/var/lib/postgresql/data"
       ];
-      environmentFiles = ["${config.sops.templates."jellystat.env".path}"];
+      environmentFiles = [ "${config.sops.templates."jellystat.env".path}" ];
     };
     "jellystat" = {
       image = "docker.io/cyfershepard/jellystat:latest";
-      dependsOn = ["jellystat_db"];
+      dependsOn = [ "jellystat_db" ];
       volumes = [
         "/var/lib/jellystat/app:/app/backend/backup-data"
       ];
       ports = [
         "127.0.0.1:18300:3000"
       ];
-      environmentFiles = ["${config.sops.templates."jellystat.env".path}"];
+      environmentFiles = [ "${config.sops.templates."jellystat.env".path}" ];
     };
   };
 }

@@ -1,12 +1,10 @@
-{isDarwin, ...}: {
+{ isDarwin, ... }:
+{
   programs.alacritty = {
     enable = true;
     settings = {
       font = {
-        size =
-          if isDarwin
-          then 12
-          else 9;
+        size = if isDarwin then 12 else 9;
         normal = {
           family = "Cascadia Code NF";
           style = "Regular";

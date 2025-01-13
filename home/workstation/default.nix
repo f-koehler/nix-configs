@@ -2,7 +2,8 @@
   lib,
   isLinux,
   ...
-}: {
+}:
+{
   imports =
     [
       ./alacritty.nix

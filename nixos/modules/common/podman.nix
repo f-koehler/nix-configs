@@ -17,5 +17,7 @@ lib.mkIf (nodeConfig.containerBackend == "podman") {
   environment.systemPackages = with pkgs; [
     podman-compose
   ];
-  users.users.${nodeConfig.username}.extraGroups = lib.optionals nodeConfig.isWorkstation ["podman"];
+  users.users.${nodeConfig.username}.extraGroups = lib.optionals nodeConfig.isWorkstation [
+    "podman"
+  ];
 }

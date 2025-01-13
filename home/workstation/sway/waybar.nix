@@ -1,7 +1,9 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   symbolSize = "20";
   symbolRise = "0";
-in {
+in
+{
   catppuccin.waybar = {
     enable = true;
     flavor = "mocha";

@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   sops = {
     secrets."services/tinymediamanager/password" = {
     };
@@ -20,7 +21,7 @@
         USER_ID = "993";
         GROUP_ID = "${toString config.users.groups.media.gid}";
       };
-      environmentFiles = ["${config.sops.templates."tinymediamanager.env".path}"];
+      environmentFiles = [ "${config.sops.templates."tinymediamanager.env".path}" ];
       volumes = [
         "/var/lib/tinymediamanager:/data:rw"
         "/media/tank0/media:/media/tank0:rw"
@@ -38,7 +39,7 @@
   services.nginx = {
     upstreams.tinymediamanager = {
       servers = {
-        "127.0.0.1:4000" = {};
+        "127.0.0.1:4000" = { };
       };
     };
     virtualHosts."tinymediamanager.fkoehler.xyz" = {

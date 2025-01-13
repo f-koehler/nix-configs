@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.sway = {
     enable = true;
     wrapperFeatures = {
@@ -17,7 +18,7 @@
   };
   security = {
     polkit.enable = true;
-    pam.services.swaylock = {};
+    pam.services.swaylock = { };
   };
   hardware.graphics.enable = true;
   xdg.portal = {

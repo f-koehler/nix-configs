@@ -2,7 +2,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   programs.nixvim = {
     plugins.conform-nvim = {
       enable = true;
@@ -16,10 +17,10 @@
             "shellharden"
             "shfmt"
           ];
-          cpp = ["clang-format"];
-          nix = ["alejandra"];
-          python = ["ruff"];
-          rust = ["rustfmt"];
+          cpp = [ "clang-format" ];
+          nix = [ "alejandra" ];
+          python = [ "ruff" ];
+          rust = [ "rustfmt" ];
         };
         formatters = {
           alejandra = {
@@ -27,11 +28,17 @@
           };
           clang-format = {
             command = "${pkgs.clang-tools}/bin/clang-format";
-            args = ["-i" "$FILENAME"];
+            args = [
+              "-i"
+              "$FILENAME"
+            ];
           };
           ruff = {
             command = lib.getExe pkgs.ruff;
-            args = ["format" "$FILENAME"];
+            args = [
+              "format"
+              "$FILENAME"
+            ];
           };
           rustfmt = {
             command = lib.getExe pkgs.rustfmt;

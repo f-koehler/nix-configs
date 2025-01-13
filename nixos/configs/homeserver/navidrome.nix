@@ -1,6 +1,8 @@
-_: let
+_:
+let
   port = 4533;
-in {
+in
+{
   services = {
     navidrome = {
       enable = true;
@@ -15,7 +17,7 @@ in {
     nginx = {
       upstreams."navidrome" = {
         servers = {
-          "127.0.0.1:${toString port}" = {};
+          "127.0.0.1:${toString port}" = { };
         };
       };
       virtualHosts."music.fkoehler.xyz" = {

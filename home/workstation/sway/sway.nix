@@ -1,7 +1,9 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   inherit (pkgs) kanshi wezterm;
   rofi = pkgs.rofi-wayland;
-in {
+in
+{
   catppuccin.sway = {
     enable = true;
     flavor = "mocha";
@@ -16,7 +18,7 @@ in {
       };
       systemd.enable = true;
       config = {
-        bars = [];
+        bars = [ ];
         focus.followMouse = false;
         menu = "${rofi}/bin/rofi -show drun";
         modifier = "Mod4";
@@ -36,5 +38,5 @@ in {
     };
   };
 
-  home.packages = [kanshi];
+  home.packages = [ kanshi ];
 }

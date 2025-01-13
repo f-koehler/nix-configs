@@ -2,16 +2,19 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   sops = {
     secrets = {
-      "services/digikam_db/password" = {};
+      "services/digikam_db/password" = { };
     };
     templates = {
       # Digikam DB initialization modified from Digikam documentation: https://docs.digikam.org/en/setup_application/database_settings.html#the-mysql-remote-server
       "digikam_db_initial_script.sql".content = ''
         CREATE USER 'digikam'@'%' IDENTIFIED BY '${config.sops.placeholder."services/digikam_db/password"}';
-        GRANT ALL ON *.* TO 'digikam'@'%' IDENTIFIED BY '${config.sops.placeholder."services/digikam_db/password"}';
+        GRANT ALL ON *.* TO 'digikam'@'%' IDENTIFIED BY '${
+          config.sops.placeholder."services/digikam_db/password"
+        }';
         CREATE DATABASE digikam;
         GRANT ALL PRIVILEGES ON digikam.* TO 'digikam'@'%';
         FLUSH PRIVILEGES;

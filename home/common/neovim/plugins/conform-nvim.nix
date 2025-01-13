@@ -18,13 +18,13 @@
             "shfmt"
           ];
           cpp = [ "clang-format" ];
-          nix = [ "alejandra" ];
+          nix = [ "nixfmt" ];
           python = [ "ruff" ];
           rust = [ "rustfmt" ];
         };
         formatters = {
-          alejandra = {
-            command = lib.getExe pkgs.alejandra;
+          nixfmt = {
+            command = lib.getExe pkgs.nixfmt-rfc-style;
           };
           clang-format = {
             command = "${pkgs.clang-tools}/bin/clang-format";

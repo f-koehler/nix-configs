@@ -170,6 +170,10 @@
         devenv-up = self.devShells.${system}.default.config.procfileScript;
         devenv-test = self.devShells.${system}.default.config.test;
       });
+    formatter = mylib.forAllSystems (
+      system:
+        inputs.nixpkgs.legacyPackages.${system}.nixfmt-rfc-style
+    );
 
     devShells =
       mylib.forAllSystems
@@ -230,7 +234,7 @@
                 stylua.enable = true;
 
                 # nix
-                alejandra.enable = true;
+                nixfmt-rfc-style.enable = true;
                 deadnix.enable = true;
                 flake-checker.enable = true;
                 nil.enable = true;

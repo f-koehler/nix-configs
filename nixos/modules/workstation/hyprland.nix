@@ -49,9 +49,9 @@ in {
     };
   };
   services = {
+    devmon.enable = true;
     gvfs.enable = true;
     udisks2.enable = true;
-    devmon.enable = true;
     greetd = {
       enable = true;
       vt = 1;

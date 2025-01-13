@@ -36,5 +36,7 @@
     accent = "mauve";
   };
 
+  documentation.man.generateCaches = true;
+
   system.stateVersion = stateVersion;
 }

@@ -73,6 +73,7 @@
       "C_Cpp.codeAnalysis.clangTidy.enabled" = true;
       "C_Cpp.codeAnalysis.clangTidy.path" = "${pkgs.clang-tools}/bin/clang-tidy";
       "C_Cpp.clang_format_path" = "${pkgs.clang-tools}/bin/clang-format";
+      "C_Cpp.codeAnalysis.runAutomatically" = false;
 
       "cmake.options.statusBarVisibility" = "compact";
       "cmake.showOptionsMovedNotification" = false;

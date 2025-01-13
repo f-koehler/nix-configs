@@ -140,6 +140,8 @@ in {
     fd.enable = true;
     password-store.enable = true;
 
+    man.generateCaches = true;
+
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
   };

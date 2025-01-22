@@ -1,8 +1,6 @@
 {pkgs, ...}: let
   port = 8096;
 in {
-  networking.firewall.allowedTCPPorts = [port];
-
   nixpkgs.config.packageOverrides = pkgs: {
     vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
   };
@@ -29,6 +27,7 @@ in {
       enable = true;
       user = "jellyfin";
       group = "jellyfin";
+      openFirewall = true;
     };
   };
   users.users.jellyfin.extraGroups = ["render" "video"];

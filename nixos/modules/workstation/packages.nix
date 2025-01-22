@@ -18,7 +18,6 @@
       localsend
       nextcloud-client
       protonmail-bridge
-      super-productivity
       telegram-desktop
       thunderbird
       vlc

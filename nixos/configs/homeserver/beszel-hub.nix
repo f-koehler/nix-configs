@@ -17,7 +17,7 @@ in
     };
   };
   systemd = {
-    tmpfiles.settings.bezelHubDirs."/var/lib/beszel/hub/".d = {
+    tmpfiles.settings.beszelHubDirs."/var/lib/beszel/hub/".d = {
       mode = "700";
       user = "beszel";
       group = "beszel";

@@ -5,7 +5,7 @@
   ];
   networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 45876 ];
   systemd = {
-    tmpfiles.settings.bezelHubDirs."/var/lib/beszel/agent/".d = {
+    tmpfiles.settings.beszelAgentDirs."/var/lib/beszel/agent/".d = {
       mode = "700";
       user = "root";
       group = "root";

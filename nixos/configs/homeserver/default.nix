@@ -1,6 +1,7 @@
 _: {
   imports = [
     ./audiobookshelf.nix
+    ./beszel-hub.nix
     ./forgejo.nix
     ./gickup.nix
     # ./homepage.nix

@@ -1,9 +1,11 @@
-{config, ...}: let
+{ config, ... }:
+let
   port = 40800;
-in {
+in
+{
   sops = {
     secrets = {
-      "services/searx/secretKey" = {};
+      "services/searx/secretKey" = { };
     };
     templates."searx.env" = {
       content = ''
@@ -27,7 +29,7 @@ in {
     nginx = {
       upstreams."searx" = {
         servers = {
-          "127.0.0.1:${toString port}" = {};
+          "127.0.0.1:${toString port}" = { };
         };
       };
       virtualHosts."search.fkoehler.xyz" = {

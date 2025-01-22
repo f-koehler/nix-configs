@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   sops.secrets = {
     "services/paperless/admin/password" = {
       owner = config.services.paperless.user;
@@ -12,7 +13,7 @@
   services = {
     postgresql = {
       enable = true;
-      ensureDatabases = ["paperless"];
+      ensureDatabases = [ "paperless" ];
       ensureUsers = [
         {
           name = "paperless";
@@ -68,7 +69,7 @@
     nginx = {
       upstreams."paperless" = {
         servers = {
-          "127.0.0.1:${toString config.services.paperless.port}" = {};
+          "127.0.0.1:${toString config.services.paperless.port}" = { };
         };
       };
       virtualHosts."docs.fkoehler.xyz" = {

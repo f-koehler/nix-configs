@@ -1,6 +1,7 @@
 _: {
   programs.fish = {
     enable = true;
+    generateCompletions = true;
     shellInit = ''
       if test -x /opt/homebrew/bin/conda
         eval (/opt/homebrew/bin/conda shell.fish hook)

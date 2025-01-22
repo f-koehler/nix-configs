@@ -2,9 +2,10 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   users = {
-    groups.uptime-kuma = {};
+    groups.uptime-kuma = { };
     users.uptime-kuma = {
       group = "uptime-kuma";
       isSystemUser = true;
@@ -26,7 +27,7 @@
     nginx = {
       upstreams."uptime-kuma" = {
         servers = {
-          "127.0.0.1:${toString config.services.uptime-kuma.settings.PORT}" = {};
+          "127.0.0.1:${toString config.services.uptime-kuma.settings.PORT}" = { };
         };
       };
       virtualHosts."uptime.fkoehler.xyz" = {

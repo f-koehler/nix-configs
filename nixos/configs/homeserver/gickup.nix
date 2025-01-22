@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   sops = {
     secrets = {
       "services/gickup/github_token" = {
@@ -45,9 +46,9 @@
       '';
     };
   };
-  environment.systemPackages = [pkgs.gickup];
+  environment.systemPackages = [ pkgs.gickup ];
   users = {
-    groups.gickup = {};
+    groups.gickup = { };
     users.gickup = {
       isSystemUser = true;
       group = "gickup";
@@ -58,7 +59,7 @@
   systemd = {
     services.gickup = {
       description = "git backups with gickup";
-      wantedBy = ["multi-user.target"];
+      wantedBy = [ "multi-user.target" ];
       # after = ["var-lib-gickup.mount" "tailscaled.service"];
       serviceConfig = {
         Type = "oneshot";

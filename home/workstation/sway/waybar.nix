@@ -1,27 +1,25 @@
-{
-  lib,
-  pkgs,
-  ...
-}: let
+{ pkgs, ... }:
+let
   symbolSize = "20";
   symbolRise = "0";
-in {
+in
+{
+  catppuccin.waybar = {
+    enable = true;
+    flavor = "mocha";
+  };
   programs = {
     waybar = {
-      enable = true;
+      enable = false;
       systemd = {
         enable = true;
-        target = "hyprland-session.target";
-      };
-      catppuccin = {
-        enable = true;
-        flavor = "mocha";
+        target = "sway-session.target";
       };
       settings = [
         {
           position = "top";
           modules-left = [
-            "hyprland/workspaces"
+            "sway/workspaces"
           ];
           modules-center = [
             "clock"
@@ -36,8 +34,7 @@ in {
             "backlight"
             "power-profiles-deamon"
           ];
-          "hyprland/workspaces" = {
-            active-only = false;
+          "sway/workspaces" = {
             all-outputs = false;
             on-click = "activate";
           };
@@ -59,7 +56,6 @@ in {
             };
             max-volume = 100;
             on-click-middle = "${pkgs.swayosd}/bin/swayosd-client --output-volume mute-toggle";
-            on-click-right = "${pkgs.hyprland}/bin/hyprctl dispatch exec [workspace current] ${lib.getExe pkgs.pwvucontrol}";
             on-scroll-up = "${pkgs.swayosd}/bin/swayosd-client --output-volume raise";
             on-scroll-down = "${pkgs.swayosd}/bin/swayosd-client --output-volume lower";
             tooltip-format = "󰓃  {volume}󰏰\n󰒓  {node_name}";
@@ -70,7 +66,6 @@ in {
             format-source = "<span font='${symbolSize}' rise='${symbolRise}'>󰍰</span>";
             format-source-muted = "<span font='${symbolSize}' rise='${symbolRise}'>󰍱</span>";
             on-click-middle = "${pkgs.swayosd}/bin/swayosd-client --input-volume mute-toggle";
-            on-click-right = "${pkgs.hyprland}/bin/hyprctl dispatch exec [workspace current] ${lib.getExe pkgs.pwvucontrol}";
             on-scroll-up = "${pkgs.swayosd}/bin/swayosd-client --input-volume raise";
             on-scroll-down = "${pkgs.swayosd}/bin/swayosd-client --input-volume lower";
             tooltip-format = "  {source_volume}󰏰\n󰒓  {desc}";
@@ -83,7 +78,6 @@ in {
             format-linked = "<span font='${symbolSize}' rise='${symbolRise}'></span>";
             format-wifi = "<span font='${symbolSize}' rise='${symbolRise}'>󰖩</span>";
             interval = 2;
-            on-click-right = "hyprctl dispatch exec [workspace current] ${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
             tooltip-format = "  {ifname}\n󰩠  {ipaddr} via {gwaddr}\n  {bandwidthDownBits}\t  {bandwidthUpBits}";
             tooltip-format-wifi = "󱛁  {essid} \n󰒢  {signalStrength}󰏰\n󰩠  {ipaddr} via {gwaddr}\n  {bandwidthDownBits}\t  {bandwidthUpBits}";
             tooltip-format-ethernet = "󰈀  {ifname}\n󰩠  {ipaddr} via {gwaddr})\n  {bandwidthDownBits}\t  {bandwidthUpBits}";
@@ -95,8 +89,6 @@ in {
             format-disabled = "<span font='${symbolSize}' rise='${symbolRise}'>󰂲</span>";
             format-on = "<span font='${symbolSize}' rise='${symbolRise}'>󰂯</span>";
             format-off = "<span font='${symbolSize}' rise='${symbolRise}'>󰂲</span>";
-            #on-click-middle = "${lib.getExe bluetoothToggle}";
-            on-click-right = "hyprctl dispatch exec [workspace current] ${pkgs.blueberry}/bin/blueberry";
             tooltip-format = "  {controller_alias}\t󰿀  {controller_address}\n󰂴  {num_connections} connected";
             tooltip-format-connected = "  {controller_alias}\t󰿀  {controller_address}\n󰂴  {num_connections} connected\n{device_enumerate}";
             tooltip-format-disabled = "󰂲  {controller_alias}\t󰿀  {controller_address}\n󰂳  {status}";

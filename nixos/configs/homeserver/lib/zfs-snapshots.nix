@@ -2,7 +2,8 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.homeserver.zfsSnapshots;
   serviceOptions = {
     sanoidTemplate = lib.mkOption {
@@ -11,43 +12,56 @@
     };
   };
   services = lib.unique (lib.attrNames cfg.services);
-  mkSanoidDataset = {
-    name,
-    options,
-  }: {
-    "rpool/${name}" = {
-      useTemplate = [options.sanoidTemplate];
-      autosnap = true;
-      autoprune = true;
+  mkSanoidDataset =
+    {
+      name,
+      options,
+    }:
+    {
+      "rpool/${name}" = {
+        useTemplate = [ options.sanoidTemplate ];
+        autosnap = true;
+        autoprune = true;
+      };
     };
-  };
-  mkSyncoidCommand = {
-    name,
-    pool,
-    ...
-  }: {
-    "${pool}-${name}" = {
-      useCommonArgs = true;
-      source = "rpool/${name}";
-      target = "${pool}/backups/${name}";
+  mkSyncoidCommand =
+    {
+      name,
+      pool,
+      ...
+    }:
+    {
+      "${pool}-${name}" = {
+        useCommonArgs = true;
+        source = "rpool/${name}";
+        target = "${pool}/backups/${name}";
+      };
     };
-  };
-  mkSyncoidDeps = {
-    name,
-    pool,
-    ...
-  }: {
-    "syncoid-${pool}-${name}.service" = {
-      wants = ["var-lib-${name}.mount" "zfs-import-${pool}.service"];
-      after = ["var-lib-${name}.mount" "zfs-import-${pool}.service"];
+  mkSyncoidDeps =
+    {
+      name,
+      pool,
+      ...
+    }:
+    {
+      "syncoid-${pool}-${name}.service" = {
+        wants = [
+          "var-lib-${name}.mount"
+          "zfs-import-${pool}.service"
+        ];
+        after = [
+          "var-lib-${name}.mount"
+          "zfs-import-${pool}.service"
+        ];
+      };
     };
-  };
-in {
+in
+{
   options.homeserver.zfsSnapshots = {
     enable = lib.mkEnableOption "Automatic ZFS snapshots for hosted services with Sanoid & Syncoid";
     services = lib.mkOption {
-      type = lib.types.attrsOf (lib.types.submodule {options = serviceOptions;});
-      default = {};
+      type = lib.types.attrsOf (lib.types.submodule { options = serviceOptions; });
+      default = { };
     };
   };
 
@@ -63,42 +77,52 @@ in {
           hourly = 120;
         };
         datasets = lib.mkMerge (
-          map (service: (mkSanoidDataset {
-            name = service;
-            options = cfg.services.${service};
-          }))
-          services
+          map (
+            service:
+            (mkSanoidDataset {
+              name = service;
+              options = cfg.services.${service};
+            })
+          ) services
         );
       };
       syncoid = {
         enable = true;
         interval = "daily";
-        commonArgs = ["--no-sync-snap"];
+        commonArgs = [ "--no-sync-snap" ];
         commands = lib.mkMerge (
-          (map (service: (mkSyncoidCommand {
+          (map (
+            service:
+            (mkSyncoidCommand {
               name = service;
               pool = "tank0";
-            }))
-            services)
-          ++ (map (service: (mkSyncoidCommand {
+            })
+          ) services)
+          ++ (map (
+            service:
+            (mkSyncoidCommand {
               name = service;
               pool = "tank1";
-            }))
-            services)
+            })
+          ) services)
         );
       };
     };
     systemd.services = lib.mkMerge (
-      (map (service: (mkSyncoidDeps {
+      (map (
+        service:
+        (mkSyncoidDeps {
           name = service;
           pool = "tank0";
-        }))
-        services)
-      ++ (map (service: (mkSyncoidDeps {
+        })
+      ) services)
+      ++ (map (
+        service:
+        (mkSyncoidDeps {
           name = service;
           pool = "tank1";
-        }))
-        services)
+        })
+      ) services)
     );
   };
 }

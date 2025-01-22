@@ -5,7 +5,8 @@
   stateVersion,
   nodeConfig,
   ...
-}: {
+}:
+{
   imports =
     [
       inputs.disko.nixosModules.disko
@@ -35,6 +36,8 @@
     flavor = "mocha";
     accent = "mauve";
   };
+
+  documentation.man.generateCaches = true;
 
   system.stateVersion = stateVersion;
 }

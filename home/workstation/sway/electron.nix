@@ -4,8 +4,16 @@ _: {
     genericName = "Code editor";
     exec = "code --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland %F";
     terminal = false;
-    categories = ["Utility" "TextEditor" "Development" "IDE"];
-    mimeType = ["text/plain" "inode/directory"];
+    categories = [
+      "Utility"
+      "TextEditor"
+      "Development"
+      "IDE"
+    ];
+    mimeType = [
+      "text/plain"
+      "inode/directory"
+    ];
     comment = "Code Editing. Redefined.";
     icon = "vscode";
     startupNotify = true;

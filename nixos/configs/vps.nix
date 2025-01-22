@@ -3,7 +3,8 @@
   modulesPath,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -35,7 +36,7 @@
   services = {
     syncoid = {
       enable = true;
-      commonArgs = ["--no-sync-snap"];
+      commonArgs = [ "--no-sync-snap" ];
       interval = "daily";
       sshKey = config.sops.secrets."syncoid/ssh_key".path;
       commands = {

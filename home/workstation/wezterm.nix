@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.wezterm = {
     enable = true;
     package = pkgs.wezterm;
@@ -12,7 +13,6 @@
       config.font_size = 9.0
       config.hide_tab_bar_if_only_one_tab = true
       config.color_scheme = "Catppuccin Mocha"
-      config.front_end = "WebGpu"
 
       return config
     '';

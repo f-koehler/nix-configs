@@ -1,11 +1,12 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   environment = {
     systemPackages = with pkgs; [
       stirling-pdf
     ];
   };
   users = {
-    groups.stirlingpdf = {};
+    groups.stirlingpdf = { };
     users.stirlingpdf = {
       isSystemUser = true;
       group = "stirlingpdf";
@@ -15,8 +16,8 @@
   };
   systemd.services."stirling-pdf" = {
     description = "Stirling PDF";
-    wantedBy = ["multi-user.target"];
-    after = ["network.target"];
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.stirling-pdf}/bin/Stirling-PDF";

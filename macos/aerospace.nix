@@ -4,14 +4,18 @@
   outputs,
   nodeConfig,
   ...
-}: let
+}:
+let
   inherit (outputs.packages.${nodeConfig.system}) sketchybar-config;
-in {
+in
+{
   services = {
     aerospace = {
       enable = true;
       settings = {
-        after-startup-command = ["exec-and-forget ${lib.getExe pkgs.sketchybar} --config  ${sketchybar-config}/share/sketchybar-config/sketchybarrc"];
+        after-startup-command = [
+          "exec-and-forget ${lib.getExe pkgs.sketchybar} --config  ${sketchybar-config}/share/sketchybar-config/sketchybarrc"
+        ];
 
         # TODO(fk): disable the next two settings and rexplore the recommendation from the aerospace warning
         enable-normalization-flatten-containers = false;
@@ -31,11 +35,26 @@ in {
           "3" = "main";
           "4" = "main";
           "5" = "main";
-          "6" = ["secondary" "main"];
-          "7" = ["secondary" "main"];
-          "8" = ["secondary" "main"];
-          "9" = ["secondary" "main"];
-          "10" = ["secondary" "main"];
+          "6" = [
+            "secondary"
+            "main"
+          ];
+          "7" = [
+            "secondary"
+            "main"
+          ];
+          "8" = [
+            "secondary"
+            "main"
+          ];
+          "9" = [
+            "secondary"
+            "main"
+          ];
+          "10" = [
+            "secondary"
+            "main"
+          ];
         };
 
         mode = {

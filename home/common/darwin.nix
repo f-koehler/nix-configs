@@ -7,7 +7,7 @@ lib.mkIf isDarwin {
   targets.darwin = {
     currentHostDefaults = {
       NSGlobalDomain = {
-        AppleLanguages = ["en-GB"];
+        AppleLanguages = [ "en-GB" ];
         AppleLocale = "en_GB";
         AppleMeasurementUnits = "Centimeters";
         AppleMetricUnits = true;

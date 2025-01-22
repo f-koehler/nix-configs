@@ -3,9 +3,11 @@
   outputs,
   nodeConfig,
   ...
-}: let
+}:
+let
   inherit (outputs.packages.${nodeConfig.system}) sketchybar-lua;
-in {
+in
+{
   environment.systemPackages = [
     pkgs.sketchybar-app-font
     pkgs.sketchybar

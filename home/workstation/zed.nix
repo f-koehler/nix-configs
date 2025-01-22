@@ -1,7 +1,7 @@
 _: {
   programs.zed-editor = {
     enable = true;
-    extensions = ["nix"];
+    extensions = [ "nix" ];
     userSettings = {
       buffer_font_family = "Cascadia Code NF";
       buffer_font_size = 12;

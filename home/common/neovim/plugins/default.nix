@@ -3,7 +3,7 @@
   imports = [
     ./cmp.nix
     ./codeium.nix
-    ./conform-nvim.nix
+    # ./conform-nvim.nix
     ./lsp.nix
     ./lualine.nix
     ./neotest.nix

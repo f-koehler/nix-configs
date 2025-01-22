@@ -17,22 +17,15 @@
     "write list" = "fkoehler";
   };
 in {
-  networking.firewall = {
-    interfaces."tailscale0".allowedTCPPorts = [
-      139
-      445
-      5357
-    ];
-  };
   services = {
     samba-wsdd = {
       enable = true;
-      openFirewall = false;
+      openFirewall = true;
       discovery = true;
     };
     samba = {
       enable = true;
-      openFirewall = false;
+      openFirewall = true;
       package = pkgs.samba;
       nmbd.enable = true;
       nsswins = true;

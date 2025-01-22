@@ -3,7 +3,7 @@ _: {
     ./audiobookshelf.nix
     ./forgejo.nix
     ./gickup.nix
-    ./homepage.nix
+    # ./homepage.nix
     # ./immich.nix
     ./invidious.nix
     ./jellyfin.nix

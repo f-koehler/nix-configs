@@ -1,15 +1,14 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
+  "extends": ["config:recommended"],
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["^tinymediamanager.nix$", "^unifi.nix$"],
+      "fileMatch": ["tinymediamanager\\.nix$", "unifi\\.nix$"],
       "matchStrings": [
-        "image\\s*=\\s*\\\"(?<depName>.+)\\:(?<currentValue>.+)\\\""
+        "image\\s*=\\s*\"(?<depName>.+):(?<currentValue>.+)\"\\s*;"
       ],
-      "datasourceTemplate": "docker",
-      "depNameTemplate": "docker"
+      "datasourceTemplate": "docker"
     }
   ]
 }

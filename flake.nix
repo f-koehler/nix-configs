@@ -228,6 +228,13 @@
 
                 languages = {
                   nix.enable = true;
+                  python = {
+                    enable = true;
+                    uv = {
+                      enable = true;
+                      sync.enable = true;
+                    };
+                  };
                 };
 
                 pre-commit.hooks = {
@@ -252,6 +259,10 @@
                   # shell
                   shellcheck.enable = true;
                   shfmt.enable = true;
+
+                  # python
+                  ruff-format.enable = true;
+                  ruff-lint.enable = true;
 
                   # yaml
                   yamllint.enable = true;

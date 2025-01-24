@@ -262,7 +262,7 @@
 
                   # python
                   ruff-format.enable = true;
-                  ruff-lint.enable = true;
+                  # ruff-lint.enable = true;
 
                   # yaml
                   yamllint.enable = true;

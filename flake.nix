@@ -191,6 +191,7 @@
                   age
                   fastfetch
                   git
+                  home-manager
                   just
                   nodejs
                   sops

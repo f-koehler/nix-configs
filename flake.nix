@@ -188,10 +188,12 @@
             modules = [
               {
                 packages = with pkgs; [
+                  age
                   fastfetch
                   git
                   just
                   nodejs
+                  sops
                 ];
 
                 scripts = {

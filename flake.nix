@@ -191,6 +191,7 @@
                   fastfetch
                   git
                   just
+                  nodejs
                 ];
 
                 scripts = {
@@ -205,6 +206,9 @@
                       nix-shell -p nh --run "nh os boot ."
                       nix-shell -p nh --run "nh home switch ."
                     fi
+                  '';
+                  renovate.exec = ''
+                    LOG_LEVEL=debug ${inputs.nixpkgs.lib.getExe' pkgs.nodejs "npx"} renovate --platform=local --repository-cache=reset
                   '';
                 };
 
@@ -222,7 +226,9 @@
                   echo ""
                 '';
 
-                languages.nix.enable = true;
+                languages = {
+                  nix.enable = true;
+                };
 
                 pre-commit.hooks = {
                   check-added-large-files.enable = true;

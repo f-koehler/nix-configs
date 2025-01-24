@@ -21,7 +21,19 @@ jobs:
       - name: Run tests
         run: nix develop --no-pure-eval --command bash -c "devenv test"
   build-home:
-    runs-on: ubuntu-latest
+    name: "Home config ${{matrix.entry.ref}} (${{matrix.entry.os}})"
+    strategy:
+      matrix:
+        entry:
+          - os: ubuntu-latest
+            ref: fkoehler@fkt14
+          - os: ubuntu-latest
+            ref: fkoehler@homeserver
+          - os: ubuntu-latest
+            ref: fkoehler@vps
+          - os: macos-latest
+            ref: fkoehler@mp21
+    runs-on: ${{ matrix.entry.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: cachix/install-nix-action@v30

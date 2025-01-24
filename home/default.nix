@@ -41,7 +41,12 @@ in
       outputs.overlays.modifications
     ];
     config = {
-      allowUnfree = true;
+      allowUnfreePredicate =
+        pkg:
+        builtins.elem (pkgs.lib.getName pkg) [
+          "codeium"
+          "vscode"
+        ];
     };
   };
 

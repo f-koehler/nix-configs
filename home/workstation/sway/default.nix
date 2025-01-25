@@ -1,5 +1,6 @@
-_: {
-  imports = [
+{ lib, isLinux, ... }:
+{
+  imports = lib.optionals isLinux [
     ./sway.nix
     ./swayidle.nix
     ./swaylock.nix

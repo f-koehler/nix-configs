@@ -23,7 +23,7 @@ jobs:
   build-home:
     name: "Home config ${{matrix.entry.ref}} (${{matrix.entry.os}})"
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         entry:
           - os: ubuntu-latest

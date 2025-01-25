@@ -23,6 +23,7 @@ jobs:
   build-home:
     name: "Home config ${{matrix.entry.ref}} (${{matrix.entry.os}})"
     strategy:
+      fail-fast: true
       matrix:
         entry:
           - os: ubuntu-latest
@@ -32,7 +33,7 @@ jobs:
           - os: ubuntu-latest
             ref: fkoehler@vps
           - os: macos-latest
-            ref: fkoehler@mp21
+            ref: fkoehler@mbp21
     runs-on: ${{ matrix.entry.os }}
     steps:
       - uses: actions/checkout@v4

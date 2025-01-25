@@ -45,4 +45,4 @@ jobs:
       - name: Configure secrets
         run: nix develop --no-pure-eval --command ./testing/configure-secrets.py
       - name: Build home configuration
-        run: nix develop --no-pure-eval --command "home-manager build --flake .#${{ matrix.entry.ref }}"
+        run: nix develop --no-pure-eval --command "home-manager" "build" "--flake" ".#${{ matrix.entry.ref }}"

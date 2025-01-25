@@ -195,6 +195,7 @@
                   just
                   nodejs
                   sops
+                  nixos-rebuild
                 ];
 
                 scripts = {

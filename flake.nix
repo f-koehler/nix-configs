@@ -68,11 +68,6 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
-    alejandra = {
-      url = "github:kamadorueda/alejandra";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";

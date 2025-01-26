@@ -41,9 +41,9 @@ jobs:
       fail-fast: false
       matrix:
         ref:
-          - fkoehler@fkt14
-          - fkoehler@homeserver
-          - fkoehler@vps
+          - fkt14
+          - homeserver
+          - vps
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

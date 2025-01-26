@@ -41,7 +41,8 @@ jobs:
       fail-fast: false
       matrix:
         ref:
-          - fkt14
+          # TODO(fk): the runners do not have enough disk space for fkt14 build
+          # - fkt14
           - homeserver
           - vps
     runs-on: ubuntu-latest

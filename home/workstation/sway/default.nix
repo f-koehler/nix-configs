@@ -1,9 +1,10 @@
-_: {
-  imports = [
-    ./electron.nix
-    ./kanshi.nix
-    ./services.nix
+{ lib, isLinux, ... }:
+{
+  imports = lib.optionals isLinux [
     ./sway.nix
-    ./waybar.nix
+    ./swayidle.nix
+    ./swaylock.nix
+    ./swaync.nix
+    ./swayosd.nix
   ];
 }

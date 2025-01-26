@@ -2,7 +2,8 @@
   lib,
   isLinux,
   ...
-}: {
+}:
+{
   home.shellAliases = {
     "cp" = "cp -i";
     "mv" = "mv -i";

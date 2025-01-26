@@ -1,6 +1,8 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   port = 33133;
-in {
+in
+{
   services = {
     forgejo = {
       enable = true;
@@ -18,7 +20,7 @@ in {
     nginx = {
       upstreams."forgejo" = {
         servers = {
-          "127.0.0.1:${toString port}" = {};
+          "127.0.0.1:${toString port}" = { };
         };
       };
       virtualHosts."git.fkoehler.xyz" = {

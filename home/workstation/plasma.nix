@@ -3,7 +3,8 @@
   lib,
   isLinux,
   ...
-}: {
+}:
+{
   programs.plasma = lib.mkIf isLinux {
     enable = true;
     workspace = {

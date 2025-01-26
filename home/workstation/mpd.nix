@@ -30,11 +30,17 @@ lib.mkIf isLinux {
       }
       {
         key = "J";
-        command = ["select_item" "scroll_down"];
+        command = [
+          "select_item"
+          "scroll_down"
+        ];
       }
       {
         key = "K";
-        command = ["select_item" "scroll_up"];
+        command = [
+          "select_item"
+          "scroll_up"
+        ];
       }
     ];
   };

@@ -3,49 +3,71 @@
   outputs,
   stateVersion,
   ...
-}: let
+}:
+let
   inherit (inputs.nixpkgs) lib;
-  mkNodeConfig = {
-    hostname,
-    username,
-    system ? "x86_64-linux",
-    isWorkstation ? false,
-    isTrusted ? false,
-    virtualisation ? false,
-    containerBackend ? "podman",
-  }: {
-    inherit inputs outputs stateVersion;
-    inherit hostname username system isWorkstation isTrusted containerBackend virtualisation;
-  };
-
-  mkNixOSConfig = config: let
-    nodeConfig = mkNodeConfig config;
-  in {
-    specialArgs = {
+  mkNodeConfig =
+    {
+      hostname,
+      username,
+      system ? "x86_64-linux",
+      isWorkstation ? false,
+      isTrusted ? false,
+      virtualisation ? false,
+      containerBackend ? "podman",
+    }:
+    {
       inherit inputs outputs stateVersion;
-      inherit nodeConfig;
+      inherit
+        hostname
+        username
+        system
+        isWorkstation
+        isTrusted
+        containerBackend
+        virtualisation
+        ;
     };
-    modules = [../nixos];
-  };
 
-  mkNixOS = args:
-    lib.nixosSystem (mkNixOSConfig args);
+  mkNixOSConfig =
+    config:
+    let
+      nodeConfig = mkNodeConfig config;
+    in
+    {
+      specialArgs = {
+        inherit inputs outputs stateVersion;
+        inherit nodeConfig;
+      };
+      modules = [ ../nixos ];
+    };
 
-  mkDarwin = config: let
-    nodeConfig = mkNodeConfig config;
-  in
+  mkNixOS = args: lib.nixosSystem (mkNixOSConfig args);
+
+  mkDarwin =
+    config:
+    let
+      nodeConfig = mkNodeConfig config;
+    in
     inputs.nix-darwin.lib.darwinSystem {
       specialArgs = {
-        inherit inputs outputs stateVersion nodeConfig;
+        inherit
+          inputs
+          outputs
+          stateVersion
+          nodeConfig
+          ;
       };
       inherit (nodeConfig) system;
       pkgs = inputs.nixpkgs.legacyPackages.${nodeConfig.system};
-      modules = [../macos];
+      modules = [ ../macos ];
     };
 
-  mkHome = config: let
-    nodeConfig = mkNodeConfig config;
-  in
+  mkHome =
+    config:
+    let
+      nodeConfig = mkNodeConfig config;
+    in
     inputs.home-manager.lib.homeManagerConfiguration rec {
       pkgs = inputs.nixpkgs.legacyPackages.${nodeConfig.system};
       extraSpecialArgs = {
@@ -54,20 +76,24 @@
         inherit (pkgs.stdenv) isLinux isDarwin;
         inherit nodeConfig;
       };
-      modules = [../home];
+      modules = [ ../home ];
     };
 
-  mkNixOSImage = {
-    system ? "x86_64-linux",
-    format,
-    ...
-  } @ args:
-    inputs.nixos-generators.nixosGenerate ({
+  mkNixOSImage =
+    {
+      system ? "x86_64-linux",
+      format,
+      ...
+    }@args:
+    inputs.nixos-generators.nixosGenerate (
+      {
         inherit system;
         inherit format;
       }
-      // (mkNixOSConfig (args // {inherit system;})));
-in {
+      // (mkNixOSConfig (args // { inherit system; }))
+    );
+in
+{
   inherit mkNixOS;
   inherit mkNixOSConfig;
   inherit mkNixOSImage;

@@ -5,7 +5,8 @@
   config,
   isLinux,
   ...
-}: {
+}:
+{
   imports = [
     ./waybar.nix
     ./swayosd.nix
@@ -22,7 +23,7 @@
   ];
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     Unit.Description = "polkit-gnome-authentication-agent-1";
-    Install.WantedBy = ["hyprland-session.target"];
+    Install.WantedBy = [ "hyprland-session.target" ];
     Service = {
       Type = "simple";
       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
@@ -36,7 +37,7 @@
     systemd = {
       enable = true;
       enableXdgAutostart = true;
-      variables = ["--all"];
+      variables = [ "--all" ];
     };
     xwayland.enable = true;
     catppuccin = {
@@ -178,11 +179,14 @@
   xdg.portal = {
     config = {
       common = {
-        default = ["hyprland" "gtk"];
-        "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
+        default = [
+          "hyprland"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
       };
     };
-    configPackages = [config.wayland.windowManager.hyprland.package];
+    configPackages = [ config.wayland.windowManager.hyprland.package ];
     enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal

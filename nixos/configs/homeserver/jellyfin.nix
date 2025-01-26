@@ -1,10 +1,10 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   port = 8096;
-in {
-  networking.firewall.allowedTCPPorts = [port];
-
+in
+{
   nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
+    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
   };
   hardware.graphics = {
     enable = true;
@@ -29,9 +29,13 @@ in {
       enable = true;
       user = "jellyfin";
       group = "jellyfin";
+      openFirewall = true;
     };
   };
-  users.users.jellyfin.extraGroups = ["render" "video"];
+  users.users.jellyfin.extraGroups = [
+    "render"
+    "video"
+  ];
   fileSystems = {
     "/var/lib/jellyfin" = {
       device = "rpool/jellyfin";
@@ -45,7 +49,7 @@ in {
       upstreams = {
         jellyfin = {
           servers = {
-            "127.0.0.1:${toString port}" = {};
+            "127.0.0.1:${toString port}" = { };
           };
         };
       };

@@ -1,12 +1,13 @@
 {config, ...}: {
   services = {
     immich = {
-      enable = true;
+      enable = false;
       host = "127.0.0.1";
       redis.enable = true;
       database = {
         enable = true;
         createDB = true;
+        port = 55432;
       };
       machine-learning.enable = true;
     };

@@ -6,19 +6,28 @@
   lib,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   boot = {
     initrd = {
-      availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usb_storage" "uas" "sd_mod"];
-      kernelModules = [];
-      luks.devices."luks-113a8b35-5611-48de-8a3a-a9f32fca8d4e".device = "/dev/disk/by-uuid/113a8b35-5611-48de-8a3a-a9f32fca8d4e";
+      availableKernelModules = [
+        "xhci_pci"
+        "thunderbolt"
+        "nvme"
+        "usb_storage"
+        "uas"
+        "sd_mod"
+      ];
+      kernelModules = [ ];
+      luks.devices."luks-113a8b35-5611-48de-8a3a-a9f32fca8d4e".device =
+        "/dev/disk/by-uuid/113a8b35-5611-48de-8a3a-a9f32fca8d4e";
     };
-    kernelModules = ["kvm-intel"];
-    extraModulePackages = [];
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
   };
 
   fileSystems."/" = {
@@ -37,7 +46,7 @@
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/0ef15fdd-84ed-4b8b-b910-e7c40542b549";}
+    { device = "/dev/disk/by-uuid/0ef15fdd-84ed-4b8b-b910-e7c40542b549"; }
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

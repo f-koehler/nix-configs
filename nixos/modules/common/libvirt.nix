@@ -18,8 +18,7 @@ lib.mkIf nodeConfig.virtualisation {
           (pkgs.OVMF.override {
             secureBoot = true;
             tpmSupport = true;
-          })
-          .fd
+          }).fd
         ];
       };
       verbatimConfig = ''

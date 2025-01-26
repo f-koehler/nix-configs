@@ -1,4 +1,5 @@
-{inputs, ...}: {
+{ inputs, ... }:
+{
   imports = [
     inputs.nix-flatpak.nixosModules.nix-flatpak
   ];
@@ -15,6 +16,7 @@
       "com.bitwarden.desktop"
       "com.github.tchx84.Flatseal"
       "com.spotify.Client"
+      "com.super_productivity.SuperProductivity"
       "com.valvesoftware.Steam"
       "io.github.dweymouth.supersonic"
       "md.obsidian.Obsidian"

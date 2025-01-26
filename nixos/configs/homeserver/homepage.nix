@@ -1,15 +1,17 @@
-{config, ...}: let
+{ config, ... }:
+let
   port = 8082;
-in {
+in
+{
   sops = {
     secrets = {
-      "services/audiobookshelf/apiKey" = {};
-      "services/jellyfin/apiKey" = {};
-      "services/navidrome/apiKey" = {};
-      "services/navidrome/salt" = {};
-      "services/nextcloud/apiKey" = {};
-      "services/paperless/apiKey" = {};
-      "services/forgejo/apiKey" = {};
+      "services/audiobookshelf/apiKey" = { };
+      "services/jellyfin/apiKey" = { };
+      "services/navidrome/apiKey" = { };
+      "services/navidrome/salt" = { };
+      "services/nextcloud/apiKey" = { };
+      "services/paperless/apiKey" = { };
+      "services/forgejo/apiKey" = { };
     };
     templates."homepage-dashboard.env" = {
       content = ''
@@ -48,117 +50,119 @@ in {
         };
       }
     ];
-    services = let
-      audiobookshelfUrl = "https://audiobooks.fkoehler.xyz";
-      jellyfinUrl = "https://media.fkoehler.xyz";
-      navidromeUrl = "https://music.fkoehler.xyz";
-      nextcloudUrl = "https://cloud.fkoehler.xyz";
-      paperlessUrl = "https://docs.fkoehler.xyz";
-      tinymediamanagerUrl = "https://tinymediamanager.fkoehler.xyz";
-      invidiousUrl = "https://youtube.fkoehler.xyz";
-      forgejoUrl = "https://git.fkoehler.xyz";
-    in [
-      {
-        "Media" = [
-          {
-            "Jellyfin" = {
-              icon = "jellyfin.svg";
-              href = jellyfinUrl;
-              description = "Movies, TV Shows and Music";
-              widget = {
-                type = "jellyfin";
-                url = jellyfinUrl;
-                key = "{{HOMEPAGE_VAR_JELLYFIN_API_KEY}}";
+    services =
+      let
+        audiobookshelfUrl = "https://audiobooks.fkoehler.xyz";
+        jellyfinUrl = "https://media.fkoehler.xyz";
+        navidromeUrl = "https://music.fkoehler.xyz";
+        nextcloudUrl = "https://cloud.fkoehler.xyz";
+        paperlessUrl = "https://docs.fkoehler.xyz";
+        tinymediamanagerUrl = "https://tinymediamanager.fkoehler.xyz";
+        invidiousUrl = "https://youtube.fkoehler.xyz";
+        forgejoUrl = "https://git.fkoehler.xyz";
+      in
+      [
+        {
+          "Media" = [
+            {
+              "Jellyfin" = {
+                icon = "jellyfin.svg";
+                href = jellyfinUrl;
+                description = "Movies, TV Shows and Music";
+                widget = {
+                  type = "jellyfin";
+                  url = jellyfinUrl;
+                  key = "{{HOMEPAGE_VAR_JELLYFIN_API_KEY}}";
+                };
               };
-            };
-          }
-          {
-            "Audiobookshelf" = {
-              icon = "audiobookshelf.svg";
-              href = audiobookshelfUrl;
-              description = "Audiobooks";
-              widget = {
-                type = "audiobookshelf";
-                url = audiobookshelfUrl;
-                key = "{{HOMEPAGE_VAR_AUDIOBOOKSHELF_API_KEY}}";
+            }
+            {
+              "Audiobookshelf" = {
+                icon = "audiobookshelf.svg";
+                href = audiobookshelfUrl;
+                description = "Audiobooks";
+                widget = {
+                  type = "audiobookshelf";
+                  url = audiobookshelfUrl;
+                  key = "{{HOMEPAGE_VAR_AUDIOBOOKSHELF_API_KEY}}";
+                };
               };
-            };
-          }
-          {
-            "Navidrome" = {
-              icon = "navidrome.svg";
-              href = navidromeUrl;
-              description = "Music";
-              widget = {
-                type = "navidrome";
-                url = navidromeUrl;
-                user = "fkoehler";
-                token = "{{HOMEPAGE_VAR_NAVIDROME_API_KEY}}";
-                salt = "{{HOMEPAGE_VAR_NAVIDROME_SALT}}";
+            }
+            {
+              "Navidrome" = {
+                icon = "navidrome.svg";
+                href = navidromeUrl;
+                description = "Music";
+                widget = {
+                  type = "navidrome";
+                  url = navidromeUrl;
+                  user = "fkoehler";
+                  token = "{{HOMEPAGE_VAR_NAVIDROME_API_KEY}}";
+                  salt = "{{HOMEPAGE_VAR_NAVIDROME_SALT}}";
+                };
               };
-            };
-          }
-          {
-            "Invidious" = {
-              icon = "invidious.svg";
-              href = invidiousUrl;
-              description = "Watch YouTube without distractions";
-            };
-          }
-          {
-            "tinyMediaManager" = {
-              href = tinymediamanagerUrl;
-              description = "Manage media";
-            };
-          }
-        ];
-      }
-      {
-        "Productivity" = [
-          {
-            "Nextcloud" = {
-              icon = "nextcloud.svg";
-              href = nextcloudUrl;
-              description = "Personal cloud";
-              widget = {
-                type = "nextcloud";
-                url = nextcloudUrl;
-                key = "{{HOMEPAGE_VAR_NEXTCLOUD_API_KEY}}";
+            }
+            {
+              "Invidious" = {
+                icon = "invidious.svg";
+                href = invidiousUrl;
+                description = "Watch YouTube without distractions";
               };
-            };
-          }
-          {
-            "Paperless" = {
-              icon = "paperless-ngx.svg";
-              href = paperlessUrl;
-              description = "Documents";
-              widget = {
-                type = "paperlessngx";
-                url = paperlessUrl;
-                key = "{{HOMEPAGE_VAR_PAPERLESS_API_KEY}}";
+            }
+            {
+              "tinyMediaManager" = {
+                href = tinymediamanagerUrl;
+                description = "Manage media";
               };
-            };
-          }
-          {
-            "Forgejo" = {
-              icon = "forgejo.svg";
-              href = forgejoUrl;
-              description = "Git";
-              widget = {
-                type = "gitea";
-                url = forgejoUrl;
-                key = "{{HOMEPAGE_VAR_FORGEJO_API_KEY}}";
+            }
+          ];
+        }
+        {
+          "Productivity" = [
+            {
+              "Nextcloud" = {
+                icon = "nextcloud.svg";
+                href = nextcloudUrl;
+                description = "Personal cloud";
+                widget = {
+                  type = "nextcloud";
+                  url = nextcloudUrl;
+                  key = "{{HOMEPAGE_VAR_NEXTCLOUD_API_KEY}}";
+                };
               };
-            };
-          }
-        ];
-      }
-    ];
+            }
+            {
+              "Paperless" = {
+                icon = "paperless-ngx.svg";
+                href = paperlessUrl;
+                description = "Documents";
+                widget = {
+                  type = "paperlessngx";
+                  url = paperlessUrl;
+                  key = "{{HOMEPAGE_VAR_PAPERLESS_API_KEY}}";
+                };
+              };
+            }
+            {
+              "Forgejo" = {
+                icon = "forgejo.svg";
+                href = forgejoUrl;
+                description = "Git";
+                widget = {
+                  type = "gitea";
+                  url = forgejoUrl;
+                  key = "{{HOMEPAGE_VAR_FORGEJO_API_KEY}}";
+                };
+              };
+            }
+          ];
+        }
+      ];
   };
   services.nginx = {
     upstreams.homepage = {
       servers = {
-        "127.0.0.1:${toString port}" = {};
+        "127.0.0.1:${toString port}" = { };
       };
     };
     virtualHosts."homepage.fkoehler.xyz" = {

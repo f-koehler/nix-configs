@@ -8,20 +8,20 @@
   isLinux,
   nodeConfig,
   ...
-}: let
+}:
+let
   inherit (pkgs.stdenv) isDarwin;
-in {
-  imports =
-    [
-      inputs.catppuccin.homeManagerModules.catppuccin
-      inputs.mac-app-util.homeManagerModules.default
-      inputs.nix-index-database.hmModules.nix-index
-      inputs.nixvim.homeManagerModules.nixvim
-      inputs.plasma-manager.homeManagerModules.plasma-manager
-      inputs.sops-nix.homeManagerModules.sops
-      ./common
-    ]
-    ++ lib.optional nodeConfig.isWorkstation ./workstation;
+in
+{
+  imports = [
+    inputs.catppuccin.homeManagerModules.catppuccin
+    inputs.mac-app-util.homeManagerModules.default
+    inputs.nix-index-database.hmModules.nix-index
+    inputs.nixvim.homeManagerModules.nixvim
+    inputs.plasma-manager.homeManagerModules.plasma-manager
+    inputs.sops-nix.homeManagerModules.sops
+    ./common
+  ] ++ lib.optional nodeConfig.isWorkstation ./workstation;
 
   catppuccin = {
     enable = true;
@@ -41,14 +41,22 @@ in {
       outputs.overlays.modifications
     ];
     config = {
-      allowUnfree = true;
+      allowUnfreePredicate =
+        pkg:
+        builtins.elem (pkgs.lib.getName pkg) [
+          "codeium"
+          "vscode"
+        ];
     };
   };
 
   nix = {
     settings = {
       auto-optimise-store = true;
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       warn-dirty = false;
     };
     package = pkgs.nix;
@@ -67,9 +75,7 @@ in {
     inherit stateVersion;
     inherit (nodeConfig) username;
     homeDirectory =
-      if isDarwin
-      then "/Users/${nodeConfig.username}"
-      else "/home/${nodeConfig.username}";
+      if isDarwin then "/Users/${nodeConfig.username}" else "/home/${nodeConfig.username}";
 
     packages = with pkgs; [
       # awscli2
@@ -104,7 +110,7 @@ in {
       pkgs.nerd-fonts.hack
 
       pkgs.nil
-      inputs.alejandra.defaultPackage.${system}
+      pkgs.nixfmt-rfc-style
 
       # # You can also create simple shell scripts directly inside your
       # # configuration. For example, this adds a command 'my-hello' to your
@@ -130,7 +136,9 @@ in {
         # '';
       }
       // lib.mkIf (nodeConfig.isWorkstation && isLinux) {
-        ".local/share/jellyfinmediaplayer/scripts/mpris.so".source = lib.mkIf (isLinux && nodeConfig.isWorkstation) "${pkgs.mpvScripts.mpris}/share/mpv/scripts/mpris.so";
+        ".local/share/jellyfinmediaplayer/scripts/mpris.so".source = lib.mkIf (
+          isLinux && nodeConfig.isWorkstation
+        ) "${pkgs.mpvScripts.mpris}/share/mpv/scripts/mpris.so";
       };
   };
 
@@ -139,6 +147,8 @@ in {
     bat.enable = true;
     fd.enable = true;
     password-store.enable = true;
+
+    man.generateCaches = true;
 
     # Let Home Manager install and manage itself.
     home-manager.enable = true;

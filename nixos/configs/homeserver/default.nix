@@ -1,9 +1,11 @@
 _: {
   imports = [
     ./audiobookshelf.nix
+    ./beszel-agent.nix
+    ./beszel-hub.nix
     ./forgejo.nix
     ./gickup.nix
-    ./homepage.nix
+    # ./homepage.nix
     # ./immich.nix
     ./invidious.nix
     ./jellyfin.nix
@@ -15,6 +17,7 @@ _: {
     ./samba.nix
     ./searx.nix
     ./tinymediamanager.nix
+    ./unifi.nix
     ./zfs-snapshots.nix
   ];
 }

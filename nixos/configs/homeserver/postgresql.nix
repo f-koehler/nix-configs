@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services.postgresql = {
     enable = true;
     authentication = pkgs.lib.mkOverride 10 ''

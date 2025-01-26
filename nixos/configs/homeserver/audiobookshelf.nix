@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   services = {
     audiobookshelf = {
       enable = true;
@@ -10,7 +11,7 @@
     nginx = {
       upstreams."audiobookshelf" = {
         servers = {
-          "127.0.0.1:${toString config.services.audiobookshelf.port}" = {};
+          "127.0.0.1:${toString config.services.audiobookshelf.port}" = { };
         };
       };
       virtualHosts."audiobooks.fkoehler.xyz" = {

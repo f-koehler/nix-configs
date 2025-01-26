@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   environment = {
     systemPackages = with pkgs; [
       # bitwarden-desktop
@@ -17,7 +18,6 @@
       localsend
       nextcloud-client
       protonmail-bridge
-      super-productivity
       telegram-desktop
       thunderbird
       vlc

@@ -1,20 +1,32 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.sway = {
     enable = true;
-    wrapperFeatures.gtk = true;
+    wrapperFeatures = {
+      base = true;
+      gtk = true;
+    };
+    xwayland.enable = true;
   };
   services = {
     blueman.enable = true;
+    devmon.enable = true;
     gnome.gnome-keyring.enable = true;
+    gvfs.enable = true;
+    udisks2.enable = true;
+    upower.enable = true;
   };
-  security.polkit.enable = true;
+  security = {
+    polkit.enable = true;
+    pam.services.swaylock = { };
+  };
   hardware.graphics.enable = true;
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.kdePackages.xdg-desktop-portal-kde
     ];
+    wlr.enable = true;
+    xdgOpenUsePortal = true;
   };
 }

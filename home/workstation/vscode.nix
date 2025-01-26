@@ -2,7 +2,8 @@
   pkgs,
   isDarwin,
   ...
-}: {
+}:
+{
   home.packages = with pkgs; [
     ruff
     vscode
@@ -73,6 +74,7 @@
       "C_Cpp.codeAnalysis.clangTidy.enabled" = true;
       "C_Cpp.codeAnalysis.clangTidy.path" = "${pkgs.clang-tools}/bin/clang-tidy";
       "C_Cpp.clang_format_path" = "${pkgs.clang-tools}/bin/clang-format";
+      "C_Cpp.codeAnalysis.runAutomatically" = false;
 
       "cmake.options.statusBarVisibility" = "compact";
       "cmake.showOptionsMovedNotification" = false;
@@ -96,19 +98,19 @@
       "git.autofetch" = true;
       "git.path" = "${pkgs.git}/bin/git";
       "latex-workshop.latex.recipe.default" = "latexmk (lualatex)";
-      "latex-workshop.hover.preview.mathjax.extensions" = ["braket"];
+      "latex-workshop.hover.preview.mathjax.extensions" = [ "braket" ];
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nil";
       "nix.serverSettings" = {
         "nil" = {
           "formatting" = {
-            "command" = ["alejandra"];
+            "command" = [ "nixfmt-rfc-style" ];
           };
         };
       };
       "redhat.telemetry.enabled" = false;
       "remote.SSH.useLocalServer" = false;
-      "ruff.path" = ["${pkgs.ruff}/bin/ruff"];
+      "ruff.path" = [ "${pkgs.ruff}/bin/ruff" ];
       "tailscale.portDiscovery.enabled" = false;
       "terminal.integrated.fontFamily" = "Cascadia Code NF";
       "terminal.integrated.fontSize" = 12;

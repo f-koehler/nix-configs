@@ -20,7 +20,7 @@ _: {
 
       # Works with input inhibitor active (l) and is triggered on release (r)
       bindrl = [
-        ", Ca[s+Lock, exec, swayosd-client --caps-lock"
+        ", Caps+Lock, exec, swayosd-client --caps-lock"
       ];
     };
   };

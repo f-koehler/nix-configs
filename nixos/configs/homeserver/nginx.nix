@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   sops = {
     secrets = {
       "security/acme/cloudflare/email" = {
@@ -24,7 +25,7 @@
     enable = true;
     stateful = true;
     defaultBitSize = 4096;
-    params.nginx = {};
+    params.nginx = { };
   };
   services.nginx = {
     enable = true;
@@ -41,7 +42,10 @@
     '';
   };
 
-  networking.firewall.allowedTCPPorts = [80 443];
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+  ];
   systemd.services.nginx.after = [
     "dhparams-gen-nginx.service"
     "acme-finished-fkoehler.xyz.target"
@@ -54,7 +58,7 @@
     certs."fkoehler.xyz" = {
       dnsProvider = "cloudflare";
       domain = "*.fkoehler.xyz";
-      extraDomainNames = ["fkoehler.xyz"];
+      extraDomainNames = [ "fkoehler.xyz" ];
       environmentFile = "${config.sops.templates."cloudflare-credentials".path}";
       inherit (config.services.nginx) group;
     };

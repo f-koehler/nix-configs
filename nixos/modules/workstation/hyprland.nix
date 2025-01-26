@@ -4,7 +4,8 @@
   config,
   nodeConfig,
   ...
-}: let
+}:
+let
   hyprlandLaunch = pkgs.writeShellScriptBin "hyprland-launch" ''
     ${pkgs.hyprland}/bin/Hyprland $@ &>/dev/null
 
@@ -13,9 +14,10 @@
     systemctl --user --machine=${nodeConfig.username}@.host stop dbus-broker
     systemctl --user --machine=${nodeConfig.username}@.host stop hyprland-session.target
   '';
-in {
+in
+{
   environment = {
-    systemPackages = [hyprlandLaunch];
+    systemPackages = [ hyprlandLaunch ];
   };
   programs = {
     hyprland = {
@@ -35,8 +37,14 @@ in {
           greeting_msg = "Hello!";
         };
         commands = {
-          reboot = ["${pkgs.systemd}/bin/systemctl" "reboot"];
-          poweroff = ["${pkgs.systemd}/bin/systemctl" "poweroff"];
+          reboot = [
+            "${pkgs.systemd}/bin/systemctl"
+            "reboot"
+          ];
+          poweroff = [
+            "${pkgs.systemd}/bin/systemctl"
+            "poweroff"
+          ];
         };
         # GTK = lib.mkForce {
         #   application_prefer_dark_theme = true;
@@ -49,9 +57,9 @@ in {
     };
   };
   services = {
+    devmon.enable = true;
     gvfs.enable = true;
     udisks2.enable = true;
-    devmon.enable = true;
     greetd = {
       enable = true;
       vt = 1;
@@ -59,14 +67,14 @@ in {
   };
   security = {
     pam.services = {
-      hyprlock = {};
+      hyprlock = { };
       greetd.enableGnomeKeyring = true;
     };
     polkit.enable = true;
   };
   xdg = {
     portal = {
-      configPackages = [pkgs.hyprland];
+      configPackages = [ pkgs.hyprland ];
       extraPortals = with pkgs; [
         xdg-desktop-portal-hyprland
         xdg-desktop-portal-gtk
@@ -75,18 +83,21 @@ in {
       xdgOpenUsePortal = true;
       config = {
         common = {
-          default = ["gtk"];
+          default = [ "gtk" ];
         };
         hyprland = {
-          default = ["hyprland" "gtk"];
-          "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
+          default = [
+            "hyprland"
+            "gtk"
+          ];
+          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
         };
       };
     };
     terminal-exec = {
       enable = true;
       settings = {
-        default = ["wezterm.desktop"];
+        default = [ "wezterm.desktop" ];
       };
     };
   };

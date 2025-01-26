@@ -17,7 +17,7 @@ lib.mkIf isLinux {
       {
         description = "Krohnkite: Set Minimum Geometry Size";
         match = {
-          window-types = ["normal"];
+          window-types = [ "normal" ];
         };
         apply."minsize" = {
           apply = "force";

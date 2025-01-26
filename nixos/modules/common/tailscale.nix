@@ -1,4 +1,5 @@
-{nodeConfig, ...}: {
+{ nodeConfig, ... }:
+{
   services.tailscale = {
     enable = true;
     openFirewall = true;

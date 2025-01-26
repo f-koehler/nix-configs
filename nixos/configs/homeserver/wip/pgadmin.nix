@@ -1,6 +1,7 @@
-{config, ...}: {
+{ config, ... }:
+{
   sops.secrets = {
-    "services/pgadmin/password" = {};
+    "services/pgadmin/password" = { };
   };
   services = {
     pgadmin = {
@@ -12,7 +13,7 @@
   services.nginx = {
     upstreams.pgadmin = {
       servers = {
-        "127.0.0.1:5050" = {};
+        "127.0.0.1:5050" = { };
       };
     };
     virtualHosts."pgadmin.fkoehler.xyz" = {

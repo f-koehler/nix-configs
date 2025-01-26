@@ -1,7 +1,9 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   port = 33333;
   domain = "youtube.fkoehler.xyz";
-in {
+in
+{
   services = {
     invidious = {
       inherit port;

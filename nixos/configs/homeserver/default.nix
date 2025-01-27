@@ -1,5 +1,6 @@
 _: {
   imports = [
+    ./atuin.nix
     ./audiobookshelf.nix
     ./beszel-agent.nix
     ./beszel-hub.nix

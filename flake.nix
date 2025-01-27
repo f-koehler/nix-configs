@@ -68,11 +68,6 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
-    alejandra = {
-      url = "github:kamadorueda/alejandra";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -188,10 +183,14 @@
             modules = [
               {
                 packages = with pkgs; [
+                  age
                   fastfetch
                   git
+                  home-manager
                   just
                   nodejs
+                  sops
+                  nixos-rebuild
                 ];
 
                 scripts = {
@@ -228,6 +227,13 @@
 
                 languages = {
                   nix.enable = true;
+                  python = {
+                    enable = true;
+                    uv = {
+                      enable = true;
+                      sync.enable = true;
+                    };
+                  };
                 };
 
                 pre-commit.hooks = {
@@ -252,6 +258,10 @@
                   # shell
                   shellcheck.enable = true;
                   shfmt.enable = true;
+
+                  # python
+                  ruff-format.enable = true;
+                  # ruff-lint.enable = true;
 
                   # yaml
                   yamllint.enable = true;

@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   services = {
     immich = {
       enable = false;
@@ -14,7 +15,7 @@
     nginx = {
       upstreams."immich" = {
         servers = {
-          "127.0.0.1:${toString config.services.immich.port}" = {};
+          "127.0.0.1:${toString config.services.immich.port}" = { };
         };
       };
       virtualHosts."photos.fkoehler.xyz" = {
@@ -55,5 +56,5 @@
       };
     };
   };
-  users.users.immich.extraGroups = ["nextcloud"];
+  users.users.immich.extraGroups = [ "nextcloud" ];
 }

@@ -1,22 +1,26 @@
-{pkgs, ...}: let
-  mkDefaultShare = {
-    path,
-    comment ? "",
-    ...
-  }: {
-    inherit path;
-    inherit comment;
-    browseable = "yes";
-    writeable = "yes";
-    "read only" = "no";
-    "guest ok" = "no";
-    "force user" = "jellyfin";
-    "force group" = "media";
-    "valid users" = "fkoehler";
-    "read list" = "fkoehler";
-    "write list" = "fkoehler";
-  };
-in {
+{ pkgs, ... }:
+let
+  mkDefaultShare =
+    {
+      path,
+      comment ? "",
+      ...
+    }:
+    {
+      inherit path;
+      inherit comment;
+      browseable = "yes";
+      writeable = "yes";
+      "read only" = "no";
+      "guest ok" = "no";
+      "force user" = "jellyfin";
+      "force group" = "media";
+      "valid users" = "fkoehler";
+      "read list" = "fkoehler";
+      "write list" = "fkoehler";
+    };
+in
+{
   services = {
     samba-wsdd = {
       enable = true;

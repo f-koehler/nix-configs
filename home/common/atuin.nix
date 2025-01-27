@@ -11,7 +11,7 @@
     };
   };
   programs.atuin = lib.mkIf nodeConfig.isTrusted {
-    enable = true;
+    enable = false;
     enableBashIntegration = true;
     enableFishIntegration = true;
     enableZshIntegration = true;

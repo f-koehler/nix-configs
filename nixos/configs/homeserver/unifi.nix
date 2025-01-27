@@ -78,6 +78,21 @@ in
       startLimitBurst = 50;
     };
   };
+  networking.firewall = {
+    allowedTCPPorts = [
+      8443
+      8080
+      8843
+      8880
+      6789
+    ];
+    allowedUDPPorts = [
+      3478
+      10001
+      1900
+      5514
+    ];
+  };
   virtualisation.oci-containers.containers = {
     unifi-db = {
       image = "docker.io/mongo:7.0.16";

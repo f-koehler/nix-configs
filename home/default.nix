@@ -77,9 +77,7 @@ in
     homeDirectory =
       if isDarwin then "/Users/${nodeConfig.username}" else "/home/${nodeConfig.username}";
 
-    packages = with pkgs; [
-      # awscli2
-      # neovim
+    packages = [
       pkgs.nh
       pkgs.git
       pkgs.age
@@ -112,13 +110,7 @@ in
       pkgs.nil
       pkgs.nixfmt-rfc-style
 
-      # # You can also create simple shell scripts directly inside your
-      # # configuration. For example, this adds a command 'my-hello' to your
-      # # environment:
-      # (pkgs.writeShellScriptBin "my-hello" ''
-      #   echo "Hello, ${config.home.username}!"
-      # '')
-    ];
+    ] ++ lib.optionals isLinux [ inputs.isd.packages.${nodeConfig.system}.default ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.

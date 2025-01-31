@@ -73,8 +73,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprland.url = "github:hyprwm/Hyprland";
+    hy3 = {
+      url = "github:outfoxxed/hy3";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     ashell = {
-      url = "github:MalpenZibo/ashell";
+      url = "github:MalpenZibo/ashell/4d3c33433ae368a502650af63e41046bbe123427";
+      # url = "github:MalpenZibo/ashell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

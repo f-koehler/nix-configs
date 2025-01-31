@@ -2,51 +2,38 @@
   inputs,
   lib,
   pkgs,
-  config,
   isLinux,
+  nodeConfig,
   ...
 }:
 {
   imports = [
-    ./waybar.nix
+    ./ashell.nix
     ./swayosd.nix
     ./swaync.nix
     ./hyprlock.nix
+    ./hyprpaper.nix
   ];
   home.packages = [
     pkgs.swaynotificationcenter
-    pkgs.waybar
     pkgs.rofi-wayland
-
-    inputs.ashell.defaultPackage."${pkgs.system}"
     pkgs.nerd-fonts.symbols-only
   ];
-  systemd.user.services.polkit-gnome-authentication-agent-1 = {
-    Unit.Description = "polkit-gnome-authentication-agent-1";
-    Install.WantedBy = [ "hyprland-session.target" ];
-    Service = {
-      Type = "simple";
-      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      Restart = "on-failure";
-      RestartSec = 1;
-      TimeoutStopSec = 10;
-    };
+  catppuccin.hyprland = {
+    enable = true;
+    flavor = "mocha";
+    accent = "mauve";
   };
+  wayland.systemd.target = "graphical-session.target";
   wayland.windowManager.hyprland = {
     enable = true;
+    package = inputs.hyprland.packages.${nodeConfig.system}.hyprland;
     systemd = {
-      enable = true;
-      enableXdgAutostart = true;
-      variables = [ "--all" ];
+      enable = false; # we use UWSM in NixOS config for Hyprland
     };
     xwayland.enable = true;
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-      accent = "mauve";
-    };
-    plugins = with pkgs.hyprlandPlugins; [
-      hy3
+    plugins = [
+      inputs.hy3.packages.${nodeConfig.system}.hy3
     ];
     settings = lib.mkIf isLinux {
       monitor = [
@@ -68,8 +55,8 @@
         "$mod, greater, resizeactive, 0 10"
       ];
       bind = [
-        "$mod, return, exec, ${lib.getExe pkgs.wezterm}"
-        "$mod, d, exec, ${lib.getExe pkgs.rofi-wayland} -show drun"
+        "$mod, return, exec, ${lib.getExe pkgs.alacritty}"
+        "$mod, d, exec, ${lib.getExe pkgs.rofi-wayland} -show drun -run-command ''\"${lib.getExe' pkgs.uwsm "uwsm"} app -- {cmd}''\""
         "$mod+SHIFT, q, hy3:killactive"
         "$mod+SHIFT, e, exit"
 
@@ -162,6 +149,9 @@
           brightness = 0.8;
         };
       };
+      exec-once = [
+        "systemctl --user start hyprpolkitagent.service"
+      ];
       general = {
         layout = "hy3";
       };
@@ -170,29 +160,9 @@
       };
       plugin = {
         hy3 = {
-          no_gaps_when_only = 2;
+          no_gaps_when_only = 1;
         };
       };
     };
-  };
-
-  xdg.portal = {
-    config = {
-      common = {
-        default = [
-          "hyprland"
-          "gtk"
-        ];
-        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-      };
-    };
-    configPackages = [ config.wayland.windowManager.hyprland.package ];
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-hyprland
-    ];
-    xdgOpenUsePortal = true;
   };
 }

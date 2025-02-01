@@ -23,6 +23,7 @@
       "org.fkoehler.KTailctl"
       "org.musicbrainz.Picard"
       "us.zoom.Zoom"
+      "org.kde.okular"
     ];
   };
 }

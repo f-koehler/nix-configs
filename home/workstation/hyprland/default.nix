@@ -40,6 +40,9 @@
       monitor = [
         "eDP-1, 1920x1200@60Hz, auto, 1"
       ];
+      workspace = [
+        ", gapsin:0, gapsout:0"
+      ];
       "$mod" = "SUPER";
       animations = {
         enabled = "yes";
@@ -161,7 +164,6 @@
       };
       plugin = {
         hy3 = {
-          no_gaps_when_only = 1;
         };
       };
     };

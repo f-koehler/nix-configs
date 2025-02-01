@@ -45,7 +45,16 @@ in
         "eDP-1, 1920x1200@60Hz, auto, 1"
       ];
       workspace = [
-        ", gapsin:0, gapsout:0"
+        "1,  gapsin:0, gapsout:0"
+        "2,  gapsin:0, gapsout:0"
+        "3,  gapsin:0, gapsout:0"
+        "4,  gapsin:0, gapsout:0"
+        "5,  gapsin:0, gapsout:0"
+        "6,  gapsin:0, gapsout:0"
+        "7,  gapsin:0, gapsout:0"
+        "8,  gapsin:0, gapsout:0"
+        "9,  gapsin:0, gapsout:0"
+        "10, gapsin:0, gapsout:0"
       ];
       "$mod" = "SUPER";
       animations = {

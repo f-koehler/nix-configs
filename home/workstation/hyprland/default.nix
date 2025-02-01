@@ -50,6 +50,14 @@ in
       animations = {
         enabled = "yes";
       };
+      windowrulev2 = [
+        "opacity 0.0 override, class:^(xwaylandvideobridge)$"
+        "noanim, class:^(xwaylandvideobridge)$"
+        "noinitialfocus, class:^(xwaylandvideobridge)$"
+        "maxsize 1 1, class:^(xwaylandvideobridge)$"
+        "noblur, class:^(xwaylandvideobridge)$"
+        "nofocus, class:^(xwaylandvideobridge)$"
+      ];
       bindl = [
         ", XF86AudioPlay, exec, ${lib.getExe pkgs.playerctl} play-pause"
         ", XF86AudioPrev, exec, ${lib.getExe pkgs.playerctl} previous"

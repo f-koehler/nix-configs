@@ -1,5 +1,6 @@
 {
   inputs,
+  config,
   lib,
   pkgs,
   isLinux,
@@ -13,10 +14,10 @@
     ./swaync.nix
     ./hyprlock.nix
     ./hyprpaper.nix
+    ./rofi.nix
   ];
   home.packages = [
     pkgs.swaynotificationcenter
-    pkgs.rofi-wayland
     pkgs.nerd-fonts.symbols-only
   ];
   catppuccin.hyprland = {
@@ -56,7 +57,7 @@
       ];
       bind = [
         "$mod, return, exec, ${lib.getExe pkgs.alacritty}"
-        "$mod, d, exec, ${lib.getExe pkgs.rofi-wayland} -show drun -run-command ''\"${lib.getExe' pkgs.uwsm "uwsm"} app -- {cmd}''\""
+        "$mod, d, exec, ${lib.getExe' config.programs.rofi.finalPackage "rofi"} -show drun -run-command ''\"${lib.getExe' pkgs.uwsm "uwsm"} app -- {cmd}''\""
         "$mod+SHIFT, q, hy3:killactive"
         "$mod+SHIFT, e, exit"
 

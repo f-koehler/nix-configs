@@ -13,11 +13,12 @@ in
 {
   imports = [
     ./ashell.nix
-    ./swayosd.nix
-    ./swaync.nix
     ./hyprlock.nix
     ./hyprpaper.nix
+    ./kanshi.nix
     ./rofi.nix
+    ./swaync.nix
+    ./swayosd.nix
   ];
   home.packages = [
     pkgs.swaynotificationcenter

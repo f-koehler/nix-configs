@@ -7,6 +7,9 @@
   nodeConfig,
   ...
 }:
+let
+  borderWidth = 1;
+in
 {
   imports = [
     ./ashell.nix
@@ -164,6 +167,18 @@
       };
       plugin = {
         hy3 = {
+          tabs = {
+            "border_width" = borderWidth;
+            "col.active" = "rgba(1e1e2eff)";
+            "col.active.border" = "rgba(cba6f7ff)";
+            "col.active.text" = "rgba(cdd6f4ff)";
+            "col.urgent" = "rgba(1e1e2eff)";
+            "col.urgent.border" = "rgba(eba0acff)";
+            "col.urgent.text" = "rgba(cdd6f4ff)";
+            "col.inactive" = "rgba(181825ff)";
+            "col.inactive.border" = "rgba(6c7086ff)";
+            "col.inactive.text" = "rgba(a6adc8ff)";
+          };
         };
       };
     };

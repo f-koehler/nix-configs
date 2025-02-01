@@ -1,10 +1,6 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
-  services = {
-    swaync = {
-      enable = true;
-    };
-  };
+  services.swaync.enable = true;
   wayland.windowManager.hyprland = {
     settings = {
       bind = [

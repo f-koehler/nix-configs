@@ -1,61 +1,64 @@
 {
   inputs,
+  config,
   lib,
   pkgs,
-  config,
   isLinux,
+  nodeConfig,
   ...
 }:
+let
+  borderWidth = 1;
+in
 {
   imports = [
-    ./waybar.nix
-    ./swayosd.nix
-    ./swaync.nix
+    ./ashell.nix
     ./hyprlock.nix
+    ./hyprpaper.nix
+    ./kanshi.nix
+    ./rofi.nix
+    ./swaync.nix
+    ./swayosd.nix
   ];
   home.packages = [
     pkgs.swaynotificationcenter
-    pkgs.waybar
-    pkgs.rofi-wayland
-
-    inputs.ashell.defaultPackage."${pkgs.system}"
     pkgs.nerd-fonts.symbols-only
   ];
-  systemd.user.services.polkit-gnome-authentication-agent-1 = {
-    Unit.Description = "polkit-gnome-authentication-agent-1";
-    Install.WantedBy = [ "hyprland-session.target" ];
-    Service = {
-      Type = "simple";
-      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      Restart = "on-failure";
-      RestartSec = 1;
-      TimeoutStopSec = 10;
-    };
+  catppuccin.hyprland = {
+    enable = true;
+    flavor = "mocha";
+    accent = "mauve";
   };
+  wayland.systemd.target = "graphical-session.target";
   wayland.windowManager.hyprland = {
     enable = true;
+    package = inputs.hyprland.packages.${nodeConfig.system}.hyprland;
     systemd = {
-      enable = true;
-      enableXdgAutostart = true;
-      variables = [ "--all" ];
+      enable = false; # we use UWSM in NixOS config for Hyprland
     };
     xwayland.enable = true;
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-      accent = "mauve";
-    };
-    plugins = with pkgs.hyprlandPlugins; [
-      hy3
+    plugins = [
+      inputs.hy3.packages.${nodeConfig.system}.hy3
     ];
     settings = lib.mkIf isLinux {
       monitor = [
         "eDP-1, 1920x1200@60Hz, auto, 1"
       ];
+      workspace = [
+        ", gapsin:0, gapsout:0"
+      ];
       "$mod" = "SUPER";
       animations = {
         enabled = "yes";
       };
+      windowrulev2 = [
+        "opacity 0.0 override, class:^(xwaylandvideobridge)$"
+        "noanim, class:^(xwaylandvideobridge)$"
+        "noinitialfocus, class:^(xwaylandvideobridge)$"
+        "maxsize 1 1, class:^(xwaylandvideobridge)$"
+        "noblur, class:^(xwaylandvideobridge)$"
+        "nofocus, class:^(xwaylandvideobridge)$"
+      ];
       bindl = [
         ", XF86AudioPlay, exec, ${lib.getExe pkgs.playerctl} play-pause"
         ", XF86AudioPrev, exec, ${lib.getExe pkgs.playerctl} previous"
@@ -68,8 +71,8 @@
         "$mod, greater, resizeactive, 0 10"
       ];
       bind = [
-        "$mod, return, exec, ${lib.getExe pkgs.wezterm}"
-        "$mod, d, exec, ${lib.getExe pkgs.rofi-wayland} -show drun"
+        "$mod, return, exec, ${lib.getExe pkgs.alacritty}"
+        "$mod, d, exec, ${lib.getExe' config.programs.rofi.finalPackage "rofi"} -show drun -run-command ''\"${lib.getExe' pkgs.uwsm "uwsm"} app -- {cmd}''\""
         "$mod+SHIFT, q, hy3:killactive"
         "$mod+SHIFT, e, exit"
 
@@ -162,6 +165,9 @@
           brightness = 0.8;
         };
       };
+      exec-once = [
+        "systemctl --user start hyprpolkitagent.service"
+      ];
       general = {
         layout = "hy3";
       };
@@ -170,29 +176,20 @@
       };
       plugin = {
         hy3 = {
-          no_gaps_when_only = 2;
+          tabs = {
+            "border_width" = borderWidth;
+            "col.active" = "rgba(1e1e2eff)";
+            "col.active.border" = "rgba(cba6f7ff)";
+            "col.active.text" = "rgba(cdd6f4ff)";
+            "col.urgent" = "rgba(1e1e2eff)";
+            "col.urgent.border" = "rgba(eba0acff)";
+            "col.urgent.text" = "rgba(cdd6f4ff)";
+            "col.inactive" = "rgba(181825ff)";
+            "col.inactive.border" = "rgba(6c7086ff)";
+            "col.inactive.text" = "rgba(a6adc8ff)";
+          };
         };
       };
     };
-  };
-
-  xdg.portal = {
-    config = {
-      common = {
-        default = [
-          "hyprland"
-          "gtk"
-        ];
-        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-      };
-    };
-    configPackages = [ config.wayland.windowManager.hyprland.package ];
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-hyprland
-    ];
-    xdgOpenUsePortal = true;
   };
 }

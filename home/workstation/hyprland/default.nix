@@ -15,6 +15,9 @@ in
     ./ashell.nix
     ./hyprlock.nix
     ./hyprpaper.nix
+    ./hyprpolkitagent.nix
+    ./hyprsunset.nix
+    ./hypridle.nix
     ./kanshi.nix
     ./rofi.nix
     ./swaync.nix

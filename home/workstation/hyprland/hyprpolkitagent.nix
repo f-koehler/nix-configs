@@ -1,1 +1,6 @@
-_: { }
+{ pkgs, ... }:
+{
+  home.packages = [
+    pkgs.hyprpolkitagent
+  ];
+}

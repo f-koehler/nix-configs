@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   isLinux,
   ...
@@ -10,5 +11,6 @@
     "rm" = "rm -i";
     "cat" = "bat --style=plain --paging=never";
     "open" = lib.mkIf isLinux "xdg-open";
+    "lg" = "${lib.getExe' config.programs.lazygit.package "lazygit"}";
   };
 }

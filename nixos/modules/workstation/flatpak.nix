@@ -37,6 +37,8 @@
       "org.videolan.VLC"
       "org.zotero.Zotero"
       "us.zoom.Zoom"
+      "org.kde.kate"
+      "com.github.iwalton3.jellyfin-media-player"
     ];
   };
 }

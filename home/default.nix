@@ -85,7 +85,6 @@ in
       pkgs.du-dust
       pkgs.fish
       pkgs.jq
-      pkgs.hexyl
       pkgs.lunarvim
       pkgs.pre-commit
       pkgs.rye

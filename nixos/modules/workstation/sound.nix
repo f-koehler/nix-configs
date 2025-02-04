@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   # Enable sound with pipewire.
-  hardware.pulseaudio = {
+  services.pulseaudio = {
     enable = false;
     package = pkgs.pulseaudioFull;
   };

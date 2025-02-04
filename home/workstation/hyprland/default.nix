@@ -23,10 +23,13 @@ in
     ./swaync.nix
     ./swayosd.nix
   ];
-  home.packages = [
-    pkgs.swaynotificationcenter
-    pkgs.nerd-fonts.symbols-only
-  ];
+  home = {
+    packages = [
+      pkgs.swaynotificationcenter
+      pkgs.nerd-fonts.symbols-only
+    ];
+    pointerCursor.hyprcursor.enable = true;
+  };
   catppuccin.hyprland = {
     enable = true;
     flavor = "mocha";

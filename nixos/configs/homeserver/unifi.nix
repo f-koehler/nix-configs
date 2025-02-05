@@ -104,7 +104,7 @@ in
       ];
     };
     unifi = {
-      image = "lscr.io/linuxserver/unifi-network-application:9.0.108";
+      image = "lscr.io/linuxserver/unifi-network-application:9.0.114";
       dependsOn = [ "unifi-db" ];
       environmentFiles = [ "${config.sops.templates."unifi.env".path}" ];
       networks = [ "unifi" ];

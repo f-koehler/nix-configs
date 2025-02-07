@@ -6,8 +6,8 @@
     ./conform-nvim.nix
     ./lsp.nix
     ./lualine.nix
+    ./neo-tree.nix
     ./neotest.nix
-    ./nvim-tree.nix
     ./telescope.nix
     ./treesitter.nix
     ./which-key.nix
@@ -25,6 +25,7 @@
       overseer.enable = true;
       rainbow-delimiters.enable = true;
       todo-comments.enable = true;
+      toggleterm.enable = true;
       trouble = {
         enable = true;
         settings = {

@@ -10,7 +10,7 @@ _: {
     # ./sshfs.nix
     ./samba-shares.nix
     ./sound.nix
-    # ./sway.nix
+    ./sway.nix
     ./wine.nix
   ];
   services = {

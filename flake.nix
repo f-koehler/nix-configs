@@ -80,8 +80,11 @@
     };
 
     ashell = {
-      url = "github:MalpenZibo/ashell/4d3c33433ae368a502650af63e41046bbe123427";
-      # url = "github:MalpenZibo/ashell";
+      url = "github:MalpenZibo/ashell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

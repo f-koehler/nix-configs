@@ -5,6 +5,8 @@ _: {
     ./flatpak.nix
     # ./gnome.nix
     # ./hyprland.nix
+    ./kmscon.nix
+    ./office.nix
     ./packages.nix
     ./plasma.nix
     # ./sshfs.nix

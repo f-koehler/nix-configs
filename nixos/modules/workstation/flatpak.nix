@@ -28,7 +28,6 @@
       "org.gimp.GIMP"
       "org.inkscape.Inkscape"
       "org.kde.okular"
-      "org.libreoffice.LibreOffice"
       "org.localsend.localsend_app"
       "org.mozilla.Thunderbird"
       "org.musicbrainz.Picard"

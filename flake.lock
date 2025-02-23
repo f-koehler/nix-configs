@@ -2,10 +2,22 @@
   "nodes": {
     "aquamarine": {
       "inputs": {
-        "hyprutils": ["hyprland", "hyprutils"],
-        "hyprwayland-scanner": ["hyprland", "hyprwayland-scanner"],
-        "nixpkgs": ["hyprland", "nixpkgs"],
-        "systems": ["hyprland", "systems"]
+        "hyprutils": [
+          "hyprland",
+          "hyprutils"
+        ],
+        "hyprwayland-scanner": [
+          "hyprland",
+          "hyprwayland-scanner"
+        ],
+        "nixpkgs": [
+          "hyprland",
+          "nixpkgs"
+        ],
+        "systems": [
+          "hyprland",
+          "systems"
+        ]
       },
       "locked": {
         "lastModified": 1739298463,
@@ -25,7 +37,9 @@
       "inputs": {
         "crane": "crane",
         "flake-utils": "flake-utils",
-        "nixpkgs": ["nixpkgs"],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
         "rust-overlay": "rust-overlay"
       },
       "locked": {
@@ -44,9 +58,15 @@
     },
     "cachix": {
       "inputs": {
-        "devenv": ["devenv"],
-        "flake-compat": ["devenv"],
-        "git-hooks": ["devenv"],
+        "devenv": [
+          "devenv"
+        ],
+        "flake-compat": [
+          "devenv"
+        ],
+        "git-hooks": [
+          "devenv"
+        ],
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
@@ -138,14 +158,16 @@
         "flake-compat": "flake-compat_2",
         "git-hooks": "git-hooks",
         "nix": "nix",
-        "nixpkgs": ["nixpkgs"]
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1740060074,
-        "narHash": "sha256-RroWTCQuT3iQJsO3bDOlJXhXkUmKJliKHsce4R/JmHc=",
+        "lastModified": 1740256804,
+        "narHash": "sha256-NJFCzTrFJqZm5YWjDEL7qVEHB4s82RITmGryDEaI84o=",
         "owner": "cachix",
         "repo": "devenv",
-        "rev": "e773ef9f415e9925af44fc271fb2d2eaf7024741",
+        "rev": "b799e753d331086a1cc307405df7a93d2cfdab13",
         "type": "github"
       },
       "original": {
@@ -156,7 +178,10 @@
     },
     "devshell": {
       "inputs": {
-        "nixpkgs": ["nixvim", "nixpkgs"]
+        "nixpkgs": [
+          "nixvim",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1735644329,
@@ -174,7 +199,9 @@
     },
     "disko": {
       "inputs": {
-        "nixpkgs": ["nixpkgs"]
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1739841949,
@@ -319,7 +346,11 @@
     },
     "flake-parts": {
       "inputs": {
-        "nixpkgs-lib": ["devenv", "nix", "nixpkgs"]
+        "nixpkgs-lib": [
+          "devenv",
+          "nix",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1712014858,
@@ -337,7 +368,10 @@
     },
     "flake-parts_2": {
       "inputs": {
-        "nixpkgs-lib": ["nixvim", "nixpkgs"]
+        "nixpkgs-lib": [
+          "nixvim",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1738453229,
@@ -409,7 +443,10 @@
     },
     "flake-utils_4": {
       "inputs": {
-        "systems": ["mac-app-util", "systems"]
+        "systems": [
+          "mac-app-util",
+          "systems"
+        ]
       },
       "locked": {
         "lastModified": 1731533236,
@@ -462,9 +499,14 @@
     },
     "git-hooks": {
       "inputs": {
-        "flake-compat": ["devenv"],
+        "flake-compat": [
+          "devenv"
+        ],
         "gitignore": "gitignore",
-        "nixpkgs": ["devenv", "nixpkgs"]
+        "nixpkgs": [
+          "devenv",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1737465171,
@@ -482,9 +524,15 @@
     },
     "git-hooks_2": {
       "inputs": {
-        "flake-compat": ["nixvim", "flake-compat"],
+        "flake-compat": [
+          "nixvim",
+          "flake-compat"
+        ],
         "gitignore": "gitignore_3",
-        "nixpkgs": ["nixvim", "nixpkgs"]
+        "nixpkgs": [
+          "nixvim",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1737465171,
@@ -502,7 +550,11 @@
     },
     "gitignore": {
       "inputs": {
-        "nixpkgs": ["devenv", "git-hooks", "nixpkgs"]
+        "nixpkgs": [
+          "devenv",
+          "git-hooks",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1709087332,
@@ -520,7 +572,11 @@
     },
     "gitignore_2": {
       "inputs": {
-        "nixpkgs": ["hyprland", "pre-commit-hooks", "nixpkgs"]
+        "nixpkgs": [
+          "hyprland",
+          "pre-commit-hooks",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1709087332,
@@ -538,7 +594,11 @@
     },
     "gitignore_3": {
       "inputs": {
-        "nixpkgs": ["nixvim", "git-hooks", "nixpkgs"]
+        "nixpkgs": [
+          "nixvim",
+          "git-hooks",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1709087332,
@@ -556,7 +616,10 @@
     },
     "gitignore_4": {
       "inputs": {
-        "nixpkgs": ["pre-commit-hooks", "nixpkgs"]
+        "nixpkgs": [
+          "pre-commit-hooks",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1709087332,
@@ -574,14 +637,16 @@
     },
     "home-manager": {
       "inputs": {
-        "nixpkgs": ["nixpkgs"]
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1740060750,
-        "narHash": "sha256-FOC9OzJ5Ckh6VjzGSRh4F3UCUOdM8NrzQT19PQcQJ44=",
+        "lastModified": 1740275036,
+        "narHash": "sha256-Gywjp/3iwcHLIiQ8ZCYaMZIbfI4WgJK4LEiXT4ukDcI=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "0c0b0ac8af6ca76b1fcb514483a9bd73c18f1e8c",
+        "rev": "3b6550f710e754bc9f58c09583f2fa51d9fd14ed",
         "type": "github"
       },
       "original": {
@@ -593,7 +658,10 @@
     },
     "home-manager_2": {
       "inputs": {
-        "nixpkgs": ["nixvim", "nixpkgs"]
+        "nixpkgs": [
+          "nixvim",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1738878603,
@@ -611,7 +679,9 @@
     },
     "hy3": {
       "inputs": {
-        "hyprland": ["hyprland"]
+        "hyprland": [
+          "hyprland"
+        ]
       },
       "locked": {
         "lastModified": 1740038356,
@@ -629,9 +699,18 @@
     },
     "hyprcursor": {
       "inputs": {
-        "hyprlang": ["hyprland", "hyprlang"],
-        "nixpkgs": ["hyprland", "nixpkgs"],
-        "systems": ["hyprland", "systems"]
+        "hyprlang": [
+          "hyprland",
+          "hyprlang"
+        ],
+        "nixpkgs": [
+          "hyprland",
+          "nixpkgs"
+        ],
+        "systems": [
+          "hyprland",
+          "systems"
+        ]
       },
       "locked": {
         "lastModified": 1738664950,
@@ -649,9 +728,18 @@
     },
     "hyprgraphics": {
       "inputs": {
-        "hyprutils": ["hyprland", "hyprutils"],
-        "nixpkgs": ["hyprland", "nixpkgs"],
-        "systems": ["hyprland", "systems"]
+        "hyprutils": [
+          "hyprland",
+          "hyprutils"
+        ],
+        "nixpkgs": [
+          "hyprland",
+          "nixpkgs"
+        ],
+        "systems": [
+          "hyprland",
+          "systems"
+        ]
       },
       "locked": {
         "lastModified": 1739049071,
@@ -683,11 +771,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1740056177,
-        "narHash": "sha256-xmNmm7X5QaqTC/qm/MX2CQ4Dw4y6pHYelGieJEnej3Y=",
+        "lastModified": 1740169613,
+        "narHash": "sha256-csu+2ZOIvyX4ftUrPv6u/25aO4Yt1WAECxTWEGioVsc=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "fa246cb6ed5f486aad27c11dd46b3a26768a15d1",
+        "rev": "f4b148df1e2d8edc96bd878a4cfde32ca6515ac8",
         "type": "github"
       },
       "original": {
@@ -698,8 +786,14 @@
     },
     "hyprland-protocols": {
       "inputs": {
-        "nixpkgs": ["hyprland", "nixpkgs"],
-        "systems": ["hyprland", "systems"]
+        "nixpkgs": [
+          "hyprland",
+          "nixpkgs"
+        ],
+        "systems": [
+          "hyprland",
+          "systems"
+        ]
       },
       "locked": {
         "lastModified": 1738422629,
@@ -717,9 +811,21 @@
     },
     "hyprland-qt-support": {
       "inputs": {
-        "hyprlang": ["hyprland", "hyprland-qtutils", "hyprlang"],
-        "nixpkgs": ["hyprland", "hyprland-qtutils", "nixpkgs"],
-        "systems": ["hyprland", "hyprland-qtutils", "systems"]
+        "hyprlang": [
+          "hyprland",
+          "hyprland-qtutils",
+          "hyprlang"
+        ],
+        "nixpkgs": [
+          "hyprland",
+          "hyprland-qtutils",
+          "nixpkgs"
+        ],
+        "systems": [
+          "hyprland",
+          "hyprland-qtutils",
+          "systems"
+        ]
       },
       "locked": {
         "lastModified": 1737634706,
@@ -738,10 +844,24 @@
     "hyprland-qtutils": {
       "inputs": {
         "hyprland-qt-support": "hyprland-qt-support",
-        "hyprlang": ["hyprland", "hyprlang"],
-        "hyprutils": ["hyprland", "hyprland-qtutils", "hyprlang", "hyprutils"],
-        "nixpkgs": ["hyprland", "nixpkgs"],
-        "systems": ["hyprland", "systems"]
+        "hyprlang": [
+          "hyprland",
+          "hyprlang"
+        ],
+        "hyprutils": [
+          "hyprland",
+          "hyprland-qtutils",
+          "hyprlang",
+          "hyprutils"
+        ],
+        "nixpkgs": [
+          "hyprland",
+          "nixpkgs"
+        ],
+        "systems": [
+          "hyprland",
+          "systems"
+        ]
       },
       "locked": {
         "lastModified": 1739048983,
@@ -759,9 +879,18 @@
     },
     "hyprlang": {
       "inputs": {
-        "hyprutils": ["hyprland", "hyprutils"],
-        "nixpkgs": ["hyprland", "nixpkgs"],
-        "systems": ["hyprland", "systems"]
+        "hyprutils": [
+          "hyprland",
+          "hyprutils"
+        ],
+        "nixpkgs": [
+          "hyprland",
+          "nixpkgs"
+        ],
+        "systems": [
+          "hyprland",
+          "systems"
+        ]
       },
       "locked": {
         "lastModified": 1739048914,
@@ -779,8 +908,14 @@
     },
     "hyprutils": {
       "inputs": {
-        "nixpkgs": ["hyprland", "nixpkgs"],
-        "systems": ["hyprland", "systems"]
+        "nixpkgs": [
+          "hyprland",
+          "nixpkgs"
+        ],
+        "systems": [
+          "hyprland",
+          "systems"
+        ]
       },
       "locked": {
         "lastModified": 1739891528,
@@ -798,8 +933,14 @@
     },
     "hyprwayland-scanner": {
       "inputs": {
-        "nixpkgs": ["hyprland", "nixpkgs"],
-        "systems": ["hyprland", "systems"]
+        "nixpkgs": [
+          "hyprland",
+          "nixpkgs"
+        ],
+        "systems": [
+          "hyprland",
+          "systems"
+        ]
       },
       "locked": {
         "lastModified": 1739049028,
@@ -842,8 +983,16 @@
     },
     "ixx": {
       "inputs": {
-        "flake-utils": ["nixvim", "nuschtosSearch", "flake-utils"],
-        "nixpkgs": ["nixvim", "nuschtosSearch", "nixpkgs"]
+        "flake-utils": [
+          "nixvim",
+          "nuschtosSearch",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixvim",
+          "nuschtosSearch",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1729958008,
@@ -900,13 +1049,21 @@
     },
     "nix": {
       "inputs": {
-        "flake-compat": ["devenv"],
+        "flake-compat": [
+          "devenv"
+        ],
         "flake-parts": "flake-parts",
         "libgit2": "libgit2",
         "nixpkgs": "nixpkgs_4",
-        "nixpkgs-23-11": ["devenv"],
-        "nixpkgs-regression": ["devenv"],
-        "pre-commit-hooks": ["devenv"]
+        "nixpkgs-23-11": [
+          "devenv"
+        ],
+        "nixpkgs-regression": [
+          "devenv"
+        ],
+        "pre-commit-hooks": [
+          "devenv"
+        ]
       },
       "locked": {
         "lastModified": 1734114420,
@@ -945,7 +1102,9 @@
     },
     "nix-darwin": {
       "inputs": {
-        "nixpkgs": ["nixpkgs"]
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1739933872,
@@ -964,7 +1123,10 @@
     },
     "nix-darwin_2": {
       "inputs": {
-        "nixpkgs": ["nixvim", "nixpkgs"]
+        "nixpkgs": [
+          "nixvim",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1738743987,
@@ -1013,7 +1175,9 @@
     },
     "nix-index-database": {
       "inputs": {
-        "nixpkgs": ["nixpkgs"]
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1739676768,
@@ -1034,14 +1198,16 @@
       "inputs": {
         "flake-compat": "flake-compat_6",
         "flake-utils": "flake-utils_5",
-        "nixpkgs": ["nixpkgs"]
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1740102704,
-        "narHash": "sha256-Gs3BREQKsFcfkFyes2PTq1tNAkMHq8Tq0bYME7ZhyjY=",
+        "lastModified": 1740188781,
+        "narHash": "sha256-3FDg6k9kQXq5M6ZHc2f9KsPydvWBtqacU9lWA7nIFYI=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "1262db8fa5e165ed5da3d91ec8202bfe640264ef",
+        "rev": "ba52a14c907e0cece9734e0ff59c3c742b6b1075",
         "type": "github"
       },
       "original": {
@@ -1083,7 +1249,9 @@
     "nixos-generators": {
       "inputs": {
         "nixlib": "nixlib",
-        "nixpkgs": ["nixpkgs"]
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1737057290,
@@ -1267,7 +1435,9 @@
         "git-hooks": "git-hooks_2",
         "home-manager": "home-manager_2",
         "nix-darwin": "nix-darwin_2",
-        "nixpkgs": ["nixpkgs"],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
         "nuschtosSearch": "nuschtosSearch",
         "treefmt-nix": "treefmt-nix"
       },
@@ -1289,7 +1459,10 @@
       "inputs": {
         "flake-utils": "flake-utils_6",
         "ixx": "ixx",
-        "nixpkgs": ["nixvim", "nixpkgs"]
+        "nixpkgs": [
+          "nixvim",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1738508923,
@@ -1307,8 +1480,12 @@
     },
     "plasma-manager": {
       "inputs": {
-        "home-manager": ["home-manager"],
-        "nixpkgs": ["nixpkgs"]
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1739557722,
@@ -1328,7 +1505,10 @@
       "inputs": {
         "flake-compat": "flake-compat_3",
         "gitignore": "gitignore_2",
-        "nixpkgs": ["hyprland", "nixpkgs"]
+        "nixpkgs": [
+          "hyprland",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1737465171,
@@ -1348,7 +1528,9 @@
       "inputs": {
         "flake-compat": "flake-compat_8",
         "gitignore": "gitignore_4",
-        "nixpkgs": ["nixpkgs"]
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1737465171,
@@ -1366,9 +1548,18 @@
     },
     "pyproject-build-systems": {
       "inputs": {
-        "nixpkgs": ["isd", "nixpkgs"],
-        "pyproject-nix": ["isd", "pyproject-nix"],
-        "uv2nix": ["isd", "uv2nix"]
+        "nixpkgs": [
+          "isd",
+          "nixpkgs"
+        ],
+        "pyproject-nix": [
+          "isd",
+          "pyproject-nix"
+        ],
+        "uv2nix": [
+          "isd",
+          "uv2nix"
+        ]
       },
       "locked": {
         "lastModified": 1737338290,
@@ -1386,7 +1577,10 @@
     },
     "pyproject-nix": {
       "inputs": {
-        "nixpkgs": ["isd", "nixpkgs"]
+        "nixpkgs": [
+          "isd",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1738204167,
@@ -1404,14 +1598,16 @@
     },
     "quickshell": {
       "inputs": {
-        "nixpkgs": ["nixpkgs"]
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1740031085,
-        "narHash": "sha256-f1Rokb2xEdro4myc+tOk8NONwB56yqrstqY8DPmDd4U=",
+        "lastModified": 1740134292,
+        "narHash": "sha256-fwPikeafRlou5yWgLArYDwY1VlJ3v/WFk3uRmYR3QCs=",
         "ref": "refs/heads/master",
-        "rev": "1eabf5b3c36ca20b981017740c7fd1dacf4f6601",
-        "revCount": 485,
+        "rev": "d1a172751d62af47c6b5bccd7545768ebd2cb2c4",
+        "revCount": 486,
         "type": "git",
         "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
       },
@@ -1451,7 +1647,10 @@
     },
     "rust-overlay": {
       "inputs": {
-        "nixpkgs": ["ashell", "nixpkgs"]
+        "nixpkgs": [
+          "ashell",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1739932111,
@@ -1469,7 +1668,9 @@
     },
     "sops-nix": {
       "inputs": {
-        "nixpkgs": ["nixpkgs"]
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1739262228,
@@ -1488,7 +1689,10 @@
     },
     "systemd-nix": {
       "inputs": {
-        "nixpkgs": ["isd", "nixpkgs"]
+        "nixpkgs": [
+          "isd",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1608245516,
@@ -1656,7 +1860,10 @@
     },
     "treefmt-nix": {
       "inputs": {
-        "nixpkgs": ["nixvim", "nixpkgs"]
+        "nixpkgs": [
+          "nixvim",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1738680491,
@@ -1692,8 +1899,14 @@
     },
     "uv2nix": {
       "inputs": {
-        "nixpkgs": ["isd", "nixpkgs"],
-        "pyproject-nix": ["isd", "pyproject-nix"]
+        "nixpkgs": [
+          "isd",
+          "nixpkgs"
+        ],
+        "pyproject-nix": [
+          "isd",
+          "pyproject-nix"
+        ]
       },
       "locked": {
         "lastModified": 1738200085,
@@ -1711,12 +1924,30 @@
     },
     "xdph": {
       "inputs": {
-        "hyprland-protocols": ["hyprland", "hyprland-protocols"],
-        "hyprlang": ["hyprland", "hyprlang"],
-        "hyprutils": ["hyprland", "hyprutils"],
-        "hyprwayland-scanner": ["hyprland", "hyprwayland-scanner"],
-        "nixpkgs": ["hyprland", "nixpkgs"],
-        "systems": ["hyprland", "systems"]
+        "hyprland-protocols": [
+          "hyprland",
+          "hyprland-protocols"
+        ],
+        "hyprlang": [
+          "hyprland",
+          "hyprlang"
+        ],
+        "hyprutils": [
+          "hyprland",
+          "hyprutils"
+        ],
+        "hyprwayland-scanner": [
+          "hyprland",
+          "hyprwayland-scanner"
+        ],
+        "nixpkgs": [
+          "hyprland",
+          "nixpkgs"
+        ],
+        "systems": [
+          "hyprland",
+          "systems"
+        ]
       },
       "locked": {
         "lastModified": 1737634991,

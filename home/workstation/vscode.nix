@@ -128,6 +128,8 @@
         "homeserver.corgi-dojo.ts.net" = "linux";
       };
       "vscode-neovim.neovimClean" = true;
+
+      "rust-analyzer.testExplorer" = true;
     };
   };
 }

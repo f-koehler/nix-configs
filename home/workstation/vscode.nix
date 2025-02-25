@@ -65,6 +65,8 @@
         "editor.formatOnSave" = true;
       };
 
+      "debug.allowBreakpointsEverywhere" = false;
+
       "C/C++ Include Guard.Macro Type" = "Filepath";
       "C/C++ Include Guard.Path Skip" = 1;
       "C/C++ Include Guard.Remove Extension" = false;

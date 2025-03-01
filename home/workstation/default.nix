@@ -9,14 +9,13 @@
       ./alacritty.nix
       # ./email.nix
       ./mpd.nix
-      # ./sway
-      ./vscode.nix
+      # ./vscode.nix
       ./wezterm.nix
       ./zed.nix
     ]
     ++ lib.optionals isLinux [
-      ./hyprland
-      # ./sway
+      # ./hyprland
+      ./sway
       # ./krohnkite.nix
       # ./plasma.nix
     ];

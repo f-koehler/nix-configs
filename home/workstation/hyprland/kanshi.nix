@@ -7,6 +7,34 @@
 }:
 let
   inherit (inputs.hyprland.packages.${nodeConfig.system}) hyprland;
+  script-work = pkgs.writeShellApplication {
+    name = "kanshi-script-work";
+    runtimeInputs = [ hyprland ];
+    text = ''
+      set -eufo pipefail
+      hyprctl keyword workspace 1,monitor:DP-3
+      hyprctl keyword workspace 2,monitor:DP-3
+      hyprctl keyword workspace 3,monitor:DP-3
+      hyprctl keyword workspace 4,monitor:DP-3
+      hyprctl keyword workspace 5,monitor:DP-3
+      hyprctl keyword workspace 6,monitor:eDP-1
+      hyprctl keyword workspace 7,monitor:eDP-1
+      hyprctl keyword workspace 8,monitor:eDP-1
+      hyprctl keyword workspace 9,monitor:eDP-1
+      hyprctl keyword workspace 10,monitor:eDP-1
+
+      hyprctl dispatch moveworkspacetomonitor 1 DP-3 || true
+      hyprctl dispatch moveworkspacetomonitor 2 DP-3 || true
+      hyprctl dispatch moveworkspacetomonitor 3 DP-3 || true
+      hyprctl dispatch moveworkspacetomonitor 4 DP-3 || true
+      hyprctl dispatch moveworkspacetomonitor 5 DP-3 || true
+      hyprctl dispatch moveworkspacetomonitor 6 eDP-1 || true
+      hyprctl dispatch moveworkspacetomonitor 7 eDP-1 || true
+      hyprctl dispatch moveworkspacetomonitor 8 eDP-1 || true
+      hyprctl dispatch moveworkspacetomonitor 9 eDP-1 || true
+      hyprctl dispatch moveworkspacetomonitor 10 eDP-1 || true
+    '';
+  };
   script-home = pkgs.writeShellApplication {
     name = "kanshi-script-home";
     runtimeInputs = [ hyprland ];
@@ -36,7 +64,7 @@ let
     '';
   };
   script-mobile = pkgs.writeShellApplication {
-    name = "kanshi-script-work";
+    name = "kanshi-script-mobile";
     runtimeInputs = [ hyprland ];
     text = ''
       set -eufo pipefail
@@ -51,7 +79,7 @@ let
       hyprctl keyword workspace 9,monitor:eDP-1
       hyprctl keyword workspace 10,monitor:eDP-1
 
-      hyprctl dispatch moveworkspacetomonitor 1 eDP-1-3 || true
+      hyprctl dispatch moveworkspacetomonitor 1 eDP-1 || true
       hyprctl dispatch moveworkspacetomonitor 2 eDP-1 || true
       hyprctl dispatch moveworkspacetomonitor 3 eDP-1 || true
       hyprctl dispatch moveworkspacetomonitor 4 eDP-1 || true
@@ -71,16 +99,17 @@ in
       {
         profile = {
           name = "work";
+          exec = "${lib.getExe script-work}";
           outputs = [
             {
               criteria = "eDP-1";
               mode = "1920x1200";
-              position = "0,0";
+              position = "2560,-1000";
             }
             {
-              criteria = "Lenovo Group Limited LEN L27m-28 U45XPDF3";
-              mode = "1920x1080";
-              position = "0,-1080";
+              criteria = "Dell Inc. DELL S2722DC 82CRGD3";
+              mode = "2560x1440@75";
+              position = "0,0";
             }
           ];
         };

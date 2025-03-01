@@ -1,6 +1,6 @@
 {
   lib,
-  pkgs,
+  config,
   ...
 }:
 {
@@ -9,7 +9,7 @@
   };
   wayland.windowManager.sway.config =
     let
-      swayosd-client = "${pkgs.swayosd}/bin/swayosd-client";
+      swayosd-client = "${lib.getExe' config.services.swayosd.package "swayosd-client"}";
     in
     {
       keybindings = lib.mkOptionDefault {

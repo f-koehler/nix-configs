@@ -19,9 +19,10 @@ in
     ./hyprsunset.nix
     ./hypridle.nix
     ./kanshi.nix
-    ./rofi.nix
     ./swaync.nix
     ./swayosd.nix
+
+    ../sway/rofi.nix
   ];
   home = {
     packages = [

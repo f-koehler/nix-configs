@@ -22,5 +22,6 @@ _: {
     ./zellij.nix
     ./zoxide.nix
     ./zsh.nix
+    ./nix.nix
   ];
 }

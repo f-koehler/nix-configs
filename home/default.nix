@@ -3,7 +3,6 @@
   lib,
   inputs,
   outputs,
-  config,
   stateVersion,
   isLinux,
   nodeConfig,
@@ -21,6 +20,7 @@ in
     inputs.plasma-manager.homeManagerModules.plasma-manager
     inputs.sops-nix.homeManagerModules.sops
     ./common
+    ./secrets.nix
   ] ++ lib.optional nodeConfig.isWorkstation ./workstation;
 
   catppuccin = {
@@ -40,34 +40,6 @@ in
       outputs.overlays.additions
       outputs.overlays.modifications
     ];
-    config = {
-      allowUnfreePredicate =
-        pkg:
-        builtins.elem (pkgs.lib.getName pkg) [
-          "codeium"
-          "vscode"
-        ];
-    };
-  };
-
-  nix = {
-    settings = {
-      auto-optimise-store = true;
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      warn-dirty = false;
-    };
-    package = pkgs.nix;
-  };
-
-  sops = lib.mkIf nodeConfig.isTrusted {
-    age = {
-      keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
-      generateKey = false;
-    };
-    defaultSopsFile = ../secrets/home.yaml;
   };
 
   fonts.fontconfig.enable = true;
@@ -78,7 +50,6 @@ in
       if isDarwin then "/Users/${nodeConfig.username}" else "/home/${nodeConfig.username}";
 
     packages = [
-      pkgs.nh
       pkgs.git
       pkgs.age
       pkgs.bat
@@ -96,19 +67,12 @@ in
       pkgs.gdu
       pkgs.hyperfine
       pkgs.yq-go
-      pkgs.nix-tree
       pkgs.ncdu
       pkgs.htop
       pkgs.cascadia-code
-      pkgs.devenv
       pkgs.fd
-      pkgs.comma
       pkgs.typst
       pkgs.nerd-fonts.hack
-
-      pkgs.nil
-      pkgs.nixfmt-rfc-style
-
     ] ++ lib.optionals isLinux [ inputs.isd.packages.${nodeConfig.system}.default ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage

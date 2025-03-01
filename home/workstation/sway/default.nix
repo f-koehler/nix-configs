@@ -10,6 +10,9 @@
     ./kanshi.nix
     ./swayosd.nix
   ];
+  catppuccin = {
+    enable = true;
+  };
   services.network-manager-applet.enable = true;
   wayland = {
     #   systemd.target = "graphical-session.target";
@@ -23,7 +26,6 @@
       xwayland = true;
       config = {
         modifier = "Mod4";
-        #       bars = [ ];
         menu = "${lib.getExe' config.programs.rofi.finalPackage "rofi"} -show drun -run-command ''\"${lib.getExe' pkgs.uwsm "uwsm"} app -- {cmd}''\"";
         terminal = "${lib.getExe' pkgs.uwsm "uwsm"} app -- ${lib.getExe' config.programs.alacritty.package "alacritty"}";
         focus = {
@@ -78,7 +80,104 @@
             output = "eDP-1";
           }
         ];
+        colors = {
+          background = "$base";
+          focused = {
+            border = "$lavender";
+            background = "$base";
+            text = "$text";
+            indicator = "$rosewater";
+            childBorder = "$lavender";
+          };
+          focusedInactive = {
+            border = "$overlay0";
+            background = "$base";
+            text = "$text";
+            indicator = "$rosewater";
+            childBorder = "$overlay0";
+          };
+          unfocused = {
+            border = "$overlay0";
+            background = "$base";
+            text = "$text";
+            indicator = "$rosewater";
+            childBorder = "$overlay0";
+          };
+          urgent = {
+            border = "$peach";
+            background = "$base";
+            text = "$peach";
+            indicator = "$overlay0";
+            childBorder = "$peach";
+          };
+          placeholder = {
+            border = "$overlay0";
+            background = "$base";
+            text = "$text";
+            indicator = "$overlay0";
+            childBorder = "$overlay0";
+          };
+        };
+        bars = [
+          {
+            colors = {
+              background = "$base";
+              statusline = "$text";
+              focusedStatusline = "$text";
+              focusedSeparator = "$base";
+
+              activeWorkspace = {
+                border = "$base";
+                background = "$surface2";
+                text = "$text";
+              };
+              focusedWorkspace = {
+                border = "$base";
+                background = "$mauve";
+                text = "$crust";
+              };
+              inactiveWorkspace = {
+                border = "$base";
+                background = "$base";
+                text = "$text";
+              };
+              urgentWorkspace = {
+                border = "$base";
+                background = "$red";
+                text = "$crust";
+              };
+            };
+          }
+        ];
       };
+      extraConfigEarly = ''
+        set $rosewater #f5e0dc
+        set $flamingo #f2cdcd
+        set $pink #f5c2e7
+        set $mauve #cba6f7
+        set $red #f38ba8
+        set $maroon #eba0ac
+        set $peach #fab387
+        set $yellow #f9e2af
+        set $green #a6e3a1
+        set $teal #94e2d5
+        set $sky #89dceb
+        set $sapphire #74c7ec
+        set $blue #89b4fa
+        set $lavender #b4befe
+        set $text #cdd6f4
+        set $subtext1 #bac2de
+        set $subtext0 #a6adc8
+        set $overlay2 #9399b2
+        set $overlay1 #7f849c
+        set $overlay0 #6c7086
+        set $surface2 #585b70
+        set $surface1 #45475a
+        set $surface0 #313244
+        set $base #1e1e2e
+        set $mantle #181825
+        set $crust #11111b
+      '';
     };
   };
 }

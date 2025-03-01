@@ -9,10 +9,9 @@
     ./rofi.nix
     ./kanshi.nix
     ./swayosd.nix
+    ./swaylock.nix
+    ./swayidle.nix
   ];
-  catppuccin = {
-    enable = true;
-  };
   services.network-manager-applet.enable = true;
   wayland = {
     #   systemd.target = "graphical-session.target";

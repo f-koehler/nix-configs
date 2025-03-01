@@ -40,6 +40,15 @@ in
       outputs.overlays.additions
       outputs.overlays.modifications
     ];
+    config = {
+      allowUnfreePredicate =
+        pkg:
+        builtins.elem (pkgs.lib.getName pkg) [
+          "codeium"
+          "vscode"
+          "vscode-extension-ms-python-vscode-pylance"
+        ];
+    };
   };
 
   fonts.fontconfig.enable = true;

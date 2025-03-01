@@ -10,11 +10,8 @@
         layout = "us";
         variant = "";
       };
-
-      displayManager.lightdm.enable = true;
-      displayManager.lightdm.greeters.slick.enable = true;
-      # displayManager.gdm.enable = true;
     };
+    displayManager.sddm.enable = true;
     desktopManager.plasma6.enable = true;
   };
   environment.systemPackages =
@@ -27,7 +24,6 @@
       kdePackages.kcharselect
       kdePackages.filelight
       kdePackages.qtwayland
-      # kdePackages.krohnkite
       kdePackages.purpose
       catppuccin-cursors
       catppuccin-kde

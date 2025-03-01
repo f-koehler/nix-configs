@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   services.kmscon = {
-    enable = true;
+    enable = false;
     extraOptions = "--term xterm-256color";
     hwRender = true;
     fonts = [

@@ -11,15 +11,34 @@
       };
       delta.enable = true;
       extraConfig = {
-        pull = {
-          rebase = "false";
+        branch.sort = "-committerdate";
+        color.ui = "auto";
+        column.ui = "auto";
+        commit.verbose = true;
+        diff = {
+          algorithm = "histogram";
+          colorMoved = "plain";
+          mnemonicPrefix = true;
+          renames = true;
         };
-        init = {
-          defaultBranch = "main";
+        fetch = {
+          all = true;
+          prune = true;
+          pruneTags = true;
         };
-        color = {
-          ui = "auto";
+        help.autoCorrect = "prompt";
+        init.defaultBranch = "main";
+        pull.rebase = "false";
+        push = {
+          autoSetupRemote = true;
+          default = "simple";
+          followTags = true;
         };
+        rerere = {
+          enabled = true;
+          autoupdate = true;
+        };
+        tag.sort = "version:refname";
       };
     };
     lazygit = {

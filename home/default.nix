@@ -6,6 +6,7 @@
   stateVersion,
   isLinux,
   nodeConfig,
+  config,
   ...
 }:
 let
@@ -44,8 +45,8 @@ in
       allowUnfreePredicate =
         pkg:
         builtins.elem (pkgs.lib.getName pkg) [
-          "codeium"
           "vscode"
+          "vscode-extension-ms-vscode-remote-remote-ssh"
           "vscode-extension-ms-python-vscode-pylance"
         ];
     };

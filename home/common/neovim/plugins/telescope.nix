@@ -3,7 +3,7 @@ _: {
     enable = true;
     keymaps = {
       "<C-p>" = {
-        action = "git_files";
+        action = "find_files";
         options.desc = "Telescope Git Files";
       };
     };

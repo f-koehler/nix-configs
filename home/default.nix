@@ -41,15 +41,7 @@ in
       outputs.overlays.additions
       outputs.overlays.modifications
     ];
-    config = {
-      allowUnfreePredicate =
-        pkg:
-        builtins.elem (pkgs.lib.getName pkg) [
-          "vscode"
-          "vscode-extension-ms-vscode-remote-remote-ssh"
-          "vscode-extension-ms-python-vscode-pylance"
-        ];
-    };
+    config.allowUnfree = true;
   };
 
   fonts.fontconfig.enable = true;

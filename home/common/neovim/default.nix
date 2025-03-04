@@ -9,6 +9,7 @@ _: {
   ];
 
   programs.nixvim = {
+    nixpkgs.config.allowUnfree = true;
     enable = true;
     defaultEditor = true;
     vimdiffAlias = true;

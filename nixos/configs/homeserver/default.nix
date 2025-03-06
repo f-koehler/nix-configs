@@ -1,5 +1,6 @@
 _: {
   imports = [
+    ./anki.nix
     ./audiobookshelf.nix
     ./beszel-agent.nix
     ./beszel-hub.nix

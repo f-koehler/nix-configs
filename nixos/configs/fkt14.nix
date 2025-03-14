@@ -56,6 +56,7 @@
         tailscale
         usbutils
         imhex
+        anki
       ];
     };
   };

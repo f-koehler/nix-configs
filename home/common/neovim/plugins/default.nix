@@ -24,7 +24,6 @@ _: {
       overseer.enable = true;
       rainbow-delimiters.enable = true;
       todo-comments.enable = true;
-      toggleterm.enable = true;
       trouble = {
         enable = true;
         settings = {

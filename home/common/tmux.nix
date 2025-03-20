@@ -6,6 +6,9 @@ _: {
     escapeTime = 0;
     historyLimit = 50000;
     mouse = true;
-    terminal = "screen-256color";
+    terminal = "tmux-256color";
+    extraConfig = ''
+      set -sg terminal-overrides ",*:RGB"
+    '';
   };
 }

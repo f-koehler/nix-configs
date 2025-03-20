@@ -1,6 +1,7 @@
-_: {
+{ nodeConfig, ... }:
+{
   # Set your time zone.
-  time.timeZone = "Asia/Singapore";
+  time.timeZone = nodeConfig.timeZone;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_SG.UTF-8";

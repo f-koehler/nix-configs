@@ -15,6 +15,7 @@ let
       isTrusted ? false,
       virtualisation ? false,
       containerBackend ? "podman",
+      timeZone ? "Asia/Singapore",
     }:
     {
       inherit inputs outputs stateVersion;
@@ -26,6 +27,7 @@ let
         isTrusted
         containerBackend
         virtualisation
+        timeZone
         ;
     };
 

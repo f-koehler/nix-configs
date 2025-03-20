@@ -111,6 +111,7 @@
         isTrusted = true;
         containerBackend = "docker";
         virtualisation = true;
+        timeZone = "Europe/Berlin";
       };
       config-mbp21 = {
         hostname = "mbp21";

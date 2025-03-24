@@ -95,7 +95,7 @@ in
   };
   virtualisation.oci-containers.containers = {
     unifi-db = {
-      image = "docker.io/mongo:7.0.16";
+      image = "docker.io/mongo:8.0.6";
       environmentFiles = [ "${config.sops.templates."unifi.env".path}" ];
       networks = [ "unifi" ];
       volumes = [

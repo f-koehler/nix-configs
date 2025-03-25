@@ -18,7 +18,6 @@
       extensions = [
         pkgs.vscode-marketplace.akiramiyakoda.cppincludeguard
         pkgs.vscode-marketplace.asvetliakov.vscode-neovim
-        pkgs.vscode-marketplace.catppuccin.catppuccin-vsc
         pkgs.vscode-marketplace.catppuccin.catppuccin-vsc-icons
         pkgs.vscode-marketplace.charliermarsh.ruff
         pkgs.vscode-marketplace.codeium.codeium

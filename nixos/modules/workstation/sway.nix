@@ -37,6 +37,7 @@
   security = {
     polkit.enable = true;
     pam.services.swaylock = { };
+    pam.services.sddm.enableGnomeKeyring = true;
   };
   hardware.graphics.enable = true;
   xdg.portal = {

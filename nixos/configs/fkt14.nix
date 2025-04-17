@@ -74,4 +74,6 @@
       exfatprogs
     ];
   };
+
+  services.cloudflare-warp.enable = true;
 }

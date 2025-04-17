@@ -14,7 +14,7 @@ let
 in
 {
   imports = [
-    inputs.catppuccin.homeManagerModules.catppuccin
+    inputs.catppuccin.homeModules.catppuccin
     inputs.mac-app-util.homeManagerModules.default
     inputs.nix-index-database.hmModules.nix-index
     inputs.nixvim.homeManagerModules.nixvim

@@ -38,6 +38,7 @@
       "us.zoom.Zoom"
       "org.kde.kate"
       "com.github.iwalton3.jellyfin-media-player"
+      "org.libreoffice.LibreOffice"
     ];
   };
 }

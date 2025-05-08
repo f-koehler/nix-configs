@@ -95,7 +95,7 @@ in
   };
   virtualisation.oci-containers.containers = {
     unifi-db = {
-      image = "docker.io/mongo:7.0.19";
+      image = "docker.io/mongo:7.0.20";
       environmentFiles = [ "${config.sops.templates."unifi.env".path}" ];
       networks = [ "unifi" ];
       volumes = [
@@ -104,7 +104,7 @@ in
       ];
     };
     unifi = {
-      image = "lscr.io/linuxserver/unifi-network-application:9.0.114";
+      image = "lscr.io/linuxserver/unifi-network-application:9.1.120";
       dependsOn = [ "unifi-db" ];
       environmentFiles = [ "${config.sops.templates."unifi.env".path}" ];
       networks = [ "unifi" ];

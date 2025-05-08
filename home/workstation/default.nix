@@ -9,6 +9,7 @@
       ./alacritty.nix
       # ./email.nix
       ./ghostty.nix
+      ./lapce.nix
       ./mpd.nix
       ./vscode.nix
       ./wezterm.nix

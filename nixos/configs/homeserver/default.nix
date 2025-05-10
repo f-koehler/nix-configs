@@ -7,7 +7,7 @@ _: {
     ./forgejo.nix
     ./gickup.nix
     # ./homepage.nix
-    # ./immich.nix
+    ./immich.nix
     ./invidious.nix
     ./jellyfin.nix
     ./navidrome.nix

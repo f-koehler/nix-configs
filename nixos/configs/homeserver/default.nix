@@ -12,6 +12,7 @@ _: {
     ./jellyfin.nix
     ./navidrome.nix
     ./nextcloud.nix
+    ./nixos-containers.nix
     ./nginx.nix
     ./paperless.nix
     ./postgresql.nix

@@ -1,17 +1,57 @@
-{ config, ... }:
 {
-  services = {
-    audiobookshelf = {
-      enable = true;
-      host = "0.0.0.0";
-      user = "audiobookshelf";
-      group = "audiobookshelf";
-      port = 8097;
+  config,
+  stateVersion,
+  nodeConfig,
+  ...
+}:
+let
+  ip = "172.22.1.102";
+  inherit (config.services.audiobookshelf) port;
+in
+{
+  containers.audiobookshelf = {
+    autoStart = true;
+    privateNetwork = true;
+    hostAddress = "172.22.1.1";
+    localAddress = ip;
+    bindMounts = {
+      "/var/lib/audiobookshelf" = {
+        hostPath = "/containers/audiobookshelf/app";
+        isReadOnly = false;
+      };
+      "/audiobooks" = {
+        hostPath = "/media/tank1/media/audiobooks";
+        isReadOnly = false;
+      };
+      "/audiobooks_perry_rhodan" = {
+        hostPath = "/media/tank1/media/audiobooks_perry_rhodan";
+        isReadOnly = false;
+      };
     };
+    config = _: {
+      system.stateVersion = stateVersion;
+      boot.isContainer = true;
+      time.timeZone = nodeConfig.timeZone;
+      networking = {
+        firewall = {
+          enable = true;
+          allowedTCPPorts = [ port ];
+        };
+      };
+      services = {
+        audiobookshelf = {
+          enable = true;
+          host = "0.0.0.0";
+          inherit port;
+        };
+      };
+    };
+  };
+  services = {
     nginx = {
       upstreams."audiobookshelf" = {
         servers = {
-          "127.0.0.1:${toString config.services.audiobookshelf.port}" = { };
+          "${ip}:${toString config.services.audiobookshelf.port}" = { };
         };
       };
       virtualHosts."audiobooks.fkoehler.xyz" = {
@@ -41,13 +81,6 @@
           };
         };
       };
-    };
-  };
-  fileSystems = {
-    "/var/lib/audiobookshelf" = {
-      device = "rpool/audiobookshelf";
-      fsType = "zfs";
-      neededForBoot = true;
     };
   };
 }

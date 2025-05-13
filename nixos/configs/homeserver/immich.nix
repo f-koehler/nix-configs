@@ -8,18 +8,14 @@ let
   port = 2283;
 in
 {
+  # TODO(fk): implement DB backup:
+  # - create DB backups with something like: `sudo -u immich -g immich pg_dump -d immich | gzip -9 > immich.psql.gz`
+  # - trigger via pre-command of sanoid (probably have to implement by modifying systemd service
   containers.immich = {
     autoStart = true;
     privateNetwork = true;
     hostAddress = "172.22.1.1";
     localAddress = "172.22.1.100";
-    # forwardPorts = [
-    #   {
-    #     containerPort = port;
-    #     hostPort = port;
-    #     protocol = "tcp";
-    #   }
-    # ];
     allowedDevices = [
       {
         modifier = "rwm";
@@ -31,9 +27,6 @@ in
         hostPath = "/var/lib/nextcloud/data/fkoehler/files/Photos";
         isReadOnly = true;
       };
-      "/var/backup/postgresql" = {
-        hostPath = "/containers/immich/db";
-      };
     };
     config = _: {
       system.stateVersion = stateVersion;
@@ -41,22 +34,16 @@ in
       time.timeZone = nodeConfig.timeZone;
       networking = {
         firewall = {
-          #     enable = true;
+          enable = true;
           allowedTCPPorts = [ port ];
         };
-        # useHostResolvConf = lib.mkForce false;
       };
       services = {
-        # resolved.enable = true;
         immich = {
           enable = true;
           host = "0.0.0.0";
           inherit port;
           accelerationDevices = [ "/dev/dri/renderD128" ];
-        };
-        postgresqlBackup = {
-          enable = true;
-          backupAll = true;
         };
       };
     };

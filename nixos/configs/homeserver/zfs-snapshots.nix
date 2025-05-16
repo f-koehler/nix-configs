@@ -4,9 +4,7 @@
   config.homeserver.zfsSnapshots = {
     enable = true;
     services = {
-      audiobookshelf = { };
       jellyfin = { };
-      navidrome = { };
       nextcloud = { };
       paperless = { };
       postgresql = { };

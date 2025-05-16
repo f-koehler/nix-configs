@@ -27,6 +27,10 @@ in
         hostPath = "/media/tank1/media/audiobooks_perry_rhodan";
         isReadOnly = false;
       };
+      "/podcasts" = {
+        hostPath = "/media/tank0/media/podcasts";
+        isReadOnly = false;
+      };
     };
     config = _: {
       system.stateVersion = stateVersion;

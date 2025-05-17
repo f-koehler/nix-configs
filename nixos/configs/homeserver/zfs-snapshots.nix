@@ -5,7 +5,6 @@
     enable = true;
     services = {
       jellyfin = { };
-      nextcloud = { };
       paperless = { };
       postgresql = { };
       tinymediamanager = { };

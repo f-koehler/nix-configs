@@ -5,17 +5,18 @@
   ...
 }:
 let
-  port = 2283;
+  ip = "172.22.1.100";
+  inherit (config.services.immich) port;
 in
 {
   # TODO(fk): implement DB backup:
-  # - create DB backups with something like: `sudo -u immich -g immich pg_dump -d immich | gzip -9 > immich.psql.gz`
+  # - create DB backups with something like: `sudo nixos-container run immich -- sh -c "sudo -u immich -g immich pg_dump -d immich | gzip -9 > /backup/db/immich.psql.gz"`
   # - trigger via pre-command of sanoid (probably have to implement by modifying systemd service
   containers.immich = {
     autoStart = true;
     privateNetwork = true;
     hostAddress = "172.22.1.1";
-    localAddress = "172.22.1.100";
+    localAddress = ip;
     allowedDevices = [
       {
         modifier = "rwm";
@@ -24,8 +25,12 @@ in
     ];
     bindMounts = {
       "/nextcloud-photos" = {
-        hostPath = "/var/lib/nextcloud/data/fkoehler/files/Photos";
+        hostPath = "/containers/nextcloud/data/fkoehler/files/Photos";
         isReadOnly = true;
+      };
+      "/backup/db" = {
+        hostPath = "/containers/immich/backup/db";
+        isReadOnly = false;
       };
     };
     config = _: {
@@ -51,7 +56,7 @@ in
   services.nginx = {
     upstreams."immich" = {
       servers = {
-        "172.22.1.100:${toString port}" = { };
+        "${ip}:${toString port}" = { };
       };
     };
     virtualHosts."photos.fkoehler.xyz" = {

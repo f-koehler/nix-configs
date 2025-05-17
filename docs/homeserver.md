@@ -1,5 +1,7 @@
 # Homeserver
 
+![Topology of Homeserver](./topology.drawio.png)
+
 ## Hardware
 
 | Component           | Model                            |

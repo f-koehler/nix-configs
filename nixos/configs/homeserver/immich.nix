@@ -1,4 +1,6 @@
 {
+  pkgs,
+  lib,
   config,
   nodeConfig,
   stateVersion,
@@ -7,11 +9,19 @@
 let
   ip = "172.22.1.100";
   inherit (config.services.immich) port;
+  backupScript = pkgs.writeShellScriptBin "immich-backup-db" ''
+    ${lib.getExe' pkgs.nixos-container "nixos-container"} run immich -- sh -c "sudo -u immich -g immich pg_dump -d immich | gzip -9 > /db_backup/immich.psql.gz"
+  '';
 in
 {
-  # TODO(fk): implement DB backup:
-  # - create DB backups with something like: `sudo nixos-container run immich -- sh -c "sudo -u immich -g immich pg_dump -d immich | gzip -9 > /backup/db/immich.psql.gz"`
-  # - trigger via pre-command of sanoid (probably have to implement by modifying systemd service
+  systemd.services.immich-backup-db = {
+    wantedBy = [ "multi-user.target" ];
+    description = "Create backup of Immich PostgreSQL database";
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${lib.getExe backupScript}";
+    };
+  };
   containers.immich = {
     autoStart = true;
     privateNetwork = true;

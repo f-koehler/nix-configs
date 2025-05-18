@@ -11,8 +11,6 @@ in
 {
   sops.secrets = {
     "services/nextcloud/admin/password" = {
-      owner = "nextcloud";
-      group = "nextcloud";
     };
   };
   services = {

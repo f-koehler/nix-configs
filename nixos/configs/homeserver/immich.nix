@@ -28,8 +28,8 @@ in
         hostPath = "/containers/nextcloud/data/fkoehler/files/Photos";
         isReadOnly = true;
       };
-      "/backup/db" = {
-        hostPath = "/containers/immich/backup/db";
+      "/db_backup" = {
+        hostPath = "/containers/immich/db_backup";
         isReadOnly = false;
       };
     };

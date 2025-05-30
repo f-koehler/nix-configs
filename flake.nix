@@ -111,6 +111,7 @@
         isTrusted = true;
         containerBackend = "docker";
         virtualisation = true;
+        gpus = [ "intel" ];
       };
       config-mbp21 = {
         hostname = "mbp21";

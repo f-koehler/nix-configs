@@ -37,6 +37,8 @@
     accent = "mauve";
   };
 
+  hardware.enableAllFirmware = true;
+
   documentation.man.generateCaches = true;
 
   system.stateVersion = stateVersion;

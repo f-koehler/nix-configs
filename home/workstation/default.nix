@@ -8,7 +8,6 @@
     [
       ./alacritty.nix
       # ./email.nix
-      ./ghostty.nix
       ./mpd.nix
       ./vscode.nix
       ./wezterm.nix

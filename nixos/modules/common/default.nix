@@ -7,6 +7,7 @@ _: {
     ./firmware.nix
     ./fstrim.nix
     ./fwupd.nix
+    ./gpu.nix
     ./libvirt.nix
     ./locale.nix
     ./netdata.nix

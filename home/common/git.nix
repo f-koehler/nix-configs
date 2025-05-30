@@ -7,7 +7,7 @@
       userName = "Fabian Koehler";
       signing = {
         key = "C5DC80511469AD81C84E3564D55A35AFB2900A11";
-        signByDefault = nodeConfig.isTrusted;
+        signByDefault = nodeConfig.isTrusted && nodeConfig.isWorkstation;
       };
       delta.enable = true;
       extraConfig = {

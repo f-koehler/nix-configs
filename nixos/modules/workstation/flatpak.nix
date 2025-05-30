@@ -13,6 +13,7 @@
       }
     ];
     packages = [
+      "com.obsproject.Studio"
       "com.bitwarden.desktop"
       "com.github.tchx84.Flatseal"
       "com.jgraph.drawio.desktop"

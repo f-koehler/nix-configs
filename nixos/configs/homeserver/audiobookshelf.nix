@@ -15,6 +15,10 @@ in
     hostAddress = "172.22.1.1";
     localAddress = ip;
     bindMounts = {
+      "/etc/resolv.conf" = {
+        hostPath = "/etc/resolv.conf";
+        isReadOnly = true;
+      };
       "/var/lib/audiobookshelf" = {
         hostPath = "/containers/audiobookshelf/app";
         isReadOnly = false;

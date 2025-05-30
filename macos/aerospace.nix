@@ -1,31 +1,13 @@
-{
-  pkgs,
-  lib,
-  outputs,
-  nodeConfig,
-  ...
-}:
-let
-  inherit (outputs.packages.${nodeConfig.system}) sketchybar-config;
-in
-{
+_: {
   services = {
     aerospace = {
       enable = true;
       settings = {
-        after-startup-command = [
-          "exec-and-forget ${lib.getExe pkgs.sketchybar} --config  ${sketchybar-config}/share/sketchybar-config/sketchybarrc"
-        ];
 
         # TODO(fk): disable the next two settings and rexplore the recommendation from the aerospace warning
         enable-normalization-flatten-containers = false;
         enable-normalization-opposite-orientation-for-nested-containers = false;
 
-        # exec-on-workspace-change = [
-        #   "/bin/bash"
-        #   "-c"
-        #   "sketchybar --trigger aerospace_workspace_change FOCUSED=$AEROSPACE_FOCUSED_WORKSPACE"
-        # ];
         on-focused-monitor-changed = [
           "move-mouse monitor-lazy-center"
         ];

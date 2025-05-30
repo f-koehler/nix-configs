@@ -10,8 +10,6 @@
     inputs.mac-app-util.darwinModules.default
     inputs.nix-index-database.darwinModules.nix-index
     ./aerospace.nix
-    # ./jankyborders.nix
-    ./sketchybar.nix
   ];
 
   nixpkgs = {
@@ -24,6 +22,7 @@
   };
 
   users.users.${nodeConfig.username}.home = "/Users/${nodeConfig.username}";
+  ids.gids.nixbld = 350;
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -34,6 +33,7 @@
   ];
 
   system = {
+    primaryUser = nodeConfig.username;
     defaults = {
       CustomUserPreferences = {
         "com.apple.AdLib" = {
@@ -113,6 +113,7 @@
     computerName = nodeConfig.hostname;
   };
   nix = {
+    enable = true;
     gc.automatic = true;
     optimise.automatic = true; # relevant issue: https://github.com/NixOS/nix/issues/7273
     settings = {
@@ -127,10 +128,7 @@
       warn-dirty = false;
     };
   };
-  security.pam.enableSudoTouchIdAuth = true;
-  services = {
-    nix-daemon.enable = true;
-  };
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   homebrew = {
     enable = true;
@@ -139,20 +137,20 @@
       "chatgpt"
       # "digikam" currently using 8.5.0 prebuild for native M1 support and improved ML features
       "docker"
+      "firefox"
       "gimp"
+      "google-chrome"
       "libreoffice"
       "microsoft-teams"
       "nextcloud"
       "obsidian"
-      "protonmail-bridge"
       "qgis"
       "spotify"
       "steam"
-      "superproductivity"
       "submariner"
+      "superproductivity"
       "telegram"
       "transmission"
-      "thunderbird"
       "utm"
       "whatsapp"
       "zotero"

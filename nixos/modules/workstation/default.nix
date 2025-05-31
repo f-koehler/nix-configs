@@ -11,7 +11,7 @@
       ./sound.nix
       ./wine.nix
     ]
-    ++ lib.optionals (builtins.elem "sway" nodeConfig.desktops) [ ./sway ]
+    ++ lib.optionals (builtins.elem "sway" nodeConfig.desktops) [ ./sway.nix ]
     ++ lib.optionals (builtins.elem "plasma" nodeConfig.desktops) [ ./plasma.nix ];
   services = {
     libinput.enable = true;

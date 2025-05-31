@@ -7,10 +7,10 @@
 {
   imports = [
     ./rofi.nix
-    ./kanshi.nix
+    # ./kanshi.nix
     ./swayosd.nix
-    ./swaylock.nix
-    ./swayidle.nix
+    # ./swaylock.nix
+    # ./swayidle.nix
   ];
   catppuccin.sway = {
     enable = true;

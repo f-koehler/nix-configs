@@ -58,6 +58,5 @@
   # networking.interfaces.enp3s0.useDHCP = lib.mkDefault true;
   networking.hostId = "9801c032";
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

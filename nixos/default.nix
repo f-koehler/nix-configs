@@ -19,12 +19,15 @@
       ./modules/common
     ]
     ++ lib.optional nodeConfig.isWorkstation ./modules/workstation
-    ++ lib.optional (builtins.pathExists ./hardware/${nodeConfig.hostname}.nix) ./hardware/${nodeConfig.hostname}.nix;
+    ++ lib.optional (builtins.pathExists ./configs/${nodeConfig.hostname}.nix) ./configs/${nodeConfig.hostname}.nix
+    ++ lib.optional (builtins.pathExists ./hardware/${nodeConfig.hostname}.nix) ./hardware/${nodeConfig.hostname}.nix
+    ++ lib.optional (builtins.pathExists ./disks/${nodeConfig.hostname}.nix) ./disks/${nodeConfig.hostname}.nix;
   networking.hostName = nodeConfig.hostname;
   sops.defaultSopsFile = ../secrets/${nodeConfig.hostname}.yaml;
 
   nixpkgs = {
     config.allowUnfree = true;
+    hostPlatform = nodeConfig.system;
     overlays = [
       outputs.overlays.additions
       outputs.overlays.modifications

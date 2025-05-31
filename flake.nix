@@ -104,6 +104,15 @@
       stateVersion = "24.11";
       mylib = import ./lib { inherit inputs outputs stateVersion; };
 
+      config-desktop = {
+        hostname = "desktop";
+        username = "fkoehler";
+        isWorkstation = true;
+        isTrusted = true;
+        containerBackend = "docker";
+        virtualisation = true;
+        gpus = [ "nvidia" ];
+      };
       config-fkt14 = {
         hostname = "fkt14";
         username = "fkoehler";
@@ -145,6 +154,7 @@
         "fkt14" = mylib.mkNixOS config-fkt14;
         "homeserver" = mylib.mkNixOS config-homeserver;
         "vps" = mylib.mkNixOS config-vps;
+        "desktop" = mylib.mkNixOS config-desktop;
       };
 
       darwinConfigurations = {

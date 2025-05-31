@@ -1,8 +1,12 @@
-_: {
+{ inputs, ... }:
+{
+  imports = [
+    inputs.disko.nixosModules.disko
+  ];
   disko.devices = {
     disk = {
       main = {
-        device = "/dev/vda";
+        device = "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_2TB_S7HENJ0Y224453Z";
         type = "disk";
         content = {
           type = "gpt";
@@ -18,7 +22,7 @@ _: {
               };
             };
             root = {
-              end = "-16G";
+              end = "-80G";
               content = {
                 type = "filesystem";
                 format = "ext4";
@@ -30,6 +34,7 @@ _: {
               content = {
                 type = "swap";
                 discardPolicy = "both";
+                resumeDevice = true;
               };
             };
           };

@@ -22,7 +22,7 @@
               };
             };
             root = {
-              end = "-80G";
+              end = "-20G";
               content = {
                 type = "filesystem";
                 format = "ext4";
@@ -34,7 +34,7 @@
               content = {
                 type = "swap";
                 discardPolicy = "both";
-                resumeDevice = true;
+                resumeDevice = false;
               };
             };
           };

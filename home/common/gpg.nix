@@ -3,6 +3,7 @@
   lib,
   isDarwin,
   isLinux,
+  isWorkstation,
   ...
 }:
 {
@@ -17,6 +18,12 @@
     defaultCacheTtl = 18000;
     grabKeyboardAndMouse = true;
     maxCacheTtl = 18000;
-    pinentry.package = if isDarwin then pkgs.pinentry_mac else pkgs.pinentry-qt;
+    pinentry.package =
+      if isDarwin then
+        pkgs.pinentry_mac
+      else if isWorkstation then
+        pkgs.pinentry-qt
+      else
+        pkgs.pintentry-tty;
   };
 }

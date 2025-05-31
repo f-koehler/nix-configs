@@ -3,9 +3,6 @@ _: {
     ./bluetooth.nix
     ./distrobox.nix
     ./flatpak.nix
-    # ./gnome.nix
-    # ./hyprland.nix
-    ./kmscon.nix
     ./packages.nix
     ./plasma.nix
     # ./sshfs.nix

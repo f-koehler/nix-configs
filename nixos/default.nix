@@ -41,8 +41,6 @@
   };
 
   hardware.enableAllFirmware = true;
-
-  documentation.man.generateCaches = true;
-
   system.stateVersion = stateVersion;
+  documentation.man.generateCaches = true;
 }

@@ -153,6 +153,7 @@
         "fkoehler@mbp21" = mylib.mkHome config-mbp21;
         "fkoehler@homeserver" = mylib.mkHome config-homeserver;
         "fkoehler@vps" = mylib.mkHome config-vps;
+        "fkoehler@desktop" = mylib.mkHome config-desktop;
       };
 
       nixosConfigurations = {

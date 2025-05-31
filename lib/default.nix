@@ -17,6 +17,7 @@ let
       containerBackend ? "podman",
       timeZone ? "Asia/Singapore",
       gpus ? [ ],
+      desktops ? [ ],
     }:
     {
       inherit inputs outputs stateVersion;
@@ -30,6 +31,7 @@ let
         virtualisation
         timeZone
         gpus
+        desktops
         ;
     };
 

@@ -112,6 +112,7 @@
         containerBackend = "docker";
         virtualisation = true;
         gpus = [ "nvidia" ];
+        desktops = [ "sway" ];
       };
       config-fkt14 = {
         hostname = "fkt14";
@@ -121,6 +122,10 @@
         containerBackend = "docker";
         virtualisation = true;
         gpus = [ "intel" ];
+        desktops = [
+          "plasma"
+          "sway"
+        ];
       };
       config-mbp21 = {
         hostname = "mbp21";

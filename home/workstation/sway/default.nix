@@ -2,9 +2,12 @@
   pkgs,
   lib,
   config,
+  isLinux,
+  nodeConfig,
   ...
 }:
-{
+lib.mkIf isLinux
+&& (builtins.elem "sway" nodeConfig.desktops) {
   imports = [
     ./rofi.nix
     # ./kanshi.nix

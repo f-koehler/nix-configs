@@ -1,4 +1,5 @@
-_: {
+{ lib, ... }:
+{
   programs.zsh = {
     enable = true;
     autocd = true;
@@ -15,7 +16,7 @@ _: {
       share = true;
       size = 1000000;
     };
-    initExtra = ''
+    initExtra = lib.mkOrder 1500 ''
       bindkey "^[[H" beginning-of-line
       bindkey "^[[F" end-of-line
       bindkey "^[[1;5C" forward-word

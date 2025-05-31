@@ -1,10 +1,8 @@
 {
   pkgs,
-  lib,
-  nodeConfig,
   ...
 }:
-lib.mkIf (builtins.elem "plasma" nodeConfig.desktops) {
+{
   services = {
     xserver = {
       # Enable the X11 windowing system.

@@ -35,7 +35,6 @@
       linger = true;
       group = nodeConfig.username;
       extraGroups = [ "wheel" ];
-      initialPassword = "test";
     };
   };
 }

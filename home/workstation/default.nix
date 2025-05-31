@@ -1,6 +1,6 @@
 {
   lib,
-  isLinux,
+  nodeConfig,
   ...
 }:
 {
@@ -14,8 +14,6 @@
       ./wezterm.nix
       ./zed.nix
     ]
-    ++ lib.optionals isLinux [
-      ./sway
-      # ./plasma.nix
-    ];
+    ++ lib.optionals (builtins.elem "sway" nodeConfig.desktops) [ ./sway ]
+    ++ lib.optionals (builtins.elem "plasma" nodeConfig.desktops) [ ./plasma.nix ];
 }

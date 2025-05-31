@@ -1,12 +1,9 @@
 {
   pkgs,
-  lib,
-  isLinux,
-  nodeConfig,
   ...
 }:
-lib.mkIf (builtins.elem "plasma" nodeConfig.desktops) {
-  programs.plasma = lib.mkIf isLinux {
+{
+  programs.plasma = {
     enable = true;
     workspace = {
       clickItemTo = "select";

@@ -5,8 +5,7 @@
   nodeConfig,
   ...
 }:
-lib.mkIf isLinux
-&& (builtins.elem "plasma" nodeConfig.desktops) {
+lib.mkIf (builtins.elem "plasma" nodeConfig.desktops) {
   programs.plasma = lib.mkIf isLinux {
     enable = true;
     workspace = {

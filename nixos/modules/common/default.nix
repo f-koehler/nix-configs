@@ -1,7 +1,6 @@
 _: {
   imports = [
     ./beszel-agent.nix
-    ./collect-garbage.nix
     ./docker.nix
     ./firewall.nix
     ./firmware.nix

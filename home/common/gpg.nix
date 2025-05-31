@@ -3,7 +3,7 @@
   lib,
   isDarwin,
   isLinux,
-  isWorkstation,
+  nodeConfig,
   ...
 }:
 {
@@ -21,7 +21,7 @@
     pinentry.package =
       if isDarwin then
         pkgs.pinentry_mac
-      else if isWorkstation then
+      else if nodeConfig.isWorkstation then
         pkgs.pinentry-qt
       else
         pkgs.pintentry-tty;

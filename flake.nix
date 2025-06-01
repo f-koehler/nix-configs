@@ -63,9 +63,6 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # TODO(fk): replace with nix package once available
-    isd.url = "github:isd-project/isd";
   };
 
   nixConfig = {

@@ -15,8 +15,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
-
     catppuccin.url = "github:catppuccin/nix";
 
     nix-darwin = {

@@ -12,6 +12,9 @@
       useOSProber = true;
     };
     efi.canTouchEfiVariables = true;
+    plymouth = {
+      enable = true;
+    };
   };
   services.openssh.enable = true;
 

@@ -5,13 +5,15 @@
   ...
 }:
 {
-  boot.loader = {
-    grub = {
-      efiSupport = true;
-      device = "nodev";
-      useOSProber = true;
+  boot = {
+    loader = {
+      grub = {
+        efiSupport = true;
+        device = "nodev";
+        useOSProber = true;
+      };
+      efi.canTouchEfiVariables = true;
     };
-    efi.canTouchEfiVariables = true;
     plymouth = {
       enable = true;
     };

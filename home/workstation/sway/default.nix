@@ -128,6 +128,10 @@
         };
         bars = [
           {
+            fonts = {
+              names = config.fonts.fontconfig.defaultFonts.sansSerif;
+              size = "${toString nodeConfig.fontSize}";
+            };
             colors = {
               background = "$base";
               statusline = "$text";

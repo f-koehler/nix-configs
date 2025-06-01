@@ -1,7 +1,5 @@
 {
   pkgs,
-  lib,
-  config,
   ...
 }:
 {
@@ -14,16 +12,16 @@
       };
       xwayland.enable = true;
     };
-    uwsm = {
-      enable = true;
-      waylandCompositors = {
-        "sway" = {
-          prettyName = "sway";
-          comment = "Sway window manager with UWSM session management";
-          binPath = lib.getExe' config.programs.sway.package "sway";
-        };
-      };
-    };
+    # uwsm = {
+    #   enable = true;
+    #   waylandCompositors = {
+    #     "sway" = {
+    #       prettyName = "sway";
+    #       comment = "Sway window manager with UWSM session management";
+    #       binPath = lib.getExe' config.programs.sway.package "sway";
+    #     };
+    #   };
+    # };
   };
   services = {
     blueman.enable = true;
@@ -33,6 +31,11 @@
     udisks2.enable = true;
     upower.enable = true;
     dbus.implementation = "broker";
+    displayManager.sddm = {
+      enable = true;
+      package = pkgs.kdePackages.sddm;
+      wayland.enable = true;
+    };
   };
   security = {
     polkit.enable = true;

@@ -1,10 +1,9 @@
 {
-  pkgs,
   lib,
   config,
   ...
 }:
-lib.mkIf {
+{
   imports = [
     ./rofi.nix
     # ./kanshi.nix
@@ -30,8 +29,8 @@ lib.mkIf {
       xwayland = true;
       config = {
         modifier = "Mod4";
-        menu = "${lib.getExe' config.programs.rofi.finalPackage "rofi"} -show drun -run-command ''\"${lib.getExe' pkgs.uwsm "uwsm"} app -- {cmd}''\"";
-        terminal = "${lib.getExe' pkgs.uwsm "uwsm"} app -- ${lib.getExe' config.programs.alacritty.package "alacritty"}";
+        menu = "${lib.getExe' config.programs.rofi.finalPackage "rofi"} -show drun";
+        terminal = "${lib.getExe' config.programs.alacritty.package "alacritty"}";
         focus = {
           followMouse = false;
           mouseWarping = true;

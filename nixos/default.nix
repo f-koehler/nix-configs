@@ -4,6 +4,7 @@
   lib,
   stateVersion,
   nodeConfig,
+  pkgs,
   ...
 }:
 {
@@ -39,6 +40,7 @@
     flavor = "mocha";
     accent = "mauve";
   };
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   hardware.enableAllFirmware = true;
   system.stateVersion = stateVersion;

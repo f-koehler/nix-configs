@@ -1,5 +1,7 @@
 {
   pkgs,
+  config,
+  lib,
   ...
 }:
 {
@@ -11,17 +13,18 @@
         gtk = true;
       };
       xwayland.enable = true;
+      extraOptions = [ "--unsupported-gpu" ];
     };
-    # uwsm = {
-    #   enable = true;
-    #   waylandCompositors = {
-    #     "sway" = {
-    #       prettyName = "sway";
-    #       comment = "Sway window manager with UWSM session management";
-    #       binPath = lib.getExe' config.programs.sway.package "sway";
-    #     };
-    #   };
-    # };
+    uwsm = {
+      enable = true;
+      waylandCompositors = {
+        "sway" = {
+          prettyName = "Sway";
+          comment = "Sway window manager with UWSM session management";
+          binPath = lib.getExe' config.programs.sway.package "sway";
+        };
+      };
+    };
   };
   services = {
     blueman.enable = true;

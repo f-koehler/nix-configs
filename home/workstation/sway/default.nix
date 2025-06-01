@@ -24,6 +24,7 @@
     windowManager.sway = {
       enable = true;
       #     systemd.enable = false; # we use UWSM for session management
+      extraOptions = lib.optionals (builtins.elem "nvidia" nodeConfig.gpus) [ "--unsupported-gpu" ];
       wrapperFeatures = {
         base = true;
         gtk = true;

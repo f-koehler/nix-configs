@@ -18,7 +18,7 @@ let
       timeZone ? "Asia/Singapore",
       gpus ? [ ],
       desktops ? [ ],
-      fontSize ? 18,
+      fontSize ? 16,
       fontSizeMonospace ? 14,
     }:
     {

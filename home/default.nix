@@ -44,7 +44,27 @@ in
     config.allowUnfree = true;
   };
 
-  fonts.fontconfig.enable = true;
+  fonts = {
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        emoji = [ "Noto Color Emoji" ];
+        monospace = [ "Cascadia Code NF" ];
+        sansSerif = [ "Noto Sans" ];
+        serif = [ "Noto Serif" ];
+      };
+    };
+  };
+  gtk.font = {
+    package = pkgs.noto-fonts;
+    name = builtins.elemAt config.fonts.fontconfig.defaultFonts.sansSerif 0;
+    size = nodeConfig.fontSize;
+    iconTheme = {
+      package = pkgs.kdePackages.breeze-icons;
+      name = "breeze-dark";
+    };
+  };
+
   home = {
     inherit stateVersion;
     inherit (nodeConfig) username;
@@ -72,9 +92,9 @@ in
       pkgs.ncdu
       pkgs.htop
       pkgs.cascadia-code
+      pkgs.noto-fonts
       pkgs.fd
       pkgs.typst
-      pkgs.nerd-fonts.hack
     ] ++ lib.optionals isLinux [ inputs.isd.packages.${nodeConfig.system}.default ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage

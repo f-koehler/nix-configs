@@ -1,4 +1,10 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  nodeConfig,
+  ...
+}:
 {
   programs.zed-editor = {
     enable = true;
@@ -9,11 +15,17 @@
       "nix"
     ];
     userSettings = {
-      buffer_font_family = "Cascadia Code NF";
-      buffer_font_size = 12;
+      buffer_font_family = builtins.elemAt config.fonts.fontconfig.defaultFonts.monospace 0;
+      buffer_line_height = "comfortable";
+      buffer_font_size = nodeConfig.fontSizeMonospace;
+      terminal_font_size = nodeConfig.fontSizeMonospace;
+      terminal_font_family = builtins.elemAt config.fonts.fontconfig.defaultFonts.monospace 0;
+      terminal_line_height = "standard";
+      ui_font_size = nodeConfig.fontSize;
+      ui_font_family = builtins.elemAt config.fonts.fontconfig.defaultFonts.sansSerif 0;
+
       load_direnv = "shell_hook";
       telemetry.metrics = false;
-      ui_font_size = 14;
       vim_mode = true;
       lsp = {
         clangd = {

@@ -1,6 +1,8 @@
 {
   pkgs,
   isDarwin,
+  config,
+  nodeConfig,
   ...
 }:
 {
@@ -89,9 +91,9 @@
           "*" = true;
           "nix" = true;
         };
-        "editor.fontSize" = 12;
+        "editor.fontSize" = nodeConfig.fontSizeMonospace;
         "editor.formatOnSave" = true;
-        "editor.fontFamily" = "Cascadia Code NF";
+        "editor.fontFamily" = builtins.elemAt config.fonts.fontconfig.defaultFonts.monospace 0;
         "editor.fontLigatures" = true;
         "editor.minimap.enabled" = false;
         "extensions.experimental.affinity" = {
@@ -114,8 +116,8 @@
         "remote.SSH.useLocalServer" = false;
         "ruff.path" = [ "${pkgs.ruff}/bin/ruff" ];
         "tailscale.portDiscovery.enabled" = false;
-        "terminal.integrated.fontFamily" = "Cascadia Code NF";
-        "terminal.integrated.fontSize" = 12;
+        "terminal.integrated.fontFamily" = builtins.elemAt config.fonts.fontconfig.defaultFonts.monospace 0;
+        "terminal.integrated.fontSize" = nodeConfig.fontSizeMonospace;
         "terminal.integrated.persistentSessionScrollback" = 10000;
         "terminal.integrated.scrollback" = 100000;
         "tinymist.formatterMode" = "typstyle";

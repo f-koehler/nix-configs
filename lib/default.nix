@@ -18,6 +18,8 @@ let
       timeZone ? "Asia/Singapore",
       gpus ? [ ],
       desktops ? [ ],
+      fontSize ? 18,
+      fontSizeMonospace ? 14,
     }:
     {
       inherit inputs outputs stateVersion;
@@ -32,6 +34,8 @@ let
         timeZone
         gpus
         desktops
+        fontSize
+        fontSizeMonospace
         ;
     };
 

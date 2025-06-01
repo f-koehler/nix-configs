@@ -1,24 +1,24 @@
-{ isDarwin, ... }:
+{ nodeConfig, config, ... }:
 {
   programs.alacritty = {
     enable = true;
     settings = {
       font = {
-        size = if isDarwin then 12 else 9;
+        size = nodeConfig.fontSizeMonospace;
         normal = {
-          family = "Cascadia Code NF";
+          family = builtins.elemAt config.fonts.fontconfig.defaultFonts.monospace 0;
           style = "Regular";
         };
         bold = {
-          family = "Cascadia Code NF";
+          family = builtins.elemAt config.fonts.fontconfig.defaultFonts.monospace 0;
           style = "Bold";
         };
         italic = {
-          family = "Cascadia Code NF";
+          family = builtins.elemAt config.fonts.fontconfig.defaultFonts.monospace 0;
           style = "Italic";
         };
         bold_italic = {
-          family = "Cascadia Code NF";
+          family = builtins.elemAt config.fonts.fontconfig.defaultFonts.monospace 0;
           style = "Bold Italic";
         };
       };

@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  nodeConfig,
   ...
 }:
 {
@@ -34,6 +35,10 @@
         focus = {
           followMouse = false;
           mouseWarping = true;
+        };
+        fonts = {
+          names = config.fonts.fontconfig.defaultFonts.sansSerif;
+          size = "${toString nodeConfig.fontSize}";
         };
         gaps = {
           smartBorders = "on";

@@ -47,6 +47,15 @@
           smartBorders = "on";
           smartGaps = false;
         };
+        output = {
+          "DP-4" = {
+            # mode = "3840x2160@199.999";
+            # pos = "0 0";
+            adaptive_sync = "on";
+            render_bit_depth = "10";
+            bg = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Mountain/contents/images_dark/5120x2880.png fill";
+          };
+        };
         window.titlebar = false;
         workspaceAutoBackAndForth = true;
         workspaceOutputAssign = [

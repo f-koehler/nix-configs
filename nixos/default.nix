@@ -11,7 +11,6 @@
   imports =
     [
       inputs.disko.nixosModules.disko
-      inputs.nixos-facter-modules.nixosModules.facter
       inputs.sops-nix.nixosModules.sops
       inputs.catppuccin.nixosModules.catppuccin
       inputs.home-manager.nixosModules.home-manager

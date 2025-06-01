@@ -33,7 +33,7 @@
       xwayland = true;
       config = {
         modifier = "Mod4";
-        menu = "${lib.getExe' config.programs.rofi.finalPackage "rofi"} -show drun -run-command ${lib.getExe' pkgs.uwsm "uwsm"} app -- {cmd}";
+        menu = "${lib.getExe' config.programs.rofi.finalPackage "rofi"} -show drun -run-command ''\"${lib.getExe' pkgs.uwsm "uwsm"} app -- {cmd}''\"";
         terminal = "${lib.getExe' config.programs.alacritty.package "alacritty"}";
         focus = {
           followMouse = false;

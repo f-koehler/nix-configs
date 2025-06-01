@@ -11,6 +11,7 @@
       ./gtk.nix
       ./lapce.nix
       # ./mpd.nix
+      ./qt.nix
       ./vscode.nix
       ./wezterm.nix
       ./zed.nix

@@ -63,6 +63,8 @@
         usbutils
         imhex
         anki
+        cudaPackages.nsight_compute
+        signal-desktop
       ];
     };
   };

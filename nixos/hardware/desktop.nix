@@ -26,7 +26,6 @@
   };
 
   hardware = {
-    nvidia.open = true;
     cpu.amd.updateMicrocode = true;
   };
 }

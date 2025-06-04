@@ -45,9 +45,4 @@
       enable = true;
     };
   };
-  catppuccin.lazygit = {
-    enable = true;
-    accent = "mauve";
-    flavor = "mocha";
-  };
 }

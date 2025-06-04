@@ -14,10 +14,6 @@
     # ./swaylock.nix
     # ./swayidle.nix
   ];
-  catppuccin.sway = {
-    enable = true;
-    flavor = "mocha";
-  };
   services.network-manager-applet.enable = true;
   services.gnome-keyring.enable = true;
   wayland = {

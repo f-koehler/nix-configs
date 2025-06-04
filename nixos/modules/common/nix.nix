@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   nix = {
-    package = pkgs.lix;
+    package = pkgs.nix;
     settings = {
       experimental-features = [
         "nix-command"

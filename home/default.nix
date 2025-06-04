@@ -29,9 +29,7 @@ in
     flavor = "mocha";
     accent = "mauve";
     cursors = lib.mkIf (!isDarwin) {
-      enable = true;
-      accent = "mauve";
-      flavor = "mocha";
+      inherit (config.catppuccin) accent flavor enable;
     };
   };
 

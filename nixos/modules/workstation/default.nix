@@ -6,6 +6,7 @@
       ./distrobox.nix
       ./flatpak.nix
       ./packages.nix
+      ./protonmail.nix
       # ./sshfs.nix
       ./samba-shares.nix
       ./sound.nix

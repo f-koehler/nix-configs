@@ -1,4 +1,6 @@
 {
+  config,
+  lib,
   nodeConfig,
   ...
 }:
@@ -14,7 +16,11 @@
       pyright.enable = nodeConfig.isWorkstation;
       qmlls = {
         enable = nodeConfig.isWorkstation;
-        # cmd = [ "${lib.getExe' pkgs.kdePackages.qtdeclarative "qmlls"}" "-E" ];
+        autostart = true;
+        cmd = [
+          "${lib.getExe' config.programs.nixvim.plugins.lsp.servers.qmlls.package "qmlls"}"
+          "-E"
+        ];
       };
       rust_analyzer = {
         enable = nodeConfig.isWorkstation;

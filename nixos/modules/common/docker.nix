@@ -1,9 +1,11 @@
 {
   lib,
+  pkgs,
   nodeConfig,
   ...
 }:
 lib.mkIf (nodeConfig.containerBackend == "docker") {
+  environment.systemPackages = [ pkgs.docker-compose ];
   virtualisation = {
     docker = {
       enable = true;

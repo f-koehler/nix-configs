@@ -107,6 +107,7 @@
         username = "fkoehler";
         isWorkstation = false;
         isTrusted = true;
+        gpus = [ "intel" ];
       };
       config-vps = {
         hostname = "vps";

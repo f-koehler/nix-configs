@@ -1,6 +1,7 @@
 {
   pkgs,
   nodeConfig,
+  lib,
   ...
 }:
 {
@@ -20,6 +21,7 @@
   };
 
   boot = {
+    kernelPackages = lib.mkForce pkgs.linuxPackages;
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;

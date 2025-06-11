@@ -18,7 +18,6 @@
       enable = true;
     };
   };
-  services.openssh.enable = true;
 
   networking = {
     useDHCP = lib.mkDefault true;
@@ -40,6 +39,25 @@
       linger = true;
       group = nodeConfig.username;
       extraGroups = [ "wheel" ];
+    };
+  };
+
+  services = {
+    openssh.enable = true;
+    open-webui = {
+      enable = true;
+      host = "0.0.0.0";
+      port = 11112;
+    };
+    ollama = {
+      enable = true;
+      port = 11111;
+      host = "0.0.0.0";
+      acceleration = "cuda";
+      loadModels = [
+        "deepseek-r1:14b"
+        "llama4:16x17b"
+      ];
     };
   };
 }

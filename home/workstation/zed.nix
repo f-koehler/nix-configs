@@ -10,6 +10,8 @@
     enable = true;
     installRemoteServer = true;
     extensions = [
+      "dockerfile"
+      "docker-compose"
       "env"
       "neocmake"
       "nix"

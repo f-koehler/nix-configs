@@ -18,8 +18,8 @@ class Mode(str, Enum):
 
 def main(
     lockfile: Annotated[Path, typer.Option("-l", "--lockfile")],
-    command: Annotated[str, typer.Option("-c", "--command")],
-    args: Annotated[list[str], typer.Option("-a", "--arg")],
+    command: Annotated[str | None, typer.Option("-c", "--command")] = None,
+    args: Annotated[list[str] | None, typer.Option("-a", "--arg")] = None,
     mode: Annotated[Mode, typer.Option("-m", "--mode")] = Mode.Full,
     timeout: Annotated[float, typer.Option("-t", "--timeout")] = 60.0,
     interval: Annotated[float, typer.Option("-i--interval")] = 5.0,
@@ -45,7 +45,9 @@ def main(
         LOGGER.info("Creating lock file")
 
     if mode == Mode.Full:
-        cmd = [str(command)] + args
+        if not cmd:
+            raise ValueError("No command provided")
+        cmd = [str(command)] + (args if args else [])
         LOGGER.info("Run command: %s", " ".join(cmd))
         subprocess.run(cmd).check_returncode()
 

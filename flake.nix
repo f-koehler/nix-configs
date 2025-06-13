@@ -63,6 +63,10 @@
       url = "path:./packages/prepare-testing-secrets";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    run-cmd-with-lock = {
+      url = "path:./packages/run-cmd-with-lock";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {
@@ -158,6 +162,7 @@
           devenv-up = self.devShells.${system}.default.config.procfileScript;
           devenv-test = self.devShells.${system}.default.config.test;
           prepare-test-secrets = inputs.prepare-test-secrets.packages.${system}.default;
+          run-cmd-with-lock = inputs.run-cmd-with-lock.packages.${system}.default;
         }
       );
       formatter = mylib.forAllSystems (system: inputs.nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
@@ -181,6 +186,7 @@
                   nodejs
                   sops
                   nixos-rebuild
+                  python313Full
                 ];
 
                 scripts = {

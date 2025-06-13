@@ -8,19 +8,13 @@ on:
     branches:
       - main
 jobs:
-  build:
-    name: "Nix: ${{matrix.flakeref}}"
+  build-packages:
+    name: "Package: ${{ matrix.package }}"
     strategy:
       fail-fast: false
       matrix:
-        flakeref:
-          - ".#nixosConfigurations.homeserver.config.system.build.toplevel"
-          - ".#nixosConfigurations.fkt14.config.system.build.toplevel"
-          - ".#nixosConfigurations.desktop.config.system.build.toplevel"
-          - ".#homeConfigurations.fkoehler@homeserver.activationPackage"
-          - ".#homeConfigurations.fkoehler@fkt14.activationPackage"
-          - ".#homeConfigurations.fkoehler@desktop.activationPackage"
-          - ".#homeConfigurations.fkoehler@desktop-ubuntu.activationPackage"
+        package:
+          - prepare-test-secrets
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -31,7 +25,49 @@ jobs:
         with:
           extra-conf: |
             lazy-trees = true
-      # - name: Configure secrets
-      #   run: nix develop --no-pure-eval --command ./testing/configure-secrets.py
+      - run: nix build ".#${{ matrix.package }}" -L
+  build-home:
+    needs: [build-packages]
+    name: "Home: ${{ matrix.config }}"
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - "fkoehler@homeserver"
+          - "fkoehler@fkt14"
+          - "fkoehler@desktop"
+          - "fkoehler@desktop-ubuntu"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: wimpysworld/nothing-but-nix@main
+        with:
+          hatchet-protocol: rampage
+      - uses: DeterminateSystems/determinate-nix-action@v3
+        with:
+          extra-conf: |
+            lazy-trees = true
       - run: nix run ".#prepare-test-secrets"
-      - run: nix build ${{ matrix.flakeref }} -L
+      - run: nix build ".#homeConfigurations.${{ matrix.config }}.activationPackage" -L
+  build-nixos:
+    needs: [build-packages]
+    name: "NixOs: ${{ matrix.host }}"
+    strategy:
+      fail-fast: false
+      matrix:
+        host:
+          - homeserver
+          - fkt14
+          - desktop
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: wimpysworld/nothing-but-nix@main
+        with:
+          hatchet-protocol: rampage
+      - uses: DeterminateSystems/determinate-nix-action@v3
+        with:
+          extra-conf: |
+            lazy-trees = true
+      - run: nix run ".#prepare-test-secrets"
+      - run: nix build ".#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel" -L

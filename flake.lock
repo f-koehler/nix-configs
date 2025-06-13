@@ -2,15 +2,9 @@
   "nodes": {
     "cachix": {
       "inputs": {
-        "devenv": [
-          "devenv"
-        ],
-        "flake-compat": [
-          "devenv"
-        ],
-        "git-hooks": [
-          "devenv"
-        ],
+        "devenv": ["devenv"],
+        "flake-compat": ["devenv"],
+        "git-hooks": ["devenv"],
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
@@ -67,9 +61,7 @@
         "flake-compat": "flake-compat",
         "git-hooks": "git-hooks",
         "nix": "nix",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1749743313,
@@ -87,9 +79,7 @@
     },
     "disko": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1749436314,
@@ -140,11 +130,7 @@
     },
     "flake-parts": {
       "inputs": {
-        "nixpkgs-lib": [
-          "devenv",
-          "nix",
-          "nixpkgs"
-        ]
+        "nixpkgs-lib": ["devenv", "nix", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1712014858,
@@ -162,10 +148,7 @@
     },
     "flake-parts_2": {
       "inputs": {
-        "nixpkgs-lib": [
-          "nixvim",
-          "nixpkgs"
-        ]
+        "nixpkgs-lib": ["nixvim", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1749398372,
@@ -201,10 +184,7 @@
     },
     "flake-utils_2": {
       "inputs": {
-        "systems": [
-          "mac-app-util",
-          "systems"
-        ]
+        "systems": ["mac-app-util", "systems"]
       },
       "locked": {
         "lastModified": 1731533236,
@@ -257,14 +237,9 @@
     },
     "git-hooks": {
       "inputs": {
-        "flake-compat": [
-          "devenv"
-        ],
+        "flake-compat": ["devenv"],
         "gitignore": "gitignore",
-        "nixpkgs": [
-          "devenv",
-          "nixpkgs"
-        ]
+        "nixpkgs": ["devenv", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1746537231,
@@ -282,11 +257,7 @@
     },
     "gitignore": {
       "inputs": {
-        "nixpkgs": [
-          "devenv",
-          "git-hooks",
-          "nixpkgs"
-        ]
+        "nixpkgs": ["devenv", "git-hooks", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1709087332,
@@ -304,9 +275,7 @@
     },
     "home-manager": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1749802021,
@@ -325,16 +294,8 @@
     },
     "ixx": {
       "inputs": {
-        "flake-utils": [
-          "nixvim",
-          "nuschtosSearch",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixvim",
-          "nuschtosSearch",
-          "nixpkgs"
-        ]
+        "flake-utils": ["nixvim", "nuschtosSearch", "flake-utils"],
+        "nixpkgs": ["nixvim", "nuschtosSearch", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1748294338,
@@ -391,21 +352,13 @@
     },
     "nix": {
       "inputs": {
-        "flake-compat": [
-          "devenv"
-        ],
+        "flake-compat": ["devenv"],
         "flake-parts": "flake-parts",
         "libgit2": "libgit2",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-23-11": [
-          "devenv"
-        ],
-        "nixpkgs-regression": [
-          "devenv"
-        ],
-        "pre-commit-hooks": [
-          "devenv"
-        ]
+        "nixpkgs-23-11": ["devenv"],
+        "nixpkgs-regression": ["devenv"],
+        "pre-commit-hooks": ["devenv"]
       },
       "locked": {
         "lastModified": 1745930071,
@@ -424,9 +377,7 @@
     },
     "nix-darwin": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1749739639,
@@ -461,9 +412,7 @@
     },
     "nix-index-database": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1749355504,
@@ -483,9 +432,7 @@
     "nix-vscode-extensions": {
       "inputs": {
         "flake-utils": "flake-utils_3",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1749780284,
@@ -600,9 +547,7 @@
     "nixvim": {
       "inputs": {
         "flake-parts": "flake-parts_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": ["nixpkgs"],
         "nuschtosSearch": "nuschtosSearch",
         "systems": "systems_5"
       },
@@ -624,10 +569,7 @@
       "inputs": {
         "flake-utils": "flake-utils_4",
         "ixx": "ixx",
-        "nixpkgs": [
-          "nixvim",
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixvim", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1749531675,
@@ -645,12 +587,8 @@
     },
     "plasma-manager": {
       "inputs": {
-        "home-manager": [
-          "home-manager"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "home-manager": ["home-manager"],
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1748196248,
@@ -668,9 +606,7 @@
     },
     "prepare-test-secrets": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": ["nixpkgs"],
         "pyproject-nix": "pyproject-nix"
       },
       "locked": {
@@ -686,10 +622,25 @@
     },
     "pyproject-nix": {
       "inputs": {
-        "nixpkgs": [
-          "prepare-test-secrets",
-          "nixpkgs"
-        ]
+        "nixpkgs": ["prepare-test-secrets", "nixpkgs"]
+      },
+      "locked": {
+        "lastModified": 1746540146,
+        "narHash": "sha256-QxdHGNpbicIrw5t6U3x+ZxeY/7IEJ6lYbvsjXmcxFIM=",
+        "owner": "pyproject-nix",
+        "repo": "pyproject.nix",
+        "rev": "e09c10c24ebb955125fda449939bfba664c467fd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pyproject-nix",
+        "repo": "pyproject.nix",
+        "type": "github"
+      }
+    },
+    "pyproject-nix_2": {
+      "inputs": {
+        "nixpkgs": ["run-cmd-with-lock", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1746540146,
@@ -722,15 +673,30 @@
         "nixvim": "nixvim",
         "plasma-manager": "plasma-manager",
         "prepare-test-secrets": "prepare-test-secrets",
+        "run-cmd-with-lock": "run-cmd-with-lock",
         "sops-nix": "sops-nix",
         "systems": "systems_6"
       }
     },
+    "run-cmd-with-lock": {
+      "inputs": {
+        "nixpkgs": ["nixpkgs"],
+        "pyproject-nix": "pyproject-nix_2"
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-ZAqBbjysNJVuLj/b/sKUPHpAzyJmfwfERaJiOX7bEeE=",
+        "path": "./packages/run-cmd-with-lock",
+        "type": "path"
+      },
+      "original": {
+        "path": "./packages/run-cmd-with-lock",
+        "type": "path"
+      }
+    },
     "sops-nix": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1749592509,

@@ -38,6 +38,7 @@
             packages = [
               pythonEnv
               pkgs.sops
+              pkgs.age
             ];
           };
         }
@@ -48,10 +49,20 @@
         let
           pkgs = inputs.nixpkgs.legacyPackages.${system};
           python = pkgs.python3;
-          attrs = project.renderers.buildPythonPackage { inherit python; };
+          attrs = project.renderers.buildPythonPackage {
+            inherit python;
+          };
         in
         {
-          default = python.pkgs.buildPythonPackage attrs;
+          default = python.pkgs.buildPythonPackage (
+            attrs
+            // {
+              dependencies = attrs.dependencies ++ [
+                pkgs.age
+                pkgs.sops
+              ];
+            }
+          );
         }
       );
     };

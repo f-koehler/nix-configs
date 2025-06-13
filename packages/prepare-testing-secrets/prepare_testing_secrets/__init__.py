@@ -33,7 +33,7 @@ def main():
 
     logging.info("Loading templating engine")
     env = jinja2.Environment(
-        loader=jinja2.FileSystemLoader(searchpath=Path(__file__).parent)
+        loader=jinja2.PackageLoader("prepare_testing_secrets", package_path="templates")
     )
 
     dir_age_key = Path.home() / ".config" / "sops" / "age"
@@ -57,19 +57,11 @@ def main():
         env.get_template("sops.yaml.j2").render(public_age_key=public_age_key)
     )
 
-    dir_secret_templates = Path(__file__).parent / "secrets"
-    dir_rendered_secrets = Path.cwd() / "secrets"
-    for path in dir_secret_templates.iterdir():
-        if not path.is_file():
-            continue
-        if not path.name.endswith(".yaml.j2"):
-            continue
-        target = dir_rendered_secrets / path.with_suffix("").name
-        logging.info("Rendering secret: %s", str(target))
-        target.write_text(
-            env.get_template("secrets/" + path.name).render(**JINJA_FUNCTIONS)
-        )
-
+    for secret_file in ["common.yaml.j2", "home.yaml.j2", "homeserver.yaml.j2"]:
+        logging.info("Rendering secret: %s", str(secret_file))
+        target = Path.cwd() / "secrets" / secret_file.removesuffix(".j2")
+        target.parent.mkdir(exist_ok=True, parents=True)
+        target.write_text(env.get_template(secret_file).render(**JINJA_FUNCTIONS))
         logging.info("Encrypting secret: %s", str(target))
         subprocess.check_output(["sops", "-i", "-e", str(target)])
 

@@ -73,9 +73,6 @@
         tmux
       ];
     };
-    users.root.openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBSATjLjRE6lpk/e4wmPiyeCN5c+WMAmzm0caEP3pPmE fkoehler@vps"
-    ];
   };
 
   environment.systemPackages = with pkgs; [

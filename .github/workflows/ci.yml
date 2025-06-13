@@ -25,6 +25,9 @@ jobs:
     runs-on: ${{ matrix.entry.os }}
     steps:
       - uses: actions/checkout@v4
+      - uses: wimpysworld/nothing-but-nix@main
+        with:
+          hatchet-protocol: rampage
       - uses: cachix/install-nix-action@v31
         with:
           nix_path: nixpkgs=channel:nixos-unstable
@@ -48,6 +51,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: wimpysworld/nothing-but-nix@main
+        with:
+          hatchet-protocol: rampage
       - uses: cachix/install-nix-action@v31
         with:
           nix_path: nixpkgs=channel:nixos-unstable

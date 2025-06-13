@@ -50,11 +50,11 @@ def main(
         LOGGER.info("Creating lock file")
 
     if mode == Mode.Full:
-        if not cmd:
+        if not command:
             raise ValueError("No command provided")
-        cmd = [str(command)] + (args if args else [])
-        LOGGER.info("Run command: %s", " ".join(cmd))
-        subprocess.run(cmd).check_returncode()
+        command = [str(command)] + (args if args else [])
+        LOGGER.info("Run command: %s", " ".join(command))
+        subprocess.run(command).check_returncode()
 
     if (mode == Mode.Full) or (mode == Mode.Post):
         LOGGER.info("Releasing lock file")

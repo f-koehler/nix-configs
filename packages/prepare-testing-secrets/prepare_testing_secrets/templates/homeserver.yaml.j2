@@ -5,6 +5,10 @@ security:
             email: {{ random_email() }}
             apiToken: {{ random_key() }}
 services:
+  anki:
+    users:
+      fkoehler:
+        password: {{ random_key() }}
     forgejo:
         apiKey: {{ random_key() }}
     gickup:

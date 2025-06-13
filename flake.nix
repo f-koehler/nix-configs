@@ -58,6 +58,11 @@
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
+    prepare-test-secrets = {
+      url = "path:./packages/prepare-testing-secrets";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {
@@ -92,8 +97,10 @@
         gpus = [ "intel" ];
         desktops = [
           "plasma"
-          "sway"
+          # "sway"
         ];
+        # fontSize = 12;
+        # fontSizeMonospace = 10;
       };
       config-desktop-ubuntu = {
         hostname = "desktop-ubuntu";
@@ -150,6 +157,7 @@
         // {
           devenv-up = self.devShells.${system}.default.config.procfileScript;
           devenv-test = self.devShells.${system}.default.config.test;
+          prepare-test-secrets = inputs.prepare-test-secrets.packages.${system}.default;
         }
       );
       formatter = mylib.forAllSystems (system: inputs.nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
@@ -209,13 +217,6 @@
 
                 languages = {
                   nix.enable = true;
-                  python = {
-                    enable = true;
-                    uv = {
-                      enable = true;
-                      sync.enable = true;
-                    };
-                  };
                 };
 
                 pre-commit.hooks = {

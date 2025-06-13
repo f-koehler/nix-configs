@@ -24,6 +24,6 @@
       else if nodeConfig.isWorkstation then
         pkgs.pinentry-qt
       else
-        pkgs.pintentry-tty;
+        pkgs.pinentry-tty;
   };
 }

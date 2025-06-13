@@ -20,8 +20,6 @@ jobs:
             ref: fkoehler@homeserver
           - os: ubuntu-latest
             ref: fkoehler@vps
-          - os: macos-latest
-            ref: fkoehler@mbp21
     runs-on: ${{ matrix.entry.os }}
     steps:
       - uses: actions/checkout@v4

@@ -1,15 +1,16 @@
 {
+  inputs,
   config,
   nodeConfig,
   stateVersion,
+  lib,
+  pkgs,
   ...
 }:
 let
   ip = "172.22.1.100";
   inherit (config.services.immich) port;
-  # backupScript = pkgs.writeShellScriptBin "immich-backup-db" ''
-  #   ${lib.getExe' pkgs.nixos-container "nixos-container"} run immich -- sh -c "sudo -u immich -g immich pg_dump -d immich | gzip -9 > /db_backup/immich.psql.gz"
-  # '';
+
 in
 {
   containers.immich = {
@@ -33,25 +34,51 @@ in
         isReadOnly = false;
       };
     };
-    config = _: {
-      system.stateVersion = stateVersion;
-      boot.isContainer = true;
-      time.timeZone = nodeConfig.timeZone;
-      networking = {
-        firewall = {
-          enable = true;
-          allowedTCPPorts = [ port ];
+    config =
+      _:
+      let
+        run-cmd-with-lock = inputs.run-cmd-with-lock.packages.${nodeConfig.system}.default;
+        script-db-dump = pkgs.writeShellScriptBin "immich-backup-db" ''
+          /run/current-system/sw/bin/pg_dump -d immich | /run/current-system/sw/bin/gzip -9 > /db_backup/immich.psql.gz
+        '';
+      in
+      {
+        system.stateVersion = stateVersion;
+        boot.isContainer = true;
+        time.timeZone = nodeConfig.timeZone;
+        networking = {
+          firewall = {
+            enable = true;
+            allowedTCPPorts = [ port ];
+          };
+        };
+        services = {
+          immich = {
+            enable = true;
+            host = "0.0.0.0";
+            inherit port;
+            accelerationDevices = [ "/dev/dri/renderD128" ];
+          };
+        };
+        systemd = {
+          services."backup-immich" = {
+            description = "Create a backup of immich";
+            serviceConfig = {
+              Type = "oneshot";
+              User = config.services.immich.user;
+              Group = config.services.immich.group;
+              ExecStart = "${lib.getExe run-cmd-with-lock} --lockfile /db_backup/lock --command ${lib.getExe script-db-dump}";
+            };
+          };
+          timers."backup-immich" = {
+            description = "Periodic backups of immich";
+            timerConfig = {
+              Unit = "backup-immich.service";
+              OnCalendar = "*-*-* 4:00:00";
+            };
+          };
         };
       };
-      services = {
-        immich = {
-          enable = true;
-          host = "0.0.0.0";
-          inherit port;
-          accelerationDevices = [ "/dev/dri/renderD128" ];
-        };
-      };
-    };
   };
   services = {
     nginx = {
@@ -90,16 +117,17 @@ in
     };
     # sanoid = {
     #   enable = true;
-    #   datasets.immich = {
+    #   datasets."rpool/containers/immich" = {
     #     yearly = 2;
     #     monthly = 24;
     #     daily = 90;
     #     hourly = 96;
     #     autosnap = true;
     #     autoprune = true;
-    #     pre_snapshot_script = "${lib.getExe backupScript}";
-    #     no_inconsistent_snapshot = true;
-    #     script_timeout = 0;
+    #     # pre_snapshot_script = "${lib.getExe backupScript}";
+    #     # no_inconsistent_snapshot = true;
+    #     # post_sna
+    #     # script_timeout = 0;
     #     recursive = true;
     #   };
     # };

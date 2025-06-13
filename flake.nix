@@ -95,6 +95,12 @@
           "sway"
         ];
       };
+      config-desktop-ubuntu = {
+        hostname = "desktop-ubuntu";
+        username = "fkoehler";
+        isWorkstation = true;
+        isTrusted = true;
+      };
       config-mbp21 = {
         hostname = "mbp21";
         username = "fkoehler";
@@ -123,6 +129,7 @@
         "fkoehler@homeserver" = mylib.mkHome config-homeserver;
         "fkoehler@vps" = mylib.mkHome config-vps;
         "fkoehler@desktop" = mylib.mkHome config-desktop;
+        "fkoehler@desktop-ubuntu" = mylib.mkHome config-desktop-ubuntu;
       };
 
       nixosConfigurations = {

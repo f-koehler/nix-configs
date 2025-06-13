@@ -33,4 +33,5 @@ jobs:
             lazy-trees = true
       # - name: Configure secrets
       #   run: nix develop --no-pure-eval --command ./testing/configure-secrets.py
+      - run: nix run ".#prepare-test-secrets"
       - run: nix build ${{ matrix.flakeref }} -L

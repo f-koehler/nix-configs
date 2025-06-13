@@ -16,6 +16,10 @@ class Mode(str, Enum):
     Post = "post"
 
 
+app = typer.Typer()
+
+
+@app.command()
 def main(
     lockfile: Annotated[Path, typer.Option("-l", "--lockfile")],
     command: Annotated[str | None, typer.Option("-c", "--command")] = None,
@@ -24,6 +28,7 @@ def main(
     timeout: Annotated[float, typer.Option("-t", "--timeout")] = 60.0,
     interval: Annotated[float, typer.Option("-i--interval")] = 5.0,
 ):
+    logging.basicConfig(level=logging.INFO)
     if (mode == Mode.Full) or (stager == Mode.Pre):
         elapsed = 0.0
         if lockfile.exists():
@@ -57,5 +62,4 @@ def main(
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-    typer.run(main)
+    app()

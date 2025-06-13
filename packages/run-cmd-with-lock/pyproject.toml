@@ -25,3 +25,6 @@ classifiers = [
   "Topic :: Utilities",
 ]
 dependencies = ["typer>=0.15.2"]
+
+[project.scripts]
+run-cmd-with-lock = "run_cmd_with_lock:app"

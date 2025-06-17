@@ -225,7 +225,7 @@
                   nix.enable = true;
                 };
 
-                git-hook.hooks = {
+                git-hooks.hooks = {
                   check-added-large-files.enable = true;
                   check-executables-have-shebangs.enable = true;
                   check-merge-conflicts.enable = true;

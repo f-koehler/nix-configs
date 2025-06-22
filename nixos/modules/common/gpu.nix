@@ -9,6 +9,7 @@ let
   hasGpu = nodeConfig.gpus != [ ];
   hasNvidia = builtins.elem "nvidia" nodeConfig.gpus;
   hasIntel = builtins.elem "intel" nodeConfig.gpus;
+  hasAmd = builtins.elem "amd" nodeConfig.gpus;
 in
 {
   hardware.graphics = {
@@ -28,6 +29,10 @@ in
     ++ lib.optionals hasNvidia [ pkgs.nvtopPackages.full ];
 
   services.xserver.videoDrivers = lib.optionals hasNvidia [ "nvidia" ];
+
+  boot.blacklistedKernelModules =
+    (lib.optionals (hasNvidia && !hasIntel) [ "i915" ])
+    ++ (lib.optionals (hasNvidia && !hasAmd) [ "amdgpu" ]);
 
   hardware.nvidia = {
     open = true;

@@ -19,5 +19,6 @@
     flatpak.enable = true;
     gvfs.enable = true;
     tumbler.enable = true;
+    power-profiles-daemon.enable = true;
   };
 }

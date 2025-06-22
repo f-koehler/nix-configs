@@ -5,6 +5,7 @@
   ...
 }:
 {
+  environment.systemPackages = [ pkgs.kdePackages.breeze-icons ];
   programs = {
     sway = {
       enable = true;

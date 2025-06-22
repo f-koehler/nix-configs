@@ -89,7 +89,10 @@
         containerBackend = "docker";
         virtualisation = true;
         gpus = [ "nvidia" ];
-        desktops = [ "sway" ];
+        desktops = [
+          "plasma"
+          "sway"
+        ];
       };
       config-fkt14 = {
         hostname = "fkt14";

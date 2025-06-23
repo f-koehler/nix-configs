@@ -3,6 +3,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
     systems.url = "github:nix-systems/default";
     devenv = {

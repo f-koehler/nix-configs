@@ -14,6 +14,7 @@
       inputs.sops-nix.nixosModules.sops
       inputs.catppuccin.nixosModules.catppuccin
       inputs.home-manager.nixosModules.home-manager
+      inputs.determinate.nixosModules.default
       ./disks/${nodeConfig.hostname}.nix
       ./configs/${nodeConfig.hostname}.nix
       ./modules/common

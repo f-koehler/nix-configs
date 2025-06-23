@@ -75,10 +75,7 @@ in
               while [[ "$(${tailscale} status --json --peers=false | ${jq} -r '.BackendState')" == "NoState" ]]; do
                 sleep 0.5
               done
-              status=$(${tailscale} status --json --peers=false | ${jq} -r '.BackendState')
-              if [[ "$status" == "NeedsLogin" || "$status" == "NeedsMachineAuth" ]]; then
-                ${tailscale} serve ${toString port}
-              fi
+              ${tailscale} serve ${toString port}
             '';
         in
         {

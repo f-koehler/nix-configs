@@ -67,6 +67,10 @@
       url = "path:./packages/run-cmd-with-lock";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    backup-daemon = {
+      url = "path:./packages/backup-daemon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {
@@ -166,6 +170,7 @@
           devenv-test = self.devShells.${system}.default.config.test;
           prepare-test-secrets = inputs.prepare-test-secrets.packages.${system}.default;
           run-cmd-with-lock = inputs.run-cmd-with-lock.packages.${system}.default;
+          backup-daemon = inputs.backup-daemon.packages.${system}.default;
         }
       );
       formatter = mylib.forAllSystems (system: inputs.nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);

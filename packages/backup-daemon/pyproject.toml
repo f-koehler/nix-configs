@@ -1,0 +1,16 @@
+[project]
+name = "backup-daemon"
+version = "0.1.0"
+description = "Client/server architecture to request backups inside a container"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["rich>=14.0.0", "typer>=0.16.0"]
+
+[dependency-groups]
+dev = ["pytest>=8.4.1", "pyfakefs>=5.9.1"]
+
+# [project.scripts]
+# prepare-testing-secrets = "prepare_testing_secrets:main"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

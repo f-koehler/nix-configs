@@ -1,7 +1,7 @@
 _: {
   imports = [
     ./cmp.nix
-    # ./codeium.nix
+    ./claude.nix
     ./conform-nvim.nix
     ./lsp.nix
     ./lualine.nix

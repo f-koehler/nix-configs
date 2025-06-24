@@ -9,6 +9,7 @@
       ];
       warn-dirty = false;
     };
+    package = pkgs.nix;
   };
   home.packages = [
     pkgs.devenv

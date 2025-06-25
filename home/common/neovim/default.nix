@@ -18,5 +18,5 @@
     editorconfig.enable = true;
     clipboard.providers.wl-copy.enable = true;
   };
-  stylix.targets.nixvim.enable = config.programs.nixvim.enable;
+  stylix.targets.nixvim.enable = true;
 }

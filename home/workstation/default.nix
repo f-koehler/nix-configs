@@ -8,6 +8,7 @@
     [
       ./alacritty.nix
       # ./email.nix
+      ./firefox.nix
       ./gtk.nix
       ./lapce.nix
       # ./mpd.nix

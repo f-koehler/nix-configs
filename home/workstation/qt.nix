@@ -1,6 +1,6 @@
 _: {
-  stylix.targets.qt = {
-    enable = true;
-    platform = "kde6";
-  };
+  # stylix.targets.qt = {
+  #   enable = true;
+  #   platform = "kde6";
+  # };
 }

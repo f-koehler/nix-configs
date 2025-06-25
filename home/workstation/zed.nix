@@ -7,7 +7,7 @@
 {
   stylix.targets.zed.enable = config.programs.zed-editor.enable;
   programs.zed-editor = {
-    enable = true;
+    enable = false;
     installRemoteServer = true;
     extensions = [
       "dockerfile"

@@ -9,8 +9,8 @@
       ./alacritty.nix
       # ./email.nix
       ./firefox.nix
+      ./fonts.nix
       ./gtk.nix
-      ./lapce.nix
       # ./mpd.nix
       ./qt.nix
       ./vscode.nix

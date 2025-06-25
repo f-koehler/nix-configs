@@ -1,4 +1,5 @@
-_: {
+{ config, ... }:
+{
   imports = [
     ./plugins
 
@@ -13,9 +14,9 @@ _: {
     enable = true;
     defaultEditor = true;
     vimdiffAlias = true;
-    colorschemes.catppuccin.enable = true;
     globals.mapleader = " ";
     editorconfig.enable = true;
     clipboard.providers.wl-copy.enable = true;
   };
+  stylix.targets.nixvim.enable = config.programs.nixvim.enable;
 }

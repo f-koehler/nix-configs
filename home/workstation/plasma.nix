@@ -3,6 +3,10 @@
   ...
 }:
 {
+  stylix.targets.kde = {
+    enable = true;
+    decorations = "org.kde.breeze";
+  };
   programs.plasma = {
     enable = true;
     workspace = {

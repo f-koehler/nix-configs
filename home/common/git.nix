@@ -1,4 +1,4 @@
-{ nodeConfig, ... }:
+{ nodeConfig, config, ... }:
 {
   programs = {
     git = {
@@ -41,8 +41,8 @@
         tag.sort = "version:refname";
       };
     };
-    lazygit = {
-      enable = true;
-    };
+    # TODO(fk): consider moving to separate lazygit module
+    lazygit.enable = config.programs.git.enable;
   };
+  stylix.targets.lazygit.enable = config.programs.lazygit.enable;
 }

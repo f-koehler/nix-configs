@@ -1,8 +1,6 @@
 {
   pkgs,
   isDarwin,
-  config,
-  nodeConfig,
   ...
 }:
 {
@@ -12,6 +10,7 @@
 
     clang-tools
   ];
+  stylix.targets.vscode.enable = true;
   programs.vscode = {
     enable = true;
     profiles.default = {
@@ -91,9 +90,7 @@
           "*" = true;
           "nix" = true;
         };
-        "editor.fontSize" = nodeConfig.fontSizeMonospace;
         "editor.formatOnSave" = true;
-        "editor.fontFamily" = builtins.elemAt config.fonts.fontconfig.defaultFonts.monospace 0;
         "editor.fontLigatures" = true;
         "editor.minimap.enabled" = false;
         "extensions.experimental.affinity" = {
@@ -116,15 +113,13 @@
         "remote.SSH.useLocalServer" = false;
         "ruff.path" = [ "${pkgs.ruff}/bin/ruff" ];
         "tailscale.portDiscovery.enabled" = false;
-        "terminal.integrated.fontFamily" = builtins.elemAt config.fonts.fontconfig.defaultFonts.monospace 0;
-        "terminal.integrated.fontSize" = nodeConfig.fontSizeMonospace;
         "terminal.integrated.persistentSessionScrollback" = 10000;
         "terminal.integrated.scrollback" = 100000;
         "tinymist.formatterMode" = "typstyle";
         "vsicons.dontShowNewVersionMessage" = true;
         "window.titleBarStyle" = "custom";
         "workbench.iconTheme" = "catppuccin-mocha";
-        "workbench.colorTheme" = "Catppuccin Mocha";
+        "workbench.colorTheme" = "Stylix";
         "remote.SSH.remotePlatform" = {
           "homeserver" = "linux";
           "homeserver.corgi-dojo.ts.net" = "linux";

@@ -1,4 +1,4 @@
-_:
+{ config, ... }:
 let
   extensionsToInstall = [
     "{446900e4-71c2-419f-a6a7-df9c091e268b}" # bitwarden
@@ -73,5 +73,10 @@ in
       );
       ExtensionUpdate = true;
     };
+  };
+  stylix.targets.firefox = {
+    inherit (config.programs.firefox) enable;
+    profileNames = [ "default" ];
+    colorTheme.enable = true;
   };
 }

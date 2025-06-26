@@ -34,17 +34,6 @@ in
     config.allowUnfree = true;
   };
 
-  # fonts = {
-  #   fontconfig = {
-  #     enable = true;
-  #     defaultFonts = {
-  #       emoji = [ "Noto Color Emoji" ];
-  #       monospace = [ "Cascadia Code NF" ];
-  #       sansSerif = [ "Noto Sans" ];
-  #       serif = [ "Noto Serif" ];
-  #     };
-  #   };
-  # };
 
   home = {
     inherit stateVersion;

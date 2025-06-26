@@ -59,7 +59,6 @@ in
 
       # Do not store any passwords
       OfferToSaveLogins = false;
-      OfferToSaveLoginsDefault = false;
       PasswordManagerEnabled = false;
 
       # Browser Extensions

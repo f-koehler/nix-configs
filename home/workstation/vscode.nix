@@ -10,7 +10,7 @@
 
     clang-tools
   ];
-  stylix.targets.vscode.enable = true;
+  stylix.targets.vscode.enable = false;
   programs.vscode = {
     enable = true;
     profiles.default = {
@@ -51,6 +51,7 @@
         pkgs.vscode-marketplace.tfehlmann.snakefmt
         pkgs.vscode-marketplace.usernamehw.errorlens
         pkgs.vscode-marketplace.vscode-icons-team.vscode-icons
+        pkgs.vscode-marketplace.catppuccin.catppuccin-vsc
       ];
       userSettings = {
         "[nix]" = {
@@ -119,7 +120,7 @@
         "vsicons.dontShowNewVersionMessage" = true;
         "window.titleBarStyle" = "custom";
         "workbench.iconTheme" = "catppuccin-mocha";
-        "workbench.colorTheme" = "Stylix";
+        "workbench.colorTheme" = "Catppuccin Mocha";
         "remote.SSH.remotePlatform" = {
           "homeserver" = "linux";
           "homeserver.corgi-dojo.ts.net" = "linux";

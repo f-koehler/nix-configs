@@ -13,12 +13,11 @@ in
   programs.firefox = {
     enable = true;
     profiles.default = {
+      extensions.force = true;
       settings = {
         # UI
         "browser.compactmode.show" = true;
         "browser.uidensity" = 1;
-
-        "extensions.pocket.enabled" = false;
       };
     };
     policies = {

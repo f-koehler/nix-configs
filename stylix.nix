@@ -21,6 +21,10 @@
         name = "Noto Serif";
         package = pkgs.noto-fonts;
       };
+      sizes = {
+        applications = 10;
+        desktop = 10;
+      };
     };
     image = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Mountain/contents/images_dark/5120x2880.png";
     imageScalingMode = "fill";

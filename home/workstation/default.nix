@@ -14,6 +14,7 @@
       ./gtk.nix
       # ./mpd.nix
       ./qt.nix
+      ./spotify.nix
       ./vscode.nix
       ./wezterm.nix
       ./zed.nix

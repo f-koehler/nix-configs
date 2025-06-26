@@ -1,20 +1,19 @@
 {
   inputs,
-  lib,
   pkgs,
   nodeConfig,
   ...
 }:
 let
-  spicePkgs = inputs.spicetify-nix.legacyPackages.${nodeConfig.system};
+  spicePkgs = inputs.spicetify.legacyPackages.${nodeConfig.system};
 in
 {
-  imports = lib.optionals [ inputs.spicetify.homeManagerModules.spicetify ];
+  imports = [ inputs.spicetify.homeManagerModules.spicetify ];
   home.packages = [
     pkgs.spotify
   ];
   programs.spicetify = {
-    enable = true;
+    # enable = true;
     enabledExtensions = with spicePkgs.extensions; [
       copyToClipboard
       betterGenres

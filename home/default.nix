@@ -34,6 +34,7 @@ in
     config.allowUnfree = true;
   };
 
+  stylix.targets.nixos-icons.enable = true;
 
   home = {
     inherit stateVersion;

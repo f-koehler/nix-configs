@@ -37,7 +37,10 @@
   };
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  stylix.targets.console.enable = true;
+  stylix.targets = {
+    console.enable = true;
+    nixos-icons.enable = true;
+  };
 
   hardware.enableAllFirmware = true;
   system.stateVersion = stateVersion;

@@ -1,13 +1,13 @@
 _:
 let
-  extensionsToInstall = {
-    "bitwarden" = "{446900e4-71c2-419f-a6a7-df9c091e268b}";
-    "consent-o-matic" = "gdpr@cavi.au.dk";
-    "dark-reader" = "addon@darkreader.org";
-    "raindrop" = "jid0-adyhmvsP91nUO8pRv0Mn2VKeB84@jetpack";
-    "ublock-origin" = "uBlock0@raymondhill.net";
-    "zotero-connector" = "zotero@chnm.gmu.edu";
-  };
+  extensionsToInstall = [
+    "{446900e4-71c2-419f-a6a7-df9c091e268b}" # bitwarden
+    "gdpr@cavi.au.dk" # consent-o-matic
+    "addon@darkreader.org" # dark reader
+    "jid0-adyhmvsP91nUO8pRv0Mn2VKeB84@jetpack" # raindrop
+    "uBlock0@raymondhill.net" # ublock origin
+    "zotero@chnm.gmu.edu" # zotero connector
+  ];
 in
 {
   programs.firefox = {
@@ -23,10 +23,16 @@ in
     };
     policies = {
       # Browser Extensions
-      ExtensionSettings = builtins.mapAttrs (_: slug: {
-        installation_mode = "force_installed";
-        install_url = "https://addons.mozilla.org/firefox/downloads/latest/${slug}/latest.xpi";
-      }) extensionsToInstall;
+      ExtensionSettings = builtins.listToAttrs (
+        map (extension: {
+          name = extension;
+          value = {
+            install_mode = "force_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/${extension}/latest.xpi";
+          };
+        }) extensionsToInstall
+      );
+      ExtensionUpdate = true;
     };
   };
 }

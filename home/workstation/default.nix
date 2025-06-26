@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   nodeConfig,
   ...
@@ -19,4 +20,11 @@
     ]
     ++ lib.optionals (builtins.elem "sway" nodeConfig.desktops) [ ./sway ]
     ++ lib.optionals (builtins.elem "plasma" nodeConfig.desktops) [ ./plasma.nix ];
+
+  stylix.iconTheme = {
+    enable = true;
+    light = "breeze";
+    dark = "breeze-dark";
+    package = pkgs.kdePackages.breeze-icons;
+  };
 }

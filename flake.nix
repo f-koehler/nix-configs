@@ -71,6 +71,8 @@
       url = "path:./packages/run-cmd-with-lock";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    spicetify.url = "github:Gerg-L/spicetify-nix";
   };
 
   nixConfig = {

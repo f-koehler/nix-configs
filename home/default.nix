@@ -17,7 +17,6 @@ in
     inputs.stylix.homeModules.stylix
     inputs.mac-app-util.homeManagerModules.default
     inputs.nix-index-database.hmModules.nix-index
-    inputs.nixvim.homeManagerModules.nixvim
     inputs.plasma-manager.homeManagerModules.plasma-manager
     inputs.sops-nix.homeManagerModules.sops
     ../stylix.nix

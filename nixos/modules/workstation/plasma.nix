@@ -17,22 +17,13 @@
     displayManager.sddm.enable = true;
     desktopManager.plasma6.enable = true;
   };
-  environment.systemPackages =
-    let
-      catppuccin-kde = pkgs.catppuccin-kde.override { flavour = [ "mocha" ]; };
-    in
-    with pkgs;
-    [
-      kdePackages.skanpage
-      kdePackages.kcharselect
-      kdePackages.filelight
-      kdePackages.qtwayland
-      kdePackages.purpose
-      catppuccin-cursors
-      catppuccin-kde
-      catppuccin-cursors
-    ]
-    ++ [ catppuccin-kde ];
+  environment.systemPackages = with pkgs; [
+    kdePackages.skanpage
+    kdePackages.kcharselect
+    kdePackages.filelight
+    kdePackages.qtwayland
+    kdePackages.purpose
+  ];
   security.pam.services.fkoehler.enableGnomeKeyring = true;
   services.gnome.gnome-keyring.enable = true;
 }

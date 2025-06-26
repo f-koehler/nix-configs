@@ -22,6 +22,46 @@ in
       };
     };
     policies = {
+      DisablePocket = true;
+      DisableFirefoxAccounts = true;
+      DontCheckDefaultBrowser = true;
+
+      # Hardware acceleration
+      HardwareAcceleration = true;
+      EncryptedMediaExtensions = {
+        Enabled = true;
+        Locked = false;
+      };
+
+      # Privacy
+      EnableTrackingProtection = {
+        Value = true;
+        Cryptomining = true;
+        Fingerprinting = true;
+        EmailTracking = true;
+      };
+
+      # Firefox buitin homepage
+      FirefoxHome = {
+        Search = true;
+        TopSites = false;
+        SponsoredTopSites = false;
+        Highlights = false;
+        Pocket = false;
+        SponsoredPocket = false;
+        Snippets = false;
+      };
+      FirefoxSuggest = {
+        WebSuggestions = false;
+        SponsoredSuggestions = false;
+        ImproveSuggest = false;
+      };
+
+      # Do not store any passwords
+      OfferToSaveLogins = false;
+      OfferToSaveLoginsDefault = false;
+      PasswordManagerEnabled = false;
+
       # Browser Extensions
       ExtensionSettings = builtins.listToAttrs (
         map (extension: {

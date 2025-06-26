@@ -1,5 +1,7 @@
-_: {
+{ inputs, ... }:
+{
   imports = [
+    inputs.nixvim.homeManagerModules.nixvim
     ./plugins
 
     ./autocmd.nix
@@ -13,9 +15,24 @@ _: {
     enable = true;
     defaultEditor = true;
     vimdiffAlias = true;
-    colorschemes.catppuccin.enable = true;
     globals.mapleader = " ";
     editorconfig.enable = true;
     clipboard.providers.wl-copy.enable = true;
+
+    colorschemes.catppuccin = {
+      enable = true;
+      settings = {
+        flavour = "mocha";
+        integrations = {
+          neotree = true;
+          neotest = true;
+          cmp = true;
+          telescope.enabled = true;
+          which_key = true;
+        };
+      };
+    };
+    plugins.lualine.settings.options.theme = "catppuccin";
   };
+  stylix.targets.nixvim.enable = false;
 }

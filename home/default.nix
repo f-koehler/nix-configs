@@ -14,24 +14,15 @@ let
 in
 {
   imports = [
-    inputs.catppuccin.homeModules.catppuccin
+    inputs.stylix.homeModules.stylix
     inputs.mac-app-util.homeManagerModules.default
     inputs.nix-index-database.hmModules.nix-index
-    inputs.nixvim.homeManagerModules.nixvim
     inputs.plasma-manager.homeManagerModules.plasma-manager
     inputs.sops-nix.homeManagerModules.sops
+    ../stylix.nix
     ./common
     ./secrets.nix
   ] ++ lib.optional nodeConfig.isWorkstation ./workstation;
-
-  catppuccin = {
-    enable = true;
-    flavor = "mocha";
-    accent = "mauve";
-    cursors = lib.mkIf (!isDarwin) {
-      inherit (config.catppuccin) accent flavor enable;
-    };
-  };
 
   nixpkgs = {
     overlays = [
@@ -42,17 +33,7 @@ in
     config.allowUnfree = true;
   };
 
-  fonts = {
-    fontconfig = {
-      enable = true;
-      defaultFonts = {
-        emoji = [ "Noto Color Emoji" ];
-        monospace = [ "Cascadia Code NF" ];
-        sansSerif = [ "Noto Sans" ];
-        serif = [ "Noto Serif" ];
-      };
-    };
-  };
+  stylix.targets.nixos-icons.enable = true;
 
   home = {
     inherit stateVersion;

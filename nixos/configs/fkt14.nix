@@ -23,9 +23,6 @@
       };
       efi.canTouchEfiVariables = true;
     };
-    plymouth = {
-      enable = true;
-    };
   };
 
   networking.networkmanager.enable = true;

@@ -1,4 +1,4 @@
-_:
+{ config, ... }:
 let
   extensionsToInstall = [
     "{446900e4-71c2-419f-a6a7-df9c091e268b}" # bitwarden
@@ -13,12 +13,11 @@ in
   programs.firefox = {
     enable = true;
     profiles.default = {
+      extensions.force = true;
       settings = {
         # UI
         "browser.compactmode.show" = true;
         "browser.uidensity" = 1;
-
-        "extensions.pocket.enabled" = false;
       };
     };
     policies = {
@@ -73,5 +72,10 @@ in
       );
       ExtensionUpdate = true;
     };
+  };
+  stylix.targets.firefox = {
+    inherit (config.programs.firefox) enable;
+    profileNames = [ "default" ];
+    colorTheme.enable = true;
   };
 }

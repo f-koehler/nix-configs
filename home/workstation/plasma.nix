@@ -1,13 +1,12 @@
-{
-  pkgs,
-  ...
-}:
-{
+_: {
+  stylix.targets.kde = {
+    enable = true;
+    decorations = "org.kde.breeze";
+  };
   programs.plasma = {
     enable = true;
     workspace = {
       clickItemTo = "select";
-      wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Mountain/contents/images_dark/5120x2880.png";
     };
     kwin = {
       virtualDesktops.number = 10;

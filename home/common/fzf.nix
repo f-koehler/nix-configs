@@ -6,4 +6,5 @@ _: {
     enableZshIntegration = true;
     tmux.enableShellIntegration = true;
   };
+  stylix.targets.fzf.enable = true;
 }

@@ -10,10 +10,10 @@
   };
 
   outputs =
-    inputs:
+    { self, ... }@inputs:
     let
       project = inputs.pyproject-nix.lib.project.loadPyproject {
-        projectRoot = ./.;
+        projectRoot = self;
       };
 
       forAllSystems = inputs.nixpkgs.lib.genAttrs [

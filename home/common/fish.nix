@@ -1,4 +1,6 @@
-_: {
+{ config, ... }:
+{
+  stylix.targets.fish.enable = config.programs.fish.enable;
   programs.fish = {
     enable = true;
     generateCompletions = true;

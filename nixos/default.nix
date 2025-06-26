@@ -12,9 +12,10 @@
     [
       inputs.disko.nixosModules.disko
       inputs.sops-nix.nixosModules.sops
-      inputs.catppuccin.nixosModules.catppuccin
+      inputs.stylix.nixosModules.stylix
       inputs.home-manager.nixosModules.home-manager
       inputs.determinate.nixosModules.default
+      ../stylix.nix
       ./disks/${nodeConfig.hostname}.nix
       ./configs/${nodeConfig.hostname}.nix
       ./modules/common
@@ -35,12 +36,11 @@
     ];
   };
 
-  catppuccin = {
-    enable = true;
-    flavor = "mocha";
-    accent = "mauve";
-  };
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  stylix.targets = {
+    console.enable = true;
+    nixos-icons.enable = true;
+  };
 
   hardware.enableAllFirmware = true;
   system.stateVersion = stateVersion;

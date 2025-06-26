@@ -2,6 +2,7 @@
 {
   imports =
     [
+      ./boot.nix
       ./bluetooth.nix
       ./distrobox.nix
       ./flatpak.nix
@@ -20,5 +21,12 @@
     gvfs.enable = true;
     tumbler.enable = true;
     power-profiles-daemon.enable = true;
+  };
+  stylix.targets = {
+    gtk.enable = true;
+    qt = {
+      enable = true;
+      platform = "kde6";
+    };
   };
 }

@@ -19,7 +19,6 @@
       "com.jgraph.drawio.desktop"
       "com.nextcloud.desktopclient.nextcloud"
       "com.obsproject.Studio"
-      "com.spotify.Client"
       "com.super_productivity.SuperProductivity"
       "com.transmissionbt.Transmission"
       "com.valvesoftware.Steam"

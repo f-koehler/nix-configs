@@ -1,11 +1,9 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 {
   stylix = {
     autoEnable = false;
-    enable = true;
-    image = config.lib.stylix.pixel "base0A";
-    polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    enable = true;
     fonts = {
       emoji = {
         name = "Noto Color Emoji";
@@ -24,5 +22,8 @@
         package = pkgs.noto-fonts;
       };
     };
+    image = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Mountain/contents/images_dark/5120x2880.png";
+    imageScalingMode = "fill";
+    polarity = "dark";
   };
 }

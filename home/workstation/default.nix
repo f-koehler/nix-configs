@@ -9,6 +9,7 @@
     [
       ./alacritty.nix
       # ./email.nix
+      ./chromium.nix
       ./firefox.nix
       ./fonts.nix
       ./gtk.nix

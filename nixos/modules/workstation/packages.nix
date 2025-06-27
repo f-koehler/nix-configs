@@ -10,4 +10,5 @@
       corefonts
     ];
   };
+  stylix.targets.chromium.enable = true;
 }

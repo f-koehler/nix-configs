@@ -9,7 +9,7 @@
       ./packages.nix
       ./protonmail.nix
       # ./sshfs.nix
-      ./samba-shares.nix
+      # ./samba-shares.nix
       ./sound.nix
       ./wine.nix
     ]

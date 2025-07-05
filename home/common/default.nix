@@ -19,6 +19,7 @@ _: {
     ./tealdeer.nix
     ./tmux.nix
     ./yazi.nix
+    ./zed.nix
     ./zellij.nix
     ./zoxide.nix
     ./zsh.nix

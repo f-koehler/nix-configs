@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   nodeConfig,
   stateVersion,
@@ -13,6 +12,17 @@ let
   containerName = "immich";
   hostName = "photos";
   domain = "corgi-dojo.ts.net";
+
+  script-dump-db = pkgs.writeShellScriptBin "immich-dump-db" ''
+    #!${lib.getExe' pkgs.bash "bash"}
+    set -euf -o pipefail
+    ${lib.getExe' pkgs.sudo "sudo"} -u ${config.services.immich.user} -g ${config.services.immich.group} ${lib.getExe' pkgs.bash "bash"} -c "${lib.getExe' config.services.postgresql.package "pg_dump"} --dbname=${config.services.immich.database.name} --compress=gzip:level=9 --file=/db_backup/immich.psql.gz"
+  '';
+  script-pre-backup = pkgs.writeShellScriptBin "${containerName}-pre-backup" ''
+    #!${lib.getExe' pkgs.bash "bash"}
+    set -euf -o pipefail
+    ${lib.getExe' pkgs.openssh "ssh"} -o StrictHostKeyChecking=accept-new root@${ip} "${lib.getExe script-dump-db}"
+  '';
 in
 {
   sops.secrets = {
@@ -57,12 +67,6 @@ in
       config =
         _:
         let
-          run-cmd-with-lock = inputs.run-cmd-with-lock.packages.${nodeConfig.system}.default;
-          script-db-dump = pkgs.writeShellScriptBin "${containerName}-backup-db" ''
-            #!${lib.getExe' pkgs.bash "bash"}
-            set -euf -o pipefail
-            /run/current-system/sw/bin/pg_dump -d immich | /run/current-system/sw/bin/gzip -9 > /db_backup/immich.psql.gz
-          '';
           script-tailscale-serve =
             let
               tailscale = lib.getExe' pkgs.tailscale "tailscale";
@@ -108,7 +112,14 @@ in
               enable = true;
               host = "0.0.0.0";
               inherit port;
+              inherit (hostConfig.services.immich) user group;
+              database = { inherit (hostConfig.services.immich.database) name; };
               accelerationDevices = [ "/dev/dri/renderD128" ];
+            };
+            openssh = {
+              enable = true;
+              openFirewall = true;
+              listenAddresses = [ { addr = ip; } ];
             };
             nginx = {
               enable = true;
@@ -143,9 +154,14 @@ in
           };
           users = {
             groups.tailscale = { };
-            users.tailscale = {
-              isSystemUser = true;
-              group = "tailscale";
+            users = {
+              tailscale = {
+                isSystemUser = true;
+                group = "tailscale";
+              };
+              root.openssh.authorizedKeys.keys = [
+                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHxOsAR7v6q4QVr9zFWwOMw7NDO9V5bUXS1HLN6m+NsT root@homeserver"
+              ];
             };
           };
           systemd = {
@@ -170,76 +186,24 @@ in
                   Group = "tailscale";
                 };
               };
-              "backup-${containerName}" = {
-                description = "Create a backup of immich";
-                serviceConfig = {
-                  Type = "oneshot";
-                  User = config.services.immich.user;
-                  Group = config.services.immich.group;
-                  ExecStart = "${lib.getExe run-cmd-with-lock} --lockfile /db_backup/lock --command ${lib.getExe script-db-dump}";
-                };
-              };
-            };
-            timers."backup-${containerName}" = {
-              description = "Periodic backups of immich";
-              timerConfig = {
-                Unit = "backup-${containerName}.service";
-                OnCalendar = "*-*-* 4:00:00";
-              };
             };
           };
         };
     };
-  # services = {
-  #   nginx = {
-  #     upstreams."immich" = {
-  #       servers = {
-  #         "0.0.0.0:${toString port}" = { };
-  #       };
-  #     };
-  #     virtualHosts."photos.fkoehler.xyz" = {
-  #       forceSSL = true;
-  #       kTLS = true;
-  #       sslCertificate = "/var/lib/acme/fkoehler.xyz/fullchain.pem";
-  #       sslCertificateKey = "/var/lib/acme/fkoehler.xyz/key.pem";
-  #       listen = [
-  #         {
-  #           addr = "0.0.0.0";
-  #           port = 443;
-  #           ssl = true;
-  #         }
-  #       ];
-  #       locations = {
-  #         "/" = {
-  #           proxyPass = "http://immich/";
-  #           extraConfig = ''
-  #             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-  #             proxy_set_header X-Forwarded-Proto $scheme;
-  #             proxy_set_header Host $host;
-  #             proxy_set_header Upgrade $http_upgrade;
-  #             proxy_set_header Connection "upgrade";
-  #             proxy_http_version 1.1;
-  #             proxy_redirect http:// https://;
-  #           '';
-  #         };
-  #       };
-  #     };
-  #   };
-  # sanoid = {
-  #   enable = true;
-  #   datasets."rpool/containers/immich" = {
-  #     yearly = 2;
-  #     monthly = 24;
-  #     daily = 90;
-  #     hourly = 96;
-  #     autosnap = true;
-  #     autoprune = true;
-  #     # pre_snapshot_script = "${lib.getExe backupScript}";
-  #     # no_inconsistent_snapshot = true;
-  #     # post_sna
-  #     # script_timeout = 0;
-  #     recursive = true;
-  #   };
-  # };
-  # };
+  services = {
+    sanoid = {
+      enable = true;
+      datasets."rpool/containers/immich/db_backup" = {
+        yearly = 2;
+        monthly = 24;
+        daily = 90;
+        hourly = 96;
+        autosnap = true;
+        autoprune = true;
+        pre_snapshot_script = "${lib.getExe script-pre-backup}";
+        no_inconsistent_snapshot = true;
+        script_timeout = 0;
+      };
+    };
+  };
 }

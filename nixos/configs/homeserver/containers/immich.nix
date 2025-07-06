@@ -160,7 +160,7 @@ in
                 group = "tailscale";
               };
               root.openssh.authorizedKeys.keys = [
-                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHxOsAR7v6q4QVr9zFWwOMw7NDO9V5bUXS1HLN6m+NsT root@homeserver"
+                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJZhXkUJt62fOgcIyrjgFEzOEk34Q0fswDWc//ZMqbWV sanoid@homeserver"
               ];
             };
           };
@@ -206,4 +206,14 @@ in
       };
     };
   };
+  users = {
+    groups.sanoid = { };
+    users.sanoid = {
+      group = "sanoid";
+      isSystemUser = true;
+      createHome = true;
+      home = "/var/lib/sanoid";
+    };
+  };
+  systemd.services."sanoid".serviceConfig.DynamicUser = lib.mkForce false;
 }

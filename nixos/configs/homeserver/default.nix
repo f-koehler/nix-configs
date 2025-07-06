@@ -1,5 +1,7 @@
 _: {
   imports = [
+    ./containers
+
     ./anki.nix
     ./audiobookshelf.nix
     ./beszel-agent.nix
@@ -7,7 +9,7 @@ _: {
     ./forgejo.nix
     ./gickup.nix
     # ./homepage.nix
-    ./immich.nix
+    # ./healthchecks.nix
     ./invidious.nix
     ./jellyfin.nix
     ./navidrome.nix

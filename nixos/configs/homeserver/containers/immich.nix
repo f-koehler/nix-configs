@@ -25,10 +25,6 @@ let
   '';
 in
 {
-  sops.secrets = {
-    "services/tailscale/authKey" = {
-    };
-  };
   containers.immich =
     let
       hostConfig = config;
@@ -192,7 +188,6 @@ in
     };
   services = {
     sanoid = {
-      enable = true;
       datasets."rpool/containers/immich/db_backup" = {
         yearly = 2;
         monthly = 24;
@@ -206,14 +201,4 @@ in
       };
     };
   };
-  users = {
-    groups.sanoid = { };
-    users.sanoid = {
-      group = "sanoid";
-      isSystemUser = true;
-      createHome = true;
-      home = "/var/lib/sanoid";
-    };
-  };
-  systemd.services."sanoid".serviceConfig.DynamicUser = lib.mkForce false;
 }

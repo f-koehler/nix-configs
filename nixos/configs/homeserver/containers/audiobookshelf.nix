@@ -54,4 +54,5 @@ libContainer.mkContainer rec {
       };
     };
   };
+  sanoidDataset = "rpool/containers/${name}";
 }

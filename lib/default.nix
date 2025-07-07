@@ -9,6 +9,7 @@ let
   mkNodeConfig =
     {
       hostname,
+      domain ? "corgi-dojo.ts.net",
       username,
       system ? "x86_64-linux",
       isWorkstation ? false,
@@ -25,6 +26,7 @@ let
       inherit inputs outputs stateVersion;
       inherit
         hostname
+        domain
         username
         system
         isWorkstation

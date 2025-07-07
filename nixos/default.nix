@@ -24,7 +24,10 @@
     ++ lib.optional (builtins.pathExists ./configs/${nodeConfig.hostname}.nix) ./configs/${nodeConfig.hostname}.nix
     ++ lib.optional (builtins.pathExists ./hardware/${nodeConfig.hostname}.nix) ./hardware/${nodeConfig.hostname}.nix
     ++ lib.optional (builtins.pathExists ./disks/${nodeConfig.hostname}.nix) ./disks/${nodeConfig.hostname}.nix;
-  networking.hostName = nodeConfig.hostname;
+  networking = {
+    hostName = nodeConfig.hostname;
+    inherit (nodeConfig) domain;
+  };
   sops.defaultSopsFile = ../secrets/${nodeConfig.hostname}.yaml;
 
   nixpkgs = {

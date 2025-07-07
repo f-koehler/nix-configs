@@ -38,7 +38,7 @@ libContainer.mkContainer rec {
         MusicFolder = "/soundtracks";
         DataFolder = "/data";
         # TODO(fk): use domain here once defined
-        BaseUrl = "https://${hostName}.corgi-dojo.ts.net";
+        BaseUrl = "https://${hostName}.${nodeConfig.domain}";
       };
     };
   };

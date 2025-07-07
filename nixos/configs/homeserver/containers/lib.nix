@@ -7,9 +7,6 @@
   ...
 }:
 let
-  # TODO(fk): make this configurable, set it for all my tailscale hosts
-  domain = "corgi-dojo.ts.net";
-
   mkTailscaleServeScript =
     { name, ... }:
     let
@@ -88,7 +85,7 @@ let
             };
             networking = {
               hostName = name;
-              inherit domain;
+              inherit (nodeConfig) domain;
               firewall = {
                 enable = true;
                 allowedTCPPorts = [
@@ -119,7 +116,7 @@ let
                     "127.0.0.1:${toString port}" = { };
                   };
                 };
-                virtualHosts."${hostName}.${domain}" = {
+                virtualHosts."${hostName}.${nodeConfig.domain}" = {
                   listen = [
                     {
                       addr = "0.0.0.0";

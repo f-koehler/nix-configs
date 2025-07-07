@@ -92,7 +92,6 @@ let
               firewall = {
                 enable = true;
                 allowedTCPPorts = [
-                  port
                   443
                 ];
               };

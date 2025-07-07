@@ -11,7 +11,6 @@ _: {
     # ./healthchecks.nix
     ./invidious.nix
     ./jellyfin.nix
-    ./navidrome.nix
     ./nextcloud.nix
     ./nixos-containers.nix
     ./nginx.nix

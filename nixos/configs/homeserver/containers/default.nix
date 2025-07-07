@@ -3,6 +3,7 @@
   imports = [
     ./audiobookshelf.nix
     ./immich.nix
+    ./navidrome.nix
   ];
 
   users = {

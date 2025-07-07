@@ -4,6 +4,7 @@
     ./audiobookshelf.nix
     ./immich.nix
     ./navidrome.nix
+    ./stirling-pdf.nix
   ];
 
   users = {

@@ -2,6 +2,7 @@
 {
   imports = [
     ./audiobookshelf.nix
+    ./homepage.nix
     ./immich.nix
     ./navidrome.nix
     ./stirling-pdf.nix

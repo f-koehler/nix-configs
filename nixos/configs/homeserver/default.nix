@@ -7,7 +7,6 @@ _: {
     ./beszel-hub.nix
     ./forgejo.nix
     ./gickup.nix
-    # ./homepage.nix
     # ./healthchecks.nix
     ./invidious.nix
     ./jellyfin.nix

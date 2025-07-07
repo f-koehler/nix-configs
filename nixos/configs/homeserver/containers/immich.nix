@@ -30,13 +30,6 @@ let
   '';
 in
 libContainer.mkContainer rec {
-  inherit
-    lib
-    pkgs
-    config
-    stateVersion
-    nodeConfig
-    ;
   inherit name ip;
   hostName = "photos";
   inherit (config.services.immich) port;

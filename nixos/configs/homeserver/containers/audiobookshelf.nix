@@ -20,13 +20,6 @@ let
   ip = "172.22.1.102";
 in
 libContainer.mkContainer rec {
-  inherit
-    lib
-    pkgs
-    config
-    stateVersion
-    nodeConfig
-    ;
   inherit name ip;
   hostName = "audiobooks";
   inherit (config.services.audiobookshelf) port;

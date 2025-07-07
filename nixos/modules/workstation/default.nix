@@ -2,6 +2,7 @@
 {
   imports =
     [
+      ./backlight.nix
       ./boot.nix
       ./bluetooth.nix
       ./distrobox.nix

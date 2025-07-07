@@ -1,6 +1,9 @@
 { config, ... }:
 {
-  stylix.targets.tmux.enable = config.programs.tmux.enable;
+  stylix.targets.tmux.enable = false;
+  catppuccin.tmux = {
+    inherit (config.programs.tmux) enable;
+  };
   programs.tmux = {
     enable = true;
     aggressiveResize = true;

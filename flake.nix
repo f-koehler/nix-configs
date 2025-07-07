@@ -21,6 +21,7 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin.url = "github:catppuccin/nix";
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin/master";

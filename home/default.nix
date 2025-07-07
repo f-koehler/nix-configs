@@ -14,6 +14,7 @@ let
 in
 {
   imports = [
+    inputs.catppuccin.homeManagerModules.catppuccin
     inputs.stylix.homeModules.stylix
     inputs.mac-app-util.homeManagerModules.default
     inputs.nix-index-database.hmModules.nix-index
@@ -34,6 +35,11 @@ in
   };
 
   stylix.targets.nixos-icons.enable = true;
+  catppuccin = {
+    enable = false;
+    flavor = "mocha";
+    accent = "mauve";
+  };
 
   home = {
     inherit stateVersion;

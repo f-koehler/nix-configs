@@ -11,7 +11,7 @@ let
   domain = "corgi-dojo.ts.net";
 
   mkTailscaleServeScript =
-    { name, port, ... }:
+    { name, ... }:
     let
       bash = lib.getExe' pkgs.bash "bash";
       tailscale = lib.getExe' pkgs.tailscale "tailscale";
@@ -24,7 +24,7 @@ let
       while [[ "$(${tailscale} status --json --peers=false | ${jq} -r '.BackendState')" == "NoState" ]]; do
         sleep 0.5
       done
-      ${tailscale} serve ${toString port}
+      ${tailscale} serve 80
     '';
 
   mkContainer =

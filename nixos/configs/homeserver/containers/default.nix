@@ -1,6 +1,9 @@
 { lib, ... }:
 {
-  imports = [ ./immich.nix ];
+  imports = [
+    ./audiobookshelf.nix
+    ./immich.nix
+  ];
 
   users = {
     groups.sanoid = { };

@@ -15,6 +15,8 @@
     enable = true;
     installRemoteServer = true;
     extensions = [
+      "catppuccin"
+      "catppuccin-icons"
       "dockerfile"
       "docker-compose"
       "env"
@@ -22,7 +24,14 @@
       "nix"
     ];
     userSettings = {
-      buffer_line_height = "comfortable";
+      buffer_font_family = "Cascadia Code NF";
+      buffer_line_height = "standard";
+      terminal = {
+        font_family = "Cascadia Code NF";
+        line_height = "standard";
+      };
+      ui_font_family = "Noto Sans";
+
       terminal_line_height = "standard";
 
       load_direnv = "shell_hook";

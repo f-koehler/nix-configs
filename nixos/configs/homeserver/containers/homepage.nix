@@ -88,7 +88,37 @@ libContainer.mkContainer rec {
             }
           ];
         }
-        # TODO(fk): add stirling PDF to productivity group
+        {
+          "Productivity" = [
+            {
+              "Paperless" =
+                let
+                  url = "https://docs.${nodeConfig.domain}";
+                in
+                {
+                  icon = "paperless-ngx.svg";
+                  href = url;
+                  description = "Documents";
+                  widget = {
+                    type = "paperlessngx";
+                    inherit url;
+                    key = "{{HOMEPAGE_VAR_PAPERLESS_KEY}}";
+                  };
+                };
+            }
+            {
+              "Stirling PDF" =
+                let
+                  url = "https://pdfs.${nodeConfig.domain}";
+                in
+                {
+                  icon = "stirling-pdf.svg";
+                  href = url;
+                  description = "PDF Editor";
+                };
+            }
+          ];
+        }
       ];
     };
   };
@@ -100,6 +130,7 @@ libContainer.mkContainer rec {
       "services/homepage/services/immich/key" = { };
       "services/homepage/services/navidrome/key" = { };
       "services/homepage/services/navidrome/salt" = { };
+      "services/homepage/services/paperless/key" = { };
     };
     templates."homepage-dashboard.env" = {
       content = ''
@@ -109,6 +140,7 @@ libContainer.mkContainer rec {
         HOMEPAGE_VAR_IMMICH_KEY=${config.sops.placeholder."services/homepage/services/immich/key"}
         HOMEPAGE_VAR_NAVIDROME_KEY=${config.sops.placeholder."services/homepage/services/navidrome/key"}
         HOMEPAGE_VAR_NAVIDROME_SALT=${config.sops.placeholder."services/homepage/services/navidrome/salt"}
+        HOMEPAGE_VAR_PAPERLESS_KEY=${config.sops.placeholder."services/homepage/services/paperless/key"}
       '';
     };
   };

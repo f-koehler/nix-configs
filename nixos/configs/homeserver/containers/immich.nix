@@ -19,9 +19,10 @@ let
   name = "immich";
   ip = "172.22.1.100";
   script-dump-db = pkgs.writeShellScriptBin "${name}-dump-db" ''
-    #!${lib.getExe' pkgs.bash "bash"}
+    #!/run/current-system/sw/bin/bash
     set -euf -o pipefail
-    ${lib.getExe' pkgs.sudo "sudo"} -u ${config.services.immich.user} -g ${config.services.immich.group} ${lib.getExe' pkgs.bash "bash"} -c "${lib.getExe' config.services.postgresql.package "pg_dump"} --dbname=${config.services.immich.database.name} --compress=gzip:level=9 --file=/db_backup/immich.psql.gz"
+    /run/current-system/sw/bin/chown -R ${config.services.immich.user}:${config.services.immich.group} /db_backup
+    /run/wrappers/bin/sudo -u ${config.services.immich.user} -g ${config.services.immich.group} /run/current-system/sw/bin/bash -c "/run/current-system/sw/bin/pg_dump --dbname=${config.services.immich.database.name} --compress=gzip:level=9 --file=/db_backup/immich.psql.gz"
   '';
   script-pre-backup = pkgs.writeShellScriptBin "${name}-pre-backup" ''
     #!${lib.getExe' pkgs.bash "bash"}
@@ -61,6 +62,6 @@ libContainer.mkContainer rec {
       };
     };
   };
-  sanoidDataset = "rpool/containers/${name}";
+  sanoidDataset = "rpool/containers/${name}/db_backup";
   sanoidPreScript = script-pre-backup;
 }

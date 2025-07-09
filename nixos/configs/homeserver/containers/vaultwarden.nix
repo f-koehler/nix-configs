@@ -20,17 +20,19 @@ let
   port = 8000;
   name = "vaultwarden";
   ip = "172.22.1.123";
-  # script-export-documents = pkgs.writeShellScriptBin "${name}-export-documents" ''
-  #   #!/run/current-system/sw/bin/bash
-  #   set -euf -o pipefail
-  #   /run/current-system/sw/bin/chown -R ${config.services.paperless.user}:${config.services.paperless.user} /backup
-  #   /run/wrappers/bin/sudo -u ${config.services.paperless.user} -g ${config.services.paperless.user} /run/current-system/sw/bin/bash -c "/run/current-system/sw/bin/paperless-manage document_exporter -z -zn paperless-documents /backup/"
-  # '';
-  # script-pre-backup = pkgs.writeShellScriptBin "${name}-pre-backup" ''
-  #   #!${lib.getExe' pkgs.bash "bash"}
-  #   set -euf -o pipefail
-  #   ${lib.getExe' pkgs.openssh "ssh"} -o StrictHostKeyChecking=accept-new root@${ip} "${lib.getExe script-export-documents}"
-  # '';
+  script-create-backup = pkgs.writeShellScriptBin "${name}-export-documents" ''
+    #!/run/current-system/sw/bin/bash
+    set -euf -o pipefail
+    /run/current-system/sw/bin/chown -R vaultwarden:vaultwarden /backup
+    /run/wrappers/bin/sudo -u vaultwarden -g vaultwarden /run/current-system/sw/bin/sqlite3 /var/lib/vaultwarden/db.sqlite3 ".backup '/backup/db.sqlite3'"
+    /run/wrappers/bin/sudo -u vaultwarden -g vaultwarden /run/current-system/sw/bin/rsync -avP --delete /var/lib/vaultwarden/attachments /var/lib/vaultwarden/sends /backup/
+    /run/wrappers/bin/sudo -u vaultwarden -g vaultwarden /run/current-system/sw/bin/rsync -avP /var/lib/vaultwarden/rsa_key.pem /backup/
+  '';
+  script-pre-backup = pkgs.writeShellScriptBin "${name}-pre-backup" ''
+    #!${lib.getExe' pkgs.bash "bash"}
+    set -euf -o pipefail
+    ${lib.getExe' pkgs.openssh "ssh"} -o StrictHostKeyChecking=accept-new root@${ip} "${lib.getExe script-create-backup}"
+  '';
 in
 libContainer.mkContainer rec {
   inherit name ip;
@@ -38,10 +40,10 @@ libContainer.mkContainer rec {
   inherit port;
   bindMounts = {
     "${config.sops.templates."env".path}".isReadOnly = true;
-    # "/backup" = {
-    #   hostPath = "/containers/${name}/backup";
-    #   isReadOnly = false;
-    # };
+    "/backup" = {
+      hostPath = "/containers/${name}/backup";
+      isReadOnly = false;
+    };
   };
   extraConfig = _: {
     services = {
@@ -57,9 +59,13 @@ libContainer.mkContainer rec {
         environmentFile = "${config.sops.templates."env".path}";
       };
     };
+    environment.systemPackages = [
+      pkgs.sqlite
+      pkgs.rsync
+    ];
   };
-  # sanoidDataset = "rpool/containers/${name}/backup";
-  # sanoidPreScript = script-pre-backup;
+  sanoidDataset = "rpool/containers/${name}/backup";
+  sanoidPreScript = script-pre-backup;
 }
 // {
   sops = {

@@ -13,7 +13,6 @@ _: {
     ./nextcloud.nix
     ./nixos-containers.nix
     ./nginx.nix
-    ./paperless.nix
     ./postgresql.nix
     ./samba.nix
     ./searx.nix

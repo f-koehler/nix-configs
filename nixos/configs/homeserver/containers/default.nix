@@ -5,6 +5,7 @@
     ./homepage.nix
     ./immich.nix
     ./navidrome.nix
+    ./paperless.nix
     ./stirling-pdf.nix
   ];
 

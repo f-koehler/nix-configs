@@ -18,16 +18,17 @@ let
   };
   name = "paperless";
   ip = "172.22.1.122";
-  # script-dump-db = pkgs.writeShellScriptBin "${name}-dump-db" ''
-  #   #!${lib.getExe' pkgs.bash "bash"}
-  #   set -euf -o pipefail
-  #   ${lib.getExe' pkgs.sudo "sudo"} -u ${config.services.immich.user} -g ${config.services.immich.group} ${lib.getExe' pkgs.bash "bash"} -c "${lib.getExe' config.services.postgresql.package "pg_dump"} --dbname=${config.services.immich.database.name} --compress=gzip:level=9 --file=/db_backup/immich.psql.gz"
-  # '';
-  # script-pre-backup = pkgs.writeShellScriptBin "${name}-pre-backup" ''
-  #   #!${lib.getExe' pkgs.bash "bash"}
-  #   set -euf -o pipefail
-  #   ${lib.getExe' pkgs.openssh "ssh"} -o StrictHostKeyChecking=accept-new root@${ip} "${lib.getExe script-dump-db}"
-  # '';
+  script-export-documents = pkgs.writeShellScriptBin "${name}-export-documents" ''
+    #!/run/current-system/sw/bin/bash
+    set -euf -o pipefail
+    /run/current-system/sw/bin/chown -R ${config.services.paperless.user}:${config.services.paperless.user} /backup
+    /run/wrappers/bin/sudo -u ${config.services.paperless.user} -g ${config.services.paperless.user} /run/current-system/sw/bin/bash -c "/run/current-system/sw/bin/paperless-manage document_exporter -z -zn paperless-documents /backup/"
+  '';
+  script-pre-backup = pkgs.writeShellScriptBin "${name}-pre-backup" ''
+    #!${lib.getExe' pkgs.bash "bash"}
+    set -euf -o pipefail
+    ${lib.getExe' pkgs.openssh "ssh"} -o StrictHostKeyChecking=accept-new root@${ip} "${lib.getExe script-export-documents}"
+  '';
 in
 libContainer.mkContainer rec {
   inherit name ip;
@@ -65,7 +66,7 @@ libContainer.mkContainer rec {
     };
   };
   sanoidDataset = "rpool/containers/${name}/backup";
-  # sanoidPreScript = script-pre-backup;
+  sanoidPreScript = script-pre-backup;
 }
 // {
   sops.secrets = {

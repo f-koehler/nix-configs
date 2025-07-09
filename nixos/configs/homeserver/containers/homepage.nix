@@ -117,6 +117,17 @@ libContainer.mkContainer rec {
                   description = "PDF Editor";
                 };
             }
+            {
+              "Vaultwarden" =
+                let
+                  url = "https://vault.${nodeConfig.domain}";
+                in
+                {
+                  icon = "vaultwarden.svg";
+                  href = url;
+                  description = "Password vault";
+                };
+            }
           ];
         }
       ];

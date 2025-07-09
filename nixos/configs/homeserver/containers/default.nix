@@ -7,6 +7,7 @@
     ./navidrome.nix
     ./paperless.nix
     ./stirling-pdf.nix
+    ./vaultwarden.nix
   ];
 
   users = {

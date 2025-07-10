@@ -2,6 +2,7 @@
 {
   imports = [
     ./audiobookshelf.nix
+    ./healthchecks.nix
     ./homepage.nix
     ./immich.nix
     ./navidrome.nix

@@ -130,6 +130,26 @@ libContainer.mkContainer rec {
             }
           ];
         }
+        {
+          "Monitoring" = [
+            {
+              "Healthchecks" =
+                let
+                  url = "https://health.${nodeConfig.domain}";
+                in
+                {
+                  icon = "healthchecks.svg";
+                  href = url;
+                  description = "Job monitoring";
+                  widget = {
+                    type = "healthchecks";
+                    inherit url;
+                    key = "{{HOMEPAGE_VAR_HEALTHCHECKS_KEY}}";
+                  };
+                };
+            }
+          ];
+        }
       ];
     };
   };
@@ -139,6 +159,7 @@ libContainer.mkContainer rec {
     secrets = {
       "services/homepage/services/audiobookshelf/key" = { };
       "services/homepage/services/immich/key" = { };
+      "services/homepage/services/healthchecks/key" = { };
       "services/homepage/services/navidrome/key" = { };
       "services/homepage/services/navidrome/salt" = { };
       "services/homepage/services/paperless/key" = { };
@@ -147,6 +168,9 @@ libContainer.mkContainer rec {
       content = ''
         HOMEPAGE_VAR_AUDIOBOOKSHELF_KEY=${
           config.sops.placeholder."services/homepage/services/audiobookshelf/key"
+        }
+        HOMEPAGE_VAR_HEALTHCHECKS_KEY=${
+          config.sops.placeholder."services/homepage/services/healthchecks/key"
         }
         HOMEPAGE_VAR_IMMICH_KEY=${config.sops.placeholder."services/homepage/services/immich/key"}
         HOMEPAGE_VAR_NAVIDROME_KEY=${config.sops.placeholder."services/homepage/services/navidrome/key"}

@@ -32,7 +32,7 @@ let
   # '';
 in
 libContainer.mkContainer rec {
-  inherit name ip;
+  inherit name ip port;
   hostName = "health";
   bindMounts = {
     "/db_backup" = {

@@ -1,6 +1,6 @@
 _: {
   stylix.targets.gtk = {
     enable = true;
-    flatpakSupport.enable = true;
+    flatpakSupport.enable = false;
   };
 }

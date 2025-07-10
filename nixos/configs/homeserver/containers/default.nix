@@ -20,7 +20,10 @@
       home = "/var/lib/sanoid";
     };
   };
-  systemd.services."sanoid".serviceConfig.DynamicUser = lib.mkForce false;
+  systemd.services."sanoid".serviceConfig = {
+    Environment = [ "TZ=Asia/Singapore" ];
+    DynamicUser = lib.mkForce false;
+  };
   services.sanoid.enable = true;
   sops.secrets = {
     "services/tailscale/authKey" = {

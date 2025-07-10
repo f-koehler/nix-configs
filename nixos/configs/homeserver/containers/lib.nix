@@ -37,7 +37,7 @@ let
       sanoidDataset ? null,
       sanoidPreScript ? null,
       sanoidPostScript ? null,
-      sanoidForcePostSnapshotScript ? false,
+      sanoidForcePostSnapshotScript ? true,
       ...
     }:
     let

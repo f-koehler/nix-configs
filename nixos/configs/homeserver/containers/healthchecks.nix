@@ -18,18 +18,28 @@ let
   };
   name = "healthchecks";
   ip = "172.22.1.124";
+  healthchecksBase = "https://health.${nodeConfig.domain}/ping/";
+  healthchecksSlug = "homeserver-sanoid-healthchecks";
+  script-create-backup = pkgs.writeShellScriptBin "${name}-create-backup" ''
+    #!/run/current-system/sw/bin/bash
+    set -euf -o pipefail
+    /run/current-system/sw/bin/chown -R healthchecks:healthchecks /db_backup
+    /run/wrappers/bin/sudo -u healthchecks -g healthchecks /run/current-system/sw/bin/sqlite3 /var/lib/healthchecks/healthchecks.sqlite ".backup '/db_backup/healthchecks.sqlite'"
+  '';
+  script-pre-backup = pkgs.writeShellScriptBin "${name}-pre-backup" ''
+    #!${lib.getExe' pkgs.bash "bash"}
+    set -euf -o pipefail
+    PING_KEY=$(< ${config.sops.secrets."services/healthchecks/ping_key".path})
+    ${lib.getExe' pkgs.curl "curl"} -fsS -m 10 --retry 5 -o /dev/null "${healthchecksBase}/$PING_KEY/${healthchecksSlug}/start?create=1"
+    ${lib.getExe' pkgs.openssh "ssh"} -o StrictHostKeyChecking=accept-new root@${ip} "${lib.getExe script-create-backup}"
+  '';
+  script-post-backup = pkgs.writeShellScriptBin "${name}-post-backup" ''
+    #!${lib.getExe' pkgs.bash "bash"}
+    set -euf -o pipefail
+    PING_KEY="$(< ${config.sops.secrets."services/healthchecks/ping_key".path})"
+    ${lib.getExe' pkgs.curl "curl"} -fsS -m 10 --retry 5 -o /dev/null "${healthchecksBase}/$PING_KEY/${healthchecksSlug}?create=1"
+  '';
   inherit (config.services.healthchecks) port user group;
-  # script-dump-db = pkgs.writeShellScriptBin "${name}-dump-db" ''
-  #   #!/run/current-system/sw/bin/bash
-  #   set -euf -o pipefail
-  #   /run/current-system/sw/bin/chown -R ${config.services.immich.user}:${config.services.immich.group} /db_backup
-  #   /run/wrappers/bin/sudo -u ${config.services.immich.user} -g ${config.services.immich.group} /run/current-system/sw/bin/bash -c "/run/current-system/sw/bin/pg_dump --dbname=${config.services.immich.database.name} --compress=gzip:level=9 --file=/db_backup/immich.psql.gz"
-  # '';
-  # script-pre-backup = pkgs.writeShellScriptBin "${name}-pre-backup" ''
-  #   #!${lib.getExe' pkgs.bash "bash"}
-  #   set -euf -o pipefail
-  #   ${lib.getExe' pkgs.openssh "ssh"} -o StrictHostKeyChecking=accept-new root@${ip} "${lib.getExe script-dump-db}"
-  # '';
 in
 libContainer.mkContainer rec {
   inherit name ip port;
@@ -94,9 +104,11 @@ libContainer.mkContainer rec {
           ${chmod} 0400 /secrets/secret_key
         '';
     };
+    environment.systemPackages = [ pkgs.sqlite ];
   };
-  # sanoidDataset = "rpool/containers/${name}/db_backup";
-  # sanoidPreScript = script-pre-backup;
+  sanoidDataset = "rpool/containers/${name}/db_backup";
+  sanoidPreScript = script-pre-backup;
+  sanoidPostScript = script-post-backup;
 }
 // {
   sops = {

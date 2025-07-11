@@ -28,5 +28,9 @@
   sops.secrets = {
     "services/tailscale/authKey" = {
     };
+    "services/healthchecks/ping_key" = {
+      owner = "sanoid";
+      group = "sanoid";
+    };
   };
 }

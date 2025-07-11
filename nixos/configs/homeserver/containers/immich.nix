@@ -76,11 +76,3 @@ libContainer.mkContainer rec {
   sanoidPreScript = script-pre-backup;
   sanoidPostScript = script-post-backup;
 }
-// {
-  sops.secrets = {
-    "services/healthchecks/ping_key" = {
-      owner = "sanoid";
-      group = "sanoid";
-    };
-  };
-}

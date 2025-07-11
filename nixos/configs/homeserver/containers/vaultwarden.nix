@@ -82,10 +82,6 @@ libContainer.mkContainer rec {
   sops = {
     secrets = {
       "services/vaultwarden/admin_token" = { };
-      "services/healthchecks/ping_key" = {
-        owner = "sanoid";
-        group = "sanoid";
-      };
     };
     templates."env" = {
       content = ''

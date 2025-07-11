@@ -46,7 +46,6 @@ libContainer.mkContainer rec {
   inherit (config.services.paperless) port;
   bindMounts = {
     "${config.sops.secrets."services/paperless/admin/password".path}".isReadOnly = true;
-    "${config.sops.secrets."services/healthchecks/ping_key".path}".isReadOnly = true;
     "/backup" = {
       hostPath = "/containers/${name}/backup";
       isReadOnly = false;

@@ -53,7 +53,6 @@ libContainer.mkContainer rec {
       hostPath = "/containers/${name}/db_backup";
       isReadOnly = false;
     };
-    "${config.sops.secrets."services/healthchecks/ping_key".path}".isReadOnly = true;
   };
   allowedDevices = [
     {

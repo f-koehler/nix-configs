@@ -50,7 +50,6 @@ libContainer.mkContainer rec {
   inherit port;
   bindMounts = {
     "${config.sops.templates."env".path}".isReadOnly = true;
-    "${config.sops.secrets."services/healthchecks/ping_key".path}".isReadOnly = true;
     "/backup" = {
       hostPath = "/containers/${name}/backup";
       isReadOnly = false;

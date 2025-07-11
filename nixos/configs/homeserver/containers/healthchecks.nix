@@ -49,6 +49,14 @@ libContainer.mkContainer rec {
         settings = {
           DB = "sqlite";
           SECRET_KEY_FILE = "/secrets/secret_key";
+          DEBUG = true;
+          CSRF_TRUSTED_ORIGINS = "https://${hostName}.${nodeConfig.domain}";
+          ALLOWED_HOSTS = [
+            "${hostName}.${nodeConfig.domain}"
+            "127.0.0.1"
+            "localhost"
+          ];
+          # CORS_ALLOWED_HOSTS = "${hostName}.${nodeConfig.domain}";
         };
       };
     };

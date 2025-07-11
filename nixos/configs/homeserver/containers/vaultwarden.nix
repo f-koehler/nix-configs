@@ -20,6 +20,8 @@ let
   port = 8000;
   name = "vaultwarden";
   ip = "172.22.1.123";
+  healthchecksBase = "https://health.${nodeConfig.domain}/ping/";
+  healthchecksSlug = "homeserver-sanoid-vaultwarden";
   script-create-backup = pkgs.writeShellScriptBin "${name}-export-documents" ''
     #!/run/current-system/sw/bin/bash
     set -euf -o pipefail
@@ -31,7 +33,15 @@ let
   script-pre-backup = pkgs.writeShellScriptBin "${name}-pre-backup" ''
     #!${lib.getExe' pkgs.bash "bash"}
     set -euf -o pipefail
+    PING_KEY=$(< ${config.sops.secrets."services/healthchecks/ping_key".path})
+    ${lib.getExe' pkgs.curl "curl"} -fsS -m 10 --retry 5 -o /dev/null "${healthchecksBase}/$PING_KEY/${healthchecksSlug}/start?create=1"
     ${lib.getExe' pkgs.openssh "ssh"} -o StrictHostKeyChecking=accept-new root@${ip} "${lib.getExe script-create-backup}"
+  '';
+  script-post-backup = pkgs.writeShellScriptBin "${name}-post-backup" ''
+    #!${lib.getExe' pkgs.bash "bash"}
+    set -euf -o pipefail
+    PING_KEY="$(< ${config.sops.secrets."services/healthchecks/ping_key".path})"
+    ${lib.getExe' pkgs.curl "curl"} -fsS -m 10 --retry 5 -o /dev/null "${healthchecksBase}/$PING_KEY/${healthchecksSlug}?create=1"
   '';
 in
 libContainer.mkContainer rec {
@@ -40,6 +50,7 @@ libContainer.mkContainer rec {
   inherit port;
   bindMounts = {
     "${config.sops.templates."env".path}".isReadOnly = true;
+    "${config.sops.secrets."services/healthchecks/ping_key".path}".isReadOnly = true;
     "/backup" = {
       hostPath = "/containers/${name}/backup";
       isReadOnly = false;
@@ -66,11 +77,13 @@ libContainer.mkContainer rec {
   };
   sanoidDataset = "rpool/containers/${name}/backup";
   sanoidPreScript = script-pre-backup;
+  sanoidPostScript = script-post-backup;
 }
 // {
   sops = {
     secrets = {
       "services/vaultwarden/admin_token" = { };
+      "services/healthchecks/ping_key" = { };
     };
     templates."env" = {
       content = ''

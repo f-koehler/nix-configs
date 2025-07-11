@@ -18,6 +18,8 @@ let
   };
   name = "immich";
   ip = "172.22.1.100";
+  healthchecksBase = "https://health.${nodeConfig.domain}/ping/";
+  healthchecksSlug = "homeserver-sanoid-immich";
   script-dump-db = pkgs.writeShellScriptBin "${name}-dump-db" ''
     #!/run/current-system/sw/bin/bash
     set -euf -o pipefail
@@ -27,7 +29,15 @@ let
   script-pre-backup = pkgs.writeShellScriptBin "${name}-pre-backup" ''
     #!${lib.getExe' pkgs.bash "bash"}
     set -euf -o pipefail
+    PING_KEY=$(< ${config.sops.secrets."services/healthchecks/ping_key".path})
+    ${lib.getExe' pkgs.curl "curl"} -fsS -m 10 --retry 5 -o /dev/null "${healthchecksBase}/$PING_KEY/${healthchecksSlug}/start?create=1"
     ${lib.getExe' pkgs.openssh "ssh"} -o StrictHostKeyChecking=accept-new root@${ip} "${lib.getExe script-dump-db}"
+  '';
+  script-post-backup = pkgs.writeShellScriptBin "${name}-post-backup" ''
+    #!${lib.getExe' pkgs.bash "bash"}
+    set -euf -o pipefail
+    PING_KEY=$(< ${config.sops.secrets."services/healthchecks/ping_key".path})
+    ${lib.getExe' pkgs.curl "curl"} -fsS -m 10 --retry 5 -o /dev/null "${healthchecksBase}/$PING_KEY/${healthchecksSlug}?create=1"
   '';
 in
 libContainer.mkContainer rec {
@@ -43,6 +53,7 @@ libContainer.mkContainer rec {
       hostPath = "/containers/${name}/db_backup";
       isReadOnly = false;
     };
+    "${config.sops.secrets."services/healthchecks/ping_key".path}".isReadOnly = true;
   };
   allowedDevices = [
     {
@@ -64,4 +75,10 @@ libContainer.mkContainer rec {
   };
   sanoidDataset = "rpool/containers/${name}/db_backup";
   sanoidPreScript = script-pre-backup;
+  sanoidPostScript = script-post-backup;
+}
+// {
+  sops.secrets = {
+    "services/healthchecks/ping_key" = { };
+  };
 }

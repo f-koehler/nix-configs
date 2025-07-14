@@ -16,6 +16,7 @@ _: {
     ./samba.nix
     ./searx.nix
     ./tinymediamanager.nix
+    ./transmission.nix
     ./unifi.nix
     ./zfs-snapshots.nix
   ];

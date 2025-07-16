@@ -14,10 +14,10 @@ let
 in
 {
   imports = [
-    inputs.catppuccin.homeManagerModules.catppuccin
+    inputs.catppuccin.homeModules.catppuccin
     inputs.stylix.homeModules.stylix
     inputs.mac-app-util.homeManagerModules.default
-    inputs.nix-index-database.hmModules.nix-index
+    inputs.nix-index-database.homeModules.nix-index
     inputs.plasma-manager.homeManagerModules.plasma-manager
     inputs.sops-nix.homeManagerModules.sops
     ../stylix.nix

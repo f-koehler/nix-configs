@@ -17,11 +17,16 @@
     extensions = [
       "catppuccin"
       "catppuccin-icons"
-      "dockerfile"
       "docker-compose"
+      "dockerfile"
       "env"
+      "html"
+      "make"
       "neocmake"
       "nix"
+      "scss"
+      "snakemake"
+      "toml"
     ];
     userSettings = {
       buffer_font_family = "Cascadia Code NF";

@@ -1,70 +1,56 @@
 {
-  pkgs,
-  lib,
-  isLinux,
+  config,
   ...
 }:
-lib.mkIf isLinux {
-  accounts.email.accounts = {
-    "me@fkoehler.org" = {
-      address = "me@fkoehler.org";
-      imap = {
-        host = "127.0.0.1";
-        port = 1143;
-        tls = {
-          enable = true;
-          useStartTls = true;
-        };
-      };
-      realName = "Fabian Koehler";
-      smtp = {
-        host = "127.0.0.1";
-        port = 1025;
-        tls = {
-          enable = true;
-          useStartTls = true;
-        };
-      };
-      thunderbird = {
-        enable = true;
-      };
-      userName = "fabian.koehler@proton.me";
-      primary = true;
-    };
-    "fkoehler@physnet.uni-hamburg.de" = {
-      address = "fkoehler@physnet.uni-hamburg.de";
-      imap = {
-        host = "imap.physnet.uni-hamburg.de";
-        port = 143;
-        tls = {
-          enable = true;
-          useStartTls = true;
-        };
-      };
-      realName = "Fabian Koehler";
-      smtp = {
-        host = "mail.physnet.uni-hamburg.de";
-        port = 587;
-        tls = {
-          enable = true;
-          useStartTls = true;
-        };
-      };
-      thunderbird = {
-        enable = true;
-      };
-      userName = "fkoehler";
-    };
+{
+  sops.secrets = {
+    "email/fastmail/password" = { };
   };
-  programs.thunderbird = {
-    enable = true;
-    profiles = {
-      fkoehler = {
+  accounts =
+    let
+      passwordCommandFastmail = "cat ${config.sops.secrets."email/fastmail/password".path}";
+    in
+    {
+      calendar.accounts."fastmail" = {
+        primary = true;
+        remote = {
+          passwordCommand = passwordCommandFastmail;
+          type = "caldav";
+          url = "https://caldav.fastmail.com/";
+          userName = "fabiankoehler@fastmail.com";
+          thunderbird.enable = true;
+        };
+      };
+      contact.accounts."fastmail" = {
+        remote = {
+          passwordCommand = passwordCommandFastmail;
+          type = "carddav";
+          url = "https://carddav.fastmail.com/";
+          userName = "fabiankoehler@fastmail.com";
+          thunderbird.enable = true;
+        };
+      };
+      email.accounts = {
+        "fastmail" = {
+          address = "fabian@fkoehler.me";
+          primary = true;
+          realName = "Fabian Koehler";
+          userName = "fabiankoehler@fastmail.com";
+          passwordCommand = passwordCommandFastmail;
+          flavor = "fastmail.com";
+          aerc.enable = true;
+          thunderbird = {
+            enable = true;
+          };
+        };
+      };
+    };
+  programs = {
+    thunderbird = {
+      enable = true;
+      profiles."default" = {
         isDefault = true;
       };
     };
   };
-  home.packages = with pkgs; [
-    protonmail-bridge-gui
-  ];
 }

@@ -1,12 +1,17 @@
 _: {
-  programs.gh = {
-    enable = true;
-    settings = {
+  programs = {
+    gh = {
+      enable = true;
       settings = {
-        editor = "nvim";
-        git_protocol = "ssh";
-        prompt = "enabled";
+        settings = {
+          editor = "nvim";
+          git_protocol = "ssh";
+          prompt = "enabled";
+        };
       };
+    };
+    gh-dash = {
+      enable = true;
     };
   };
 }

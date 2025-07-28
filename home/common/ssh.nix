@@ -28,14 +28,6 @@ lib.mkIf nodeConfig.isWorkstation {
       vps = {
         hostname = "194.61.28.200";
       };
-      "fk-gha-runner-x64-01" = {
-        hostname = "fk-gha-runner-x64-01.corgi-dojo.ts.net";
-        user = "gha";
-      };
-      "fk-gha-runner-x64-02" = {
-        hostname = "fk-gha-runner-x64-02.corgi-dojo.ts.net";
-        user = "gha";
-      };
     };
   };
 }

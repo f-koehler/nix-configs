@@ -43,6 +43,18 @@
             enable = true;
           };
         };
+        "speqtral" = {
+          address = "fabian@speqtral.space";
+          realName = "Fabian Koehler";
+          flavor = "outlook.office365.com";
+          thunderbird = {
+            enable = true;
+            settings = id: {
+              "mail.server.server_${id}.authMethod" = 10;
+              "mail.server.smtpserver_${id}.authMethod" = 3;
+            };
+          };
+        };
       };
     };
   programs = {

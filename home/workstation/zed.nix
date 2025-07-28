@@ -14,6 +14,10 @@
   programs.zed-editor = {
     enable = true;
     installRemoteServer = true;
+    extraPackages = with pkgs; [
+      nil
+      nixd
+    ];
     extensions = [
       "catppuccin"
       "catppuccin-icons"

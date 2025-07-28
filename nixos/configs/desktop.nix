@@ -30,15 +30,17 @@
     pkgs.networkmanager
   ];
 
-  # put your SSH key here when installing system with nixos-anywhere, remove once installed
-  users.users.root.openssh.authorizedKeys.keys = [ ];
-
   users = {
     groups."${nodeConfig.username}" = { };
-    users."${nodeConfig.username}" = {
-      linger = true;
-      group = nodeConfig.username;
-      extraGroups = [ "wheel" ];
+    users = {
+      # put your SSH key here when installing system with nixos-anywhere, remove once installed
+      root.openssh.authorizedKeys.keys = [ ];
+
+      "${nodeConfig.username}" = {
+        linger = true;
+        group = nodeConfig.username;
+        extraGroups = [ "wheel" ];
+      };
     };
   };
 

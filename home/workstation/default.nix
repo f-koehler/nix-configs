@@ -24,10 +24,13 @@
     ++ lib.optionals (isLinux && (builtins.elem "plasma" nodeConfig.desktops)) [ ./plasma.nix ]
     ++ lib.optionals isLinux [ ./chromium.nix ];
 
-  stylix.iconTheme = {
-    enable = true;
-    light = "breeze";
-    dark = "breeze-dark";
-    package = pkgs.kdePackages.breeze-icons;
-  };
+  stylix.iconTheme =
+    {
+      enable = true;
+    }
+    // lib.mkIf isLinux {
+      light = "breeze";
+      dark = "breeze-dark";
+      package = pkgs.kdePackages.breeze-icons;
+    };
 }

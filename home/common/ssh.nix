@@ -1,10 +1,11 @@
 {
   lib,
   nodeConfig,
+  isLinux,
   ...
 }:
 lib.mkIf nodeConfig.isWorkstation {
-  services.ssh-agent.enable = true;
+  services.ssh-agent.enable = isLinux;
   programs.ssh = {
     enable = true;
     matchBlocks = {

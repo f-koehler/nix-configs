@@ -35,7 +35,6 @@
       "org.kde.tokodon"
       "org.libreoffice.LibreOffice"
       "org.localsend.localsend_app"
-      "org.mozilla.Thunderbird"
       "org.musicbrainz.Picard"
       "org.telegram.desktop"
       "org.telegram.desktop.webview"

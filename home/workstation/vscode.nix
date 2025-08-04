@@ -21,7 +21,6 @@
         pkgs.vscode-marketplace.asvetliakov.vscode-neovim
         pkgs.vscode-marketplace.catppuccin.catppuccin-vsc-icons
         pkgs.vscode-marketplace.charliermarsh.ruff
-        pkgs.vscode-marketplace.codeium.codeium
         pkgs.vscode-marketplace.eamodio.gitlens
         pkgs.vscode-marketplace.ecmel.vscode-html-css
         pkgs.vscode-marketplace.editorconfig.editorconfig

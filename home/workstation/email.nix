@@ -53,6 +53,16 @@
               "mail.server.server_${id}.authMethod" = 10;
               "mail.server.smtpserver_${id}.authMethod" = 3;
             };
+            messageFilters = [
+              {
+                name = "Move redmine messages";
+                enabled = true;
+                type = "17";
+                action = "Move to folder";
+                actionValue = "imap://fabian%40speqtral.space@outlook.office365.com/INBOX/Redmine";
+                condition = "AND (from,is,redmine-noreply@speqtranet.com)";
+              }
+            ];
           };
         };
       };

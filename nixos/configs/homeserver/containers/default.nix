@@ -5,6 +5,7 @@
     ./healthchecks.nix
     ./homepage.nix
     ./immich.nix
+    ./karakeep.nix
     ./navidrome.nix
     ./paperless.nix
     ./stirling-pdf.nix

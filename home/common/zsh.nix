@@ -16,7 +16,7 @@
       share = true;
       size = 1000000;
     };
-    initExtra = lib.mkOrder 1500 ''
+    initContent = lib.mkOrder 1500 ''
       bindkey "^[[H" beginning-of-line
       bindkey "^[[F" end-of-line
       bindkey "^[[1;5C" forward-word

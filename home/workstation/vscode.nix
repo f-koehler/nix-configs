@@ -51,6 +51,7 @@
         pkgs.vscode-marketplace.usernamehw.errorlens
         pkgs.vscode-marketplace.vscode-icons-team.vscode-icons
         pkgs.vscode-marketplace.catppuccin.catppuccin-vsc
+        pkgs.vscode-marketplace.mermaidchart.vscode-mermaid-chart
       ];
       userSettings = {
         "[nix]" = {

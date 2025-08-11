@@ -107,6 +107,17 @@ libContainer.mkContainer rec {
                 };
             }
             {
+              "Karakeep" =
+                let
+                  url = "https://bookmarks.${nodeConfig.domain}";
+                in
+                {
+                  icon = "karakeep.svg";
+                  href = url;
+                  description = "Bookmarks";
+                };
+            }
+            {
               "Stirling PDF" =
                 let
                   url = "https://pdfs.${nodeConfig.domain}";

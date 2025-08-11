@@ -54,7 +54,6 @@ in
       pkgs.du-dust
       pkgs.fish
       pkgs.jq
-      pkgs.lunarvim
       pkgs.pre-commit
       pkgs.rye
       pkgs.sops

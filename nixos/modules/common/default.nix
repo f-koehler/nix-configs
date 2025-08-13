@@ -10,7 +10,7 @@ _: {
     ./libvirt.nix
     ./locale.nix
     ./netdata.nix
-    ./netbird.nix
+    # ./netbird.nix
     ./nix-ld.nix
     ./nix.nix
     ./podman.nix

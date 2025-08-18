@@ -27,8 +27,8 @@ in
       (
         commonMountOptions
         // {
-          what = "${ip}:/media0";
-          where = "/media/media0";
+          what = "${ip}:/media1";
+          where = "/media/media1";
         }
       )
     ];

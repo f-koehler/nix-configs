@@ -4,7 +4,7 @@
     enable = true;
     config = ''
       (
-          address: "${config.services.mopidy.settings.mpd.hostname}:${toString config.services.mopidy.settings.mpd.port}",
+          address: "127.0.0.1:${toString config.services.mpd.network.port}",
           password: None,
           theme: Some("catppuccin"),
           enable_mosue: true,

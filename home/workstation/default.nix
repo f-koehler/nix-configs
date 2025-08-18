@@ -12,6 +12,7 @@
     ./email.nix
     ./firefox.nix
     ./fonts.nix
+    ./mpd.nix
     ./gtk.nix
     ./qt.nix
     ./rmpc

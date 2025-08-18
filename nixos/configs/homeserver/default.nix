@@ -11,6 +11,7 @@ _: {
     ./jellyfin.nix
     ./nextcloud.nix
     ./nixos-containers.nix
+    ./nfs.nix
     ./nginx.nix
     ./postgresql.nix
     ./samba.nix

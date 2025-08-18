@@ -22,7 +22,6 @@
       "com.super_productivity.SuperProductivity"
       "com.transmissionbt.Transmission"
       "com.valvesoftware.Steam"
-      "io.github.dweymouth.supersonic"
       "md.obsidian.Obsidian"
       "net.nokyan.Resources"
       "net.werwolv.ImHex"

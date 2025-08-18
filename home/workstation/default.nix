@@ -7,15 +7,16 @@
 }:
 {
   imports = [
+    # ./mpd.nix
     ./alacritty.nix
     ./email.nix
     ./firefox.nix
     ./fonts.nix
     ./gtk.nix
-    # ./mpd.nix
     ./qt.nix
-    ./sshfs.nix
+    ./rmpc
     ./spotify.nix
+    ./sshfs.nix
     ./vscode.nix
     ./wezterm.nix
     ./zed.nix
@@ -23,6 +24,8 @@
   ++ lib.optionals (isLinux && (builtins.elem "sway" nodeConfig.desktops)) [ ./sway ]
   ++ lib.optionals (isLinux && (builtins.elem "plasma" nodeConfig.desktops)) [ ./plasma.nix ]
   ++ lib.optionals isLinux [ ./chromium.nix ];
+
+  home.packages = [ pkgs.devcontainer ];
 
   stylix.iconTheme = {
     enable = true;

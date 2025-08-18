@@ -16,7 +16,6 @@
     ./gtk.nix
     ./qt.nix
     ./rmpc
-    ./spotify.nix
     ./vscode.nix
     ./wezterm.nix
     ./zed.nix

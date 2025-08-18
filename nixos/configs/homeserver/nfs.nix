@@ -1,6 +1,10 @@
 { config, ... }:
 let
-  ip = "100.104.64.71";
+  allowedIps = [
+    "100.90.238.56" # fkt14
+    "100.66.234.57" # desktop
+  ];
+  mkExport = opts: builtins.concatStringsSep " " (map (ip: "${ip}${opts}") allowedIps);
 in
 {
   fileSystems = {
@@ -25,9 +29,9 @@ in
     mountdPort = 4002;
     statdPort = 4000;
     exports = ''
-      /export        ${ip}(rw,fsid=0,no_subtree_check)
-      /export/media0 ${ip}(rw,nohide,insecure,no_subtree_check)
-      /export/media1 ${ip}(rw,nohide,insecure,no_subtree_check)
+      /export        ${mkExport "(rw,fsid=0,insecure,no_subtree_check)"}
+      /export/media0 ${mkExport "(rw,nohide,insecure,no_subtree_check)"}
+      /export/media1 ${mkExport "(rw,nohide,insecure,no_subtree_check)"}
     '';
   };
   networking.firewall.interfaces.tailscale0 = {

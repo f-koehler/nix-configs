@@ -14,7 +14,6 @@ _: {
     ./nfs.nix
     ./nginx.nix
     ./postgresql.nix
-    ./samba.nix
     # ./searx.nix
     ./tinymediamanager.nix
     ./unifi.nix

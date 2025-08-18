@@ -33,15 +33,15 @@
   };
 
   services = {
-    tlp = {
-      enable = true;
-      settings = {
-        CPU_SCALING_GOVERNOR_ON_AC = "powersave";
-        CPU_MIN_PERF_ON_AC = 5;
-        CPU_MAX_PERF_ON_AC = 40; # percent of max performance
-        CPU_BOOST_ON_AC = 0;
-      };
-    };
+    # tlp = {
+    #   enable = true;
+    #   settings = {
+    #     CPU_SCALING_GOVERNOR_ON_AC = "powersave";
+    #     CPU_MIN_PERF_ON_AC = 5;
+    #     # CPU_MAX_PERF_ON_AC = 40; # percent of max performance
+    #     CPU_BOOST_ON_AC = 1;
+    #   };
+    # };
     zfs = {
       trim = {
         enable = true;

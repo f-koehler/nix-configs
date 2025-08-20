@@ -3,5 +3,8 @@ _: {
     filename = {
       "Snakefile" = "snakemake";
     };
+    extension = {
+      "hip" = "cuda";
+    };
   };
 }

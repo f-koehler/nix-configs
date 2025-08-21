@@ -37,6 +37,7 @@
           filetypes = [
             "c"
             "cpp"
+            "cuda"
           ];
           root_markers = [
             "compile_commands.json"

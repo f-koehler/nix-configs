@@ -8,6 +8,7 @@ _: {
     ./neotest.nix
     ./telescope.nix
     ./treesitter.nix
+    ./trouble.nix
     ./which-key.nix
   ];
 

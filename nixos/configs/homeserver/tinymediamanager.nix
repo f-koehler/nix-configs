@@ -1,4 +1,7 @@
 { config, ... }:
+let
+  port_novnc = 40000;
+in
 {
   sops = {
     secrets."services/tinymediamanager/password" = {
@@ -12,7 +15,7 @@
       image = "docker.io/tinymediamanager/tinymediamanager:5.1.8";
       ports = [
         "127.0.0.1:5900:5900" # VNC port
-        "127.0.0.1:4000:4000" # Webinterface
+        "127.0.0.1:${toString port_novnc}:4000" # Webinterface
       ];
       environment = {
         ALLOW_DIRECT_VNC = "true";
@@ -39,7 +42,7 @@
   services.nginx = {
     upstreams.tinymediamanager = {
       servers = {
-        "127.0.0.1:4000" = { };
+        "127.0.0.1:${toString port_novnc}" = { };
       };
     };
     virtualHosts."tinymediamanager.fkoehler.xyz" = {

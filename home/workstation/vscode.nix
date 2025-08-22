@@ -17,10 +17,12 @@
         pkgs.vscode-marketplace.asvetliakov.vscode-neovim
         pkgs.vscode-marketplace.catppuccin.catppuccin-vsc
         pkgs.vscode-marketplace.catppuccin.catppuccin-vsc-icons
+        pkgs.vscode-marketplace.charliermarsh.ruff
         pkgs.vscode-marketplace.editorconfig.editorconfig
         pkgs.vscode-marketplace.jnoortheen.nix-ide
         pkgs.vscode-marketplace.mermaidchart.vscode-mermaid-chart
         pkgs.vscode-marketplace.mkhl.direnv
+        pkgs.vscode-marketplace.ms-python.python
         pkgs.vscode-marketplace.ms-vscode.cmake-tools
         pkgs.vscode-marketplace.ms-vscode.cpptools
         pkgs.vscode-marketplace.rust-lang.rust-analyzer

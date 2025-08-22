@@ -8,6 +8,7 @@ _: {
     ./neotest.nix
     ./telescope.nix
     ./treesitter.nix
+    ./trouble.nix
     ./which-key.nix
   ];
 
@@ -23,12 +24,6 @@ _: {
       overseer.enable = true;
       rainbow-delimiters.enable = true;
       todo-comments.enable = true;
-      trouble = {
-        enable = true;
-        settings = {
-          auto_close = true;
-        };
-      };
       web-devicons = {
         enable = true;
         settings.color_icons = true;

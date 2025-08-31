@@ -24,9 +24,9 @@
         pkgs.vscode-marketplace.mkhl.direnv
         pkgs.vscode-marketplace.ms-python.python
         pkgs.vscode-marketplace.ms-vscode.cmake-tools
-        pkgs.vscode-marketplace.ms-vscode.cpptools
         pkgs.vscode-marketplace.rust-lang.rust-analyzer
-      ];
+      ] ++ lib.optionals (!isDarwin) [ pkgs.vscode-marketplace.ms-vscode.cpptools ];
+
       userSettings = {
         "direnv.path.executable" = "${lib.getExe' config.programs.direnv.package "direnv"}";
         "direnv.restart.automatic" = true;

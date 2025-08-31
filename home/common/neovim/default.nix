@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, isLinux, ... }:
 {
   imports = [
     inputs.nixvim.homeModules.nixvim
@@ -17,7 +17,7 @@
     vimdiffAlias = true;
     globals.mapleader = " ";
     editorconfig.enable = true;
-    clipboard.providers.wl-copy.enable = true;
+    clipboard.providers.wl-copy.enable = isLinux;
 
     colorschemes.catppuccin = {
       enable = true;

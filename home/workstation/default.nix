@@ -14,6 +14,7 @@
     ./fonts.nix
     ./gtk.nix
     ./qt.nix
+    ./taskwarrior.nix
     ./vscode.nix
     ./wezterm.nix
     ./zed.nix

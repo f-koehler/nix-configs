@@ -43,6 +43,11 @@
     groups."${nodeConfig.username}" = { };
     users."${nodeConfig.username}" = {
       linger = true;
+      extraGroups = [
+        "kvm"
+        "libvirtd"
+        "qemu-libvirtd"
+      ];
       packages = with pkgs; [
         cachix
         cmake
@@ -77,6 +82,9 @@
       boost
       ntfs3g
       exfatprogs
+      inputs.winapps.packages.${nodeConfig.system}.winapps
+      inputs.winapps.packages.${nodeConfig.system}.winapps-launcher
+      freerdp
     ];
   };
 

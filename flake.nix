@@ -6,6 +6,8 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
+    quickemu.url = "github:quickemu-project/quickemu";
+
     systems.url = "github:nix-systems/default";
     devenv = {
       url = "github:cachix/devenv";
@@ -75,6 +77,10 @@
     };
 
     spicetify.url = "github:Gerg-L/spicetify-nix";
+    winapps = {
+      url = "github:winapps-org/winapps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {

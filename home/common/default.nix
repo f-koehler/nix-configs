@@ -1,6 +1,6 @@
 _: {
   imports = [
-    ./neovim
+    # ./neovim
 
     ./aliases.nix
     ./atuin.nix

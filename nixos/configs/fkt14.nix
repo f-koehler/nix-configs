@@ -64,9 +64,11 @@
         tailscale
         usbutils
         imhex
-        anki
-        cudaPackages.nsight_compute
+        # anki
+        # cudaPackages.nsight_compute
         signal-desktop
+        obsidian
+        inputs.quickemu.packages.${nodeConfig.system}.quickemu
       ];
     };
   };

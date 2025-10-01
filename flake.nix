@@ -3,7 +3,11 @@
 
   # Flake inputs
   inputs = {
+    disko.url = "github:nix-community/disko";
     git-hooks.url = "github:cachix/git-hooks.nix";
+    nixos-anywhere.url = "github:nix-community/nixos-anywhere";
+    nixos-facter-modules.url = "github:nix-community/nixos-facter-modules";
+    nixos-facter.url = "github:nix-community/nixos-facter";
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0";
     systems.url = "github:nix-systems/default";
   };
@@ -12,14 +16,15 @@
   outputs =
     { self, ... }@inputs:
     let
-      stateVersion = 25.11;
+      stateVersion = "25.11";
       myLib = import ./lib {
         inherit inputs stateVersion;
         inherit (self) outputs;
       };
       nodes = {
         "homeserver2" = {
-          hostname = "homeserver2";
+          hostName = "homeserver2";
+          hostId = "760f3bc8";
         };
       };
     in
@@ -55,7 +60,11 @@
           in
           pkgs.mkShell {
             buildInputs = pre-commit-check.enabledPackages;
-            packages = with pkgs; [ ];
+            packages = [
+              pkgs.just
+              inputs.nixos-anywhere.packages.${system}.nixos-anywhere
+              inputs.nixos-facter.packages.${system}.nixos-facter
+            ];
             env = { };
             inherit (pre-commit-check) shellHook;
           };

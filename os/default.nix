@@ -11,4 +11,5 @@
       extraGroups = [ "wheel" ];
     };
   };
+  time.timeZone = nodeConfig.timezone;
 }

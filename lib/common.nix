@@ -5,9 +5,15 @@ let
       hostname,
       username ? "fkoehler",
       system ? "x86_64-linux",
+      timezone ? "Asia/Singapore",
     }:
     {
-      inherit hostname username system;
+      inherit
+        hostname
+        system
+        timezone
+        username
+        ;
     };
 in
 {

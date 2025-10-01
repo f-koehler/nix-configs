@@ -12,16 +12,19 @@
   outputs =
     { self, ... }@inputs:
     let
-      forEachSystem = inputs.nixpkgs.lib.genAttrs (import inputs.systems);
-      getNixpkgs =
-        system:
-        import inputs.nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
+      stateVersion = 25.11;
+      myLib = import ./lib {
+        inherit inputs stateVersion;
+        inherit (self) outputs;
+      };
+      nodes = {
+        "homeserver2" = {
+          hostname = "homeserver2";
         };
+      };
     in
     {
-      checks = forEachSystem (system: {
+      checks = myLib.forEachSystem (system: {
         pre-commit-check = inputs.git-hooks.lib.${system}.run {
           src = ./.;
           hooks = {
@@ -33,10 +36,10 @@
           };
         };
       });
-      formatter = forEachSystem (
+      formatter = myLib.forEachSystem (
         system:
         let
-          pkgs = getNixpkgs system;
+          pkgs = myLib.getNixpkgs system;
           inherit (self.checks.${system}) pre-commit-check;
           script = ''
             ${pre-commit-check.config.package}/bin/pre-commit run --all-files --config ${pre-commit-check.config.configFile}
@@ -44,10 +47,10 @@
         in
         pkgs.writeShellScriptBin "pre-commit-run" script
       );
-      devShells = forEachSystem (system: {
+      devShells = myLib.forEachSystem (system: {
         default =
           let
-            pkgs = getNixpkgs system;
+            pkgs = myLib.getNixpkgs system;
             inherit (self.checks.${system}) pre-commit-check;
           in
           pkgs.mkShell {
@@ -57,5 +60,8 @@
             inherit (pre-commit-check) shellHook;
           };
       });
+      nixosConfigurations = {
+        "homeserver2" = myLib.os.mkOs nodes."homeserver2";
+      };
     };
 }

@@ -16,13 +16,12 @@ in
     inputs.stylix.homeModules.stylix
     inputs.mac-app-util.homeManagerModules.default
     inputs.nix-index-database.homeModules.nix-index
-    inputs.plasma-manager.homeManagerModules.plasma-manager
+    inputs.plasma-manager.homeModules.plasma-manager
     inputs.sops-nix.homeManagerModules.sops
     ../stylix.nix
     ./common
     ./secrets.nix
-  ]
-  ++ lib.optional nodeConfig.isWorkstation ./workstation;
+  ] ++ lib.optional nodeConfig.isWorkstation ./workstation;
 
   nixpkgs = {
     overlays = [

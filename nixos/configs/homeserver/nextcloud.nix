@@ -83,7 +83,7 @@ in
         services = {
           nextcloud = rec {
             enable = true;
-            package = pkgs.nextcloud31;
+            package = pkgs.nextcloud32;
             hostName = "cloud.fkoehler.xyz";
             https = true;
             enableImagemagick = true;

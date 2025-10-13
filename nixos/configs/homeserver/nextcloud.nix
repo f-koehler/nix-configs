@@ -101,11 +101,6 @@ in
               default_phone_region = "SG";
               maintenance_window_start = 0;
             };
-            autoUpdateApps.enable = true;
-            extraAppsEnable = true;
-            extraApps = with package.packages.apps; {
-              inherit contacts tasks calendar;
-            };
           };
         };
       };

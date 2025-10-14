@@ -64,6 +64,8 @@
         tailscale
         usbutils
         imhex
+        spotify-qt
+        librespot
         # anki
         # cudaPackages.nsight_compute
         signal-desktop

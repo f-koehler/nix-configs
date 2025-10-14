@@ -203,7 +203,7 @@
                   nodejs
                   sops
                   nixos-rebuild
-                  python313Full
+                  python313
                 ];
 
                 scripts = {

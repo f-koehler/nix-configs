@@ -5,7 +5,7 @@
     ethtool # stats about network interface (e.g. dropped packets)
     gdb # debugger
     htop # system monitor tui
-    linuxPackages_latest.perf # performance profiler
+    perf # performance profiler
     lsof # list open files/processes
     net-tools # netstat
     nmap # port and IP scanner

@@ -2,10 +2,10 @@
   inputs,
   outputs,
   stateVersion,
+  myLib,
   ...
 }:
 let
-  common = import ./common.nix { inherit inputs outputs stateVersion; };
   mkOsConfig = nodeConfig: {
     specialArgs = {
       inherit
@@ -13,17 +13,23 @@ let
         outputs
         stateVersion
         nodeConfig
+        myLib
         ;
     };
     modules = [ ../os ];
   };
-  mkOs = config: inputs.nixpkgs.lib.nixosSystem (mkOsConfig (common.mkNodeConfig config));
+  mkOs = config: inputs.nixpkgs.lib.nixosSystem (mkOsConfig (myLib.common.mkNodeConfig config));
   mkServiceUser = username: {
-    users.users.${username} = {
-      isSystemUser = true;
-      group = username;
+    users.users = {
+      ${username} = {
+        isNormalUser = true;
+        group = username;
+        linger = true;
+      };
     };
-    users.groups.${username} = { };
+    users.groups = {
+      ${username} = { };
+    };
   };
 in
 {

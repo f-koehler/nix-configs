@@ -15,15 +15,15 @@
         "version": 0,
         "video_memory": 0
       },
-      "pnp": true,
+      "pnp": false,
       "pnp_id": 0,
       "lba_support": false,
-      "low_memory_size": 654336,
+      "low_memory_size": 0,
       "smbios_version": 520
     },
     "bridge": [
       {
-        "index": 9,
+        "index": 11,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -81,7 +81,7 @@
           },
           {
             "type": "mem",
-            "base": 4257345536,
+            "base": 2311368704,
             "range": 4096,
             "enabled": true,
             "access": "read_write",
@@ -90,7 +90,7 @@
         ],
         "detail": {
           "function": 1,
-          "command": 1287,
+          "command": 1031,
           "header_type": 1,
           "secondary_bus": 10,
           "irq": 23,
@@ -107,7 +107,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 11,
+        "index": 13,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -165,7 +165,7 @@
           },
           {
             "type": "mem",
-            "base": 4257337344,
+            "base": 2311376896,
             "range": 4096,
             "enabled": true,
             "access": "read_write",
@@ -174,7 +174,7 @@
         ],
         "detail": {
           "function": 7,
-          "command": 1287,
+          "command": 1031,
           "header_type": 1,
           "secondary_bus": 8,
           "irq": 22,
@@ -191,7 +191,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 12,
+        "index": 14,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -242,7 +242,7 @@
         "sysfs_bus_id": "0000:00:1f.0",
         "detail": {
           "function": 0,
-          "command": 259,
+          "command": 7,
           "header_type": 0,
           "secondary_bus": 0,
           "irq": 0,
@@ -259,7 +259,7 @@
         "module_alias": "pci:v00008086d00002918sv00001AF4sd00001100bc06sc01i00"
       },
       {
-        "index": 13,
+        "index": 15,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -317,7 +317,7 @@
           },
           {
             "type": "mem",
-            "base": 4257329152,
+            "base": 2311385088,
             "range": 4096,
             "enabled": true,
             "access": "read_write",
@@ -326,7 +326,7 @@
         ],
         "detail": {
           "function": 5,
-          "command": 1287,
+          "command": 1031,
           "header_type": 1,
           "secondary_bus": 6,
           "irq": 22,
@@ -343,7 +343,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 16,
+        "index": 19,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -401,7 +401,7 @@
           },
           {
             "type": "mem",
-            "base": 4257320960,
+            "base": 2311393280,
             "range": 4096,
             "enabled": true,
             "access": "read_write",
@@ -410,7 +410,7 @@
         ],
         "detail": {
           "function": 3,
-          "command": 1287,
+          "command": 1031,
           "header_type": 1,
           "secondary_bus": 4,
           "irq": 22,
@@ -427,7 +427,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 18,
+        "index": 21,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -485,7 +485,7 @@
           },
           {
             "type": "mem",
-            "base": 4257312768,
+            "base": 2311401472,
             "range": 4096,
             "enabled": true,
             "access": "read_write",
@@ -494,7 +494,7 @@
         ],
         "detail": {
           "function": 1,
-          "command": 1287,
+          "command": 1031,
           "header_type": 1,
           "secondary_bus": 2,
           "irq": 22,
@@ -511,7 +511,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 20,
+        "index": 23,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -569,7 +569,7 @@
           },
           {
             "type": "mem",
-            "base": 4257357824,
+            "base": 2311356416,
             "range": 4096,
             "enabled": true,
             "access": "read_write",
@@ -578,7 +578,7 @@
         ],
         "detail": {
           "function": 4,
-          "command": 1287,
+          "command": 1031,
           "header_type": 1,
           "secondary_bus": 13,
           "irq": 23,
@@ -595,7 +595,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 21,
+        "index": 25,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -653,7 +653,7 @@
           },
           {
             "type": "mem",
-            "base": 4257349632,
+            "base": 2311364608,
             "range": 4096,
             "enabled": true,
             "access": "read_write",
@@ -662,7 +662,7 @@
         ],
         "detail": {
           "function": 2,
-          "command": 1287,
+          "command": 1031,
           "header_type": 1,
           "secondary_bus": 11,
           "irq": 23,
@@ -679,7 +679,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 23,
+        "index": 27,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -726,7 +726,7 @@
         "sysfs_bus_id": "0000:00:00.0",
         "detail": {
           "function": 0,
-          "command": 259,
+          "command": 7,
           "header_type": 0,
           "secondary_bus": 0,
           "irq": 0,
@@ -735,7 +735,7 @@
         "module_alias": "pci:v00008086d000029C0sv00001AF4sd00001100bc06sc00i00"
       },
       {
-        "index": 25,
+        "index": 29,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -793,7 +793,7 @@
           },
           {
             "type": "mem",
-            "base": 4257341440,
+            "base": 2311372800,
             "range": 4096,
             "enabled": true,
             "access": "read_write",
@@ -802,7 +802,7 @@
         ],
         "detail": {
           "function": 0,
-          "command": 1287,
+          "command": 1031,
           "header_type": 1,
           "secondary_bus": 9,
           "irq": 23,
@@ -819,7 +819,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 26,
+        "index": 30,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -877,7 +877,7 @@
           },
           {
             "type": "mem",
-            "base": 4257333248,
+            "base": 2311380992,
             "range": 4096,
             "enabled": true,
             "access": "read_write",
@@ -886,7 +886,7 @@
         ],
         "detail": {
           "function": 6,
-          "command": 1287,
+          "command": 1031,
           "header_type": 1,
           "secondary_bus": 7,
           "irq": 22,
@@ -903,7 +903,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 27,
+        "index": 31,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -961,7 +961,7 @@
           },
           {
             "type": "mem",
-            "base": 4257325056,
+            "base": 2311389184,
             "range": 4096,
             "enabled": true,
             "access": "read_write",
@@ -970,7 +970,7 @@
         ],
         "detail": {
           "function": 4,
-          "command": 1287,
+          "command": 1031,
           "header_type": 1,
           "secondary_bus": 5,
           "irq": 22,
@@ -987,7 +987,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 29,
+        "index": 33,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -1045,7 +1045,7 @@
           },
           {
             "type": "mem",
-            "base": 4257316864,
+            "base": 2311397376,
             "range": 4096,
             "enabled": true,
             "access": "read_write",
@@ -1054,7 +1054,7 @@
         ],
         "detail": {
           "function": 2,
-          "command": 1287,
+          "command": 1031,
           "header_type": 1,
           "secondary_bus": 3,
           "irq": 22,
@@ -1071,7 +1071,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 30,
+        "index": 34,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -1129,7 +1129,7 @@
           },
           {
             "type": "mem",
-            "base": 4257361920,
+            "base": 2311352320,
             "range": 4096,
             "enabled": true,
             "access": "read_write",
@@ -1138,7 +1138,7 @@
         ],
         "detail": {
           "function": 5,
-          "command": 1287,
+          "command": 1031,
           "header_type": 1,
           "secondary_bus": 14,
           "irq": 23,
@@ -1155,7 +1155,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 32,
+        "index": 36,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -1213,7 +1213,7 @@
           },
           {
             "type": "mem",
-            "base": 4257308672,
+            "base": 2311405568,
             "range": 4096,
             "enabled": true,
             "access": "read_write",
@@ -1222,7 +1222,7 @@
         ],
         "detail": {
           "function": 0,
-          "command": 1287,
+          "command": 1031,
           "header_type": 1,
           "secondary_bus": 1,
           "irq": 22,
@@ -1239,7 +1239,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 33,
+        "index": 37,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -1297,7 +1297,7 @@
           },
           {
             "type": "mem",
-            "base": 4257353728,
+            "base": 2311360512,
             "range": 4096,
             "enabled": true,
             "access": "read_write",
@@ -1306,7 +1306,7 @@
         ],
         "detail": {
           "function": 3,
-          "command": 1287,
+          "command": 1031,
           "header_type": 1,
           "secondary_bus": 12,
           "irq": 23,
@@ -1325,8 +1325,8 @@
     ],
     "cdrom": [
       {
-        "index": 40,
-        "attached_to": 10,
+        "index": 47,
+        "attached_to": 12,
         "class_list": [
           "cdrom",
           "scsi",
@@ -1338,7 +1338,7 @@
           "value": 132
         },
         "slot": {
-          "bus": 0,
+          "bus": 1,
           "number": 0
         },
         "base_class": {
@@ -1373,8 +1373,8 @@
         },
         "model": "QEMU DVD-ROM",
         "sysfs_id": "/class/block/sr0",
-        "sysfs_bus_id": "0:0:0:0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0",
+        "sysfs_bus_id": "1:0:0:0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:1f.2/ata1/host1/target1:0:0/1:0:0:0",
         "unix_device_name": "/dev/sr0",
         "unix_device_number": {
           "type": 98,
@@ -1414,10 +1414,10 @@
     "cpu": [
       {
         "architecture": "x86_64",
-        "vendor_name": "GenuineIntel",
-        "family": 6,
-        "model": 186,
-        "stepping": 3,
+        "vendor_name": "AuthenticAMD",
+        "family": 26,
+        "model": 68,
+        "stepping": 0,
         "features": [
           "fpu",
           "vme",
@@ -1441,25 +1441,24 @@
           "fxsr",
           "sse",
           "sse2",
-          "ss",
           "syscall",
           "nx",
+          "mmxext",
+          "fxsr_opt",
           "pdpe1gb",
           "rdtscp",
           "lm",
-          "constant_tsc",
           "rep_good",
           "nopl",
           "xtopology",
           "cpuid",
+          "extd_apicid",
           "tsc_known_freq",
           "pni",
           "pclmulqdq",
-          "vmx",
           "ssse3",
           "fma",
           "cx16",
-          "pcid",
           "sse4_1",
           "sse4_2",
           "x2apic",
@@ -1473,19 +1472,22 @@
           "rdrand",
           "hypervisor",
           "lahf_lm",
+          "cmp_legacy",
+          "svm",
+          "cr8_legacy",
           "abm",
+          "sse4a",
+          "misalignsse",
           "3dnowprefetch",
-          "cpuid_fault",
+          "osvw",
+          "perfctr_core",
           "ssbd",
+          "perfmon_v2",
           "ibrs",
           "ibpb",
           "stibp",
           "ibrs_enhanced",
-          "tpr_shadow",
-          "flexpriority",
-          "ept",
-          "vpid",
-          "ept_ad",
+          "vmmcall",
           "fsgsbase",
           "tsc_adjust",
           "bmi1",
@@ -1494,67 +1496,90 @@
           "bmi2",
           "erms",
           "invpcid",
+          "avx512f",
+          "avx512dq",
           "rdseed",
           "adx",
           "smap",
+          "avx512ifma",
           "clflushopt",
           "clwb",
+          "avx512cd",
           "sha_ni",
+          "avx512bw",
+          "avx512vl",
           "xsaveopt",
           "xsavec",
           "xgetbv1",
           "xsaves",
           "avx_vnni",
+          "avx512_bf16",
+          "clzero",
+          "xsaveerptr",
+          "wbnoinvd",
           "arat",
+          "npt",
+          "lbrv",
+          "nrip_save",
+          "tsc_scale",
+          "vmcb_clean",
+          "flushbyasid",
+          "pausefilter",
+          "pfthreshold",
+          "v_vmsave_vmload",
+          "vgif",
           "vnmi",
+          "avx512vbmi",
           "umip",
           "pku",
           "ospke",
-          "waitpkg",
+          "avx512_vbmi2",
           "gfni",
           "vaes",
           "vpclmulqdq",
+          "avx512_vnni",
+          "avx512_bitalg",
+          "avx512_vpopcntdq",
           "rdpid",
           "movdiri",
           "movdir64b",
+          "overflow_recov",
+          "succor",
           "fsrm",
-          "md_clear",
-          "serialize",
-          "flush_l1d",
-          "arch_capabilities"
+          "avx512_vp2intersect",
+          "flush_l1d"
         ],
         "bugs": [
+          "sysret_ss_attrs",
           "spectre_v1",
           "spectre_v2",
           "spec_store_bypass",
-          "swapgs",
-          "eibrs_pbrsb",
-          "rfds",
-          "bhi",
+          "srso",
           "ibpb_no_ret"
         ],
-        "bogo": 5222.4,
-        "cache": 16384,
+        "bogo": 8583.85,
+        "cache": 512,
         "physical_id": 0,
         "siblings": 1,
         "cores": 1,
         "fpu": true,
         "fpu_exception": true,
-        "cpuid_level": 32,
+        "cpuid_level": 16,
         "write_protect": false,
+        "tlb_size": 1024,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
-          "physical": "0x27",
+          "physical": "0x30",
           "virtual": "0x30"
         }
       },
       {
         "architecture": "x86_64",
-        "vendor_name": "GenuineIntel",
-        "family": 6,
-        "model": 186,
-        "stepping": 3,
+        "vendor_name": "AuthenticAMD",
+        "family": 26,
+        "model": 68,
+        "stepping": 0,
         "features": [
           "fpu",
           "vme",
@@ -1578,25 +1603,24 @@
           "fxsr",
           "sse",
           "sse2",
-          "ss",
           "syscall",
           "nx",
+          "mmxext",
+          "fxsr_opt",
           "pdpe1gb",
           "rdtscp",
           "lm",
-          "constant_tsc",
           "rep_good",
           "nopl",
           "xtopology",
           "cpuid",
+          "extd_apicid",
           "tsc_known_freq",
           "pni",
           "pclmulqdq",
-          "vmx",
           "ssse3",
           "fma",
           "cx16",
-          "pcid",
           "sse4_1",
           "sse4_2",
           "x2apic",
@@ -1610,19 +1634,22 @@
           "rdrand",
           "hypervisor",
           "lahf_lm",
+          "cmp_legacy",
+          "svm",
+          "cr8_legacy",
           "abm",
+          "sse4a",
+          "misalignsse",
           "3dnowprefetch",
-          "cpuid_fault",
+          "osvw",
+          "perfctr_core",
           "ssbd",
+          "perfmon_v2",
           "ibrs",
           "ibpb",
           "stibp",
           "ibrs_enhanced",
-          "tpr_shadow",
-          "flexpriority",
-          "ept",
-          "vpid",
-          "ept_ad",
+          "vmmcall",
           "fsgsbase",
           "tsc_adjust",
           "bmi1",
@@ -1631,67 +1658,90 @@
           "bmi2",
           "erms",
           "invpcid",
+          "avx512f",
+          "avx512dq",
           "rdseed",
           "adx",
           "smap",
+          "avx512ifma",
           "clflushopt",
           "clwb",
+          "avx512cd",
           "sha_ni",
+          "avx512bw",
+          "avx512vl",
           "xsaveopt",
           "xsavec",
           "xgetbv1",
           "xsaves",
           "avx_vnni",
+          "avx512_bf16",
+          "clzero",
+          "xsaveerptr",
+          "wbnoinvd",
           "arat",
+          "npt",
+          "lbrv",
+          "nrip_save",
+          "tsc_scale",
+          "vmcb_clean",
+          "flushbyasid",
+          "pausefilter",
+          "pfthreshold",
+          "v_vmsave_vmload",
+          "vgif",
           "vnmi",
+          "avx512vbmi",
           "umip",
           "pku",
           "ospke",
-          "waitpkg",
+          "avx512_vbmi2",
           "gfni",
           "vaes",
           "vpclmulqdq",
+          "avx512_vnni",
+          "avx512_bitalg",
+          "avx512_vpopcntdq",
           "rdpid",
           "movdiri",
           "movdir64b",
+          "overflow_recov",
+          "succor",
           "fsrm",
-          "md_clear",
-          "serialize",
-          "flush_l1d",
-          "arch_capabilities"
+          "avx512_vp2intersect",
+          "flush_l1d"
         ],
         "bugs": [
+          "sysret_ss_attrs",
           "spectre_v1",
           "spectre_v2",
           "spec_store_bypass",
-          "swapgs",
-          "eibrs_pbrsb",
-          "rfds",
-          "bhi",
+          "srso",
           "ibpb_no_ret"
         ],
-        "bogo": 5222.4,
-        "cache": 16384,
+        "bogo": 8583.85,
+        "cache": 512,
         "physical_id": 1,
         "siblings": 1,
         "cores": 1,
         "fpu": true,
         "fpu_exception": true,
-        "cpuid_level": 32,
+        "cpuid_level": 16,
         "write_protect": false,
+        "tlb_size": 1024,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
-          "physical": "0x27",
+          "physical": "0x30",
           "virtual": "0x30"
         }
       },
       {
         "architecture": "x86_64",
-        "vendor_name": "GenuineIntel",
-        "family": 6,
-        "model": 186,
-        "stepping": 3,
+        "vendor_name": "AuthenticAMD",
+        "family": 26,
+        "model": 68,
+        "stepping": 0,
         "features": [
           "fpu",
           "vme",
@@ -1715,25 +1765,24 @@
           "fxsr",
           "sse",
           "sse2",
-          "ss",
           "syscall",
           "nx",
+          "mmxext",
+          "fxsr_opt",
           "pdpe1gb",
           "rdtscp",
           "lm",
-          "constant_tsc",
           "rep_good",
           "nopl",
           "xtopology",
           "cpuid",
+          "extd_apicid",
           "tsc_known_freq",
           "pni",
           "pclmulqdq",
-          "vmx",
           "ssse3",
           "fma",
           "cx16",
-          "pcid",
           "sse4_1",
           "sse4_2",
           "x2apic",
@@ -1747,19 +1796,22 @@
           "rdrand",
           "hypervisor",
           "lahf_lm",
+          "cmp_legacy",
+          "svm",
+          "cr8_legacy",
           "abm",
+          "sse4a",
+          "misalignsse",
           "3dnowprefetch",
-          "cpuid_fault",
+          "osvw",
+          "perfctr_core",
           "ssbd",
+          "perfmon_v2",
           "ibrs",
           "ibpb",
           "stibp",
           "ibrs_enhanced",
-          "tpr_shadow",
-          "flexpriority",
-          "ept",
-          "vpid",
-          "ept_ad",
+          "vmmcall",
           "fsgsbase",
           "tsc_adjust",
           "bmi1",
@@ -1768,67 +1820,90 @@
           "bmi2",
           "erms",
           "invpcid",
+          "avx512f",
+          "avx512dq",
           "rdseed",
           "adx",
           "smap",
+          "avx512ifma",
           "clflushopt",
           "clwb",
+          "avx512cd",
           "sha_ni",
+          "avx512bw",
+          "avx512vl",
           "xsaveopt",
           "xsavec",
           "xgetbv1",
           "xsaves",
           "avx_vnni",
+          "avx512_bf16",
+          "clzero",
+          "xsaveerptr",
+          "wbnoinvd",
           "arat",
+          "npt",
+          "lbrv",
+          "nrip_save",
+          "tsc_scale",
+          "vmcb_clean",
+          "flushbyasid",
+          "pausefilter",
+          "pfthreshold",
+          "v_vmsave_vmload",
+          "vgif",
           "vnmi",
+          "avx512vbmi",
           "umip",
           "pku",
           "ospke",
-          "waitpkg",
+          "avx512_vbmi2",
           "gfni",
           "vaes",
           "vpclmulqdq",
+          "avx512_vnni",
+          "avx512_bitalg",
+          "avx512_vpopcntdq",
           "rdpid",
           "movdiri",
           "movdir64b",
+          "overflow_recov",
+          "succor",
           "fsrm",
-          "md_clear",
-          "serialize",
-          "flush_l1d",
-          "arch_capabilities"
+          "avx512_vp2intersect",
+          "flush_l1d"
         ],
         "bugs": [
+          "sysret_ss_attrs",
           "spectre_v1",
           "spectre_v2",
           "spec_store_bypass",
-          "swapgs",
-          "eibrs_pbrsb",
-          "rfds",
-          "bhi",
+          "srso",
           "ibpb_no_ret"
         ],
-        "bogo": 5222.4,
-        "cache": 16384,
+        "bogo": 8583.85,
+        "cache": 512,
         "physical_id": 2,
         "siblings": 1,
         "cores": 1,
         "fpu": true,
         "fpu_exception": true,
-        "cpuid_level": 32,
+        "cpuid_level": 16,
         "write_protect": false,
+        "tlb_size": 1024,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
-          "physical": "0x27",
+          "physical": "0x30",
           "virtual": "0x30"
         }
       },
       {
         "architecture": "x86_64",
-        "vendor_name": "GenuineIntel",
-        "family": 6,
-        "model": 186,
-        "stepping": 3,
+        "vendor_name": "AuthenticAMD",
+        "family": 26,
+        "model": 68,
+        "stepping": 0,
         "features": [
           "fpu",
           "vme",
@@ -1852,25 +1927,24 @@
           "fxsr",
           "sse",
           "sse2",
-          "ss",
           "syscall",
           "nx",
+          "mmxext",
+          "fxsr_opt",
           "pdpe1gb",
           "rdtscp",
           "lm",
-          "constant_tsc",
           "rep_good",
           "nopl",
           "xtopology",
           "cpuid",
+          "extd_apicid",
           "tsc_known_freq",
           "pni",
           "pclmulqdq",
-          "vmx",
           "ssse3",
           "fma",
           "cx16",
-          "pcid",
           "sse4_1",
           "sse4_2",
           "x2apic",
@@ -1884,19 +1958,22 @@
           "rdrand",
           "hypervisor",
           "lahf_lm",
+          "cmp_legacy",
+          "svm",
+          "cr8_legacy",
           "abm",
+          "sse4a",
+          "misalignsse",
           "3dnowprefetch",
-          "cpuid_fault",
+          "osvw",
+          "perfctr_core",
           "ssbd",
+          "perfmon_v2",
           "ibrs",
           "ibpb",
           "stibp",
           "ibrs_enhanced",
-          "tpr_shadow",
-          "flexpriority",
-          "ept",
-          "vpid",
-          "ept_ad",
+          "vmmcall",
           "fsgsbase",
           "tsc_adjust",
           "bmi1",
@@ -1905,66 +1982,473 @@
           "bmi2",
           "erms",
           "invpcid",
+          "avx512f",
+          "avx512dq",
           "rdseed",
           "adx",
           "smap",
+          "avx512ifma",
           "clflushopt",
           "clwb",
+          "avx512cd",
           "sha_ni",
+          "avx512bw",
+          "avx512vl",
           "xsaveopt",
           "xsavec",
           "xgetbv1",
           "xsaves",
           "avx_vnni",
+          "avx512_bf16",
+          "clzero",
+          "xsaveerptr",
+          "wbnoinvd",
           "arat",
+          "npt",
+          "lbrv",
+          "nrip_save",
+          "tsc_scale",
+          "vmcb_clean",
+          "flushbyasid",
+          "pausefilter",
+          "pfthreshold",
+          "v_vmsave_vmload",
+          "vgif",
           "vnmi",
+          "avx512vbmi",
           "umip",
           "pku",
           "ospke",
-          "waitpkg",
+          "avx512_vbmi2",
           "gfni",
           "vaes",
           "vpclmulqdq",
+          "avx512_vnni",
+          "avx512_bitalg",
+          "avx512_vpopcntdq",
           "rdpid",
           "movdiri",
           "movdir64b",
+          "overflow_recov",
+          "succor",
           "fsrm",
-          "md_clear",
-          "serialize",
-          "flush_l1d",
-          "arch_capabilities"
+          "avx512_vp2intersect",
+          "flush_l1d"
         ],
         "bugs": [
+          "sysret_ss_attrs",
           "spectre_v1",
           "spectre_v2",
           "spec_store_bypass",
-          "swapgs",
-          "eibrs_pbrsb",
-          "rfds",
-          "bhi",
+          "srso",
           "ibpb_no_ret"
         ],
-        "bogo": 5222.4,
-        "cache": 16384,
+        "bogo": 8583.85,
+        "cache": 512,
         "physical_id": 3,
         "siblings": 1,
         "cores": 1,
         "fpu": true,
         "fpu_exception": true,
-        "cpuid_level": 32,
+        "cpuid_level": 16,
         "write_protect": false,
+        "tlb_size": 1024,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
-          "physical": "0x27",
+          "physical": "0x30",
+          "virtual": "0x30"
+        }
+      },
+      {
+        "architecture": "x86_64",
+        "vendor_name": "AuthenticAMD",
+        "family": 26,
+        "model": 68,
+        "stepping": 0,
+        "features": [
+          "fpu",
+          "vme",
+          "de",
+          "pse",
+          "tsc",
+          "msr",
+          "pae",
+          "mce",
+          "cx8",
+          "apic",
+          "sep",
+          "mtrr",
+          "pge",
+          "mca",
+          "cmov",
+          "pat",
+          "pse36",
+          "clflush",
+          "mmx",
+          "fxsr",
+          "sse",
+          "sse2",
+          "syscall",
+          "nx",
+          "mmxext",
+          "fxsr_opt",
+          "pdpe1gb",
+          "rdtscp",
+          "lm",
+          "rep_good",
+          "nopl",
+          "xtopology",
+          "cpuid",
+          "extd_apicid",
+          "tsc_known_freq",
+          "pni",
+          "pclmulqdq",
+          "ssse3",
+          "fma",
+          "cx16",
+          "sse4_1",
+          "sse4_2",
+          "x2apic",
+          "movbe",
+          "popcnt",
+          "tsc_deadline_timer",
+          "aes",
+          "xsave",
+          "avx",
+          "f16c",
+          "rdrand",
+          "hypervisor",
+          "lahf_lm",
+          "cmp_legacy",
+          "svm",
+          "cr8_legacy",
+          "abm",
+          "sse4a",
+          "misalignsse",
+          "3dnowprefetch",
+          "osvw",
+          "perfctr_core",
+          "ssbd",
+          "perfmon_v2",
+          "ibrs",
+          "ibpb",
+          "stibp",
+          "ibrs_enhanced",
+          "vmmcall",
+          "fsgsbase",
+          "tsc_adjust",
+          "bmi1",
+          "avx2",
+          "smep",
+          "bmi2",
+          "erms",
+          "invpcid",
+          "avx512f",
+          "avx512dq",
+          "rdseed",
+          "adx",
+          "smap",
+          "avx512ifma",
+          "clflushopt",
+          "clwb",
+          "avx512cd",
+          "sha_ni",
+          "avx512bw",
+          "avx512vl",
+          "xsaveopt",
+          "xsavec",
+          "xgetbv1",
+          "xsaves",
+          "avx_vnni",
+          "avx512_bf16",
+          "clzero",
+          "xsaveerptr",
+          "wbnoinvd",
+          "arat",
+          "npt",
+          "lbrv",
+          "nrip_save",
+          "tsc_scale",
+          "vmcb_clean",
+          "flushbyasid",
+          "pausefilter",
+          "pfthreshold",
+          "v_vmsave_vmload",
+          "vgif",
+          "vnmi",
+          "avx512vbmi",
+          "umip",
+          "pku",
+          "ospke",
+          "avx512_vbmi2",
+          "gfni",
+          "vaes",
+          "vpclmulqdq",
+          "avx512_vnni",
+          "avx512_bitalg",
+          "avx512_vpopcntdq",
+          "rdpid",
+          "movdiri",
+          "movdir64b",
+          "overflow_recov",
+          "succor",
+          "fsrm",
+          "avx512_vp2intersect",
+          "flush_l1d"
+        ],
+        "bugs": [
+          "sysret_ss_attrs",
+          "spectre_v1",
+          "spectre_v2",
+          "spec_store_bypass",
+          "srso",
+          "ibpb_no_ret"
+        ],
+        "bogo": 8583.85,
+        "cache": 512,
+        "physical_id": 4,
+        "siblings": 1,
+        "cores": 1,
+        "fpu": true,
+        "fpu_exception": true,
+        "cpuid_level": 16,
+        "write_protect": false,
+        "tlb_size": 1024,
+        "clflush_size": 64,
+        "cache_alignment": 64,
+        "address_sizes": {
+          "physical": "0x30",
+          "virtual": "0x30"
+        }
+      },
+      {
+        "architecture": "x86_64",
+        "vendor_name": "AuthenticAMD",
+        "family": 26,
+        "model": 68,
+        "stepping": 0,
+        "features": [
+          "fpu",
+          "vme",
+          "de",
+          "pse",
+          "tsc",
+          "msr",
+          "pae",
+          "mce",
+          "cx8",
+          "apic",
+          "sep",
+          "mtrr",
+          "pge",
+          "mca",
+          "cmov",
+          "pat",
+          "pse36",
+          "clflush",
+          "mmx",
+          "fxsr",
+          "sse",
+          "sse2",
+          "syscall",
+          "nx",
+          "mmxext",
+          "fxsr_opt",
+          "pdpe1gb",
+          "rdtscp",
+          "lm",
+          "rep_good",
+          "nopl",
+          "xtopology",
+          "cpuid",
+          "extd_apicid",
+          "tsc_known_freq",
+          "pni",
+          "pclmulqdq",
+          "ssse3",
+          "fma",
+          "cx16",
+          "sse4_1",
+          "sse4_2",
+          "x2apic",
+          "movbe",
+          "popcnt",
+          "tsc_deadline_timer",
+          "aes",
+          "xsave",
+          "avx",
+          "f16c",
+          "rdrand",
+          "hypervisor",
+          "lahf_lm",
+          "cmp_legacy",
+          "svm",
+          "cr8_legacy",
+          "abm",
+          "sse4a",
+          "misalignsse",
+          "3dnowprefetch",
+          "osvw",
+          "perfctr_core",
+          "ssbd",
+          "perfmon_v2",
+          "ibrs",
+          "ibpb",
+          "stibp",
+          "ibrs_enhanced",
+          "vmmcall",
+          "fsgsbase",
+          "tsc_adjust",
+          "bmi1",
+          "avx2",
+          "smep",
+          "bmi2",
+          "erms",
+          "invpcid",
+          "avx512f",
+          "avx512dq",
+          "rdseed",
+          "adx",
+          "smap",
+          "avx512ifma",
+          "clflushopt",
+          "clwb",
+          "avx512cd",
+          "sha_ni",
+          "avx512bw",
+          "avx512vl",
+          "xsaveopt",
+          "xsavec",
+          "xgetbv1",
+          "xsaves",
+          "avx_vnni",
+          "avx512_bf16",
+          "clzero",
+          "xsaveerptr",
+          "wbnoinvd",
+          "arat",
+          "npt",
+          "lbrv",
+          "nrip_save",
+          "tsc_scale",
+          "vmcb_clean",
+          "flushbyasid",
+          "pausefilter",
+          "pfthreshold",
+          "v_vmsave_vmload",
+          "vgif",
+          "vnmi",
+          "avx512vbmi",
+          "umip",
+          "pku",
+          "ospke",
+          "avx512_vbmi2",
+          "gfni",
+          "vaes",
+          "vpclmulqdq",
+          "avx512_vnni",
+          "avx512_bitalg",
+          "avx512_vpopcntdq",
+          "rdpid",
+          "movdiri",
+          "movdir64b",
+          "overflow_recov",
+          "succor",
+          "fsrm",
+          "avx512_vp2intersect",
+          "flush_l1d"
+        ],
+        "bugs": [
+          "sysret_ss_attrs",
+          "spectre_v1",
+          "spectre_v2",
+          "spec_store_bypass",
+          "srso",
+          "ibpb_no_ret"
+        ],
+        "bogo": 8583.85,
+        "cache": 512,
+        "physical_id": 5,
+        "siblings": 1,
+        "cores": 1,
+        "fpu": true,
+        "fpu_exception": true,
+        "cpuid_level": 16,
+        "write_protect": false,
+        "tlb_size": 1024,
+        "clflush_size": 64,
+        "cache_alignment": 64,
+        "address_sizes": {
+          "physical": "0x30",
           "virtual": "0x30"
         }
       }
     ],
     "disk": [
       {
-        "index": 41,
-        "attached_to": 36,
+        "index": 46,
+        "attached_to": 40,
+        "class_list": [
+          "disk",
+          "block_device"
+        ],
+        "base_class": {
+          "hex": "0106",
+          "name": "Mass Storage Device",
+          "value": 262
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Disk",
+          "value": 0
+        },
+        "model": "Disk",
+        "sysfs_id": "/class/block/vdb",
+        "sysfs_bus_id": "virtio4",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:02.5/0000:06:00.0/virtio4",
+        "unix_device_name": "/dev/vdb",
+        "unix_device_number": {
+          "type": 98,
+          "major": 253,
+          "minor": 16,
+          "range": 16
+        },
+        "unix_device_names": [
+          "/dev/disk/by-path/pci-0000:06:00.0",
+          "/dev/disk/by-path/virtio-pci-0000:06:00.0",
+          "/dev/vdb"
+        ],
+        "resources": [
+          {
+            "type": "disk_geo",
+            "cylinders": 166440,
+            "heads": 16,
+            "sectors": 63,
+            "size": "0x0",
+            "geo_type": "logical"
+          },
+          {
+            "type": "size",
+            "unit": "sectors",
+            "value_1": 167772160,
+            "value_2": 512
+          }
+        ],
+        "driver": "virtio-pci",
+        "driver_module": "virtio_pci",
+        "drivers": [
+          "virtio-pci",
+          "virtio_blk"
+        ],
+        "driver_modules": [
+          "virtio_blk",
+          "virtio_pci"
+        ]
+      },
+      {
+        "index": 48,
+        "attached_to": 44,
         "class_list": [
           "disk",
           "block_device"
@@ -1981,8 +2465,8 @@
         },
         "model": "Disk",
         "sysfs_id": "/class/block/vda",
-        "sysfs_bus_id": "virtio2",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:02.3/0000:04:00.0/virtio2",
+        "sysfs_bus_id": "virtio3",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:02.4/0000:05:00.0/virtio3",
         "unix_device_name": "/dev/vda",
         "unix_device_number": {
           "type": 98,
@@ -1991,15 +2475,14 @@
           "range": 16
         },
         "unix_device_names": [
-          "/dev/disk/by-path/pci-0000:04:00.0",
-          "/dev/disk/by-path/virtio-pci-0000:04:00.0",
+          "/dev/disk/by-path/pci-0000:05:00.0",
+          "/dev/disk/by-path/virtio-pci-0000:05:00.0",
           "/dev/vda"
         ],
-        "rom_id": "0x80",
         "resources": [
           {
             "type": "disk_geo",
-            "cylinders": 83220,
+            "cylinders": 166440,
             "heads": 16,
             "sectors": 63,
             "size": "0x0",
@@ -2008,7 +2491,7 @@
           {
             "type": "size",
             "unit": "sectors",
-            "value_1": 83886080,
+            "value_1": 167772160,
             "value_2": 512
           }
         ],
@@ -2026,7 +2509,7 @@
     ],
     "graphics_card": [
       {
-        "index": 15,
+        "index": 17,
         "attached_to": 0,
         "class_list": [
           "graphics_card",
@@ -2082,7 +2565,7 @@
         "resources": [
           {
             "type": "io",
-            "base": 49216,
+            "base": 24672,
             "range": 32,
             "enabled": true,
             "access": "read_write"
@@ -2095,7 +2578,7 @@
           },
           {
             "type": "mem",
-            "base": 4093640704,
+            "base": 2147483648,
             "range": 67108864,
             "enabled": true,
             "access": "read_write",
@@ -2103,7 +2586,7 @@
           },
           {
             "type": "mem",
-            "base": 4160749568,
+            "base": 2214592512,
             "range": 67108864,
             "enabled": true,
             "access": "read_write",
@@ -2111,7 +2594,7 @@
           },
           {
             "type": "mem",
-            "base": 4257300480,
+            "base": 2311340032,
             "range": 8192,
             "enabled": true,
             "access": "read_write",
@@ -2128,7 +2611,7 @@
         ],
         "detail": {
           "function": 0,
-          "command": 259,
+          "command": 7,
           "header_type": 0,
           "secondary_bus": 0,
           "irq": 21,
@@ -2147,8 +2630,8 @@
     ],
     "hub": [
       {
-        "index": 42,
-        "attached_to": 14,
+        "index": 49,
+        "attached_to": 16,
         "class_list": [
           "usb",
           "hub"
@@ -2169,7 +2652,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.12.49 xhci-hcd",
+          "name": "Linux 6.12.53 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2183,7 +2666,7 @@
           "value": 0
         },
         "serial": "0000:02:00.0",
-        "model": "Linux 6.12.49 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.12.53 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:02.1/0000:02:00.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -2234,8 +2717,8 @@
         "module_alias": "usb:v1D6Bp0002d0612dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 44,
-        "attached_to": 14,
+        "index": 51,
+        "attached_to": 16,
         "class_list": [
           "usb",
           "hub"
@@ -2256,7 +2739,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.12.49 xhci-hcd",
+          "name": "Linux 6.12.53 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2270,7 +2753,7 @@
           "value": 0
         },
         "serial": "0000:02:00.0",
-        "model": "Linux 6.12.49 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.12.53 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:02.1/0000:02:00.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -2313,7 +2796,7 @@
     ],
     "memory": [
       {
-        "index": 7,
+        "index": 9,
         "attached_to": 0,
         "class_list": [
           "memory"
@@ -2333,22 +2816,22 @@
           {
             "type": "mem",
             "base": 0,
-            "range": 8330354688,
+            "range": 8309288960,
             "enabled": true,
             "access": "read_write",
             "prefetch": "unknown"
           },
           {
             "type": "phys_mem",
-            "range": 8589934592
+            "range": 8053063680
           }
         ]
       }
     ],
     "mouse": [
       {
-        "index": 43,
-        "attached_to": 42,
+        "index": 50,
+        "attached_to": 49,
         "class_list": [
           "mouse",
           "usb"
@@ -2466,8 +2949,8 @@
     ],
     "network_controller": [
       {
-        "index": 37,
-        "attached_to": 17,
+        "index": 42,
+        "attached_to": 20,
         "class_list": [
           "network_controller"
         ],
@@ -2522,7 +3005,7 @@
     ],
     "network_interface": [
       {
-        "index": 45,
+        "index": 52,
         "attached_to": 0,
         "class_list": [
           "network_interface"
@@ -2545,8 +3028,8 @@
         ]
       },
       {
-        "index": 46,
-        "attached_to": 37,
+        "index": 53,
+        "attached_to": 42,
         "class_list": [
           "network_interface"
         ],
@@ -2589,8 +3072,8 @@
     ],
     "pci": [
       {
-        "index": 8,
-        "attached_to": 29,
+        "index": 18,
+        "attached_to": 13,
         "class_list": [
           "pci",
           "unknown"
@@ -2601,18 +3084,17 @@
           "value": 4
         },
         "slot": {
-          "bus": 3,
+          "bus": 8,
           "number": 0
         },
         "base_class": {
-          "hex": "0007",
-          "name": "Communication controller",
-          "value": 7
+          "hex": "0000",
+          "name": "Unclassified device",
+          "value": 0
         },
         "sub_class": {
-          "hex": "0080",
-          "name": "Communication controller",
-          "value": 128
+          "hex": "00ff",
+          "value": 255
         },
         "vendor": {
           "hex": "1af4",
@@ -2623,8 +3105,8 @@
           "value": 6900
         },
         "device": {
-          "hex": "1043",
-          "value": 4163
+          "hex": "1044",
+          "value": 4164
         },
         "sub_device": {
           "hex": "1100",
@@ -2634,9 +3116,9 @@
           "hex": "0001",
           "value": 1
         },
-        "model": "Communication controller",
-        "sysfs_id": "/devices/pci0000:00/0000:00:02.2/0000:03:00.0",
-        "sysfs_bus_id": "0000:03:00.0",
+        "model": "Unclassified device",
+        "sysfs_id": "/devices/pci0000:00/0000:00:02.7/0000:08:00.0",
+        "sysfs_bus_id": "0000:08:00.0",
         "resources": [
           {
             "type": "irq",
@@ -2646,7 +3128,7 @@
           },
           {
             "type": "mem",
-            "base": 4250927104,
+            "base": 2294284288,
             "range": 4096,
             "enabled": true,
             "access": "read_write",
@@ -2654,7 +3136,7 @@
           },
           {
             "type": "mem",
-            "base": 483989127168,
+            "base": 61813169324032,
             "range": 16384,
             "enabled": true,
             "access": "read_only",
@@ -2663,7 +3145,7 @@
         ],
         "detail": {
           "function": 0,
-          "command": 1287,
+          "command": 1031,
           "header_type": 0,
           "secondary_bus": 0,
           "irq": 22,
@@ -2677,11 +3159,11 @@
         "driver_modules": [
           "virtio_pci"
         ],
-        "module_alias": "pci:v00001AF4d00001043sv00001AF4sd00001100bc07sc80i00"
+        "module_alias": "pci:v00001AF4d00001044sv00001AF4sd00001100bc00scFFi00"
       },
       {
-        "index": 17,
-        "attached_to": 32,
+        "index": 20,
+        "attached_to": 36,
         "class_list": [
           "pci",
           "unknown"
@@ -2737,15 +3219,7 @@
           },
           {
             "type": "mem",
-            "base": 4255121408,
-            "range": 262144,
-            "enabled": false,
-            "access": "read_only",
-            "prefetch": "no"
-          },
-          {
-            "type": "mem",
-            "base": 4255383552,
+            "base": 2308964352,
             "range": 4096,
             "enabled": true,
             "access": "read_write",
@@ -2753,7 +3227,15 @@
           },
           {
             "type": "mem",
-            "base": 484525998080,
+            "base": 2309226496,
+            "range": 262144,
+            "enabled": false,
+            "access": "read_only",
+            "prefetch": "no"
+          },
+          {
+            "type": "mem",
+            "base": 61572651155456,
             "range": 16384,
             "enabled": true,
             "access": "read_only",
@@ -2762,7 +3244,7 @@
         ],
         "detail": {
           "function": 0,
-          "command": 1287,
+          "command": 1031,
           "header_type": 0,
           "secondary_bus": 0,
           "irq": 22,
@@ -2779,7 +3261,97 @@
         "module_alias": "pci:v00001AF4d00001041sv00001AF4sd00001100bc02sc00i00"
       },
       {
-        "index": 22,
+        "index": 24,
+        "attached_to": 30,
+        "class_list": [
+          "pci",
+          "unknown"
+        ],
+        "bus_type": {
+          "hex": "0004",
+          "name": "PCI",
+          "value": 4
+        },
+        "slot": {
+          "bus": 7,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0000",
+          "name": "Unclassified device",
+          "value": 0
+        },
+        "sub_class": {
+          "hex": "00ff",
+          "value": 255
+        },
+        "vendor": {
+          "hex": "1af4",
+          "value": 6900
+        },
+        "sub_vendor": {
+          "hex": "1af4",
+          "value": 6900
+        },
+        "device": {
+          "hex": "1045",
+          "value": 4165
+        },
+        "sub_device": {
+          "hex": "1100",
+          "value": 4352
+        },
+        "revision": {
+          "hex": "0001",
+          "value": 1
+        },
+        "model": "Unclassified device",
+        "sysfs_id": "/devices/pci0000:00/0000:00:02.6/0000:07:00.0",
+        "sysfs_bus_id": "0000:07:00.0",
+        "resources": [
+          {
+            "type": "irq",
+            "base": 22,
+            "triggered": 0,
+            "enabled": true
+          },
+          {
+            "type": "mem",
+            "base": 2296381440,
+            "range": 4096,
+            "enabled": true,
+            "access": "read_write",
+            "prefetch": "no"
+          },
+          {
+            "type": "mem",
+            "base": 61778809585664,
+            "range": 16384,
+            "enabled": true,
+            "access": "read_only",
+            "prefetch": "no"
+          }
+        ],
+        "detail": {
+          "function": 0,
+          "command": 1031,
+          "header_type": 0,
+          "secondary_bus": 0,
+          "irq": 22,
+          "prog_if": 0
+        },
+        "driver": "virtio-pci",
+        "driver_module": "virtio_pci",
+        "drivers": [
+          "virtio-pci"
+        ],
+        "driver_modules": [
+          "virtio_pci"
+        ],
+        "module_alias": "pci:v00001AF4d00001045sv00001AF4sd00001100bc00scFFi00"
+      },
+      {
+        "index": 26,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -2831,7 +3403,7 @@
         "resources": [
           {
             "type": "io",
-            "base": 1792,
+            "base": 24576,
             "range": 64,
             "enabled": true,
             "access": "read_write"
@@ -2845,7 +3417,7 @@
         ],
         "detail": {
           "function": 3,
-          "command": 259,
+          "command": 7,
           "header_type": 0,
           "secondary_bus": 0,
           "irq": 16,
@@ -2862,8 +3434,8 @@
         "module_alias": "pci:v00008086d00002930sv00001AF4sd00001100bc0Csc05i00"
       },
       {
-        "index": 24,
-        "attached_to": 13,
+        "index": 28,
+        "attached_to": 15,
         "class_list": [
           "pci",
           "unknown"
@@ -2875,186 +3447,6 @@
         },
         "slot": {
           "bus": 6,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "0000",
-          "name": "Unclassified device",
-          "value": 0
-        },
-        "sub_class": {
-          "hex": "00ff",
-          "value": 255
-        },
-        "vendor": {
-          "hex": "1af4",
-          "value": 6900
-        },
-        "sub_vendor": {
-          "hex": "1af4",
-          "value": 6900
-        },
-        "device": {
-          "hex": "1044",
-          "value": 4164
-        },
-        "sub_device": {
-          "hex": "1100",
-          "value": 4352
-        },
-        "revision": {
-          "hex": "0001",
-          "value": 1
-        },
-        "model": "Unclassified device",
-        "sysfs_id": "/devices/pci0000:00/0000:00:02.5/0000:06:00.0",
-        "sysfs_bus_id": "0000:06:00.0",
-        "resources": [
-          {
-            "type": "irq",
-            "base": 22,
-            "triggered": 0,
-            "enabled": true
-          },
-          {
-            "type": "mem",
-            "base": 4244635648,
-            "range": 4096,
-            "enabled": true,
-            "access": "read_write",
-            "prefetch": "no"
-          },
-          {
-            "type": "mem",
-            "base": 483183820800,
-            "range": 16384,
-            "enabled": true,
-            "access": "read_only",
-            "prefetch": "no"
-          }
-        ],
-        "detail": {
-          "function": 0,
-          "command": 1287,
-          "header_type": 0,
-          "secondary_bus": 0,
-          "irq": 22,
-          "prog_if": 0
-        },
-        "driver": "virtio-pci",
-        "driver_module": "virtio_pci",
-        "drivers": [
-          "virtio-pci"
-        ],
-        "driver_modules": [
-          "virtio_pci"
-        ],
-        "module_alias": "pci:v00001AF4d00001044sv00001AF4sd00001100bc00scFFi00"
-      },
-      {
-        "index": 28,
-        "attached_to": 27,
-        "class_list": [
-          "pci",
-          "unknown"
-        ],
-        "bus_type": {
-          "hex": "0004",
-          "name": "PCI",
-          "value": 4
-        },
-        "slot": {
-          "bus": 5,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "0000",
-          "name": "Unclassified device",
-          "value": 0
-        },
-        "sub_class": {
-          "hex": "00ff",
-          "value": 255
-        },
-        "vendor": {
-          "hex": "1af4",
-          "value": 6900
-        },
-        "sub_vendor": {
-          "hex": "1af4",
-          "value": 6900
-        },
-        "device": {
-          "hex": "1045",
-          "value": 4165
-        },
-        "sub_device": {
-          "hex": "1100",
-          "value": 4352
-        },
-        "revision": {
-          "hex": "0001",
-          "value": 1
-        },
-        "model": "Unclassified device",
-        "sysfs_id": "/devices/pci0000:00/0000:00:02.4/0000:05:00.0",
-        "sysfs_bus_id": "0000:05:00.0",
-        "resources": [
-          {
-            "type": "irq",
-            "base": 22,
-            "triggered": 0,
-            "enabled": true
-          },
-          {
-            "type": "mem",
-            "base": 4246732800,
-            "range": 4096,
-            "enabled": true,
-            "access": "read_write",
-            "prefetch": "no"
-          },
-          {
-            "type": "mem",
-            "base": 483452256256,
-            "range": 16384,
-            "enabled": true,
-            "access": "read_only",
-            "prefetch": "no"
-          }
-        ],
-        "detail": {
-          "function": 0,
-          "command": 1287,
-          "header_type": 0,
-          "secondary_bus": 0,
-          "irq": 22,
-          "prog_if": 0
-        },
-        "driver": "virtio-pci",
-        "driver_module": "virtio_pci",
-        "drivers": [
-          "virtio-pci"
-        ],
-        "driver_modules": [
-          "virtio_pci"
-        ],
-        "module_alias": "pci:v00001AF4d00001045sv00001AF4sd00001100bc00scFFi00"
-      },
-      {
-        "index": 31,
-        "attached_to": 16,
-        "class_list": [
-          "pci",
-          "unknown"
-        ],
-        "bus_type": {
-          "hex": "0004",
-          "name": "PCI",
-          "value": 4
-        },
-        "slot": {
-          "bus": 4,
           "number": 0
         },
         "base_class": {
@@ -3088,8 +3480,8 @@
           "value": 1
         },
         "model": "SCSI storage controller",
-        "sysfs_id": "/devices/pci0000:00/0000:00:02.3/0000:04:00.0",
-        "sysfs_bus_id": "0000:04:00.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:02.5/0000:06:00.0",
+        "sysfs_bus_id": "0000:06:00.0",
         "resources": [
           {
             "type": "irq",
@@ -3099,7 +3491,7 @@
           },
           {
             "type": "mem",
-            "base": 4248829952,
+            "base": 2298478592,
             "range": 4096,
             "enabled": true,
             "access": "read_write",
@@ -3107,7 +3499,7 @@
           },
           {
             "type": "mem",
-            "base": 483720691712,
+            "base": 61744449847296,
             "range": 16384,
             "enabled": true,
             "access": "read_only",
@@ -3116,7 +3508,7 @@
         ],
         "detail": {
           "function": 0,
-          "command": 1287,
+          "command": 1031,
           "header_type": 0,
           "secondary_bus": 0,
           "irq": 22,
@@ -3131,11 +3523,193 @@
           "virtio_pci"
         ],
         "module_alias": "pci:v00001AF4d00001042sv00001AF4sd00001100bc01sc00i00"
+      },
+      {
+        "index": 32,
+        "attached_to": 31,
+        "class_list": [
+          "pci",
+          "unknown"
+        ],
+        "bus_type": {
+          "hex": "0004",
+          "name": "PCI",
+          "value": 4
+        },
+        "slot": {
+          "bus": 5,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0001",
+          "name": "Mass storage controller",
+          "value": 1
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "SCSI storage controller",
+          "value": 0
+        },
+        "vendor": {
+          "hex": "1af4",
+          "value": 6900
+        },
+        "sub_vendor": {
+          "hex": "1af4",
+          "value": 6900
+        },
+        "device": {
+          "hex": "1042",
+          "value": 4162
+        },
+        "sub_device": {
+          "hex": "1100",
+          "value": 4352
+        },
+        "revision": {
+          "hex": "0001",
+          "value": 1
+        },
+        "model": "SCSI storage controller",
+        "sysfs_id": "/devices/pci0000:00/0000:00:02.4/0000:05:00.0",
+        "sysfs_bus_id": "0000:05:00.0",
+        "resources": [
+          {
+            "type": "irq",
+            "base": 22,
+            "triggered": 0,
+            "enabled": true
+          },
+          {
+            "type": "mem",
+            "base": 2300575744,
+            "range": 4096,
+            "enabled": true,
+            "access": "read_write",
+            "prefetch": "no"
+          },
+          {
+            "type": "mem",
+            "base": 61710090108928,
+            "range": 16384,
+            "enabled": true,
+            "access": "read_only",
+            "prefetch": "no"
+          }
+        ],
+        "detail": {
+          "function": 0,
+          "command": 1031,
+          "header_type": 0,
+          "secondary_bus": 0,
+          "irq": 22,
+          "prog_if": 0
+        },
+        "driver": "virtio-pci",
+        "driver_module": "virtio_pci",
+        "drivers": [
+          "virtio-pci"
+        ],
+        "driver_modules": [
+          "virtio_pci"
+        ],
+        "module_alias": "pci:v00001AF4d00001042sv00001AF4sd00001100bc01sc00i00"
+      },
+      {
+        "index": 35,
+        "attached_to": 19,
+        "class_list": [
+          "pci",
+          "unknown"
+        ],
+        "bus_type": {
+          "hex": "0004",
+          "name": "PCI",
+          "value": 4
+        },
+        "slot": {
+          "bus": 4,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0007",
+          "name": "Communication controller",
+          "value": 7
+        },
+        "sub_class": {
+          "hex": "0080",
+          "name": "Communication controller",
+          "value": 128
+        },
+        "vendor": {
+          "hex": "1af4",
+          "value": 6900
+        },
+        "sub_vendor": {
+          "hex": "1af4",
+          "value": 6900
+        },
+        "device": {
+          "hex": "1043",
+          "value": 4163
+        },
+        "sub_device": {
+          "hex": "1100",
+          "value": 4352
+        },
+        "revision": {
+          "hex": "0001",
+          "value": 1
+        },
+        "model": "Communication controller",
+        "sysfs_id": "/devices/pci0000:00/0000:00:02.3/0000:04:00.0",
+        "sysfs_bus_id": "0000:04:00.0",
+        "resources": [
+          {
+            "type": "irq",
+            "base": 22,
+            "triggered": 0,
+            "enabled": true
+          },
+          {
+            "type": "mem",
+            "base": 2302672896,
+            "range": 4096,
+            "enabled": true,
+            "access": "read_write",
+            "prefetch": "no"
+          },
+          {
+            "type": "mem",
+            "base": 61675730370560,
+            "range": 16384,
+            "enabled": true,
+            "access": "read_only",
+            "prefetch": "no"
+          }
+        ],
+        "detail": {
+          "function": 0,
+          "command": 1031,
+          "header_type": 0,
+          "secondary_bus": 0,
+          "irq": 22,
+          "prog_if": 0
+        },
+        "driver": "virtio-pci",
+        "driver_module": "virtio_pci",
+        "drivers": [
+          "virtio-pci"
+        ],
+        "driver_modules": [
+          "virtio_pci"
+        ],
+        "module_alias": "pci:v00001AF4d00001043sv00001AF4sd00001100bc07sc80i00"
       }
     ],
     "sound": [
       {
-        "index": 19,
+        "index": 22,
         "attached_to": 0,
         "class_list": [
           "sound",
@@ -3186,13 +3760,13 @@
         "resources": [
           {
             "type": "irq",
-            "base": 58,
+            "base": 78,
             "triggered": 0,
             "enabled": true
           },
           {
             "type": "mem",
-            "base": 4257284096,
+            "base": 2311323648,
             "range": 16384,
             "enabled": true,
             "access": "read_write",
@@ -3201,10 +3775,10 @@
         ],
         "detail": {
           "function": 0,
-          "command": 1287,
+          "command": 1031,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 58,
+          "irq": 78,
           "prog_if": 0
         },
         "driver": "snd_hda_intel",
@@ -3221,6 +3795,97 @@
     "storage_controller": [
       {
         "index": 10,
+        "attached_to": 33,
+        "class_list": [
+          "storage_controller",
+          "pci"
+        ],
+        "bus_type": {
+          "hex": "0004",
+          "name": "PCI",
+          "value": 4
+        },
+        "slot": {
+          "bus": 3,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0001",
+          "name": "Mass storage controller",
+          "value": 1
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "SCSI storage controller",
+          "value": 0
+        },
+        "vendor": {
+          "hex": "1af4",
+          "value": 6900
+        },
+        "sub_vendor": {
+          "hex": "1af4",
+          "value": 6900
+        },
+        "device": {
+          "hex": "1048",
+          "value": 4168
+        },
+        "sub_device": {
+          "hex": "1100",
+          "value": 4352
+        },
+        "revision": {
+          "hex": "0001",
+          "value": 1
+        },
+        "model": "SCSI storage controller",
+        "sysfs_id": "/devices/pci0000:00/0000:00:02.2/0000:03:00.0",
+        "sysfs_bus_id": "0000:03:00.0",
+        "resources": [
+          {
+            "type": "irq",
+            "base": 22,
+            "triggered": 0,
+            "enabled": true
+          },
+          {
+            "type": "mem",
+            "base": 2304770048,
+            "range": 4096,
+            "enabled": true,
+            "access": "read_write",
+            "prefetch": "no"
+          },
+          {
+            "type": "mem",
+            "base": 61641370632192,
+            "range": 16384,
+            "enabled": true,
+            "access": "read_only",
+            "prefetch": "no"
+          }
+        ],
+        "detail": {
+          "function": 0,
+          "command": 1031,
+          "header_type": 0,
+          "secondary_bus": 0,
+          "irq": 22,
+          "prog_if": 0
+        },
+        "driver": "virtio-pci",
+        "driver_module": "virtio_pci",
+        "drivers": [
+          "virtio-pci"
+        ],
+        "driver_modules": [
+          "virtio_pci"
+        ],
+        "module_alias": "pci:v00001AF4d00001048sv00001AF4sd00001100bc01sc00i00"
+      },
+      {
+        "index": 12,
         "attached_to": 0,
         "class_list": [
           "storage_controller",
@@ -3275,20 +3940,20 @@
         "resources": [
           {
             "type": "io",
-            "base": 49248,
+            "base": 24640,
             "range": 32,
             "enabled": true,
             "access": "read_write"
           },
           {
             "type": "irq",
-            "base": 55,
+            "base": 56,
             "triggered": 0,
             "enabled": true
           },
           {
             "type": "mem",
-            "base": 4257366016,
+            "base": 2311348224,
             "range": 4096,
             "enabled": true,
             "access": "read_write",
@@ -3297,10 +3962,10 @@
         ],
         "detail": {
           "function": 2,
-          "command": 1287,
+          "command": 1031,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 55,
+          "irq": 56,
           "prog_if": 1
         },
         "driver": "ahci",
@@ -3314,8 +3979,8 @@
         "module_alias": "pci:v00008086d00002922sv00001AF4sd00001100bc01sc06i01"
       },
       {
-        "index": 36,
-        "attached_to": 31,
+        "index": 40,
+        "attached_to": 28,
         "class_list": [
           "storage_controller"
         ],
@@ -3341,8 +4006,48 @@
         "vendor": "Virtio",
         "device": "Storage 0",
         "model": "Virtio Storage 0",
-        "sysfs_id": "/devices/pci0000:00/0000:00:02.3/0000:04:00.0/virtio2",
-        "sysfs_bus_id": "virtio2",
+        "sysfs_id": "/devices/pci0000:00/0000:00:02.5/0000:06:00.0/virtio4",
+        "sysfs_bus_id": "virtio4",
+        "driver": "virtio_blk",
+        "driver_module": "virtio_blk",
+        "drivers": [
+          "virtio_blk"
+        ],
+        "driver_modules": [
+          "virtio_blk"
+        ],
+        "module_alias": "virtio:d00000002v00001AF4"
+      },
+      {
+        "index": 44,
+        "attached_to": 32,
+        "class_list": [
+          "storage_controller"
+        ],
+        "bus_type": {
+          "hex": "008f",
+          "name": "Virtio",
+          "value": 143
+        },
+        "slot": {
+          "bus": 0,
+          "number": 1
+        },
+        "base_class": {
+          "hex": "0001",
+          "name": "Mass storage controller",
+          "value": 1
+        },
+        "sub_class": {
+          "hex": "0080",
+          "name": "Storage controller",
+          "value": 128
+        },
+        "vendor": "Virtio",
+        "device": "Storage 1",
+        "model": "Virtio Storage 1",
+        "sysfs_id": "/devices/pci0000:00/0000:00:02.4/0000:05:00.0/virtio3",
+        "sysfs_bus_id": "virtio3",
         "driver": "virtio_blk",
         "driver_module": "virtio_blk",
         "drivers": [
@@ -3359,8 +4064,8 @@
     },
     "unknown": [
       {
-        "index": 34,
-        "attached_to": 8,
+        "index": 38,
+        "attached_to": 10,
         "class_list": [
           "unknown"
         ],
@@ -3379,6 +4084,68 @@
         "model": "Virtio Unclassified device",
         "sysfs_id": "/devices/pci0000:00/0000:00:02.2/0000:03:00.0/virtio1",
         "sysfs_bus_id": "virtio1",
+        "driver": "virtio_scsi",
+        "driver_module": "virtio_scsi",
+        "drivers": [
+          "virtio_scsi"
+        ],
+        "driver_modules": [
+          "virtio_scsi"
+        ],
+        "module_alias": "virtio:d00000008v00001AF4"
+      },
+      {
+        "index": 39,
+        "attached_to": 18,
+        "class_list": [
+          "unknown"
+        ],
+        "base_class": {
+          "hex": "0000",
+          "name": "Unclassified device",
+          "value": 0
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Unclassified device",
+          "value": 0
+        },
+        "vendor": "Virtio",
+        "device": "",
+        "model": "Virtio Unclassified device",
+        "sysfs_id": "/devices/pci0000:00/0000:00:02.7/0000:08:00.0/virtio6",
+        "sysfs_bus_id": "virtio6",
+        "driver": "virtio_rng",
+        "driver_module": "virtio_rng",
+        "drivers": [
+          "virtio_rng"
+        ],
+        "driver_modules": [
+          "virtio_rng"
+        ],
+        "module_alias": "virtio:d00000004v00001AF4"
+      },
+      {
+        "index": 41,
+        "attached_to": 35,
+        "class_list": [
+          "unknown"
+        ],
+        "base_class": {
+          "hex": "0000",
+          "name": "Unclassified device",
+          "value": 0
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Unclassified device",
+          "value": 0
+        },
+        "vendor": "Virtio",
+        "device": "",
+        "model": "Virtio Unclassified device",
+        "sysfs_id": "/devices/pci0000:00/0000:00:02.3/0000:04:00.0/virtio2",
+        "sysfs_bus_id": "virtio2",
         "driver": "virtio_console",
         "driver_module": "virtio_console",
         "drivers": [
@@ -3390,7 +4157,7 @@
         "module_alias": "virtio:d00000003v00001AF4"
       },
       {
-        "index": 35,
+        "index": 43,
         "attached_to": 24,
         "class_list": [
           "unknown"
@@ -3408,39 +4175,8 @@
         "vendor": "Virtio",
         "device": "",
         "model": "Virtio Unclassified device",
-        "sysfs_id": "/devices/pci0000:00/0000:00:02.5/0000:06:00.0/virtio4",
-        "sysfs_bus_id": "virtio4",
-        "driver": "virtio_rng",
-        "driver_module": "virtio_rng",
-        "drivers": [
-          "virtio_rng"
-        ],
-        "driver_modules": [
-          "virtio_rng"
-        ],
-        "module_alias": "virtio:d00000004v00001AF4"
-      },
-      {
-        "index": 38,
-        "attached_to": 28,
-        "class_list": [
-          "unknown"
-        ],
-        "base_class": {
-          "hex": "0000",
-          "name": "Unclassified device",
-          "value": 0
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Unclassified device",
-          "value": 0
-        },
-        "vendor": "Virtio",
-        "device": "",
-        "model": "Virtio Unclassified device",
-        "sysfs_id": "/devices/pci0000:00/0000:00:02.4/0000:05:00.0/virtio3",
-        "sysfs_bus_id": "virtio3",
+        "sysfs_id": "/devices/pci0000:00/0000:00:02.6/0000:07:00.0/virtio5",
+        "sysfs_bus_id": "virtio5",
         "driver": "virtio_balloon",
         "driver_module": "virtio_balloon",
         "drivers": [
@@ -3452,7 +4188,7 @@
         "module_alias": "virtio:d00000005v00001AF4"
       },
       {
-        "index": 39,
+        "index": 45,
         "attached_to": 0,
         "class_list": [
           "unknown"
@@ -3501,8 +4237,8 @@
     ],
     "usb_controller": [
       {
-        "index": 14,
-        "attached_to": 18,
+        "index": 16,
+        "attached_to": 21,
         "class_list": [
           "usb_controller",
           "pci"
@@ -3562,7 +4298,7 @@
           },
           {
             "type": "mem",
-            "base": 4253024256,
+            "base": 2306867200,
             "range": 16384,
             "enabled": true,
             "access": "read_write",
@@ -3571,7 +4307,7 @@
         ],
         "detail": {
           "function": 0,
-          "command": 1287,
+          "command": 1031,
           "header_type": 0,
           "secondary_bus": 0,
           "irq": 22,
@@ -3592,9 +4328,9 @@
   "smbios": {
     "bios": {
       "handle": 0,
-      "vendor": "SeaBIOS",
-      "version": "rel-1.17.0-0-gb52ca86e094d-prebuilt.qemu.org",
-      "date": "04/01/2014",
+      "vendor": "EDK II",
+      "version": "unknown",
+      "date": "02/02/2022",
       "features": null,
       "start_address": "0xe8000",
       "rom_size": 65536
@@ -3804,6 +4540,72 @@
       {
         "handle": 1027,
         "socket": "CPU 3",
+        "socket_type": {
+          "hex": "0001",
+          "name": "Other",
+          "value": 1
+        },
+        "socket_populated": true,
+        "manufacturer": "QEMU",
+        "version": "pc-q35-10.1",
+        "part": "",
+        "processor_type": {
+          "hex": "0003",
+          "name": "CPU",
+          "value": 3
+        },
+        "processor_family": {
+          "hex": "00fe",
+          "name": "Other",
+          "value": 254
+        },
+        "processor_status": {
+          "hex": "0001",
+          "name": "Enabled",
+          "value": 1
+        },
+        "clock_ext": 0,
+        "clock_max": 2000,
+        "cache_handle_l1": 0,
+        "cache_handle_l2": 0,
+        "cache_handle_l3": 0
+      },
+      {
+        "handle": 1028,
+        "socket": "CPU 4",
+        "socket_type": {
+          "hex": "0001",
+          "name": "Other",
+          "value": 1
+        },
+        "socket_populated": true,
+        "manufacturer": "QEMU",
+        "version": "pc-q35-10.1",
+        "part": "",
+        "processor_type": {
+          "hex": "0003",
+          "name": "CPU",
+          "value": 3
+        },
+        "processor_family": {
+          "hex": "00fe",
+          "name": "Other",
+          "value": 254
+        },
+        "processor_status": {
+          "hex": "0001",
+          "name": "Enabled",
+          "value": 1
+        },
+        "clock_ext": 0,
+        "clock_max": 2000,
+        "cache_handle_l1": 0,
+        "cache_handle_l2": 0,
+        "cache_handle_l3": 0
+      },
+      {
+        "handle": 1029,
+        "socket": "CPU 5",
         "socket_type": {
           "hex": "0001",
           "name": "Other",

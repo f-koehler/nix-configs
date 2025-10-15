@@ -1,5 +1,9 @@
 _:
 let
+  mkDefaultFeatures = {
+    audiobookshelf.enable = false;
+    navidrome.enable = false;
+  };
   mkNodeConfig =
     {
       hostName,
@@ -8,6 +12,7 @@ let
       system ? "x86_64-linux",
       timezone ? "Asia/Singapore",
       domain ? "corgi-dojo.ts.net",
+      features ? { },
     }:
     {
       inherit
@@ -18,6 +23,7 @@ let
         timezone
         username
         ;
+      features = mkDefaultFeatures // features;
     };
 in
 {

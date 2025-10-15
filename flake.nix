@@ -10,6 +10,10 @@
     nixos-facter.url = "github:nix-community/nixos-facter";
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0";
     systems.url = "github:nix-systems/default";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Flake outputs
@@ -25,6 +29,10 @@
         "homeserver2" = {
           hostName = "homeserver2";
           hostId = "760f3bc8";
+          features = {
+            audiobookshelf.enable = false;
+            navidrome.enable = false;
+          };
         };
       };
     in

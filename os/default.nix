@@ -67,6 +67,9 @@
       isNormalUser = true;
       group = "${nodeConfig.username}";
       extraGroups = [ "wheel" ];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICZDAwTGeFn4vAWbk0JboDzdLiNlJXA4EhzCMrJvMTB4"
+      ];
     };
   };
   system = {

@@ -70,6 +70,7 @@
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICZDAwTGeFn4vAWbk0JboDzdLiNlJXA4EhzCMrJvMTB4"
       ];
+      initialHashedPassword = "$y$j9T$RwtXnkpl3WVtJA5sGuteG/$aaxxET8KLqIxp7r0jYEE9.fnCW441j1ur/VUzduyEWB";
     };
   };
   system = {

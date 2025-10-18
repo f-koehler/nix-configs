@@ -16,27 +16,32 @@
     ./navidrome.nix
   ];
 
-  boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
+  boot = {
+    zfs = {
+      forceImportRoot = false;
+      devNodes = "/dev/disk/by-path";
     };
-    grub = {
-      enable = true;
-      efiSupport = true;
-      #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
-      mirroredBoots = [
-      {
-        path = "/boot";
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
-        devices = [ "nodev" ];
-      }
-      {
-        path = "/boot-fallback";
-        efiSysMountPoint = "/boot-fallback";
-        devices = [ "nodev" ];
-      }
-    ];
+      };
+      grub = {
+        enable = true;
+        efiSupport = true;
+        zfsSupport = true;
+        #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
+        mirroredBoots = [
+          {
+            path = "/boot";
+            devices = [ "nodev" ];
+          }
+          {
+            path = "/boot-fallback";
+            devices = [ "nodev" ];
+          }
+        ];
+      };
     };
   };
   home-manager = {
@@ -53,8 +58,8 @@
     openssh = {
       enable = true;
 
-      };
     };
+  };
   time.timeZone = nodeConfig.timezone;
   users = {
     groups.${nodeConfig.username} = { };

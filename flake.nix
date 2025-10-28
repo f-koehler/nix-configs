@@ -18,6 +18,10 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Flake outputs
@@ -74,6 +78,7 @@
             buildInputs = pre-commit-check.enabledPackages;
             packages = [
               pkgs.just
+              pkgs.sops
               inputs.nixos-anywhere.packages.${system}.nixos-anywhere
               inputs.nixos-facter.packages.${system}.nixos-facter
             ];

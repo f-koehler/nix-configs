@@ -1,0 +1,7 @@
+keys:
+  - &admin_fkoehler C5DC80511469AD81C84E3564D55A35AFB2900A11
+creation_rules:
+  - path_regex: \.secrets.yaml$
+    key_groups:
+      - pgp:
+          - *admin_fkoehler

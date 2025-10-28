@@ -18,6 +18,7 @@ let
         ;
     };
     modules = [
+      inputs.sops-nix.nixosModules.sops
       inputs.disko.nixosModules.disko
       inputs.nixos-facter-modules.nixosModules.facter
       inputs.home-manager.nixosModules.home-manager

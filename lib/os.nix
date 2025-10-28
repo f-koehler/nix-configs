@@ -34,10 +34,12 @@ let
     }:
     lib.mkIf enable {
       disko.devices.zpool.zroot.datasets = builtins.listToAttrs (
-        builtins.map (name: {
-          name = "var/lib/selfHosted/${name}";
+        builtins.map (dataset: {
+          name = "var/lib/selfHosted/${dataset}";
           value = {
             type = "zfs_fs";
+            options.acltype = "posixacl";
+            postMountHook = "chown -R ${name}:${name} /var/lib/selfHosted/${dataset}";
           };
         }) datasets
       );

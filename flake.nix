@@ -14,6 +14,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Flake outputs
@@ -79,6 +83,17 @@
       });
       nixosConfigurations = {
         "homeserver-dev" = myLib.os.mkOs nodes."homeserver-dev";
+      };
+      packages.x86_64-linux = {
+        user-service-proxy = inputs.nixos-generators.nixosGenerate {
+          system = "x86_64-linux";
+          modules = [
+            {
+              services.tailscale.enable = true;
+            }
+          ];
+          format = "docker";
+        };
       };
     };
 }

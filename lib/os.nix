@@ -40,11 +40,11 @@ let
     lib.mkIf enable {
       disko.devices.zpool.zroot.datasets = builtins.listToAttrs (
         builtins.map (dataset: {
-          name = "var/lib/self-hosted/${dataset}";
+          name = "var/lib/selfHosted/${dataset}";
           value = {
             type = "zfs_fs";
             options.acltype = "posixacl";
-            postMountHook = "chown -R ${name}:${name} /var/lib/self-hosted/${dataset}";
+            postMountHook = "chown -R ${name}:${name} /var/lib/selfHosted/${dataset}";
           };
         }) ([ "${name}" ] ++ (map (dataset: "${name}/${dataset}") datasets))
       );
@@ -54,14 +54,14 @@ let
           isNormalUser = true;
           group = name;
           linger = true;
-          home = "/var/lib/self-hosted/${name}";
+          home = "/var/lib/selfHosted/${name}";
           createHome = true;
         };
       };
       home-manager.users.${name} = {
         home = {
           username = name;
-          homeDirectory = "/var/lib/self-hosted/${name}";
+          homeDirectory = "/var/lib/selfHosted/${name}";
           inherit stateVersion;
         };
         programs.home-manager.enable = true;

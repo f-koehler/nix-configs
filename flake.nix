@@ -8,7 +8,7 @@
     nixos-anywhere.url = "github:nix-community/nixos-anywhere";
     nixos-facter-modules.url = "github:nix-community/nixos-facter-modules";
     nixos-facter.url = "github:nix-community/nixos-facter";
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default";
     home-manager = {
       url = "github:nix-community/home-manager";

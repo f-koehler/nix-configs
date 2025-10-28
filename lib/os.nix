@@ -44,7 +44,6 @@ let
           value = {
             type = "zfs_fs";
             options.acltype = "posixacl";
-            postMountHook = "chown -R ${name}:${name} /var/lib/selfHosted/${dataset}";
           };
         }) ([ "${name}" ] ++ (map (dataset: "${name}/${dataset}") datasets))
       );
@@ -56,6 +55,16 @@ let
           linger = true;
           home = "/var/lib/selfHosted/${name}";
           createHome = true;
+        };
+      };
+      systemd.tmpfiles.settings = {
+        "10-home-directory-${name}" = {
+          "/var/lib/selfHosted/${name}" = {
+            "Z" = {
+              user = name;
+              group = name;
+            };
+          };
         };
       };
       home-manager.users.${name} = {

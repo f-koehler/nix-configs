@@ -68,15 +68,17 @@ let
           };
         };
       };
-      home-manager.users.${name} = {
-        home = {
-          username = name;
-          homeDirectory = "/var/lib/selfHosted/${name}";
-          inherit stateVersion;
-        };
-        programs.home-manager.enable = true;
-      }
-      // (mkUserQuadlet { inherit name containers; });
+      home-manager.users.${name} =
+        _:
+        {
+          home = {
+            username = name;
+            homeDirectory = "/var/lib/selfHosted/${name}";
+            inherit stateVersion;
+          };
+          programs.home-manager.enable = true;
+        }
+        // (mkUserQuadlet { inherit name containers; });
     };
   mkUserContainerDefaultOptions =
     { name, ... }:
@@ -89,13 +91,15 @@ let
     { name, containers, ... }:
     {
       services.podman = {
+        enable = true;
+        enableTypeChecks = true;
         networks.${name} = {
           autoStart = true;
           description = "Podman network for ${name}";
           internal = true;
         };
         containers = builtins.mapAttrs (
-          name: options: options // (mkUserContainerDefaultOptions name)
+          name: options: (mkUserContainerDefaultOptions name) // options
         ) containers;
       };
     };

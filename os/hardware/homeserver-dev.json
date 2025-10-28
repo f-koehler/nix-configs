@@ -2392,7 +2392,7 @@
           {
             "type": "mem",
             "base": 0,
-            "range": 8310239232,
+            "range": 8310231040,
             "enabled": true,
             "access": "read_write",
             "prefetch": "unknown"
@@ -2582,6 +2582,29 @@
     "network_interface": [
       {
         "index": 50,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_name": "lo",
+        "unix_device_names": [
+          "lo"
+        ]
+      },
+      {
+        "index": 51,
         "attached_to": 40,
         "class_list": [
           "network_interface"
@@ -2620,29 +2643,6 @@
         ],
         "driver_modules": [
           "virtio_net"
-        ]
-      },
-      {
-        "index": 51,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_name": "lo",
-        "unix_device_names": [
-          "lo"
         ]
       }
     ],
@@ -3523,7 +3523,7 @@
           },
           {
             "type": "irq",
-            "base": 67,
+            "base": 62,
             "triggered": 0,
             "enabled": true
           },
@@ -3541,7 +3541,7 @@
           "command": 1031,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 67,
+          "irq": 62,
           "prog_if": 1
         },
         "driver": "ahci",

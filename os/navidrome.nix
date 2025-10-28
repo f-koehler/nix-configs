@@ -1,7 +1,8 @@
-{
-  nodeConfig,
-  lib,
-  myLib,
-  ...
-}:
-lib.mkIf nodeConfig.features.navidrome.enable (myLib.os.mkServiceUser "navidrome")
+{ myLib, ... }:
+myLib.os.mkSelfHostedService {
+  enable = true;
+  name = "navidrome";
+  datasets = [
+    "navidrome/data"
+  ];
+}

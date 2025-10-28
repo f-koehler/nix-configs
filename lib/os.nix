@@ -6,6 +6,7 @@
   ...
 }:
 let
+  inherit (inputs.nixpkgs) lib;
   mkOsConfig = nodeConfig: {
     specialArgs = {
       inherit
@@ -16,22 +17,42 @@ let
         myLib
         ;
     };
-    modules = [ ../os ];
+    modules = [
+      inputs.disko.nixosModules.disko
+      inputs.nixos-facter-modules.nixosModules.facter
+      inputs.home-manager.nixosModules.home-manager
+      ../os
+    ];
   };
-  mkOs = config: inputs.nixpkgs.lib.nixosSystem (mkOsConfig (myLib.common.mkNodeConfig config));
-  mkServiceUser = username: {
-    users.users = {
-      ${username} = {
-        isNormalUser = true;
-        group = username;
-        linger = true;
+  mkOs = config: lib.nixosSystem (mkOsConfig (myLib.common.mkNodeConfig config));
+  mkSelfHostedService =
+    {
+      name,
+      enable ? false,
+      datasets ? [ ],
+      user ? name,
+    }:
+    lib.mkIf enable {
+      disko.devices.zpool.zroot.datasets = builtins.listToAttrs (
+        builtins.map (name: {
+          name = "var/lib/selfHosted/${name}";
+          value = {
+            type = "zfs_fs";
+          };
+        }) datasets
+      );
+      users = {
+        groups.${user} = { };
+        users.${user} = {
+          isSystemUser = true;
+          group = user;
+          linger = true;
+          home = "/var/lib/selfHosted/${user}";
+          createHome = true;
+        };
       };
     };
-    users.groups = {
-      ${username} = { };
-    };
-  };
 in
 {
-  inherit mkOsConfig mkOs mkServiceUser;
+  inherit mkOsConfig mkOs mkSelfHostedService;
 }

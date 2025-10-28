@@ -1,18 +1,12 @@
 {
-  inputs,
   nodeConfig,
   stateVersion,
   ...
 }:
 {
   imports = [
-    inputs.disko.nixosModules.disko
     ./disks/${nodeConfig.hostName}.nix
-
-    inputs.nixos-facter-modules.nixosModules.facter
     { config.facter.reportPath = ./hardware/${nodeConfig.hostName}.json; }
-
-    inputs.home-manager.nixosModules.home-manager
     ./navidrome.nix
   ];
 
@@ -57,7 +51,6 @@
   services = {
     openssh = {
       enable = true;
-
     };
   };
   time.timeZone = nodeConfig.timezone;

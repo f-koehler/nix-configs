@@ -36,6 +36,7 @@ let
       name,
       enable ? false,
       datasets ? [ ],
+      containers ? { },
     }:
     lib.mkIf enable {
       disko.devices.zpool.zroot.datasets = builtins.listToAttrs (
@@ -75,10 +76,17 @@ let
         };
         programs.home-manager.enable = true;
       }
-      // mkUserQuadlet { inherit name; };
+      // (mkUserQuadlet { inherit name containers; });
+    };
+  mkUserContainerDefaultOptions =
+    { name, ... }:
+    {
+      autoStart = true;
+      autoUpdate = false;
+      network = name;
     };
   mkUserQuadlet =
-    { name, ... }:
+    { name, containers, ... }:
     {
       services.podman = {
         networks.${name} = {
@@ -86,6 +94,9 @@ let
           description = "Podman network for ${name}";
           internal = true;
         };
+        containers = builtins.mapAttrs (
+          name: options: options // (mkUserContainerDefaultOptions name)
+        ) containers;
       };
     };
 in

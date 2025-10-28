@@ -79,6 +79,9 @@
             packages = [
               pkgs.just
               pkgs.sops
+              pkgs.python3
+              pkgs.uv
+              pkgs.ssh-to-age
               inputs.nixos-anywhere.packages.${system}.nixos-anywhere
               inputs.nixos-facter.packages.${system}.nixos-facter
             ];

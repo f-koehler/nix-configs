@@ -66,7 +66,7 @@
         postCreateHook = "zfs list -t snapshot -H -o name | grep -E '^zroot@blank$' || zfs snapshot zroot@blank";
         datasets = lib.mkMerge [
           {
-            containers = {
+            "var/lib/selfHosted" = {
               type = "zfs_fs";
             };
           }

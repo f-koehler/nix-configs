@@ -21,7 +21,6 @@
   ++ lib.optionals (isLinux && (builtins.elem "sway" nodeConfig.desktops)) [ ./sway ]
   ++ lib.optionals (isLinux && (builtins.elem "plasma" nodeConfig.desktops)) [ ./plasma.nix ]
   ++ lib.optionals isLinux [
-    ./chromium.nix
     ./mpd.nix
     ./rmpc
   ];

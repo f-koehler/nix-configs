@@ -140,7 +140,6 @@
       "docker"
       "firefox"
       "gimp"
-      "google-chrome"
       "libreoffice"
       "microsoft-teams"
       "nextcloud"

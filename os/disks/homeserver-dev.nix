@@ -1,8 +1,4 @@
-{
-  lib,
-  nodeConfig,
-  ...
-}:
+{ lib, ... }:
 {
   disko.devices = {
     disk = {
@@ -68,26 +64,13 @@
         };
         mountpoint = "/";
         postCreateHook = "zfs list -t snapshot -H -o name | grep -E '^zroot@blank$' || zfs snapshot zroot@blank";
-        # datasets = lib.mkMerge [
-        #   {
-        #     containers = {
-        #       type = "zfs_fs";
-        #       mountpoint = "/containers";
-        #     };
-        #   }
-        #   (lib.mkIf nodeConfig.features.navidrome.enable {
-        #     navidrome = {
-        #       type = "zfs_fs";
-        #       mountpoint = "/containers/navidrome";
-        #     };
-        #   })
-        #   (lib.mkIf nodeConfig.features.audiobookshelf.enable {
-        #     audiobookshelf = {
-        #       type = "zfs_fs";
-        #       mountpoint = "/containers/audiobookshelf";
-        #     };
-        #   })
-        # ];
+        datasets = lib.mkMerge [
+          {
+            containers = {
+              type = "zfs_fs";
+            };
+          }
+        ];
       };
     };
   };

@@ -3,14 +3,11 @@
   programs = {
     git = {
       enable = true;
-      userEmail = "fabian.koehler@proton.me";
-      userName = "Fabian Koehler";
-      signing = {
-        key = "C5DC80511469AD81C84E3564D55A35AFB2900A11";
-        signByDefault = nodeConfig.isTrusted && nodeConfig.isWorkstation;
-      };
-      delta.enable = true;
-      extraConfig = {
+      settings = {
+        user = {
+          name = "Fabian Koehler";
+          email = "fabian@fkoehler.me";
+        };
         branch.sort = "-committerdate";
         color.ui = "auto";
         column.ui = "auto";
@@ -40,7 +37,16 @@
         };
         tag.sort = "version:refname";
       };
+      signing = {
+        key = "C5DC80511469AD81C84E3564D55A35AFB2900A11";
+        signByDefault = nodeConfig.isTrusted && nodeConfig.isWorkstation;
+      };
     };
+    delta = {
+      enable = true;
+      enableGitIntegration = config.programs.git.enable;
+    };
+
     # TODO(fk): consider moving to separate lazygit module
     lazygit.enable = config.programs.git.enable;
   };

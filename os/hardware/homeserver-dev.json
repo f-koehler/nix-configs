@@ -23,7 +23,7 @@
     },
     "bridge": [
       {
-        "index": 11,
+        "index": 9,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -107,7 +107,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 13,
+        "index": 11,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -191,7 +191,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 14,
+        "index": 12,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -259,7 +259,7 @@
         "module_alias": "pci:v00008086d00002918sv00001AF4sd00001100bc06sc01i00"
       },
       {
-        "index": 15,
+        "index": 13,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -343,7 +343,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 19,
+        "index": 17,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -427,7 +427,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 21,
+        "index": 19,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -511,7 +511,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 23,
+        "index": 21,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -595,7 +595,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 25,
+        "index": 23,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -679,7 +679,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 27,
+        "index": 25,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -735,7 +735,7 @@
         "module_alias": "pci:v00008086d000029C0sv00001AF4sd00001100bc06sc00i00"
       },
       {
-        "index": 29,
+        "index": 27,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -819,7 +819,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 30,
+        "index": 28,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -903,7 +903,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 31,
+        "index": 29,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -987,7 +987,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 33,
+        "index": 31,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -1071,7 +1071,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 34,
+        "index": 32,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -1155,7 +1155,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 36,
+        "index": 34,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -1239,7 +1239,7 @@
         "module_alias": "pci:v00001B36d0000000Csv00001B36sd00000000bc06sc04i00"
       },
       {
-        "index": 37,
+        "index": 35,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -1325,8 +1325,8 @@
     ],
     "cdrom": [
       {
-        "index": 47,
-        "attached_to": 12,
+        "index": 45,
+        "attached_to": 10,
         "class_list": [
           "cdrom",
           "scsi",
@@ -1414,10 +1414,10 @@
     "cpu": [
       {
         "architecture": "x86_64",
-        "vendor_name": "AuthenticAMD",
-        "family": 26,
-        "model": 68,
-        "stepping": 0,
+        "vendor_name": "GenuineIntel",
+        "family": 6,
+        "model": 186,
+        "stepping": 3,
         "features": [
           "fpu",
           "vme",
@@ -1441,24 +1441,25 @@
           "fxsr",
           "sse",
           "sse2",
+          "ss",
           "syscall",
           "nx",
-          "mmxext",
-          "fxsr_opt",
           "pdpe1gb",
           "rdtscp",
           "lm",
+          "constant_tsc",
           "rep_good",
           "nopl",
           "xtopology",
           "cpuid",
-          "extd_apicid",
           "tsc_known_freq",
           "pni",
           "pclmulqdq",
+          "vmx",
           "ssse3",
           "fma",
           "cx16",
+          "pcid",
           "sse4_1",
           "sse4_2",
           "x2apic",
@@ -1472,22 +1473,19 @@
           "rdrand",
           "hypervisor",
           "lahf_lm",
-          "cmp_legacy",
-          "svm",
-          "cr8_legacy",
           "abm",
-          "sse4a",
-          "misalignsse",
           "3dnowprefetch",
-          "osvw",
-          "perfctr_core",
+          "cpuid_fault",
           "ssbd",
-          "perfmon_v2",
           "ibrs",
           "ibpb",
           "stibp",
           "ibrs_enhanced",
-          "vmmcall",
+          "tpr_shadow",
+          "flexpriority",
+          "ept",
+          "vpid",
+          "ept_ad",
           "fsgsbase",
           "tsc_adjust",
           "bmi1",
@@ -1496,90 +1494,67 @@
           "bmi2",
           "erms",
           "invpcid",
-          "avx512f",
-          "avx512dq",
           "rdseed",
           "adx",
           "smap",
-          "avx512ifma",
           "clflushopt",
           "clwb",
-          "avx512cd",
           "sha_ni",
-          "avx512bw",
-          "avx512vl",
           "xsaveopt",
           "xsavec",
           "xgetbv1",
           "xsaves",
           "avx_vnni",
-          "avx512_bf16",
-          "clzero",
-          "xsaveerptr",
-          "wbnoinvd",
           "arat",
-          "npt",
-          "lbrv",
-          "nrip_save",
-          "tsc_scale",
-          "vmcb_clean",
-          "flushbyasid",
-          "pausefilter",
-          "pfthreshold",
-          "v_vmsave_vmload",
-          "vgif",
           "vnmi",
-          "avx512vbmi",
           "umip",
           "pku",
           "ospke",
-          "avx512_vbmi2",
+          "waitpkg",
           "gfni",
           "vaes",
           "vpclmulqdq",
-          "avx512_vnni",
-          "avx512_bitalg",
-          "avx512_vpopcntdq",
           "rdpid",
           "movdiri",
           "movdir64b",
-          "overflow_recov",
-          "succor",
           "fsrm",
-          "avx512_vp2intersect",
-          "flush_l1d"
+          "md_clear",
+          "serialize",
+          "flush_l1d",
+          "arch_capabilities"
         ],
         "bugs": [
-          "sysret_ss_attrs",
           "spectre_v1",
           "spectre_v2",
           "spec_store_bypass",
-          "srso",
+          "swapgs",
+          "eibrs_pbrsb",
+          "rfds",
+          "bhi",
           "ibpb_no_ret"
         ],
-        "bogo": 8583.85,
-        "cache": 512,
+        "bogo": 5222.4,
+        "cache": 16384,
         "physical_id": 0,
         "siblings": 1,
         "cores": 1,
         "fpu": true,
         "fpu_exception": true,
-        "cpuid_level": 16,
+        "cpuid_level": 32,
         "write_protect": false,
-        "tlb_size": 1024,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
-          "physical": "0x30",
+          "physical": "0x27",
           "virtual": "0x30"
         }
       },
       {
         "architecture": "x86_64",
-        "vendor_name": "AuthenticAMD",
-        "family": 26,
-        "model": 68,
-        "stepping": 0,
+        "vendor_name": "GenuineIntel",
+        "family": 6,
+        "model": 186,
+        "stepping": 3,
         "features": [
           "fpu",
           "vme",
@@ -1603,24 +1578,25 @@
           "fxsr",
           "sse",
           "sse2",
+          "ss",
           "syscall",
           "nx",
-          "mmxext",
-          "fxsr_opt",
           "pdpe1gb",
           "rdtscp",
           "lm",
+          "constant_tsc",
           "rep_good",
           "nopl",
           "xtopology",
           "cpuid",
-          "extd_apicid",
           "tsc_known_freq",
           "pni",
           "pclmulqdq",
+          "vmx",
           "ssse3",
           "fma",
           "cx16",
+          "pcid",
           "sse4_1",
           "sse4_2",
           "x2apic",
@@ -1634,22 +1610,19 @@
           "rdrand",
           "hypervisor",
           "lahf_lm",
-          "cmp_legacy",
-          "svm",
-          "cr8_legacy",
           "abm",
-          "sse4a",
-          "misalignsse",
           "3dnowprefetch",
-          "osvw",
-          "perfctr_core",
+          "cpuid_fault",
           "ssbd",
-          "perfmon_v2",
           "ibrs",
           "ibpb",
           "stibp",
           "ibrs_enhanced",
-          "vmmcall",
+          "tpr_shadow",
+          "flexpriority",
+          "ept",
+          "vpid",
+          "ept_ad",
           "fsgsbase",
           "tsc_adjust",
           "bmi1",
@@ -1658,90 +1631,67 @@
           "bmi2",
           "erms",
           "invpcid",
-          "avx512f",
-          "avx512dq",
           "rdseed",
           "adx",
           "smap",
-          "avx512ifma",
           "clflushopt",
           "clwb",
-          "avx512cd",
           "sha_ni",
-          "avx512bw",
-          "avx512vl",
           "xsaveopt",
           "xsavec",
           "xgetbv1",
           "xsaves",
           "avx_vnni",
-          "avx512_bf16",
-          "clzero",
-          "xsaveerptr",
-          "wbnoinvd",
           "arat",
-          "npt",
-          "lbrv",
-          "nrip_save",
-          "tsc_scale",
-          "vmcb_clean",
-          "flushbyasid",
-          "pausefilter",
-          "pfthreshold",
-          "v_vmsave_vmload",
-          "vgif",
           "vnmi",
-          "avx512vbmi",
           "umip",
           "pku",
           "ospke",
-          "avx512_vbmi2",
+          "waitpkg",
           "gfni",
           "vaes",
           "vpclmulqdq",
-          "avx512_vnni",
-          "avx512_bitalg",
-          "avx512_vpopcntdq",
           "rdpid",
           "movdiri",
           "movdir64b",
-          "overflow_recov",
-          "succor",
           "fsrm",
-          "avx512_vp2intersect",
-          "flush_l1d"
+          "md_clear",
+          "serialize",
+          "flush_l1d",
+          "arch_capabilities"
         ],
         "bugs": [
-          "sysret_ss_attrs",
           "spectre_v1",
           "spectre_v2",
           "spec_store_bypass",
-          "srso",
+          "swapgs",
+          "eibrs_pbrsb",
+          "rfds",
+          "bhi",
           "ibpb_no_ret"
         ],
-        "bogo": 8583.85,
-        "cache": 512,
+        "bogo": 5222.4,
+        "cache": 16384,
         "physical_id": 1,
         "siblings": 1,
         "cores": 1,
         "fpu": true,
         "fpu_exception": true,
-        "cpuid_level": 16,
+        "cpuid_level": 32,
         "write_protect": false,
-        "tlb_size": 1024,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
-          "physical": "0x30",
+          "physical": "0x27",
           "virtual": "0x30"
         }
       },
       {
         "architecture": "x86_64",
-        "vendor_name": "AuthenticAMD",
-        "family": 26,
-        "model": 68,
-        "stepping": 0,
+        "vendor_name": "GenuineIntel",
+        "family": 6,
+        "model": 186,
+        "stepping": 3,
         "features": [
           "fpu",
           "vme",
@@ -1765,24 +1715,25 @@
           "fxsr",
           "sse",
           "sse2",
+          "ss",
           "syscall",
           "nx",
-          "mmxext",
-          "fxsr_opt",
           "pdpe1gb",
           "rdtscp",
           "lm",
+          "constant_tsc",
           "rep_good",
           "nopl",
           "xtopology",
           "cpuid",
-          "extd_apicid",
           "tsc_known_freq",
           "pni",
           "pclmulqdq",
+          "vmx",
           "ssse3",
           "fma",
           "cx16",
+          "pcid",
           "sse4_1",
           "sse4_2",
           "x2apic",
@@ -1796,22 +1747,19 @@
           "rdrand",
           "hypervisor",
           "lahf_lm",
-          "cmp_legacy",
-          "svm",
-          "cr8_legacy",
           "abm",
-          "sse4a",
-          "misalignsse",
           "3dnowprefetch",
-          "osvw",
-          "perfctr_core",
+          "cpuid_fault",
           "ssbd",
-          "perfmon_v2",
           "ibrs",
           "ibpb",
           "stibp",
           "ibrs_enhanced",
-          "vmmcall",
+          "tpr_shadow",
+          "flexpriority",
+          "ept",
+          "vpid",
+          "ept_ad",
           "fsgsbase",
           "tsc_adjust",
           "bmi1",
@@ -1820,90 +1768,67 @@
           "bmi2",
           "erms",
           "invpcid",
-          "avx512f",
-          "avx512dq",
           "rdseed",
           "adx",
           "smap",
-          "avx512ifma",
           "clflushopt",
           "clwb",
-          "avx512cd",
           "sha_ni",
-          "avx512bw",
-          "avx512vl",
           "xsaveopt",
           "xsavec",
           "xgetbv1",
           "xsaves",
           "avx_vnni",
-          "avx512_bf16",
-          "clzero",
-          "xsaveerptr",
-          "wbnoinvd",
           "arat",
-          "npt",
-          "lbrv",
-          "nrip_save",
-          "tsc_scale",
-          "vmcb_clean",
-          "flushbyasid",
-          "pausefilter",
-          "pfthreshold",
-          "v_vmsave_vmload",
-          "vgif",
           "vnmi",
-          "avx512vbmi",
           "umip",
           "pku",
           "ospke",
-          "avx512_vbmi2",
+          "waitpkg",
           "gfni",
           "vaes",
           "vpclmulqdq",
-          "avx512_vnni",
-          "avx512_bitalg",
-          "avx512_vpopcntdq",
           "rdpid",
           "movdiri",
           "movdir64b",
-          "overflow_recov",
-          "succor",
           "fsrm",
-          "avx512_vp2intersect",
-          "flush_l1d"
+          "md_clear",
+          "serialize",
+          "flush_l1d",
+          "arch_capabilities"
         ],
         "bugs": [
-          "sysret_ss_attrs",
           "spectre_v1",
           "spectre_v2",
           "spec_store_bypass",
-          "srso",
+          "swapgs",
+          "eibrs_pbrsb",
+          "rfds",
+          "bhi",
           "ibpb_no_ret"
         ],
-        "bogo": 8583.85,
-        "cache": 512,
+        "bogo": 5222.4,
+        "cache": 16384,
         "physical_id": 2,
         "siblings": 1,
         "cores": 1,
         "fpu": true,
         "fpu_exception": true,
-        "cpuid_level": 16,
+        "cpuid_level": 32,
         "write_protect": false,
-        "tlb_size": 1024,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
-          "physical": "0x30",
+          "physical": "0x27",
           "virtual": "0x30"
         }
       },
       {
         "architecture": "x86_64",
-        "vendor_name": "AuthenticAMD",
-        "family": 26,
-        "model": 68,
-        "stepping": 0,
+        "vendor_name": "GenuineIntel",
+        "family": 6,
+        "model": 186,
+        "stepping": 3,
         "features": [
           "fpu",
           "vme",
@@ -1927,24 +1852,25 @@
           "fxsr",
           "sse",
           "sse2",
+          "ss",
           "syscall",
           "nx",
-          "mmxext",
-          "fxsr_opt",
           "pdpe1gb",
           "rdtscp",
           "lm",
+          "constant_tsc",
           "rep_good",
           "nopl",
           "xtopology",
           "cpuid",
-          "extd_apicid",
           "tsc_known_freq",
           "pni",
           "pclmulqdq",
+          "vmx",
           "ssse3",
           "fma",
           "cx16",
+          "pcid",
           "sse4_1",
           "sse4_2",
           "x2apic",
@@ -1958,22 +1884,19 @@
           "rdrand",
           "hypervisor",
           "lahf_lm",
-          "cmp_legacy",
-          "svm",
-          "cr8_legacy",
           "abm",
-          "sse4a",
-          "misalignsse",
           "3dnowprefetch",
-          "osvw",
-          "perfctr_core",
+          "cpuid_fault",
           "ssbd",
-          "perfmon_v2",
           "ibrs",
           "ibpb",
           "stibp",
           "ibrs_enhanced",
-          "vmmcall",
+          "tpr_shadow",
+          "flexpriority",
+          "ept",
+          "vpid",
+          "ept_ad",
           "fsgsbase",
           "tsc_adjust",
           "bmi1",
@@ -1982,413 +1905,66 @@
           "bmi2",
           "erms",
           "invpcid",
-          "avx512f",
-          "avx512dq",
           "rdseed",
           "adx",
           "smap",
-          "avx512ifma",
           "clflushopt",
           "clwb",
-          "avx512cd",
           "sha_ni",
-          "avx512bw",
-          "avx512vl",
           "xsaveopt",
           "xsavec",
           "xgetbv1",
           "xsaves",
           "avx_vnni",
-          "avx512_bf16",
-          "clzero",
-          "xsaveerptr",
-          "wbnoinvd",
           "arat",
-          "npt",
-          "lbrv",
-          "nrip_save",
-          "tsc_scale",
-          "vmcb_clean",
-          "flushbyasid",
-          "pausefilter",
-          "pfthreshold",
-          "v_vmsave_vmload",
-          "vgif",
           "vnmi",
-          "avx512vbmi",
           "umip",
           "pku",
           "ospke",
-          "avx512_vbmi2",
+          "waitpkg",
           "gfni",
           "vaes",
           "vpclmulqdq",
-          "avx512_vnni",
-          "avx512_bitalg",
-          "avx512_vpopcntdq",
           "rdpid",
           "movdiri",
           "movdir64b",
-          "overflow_recov",
-          "succor",
           "fsrm",
-          "avx512_vp2intersect",
-          "flush_l1d"
+          "md_clear",
+          "serialize",
+          "flush_l1d",
+          "arch_capabilities"
         ],
         "bugs": [
-          "sysret_ss_attrs",
           "spectre_v1",
           "spectre_v2",
           "spec_store_bypass",
-          "srso",
+          "swapgs",
+          "eibrs_pbrsb",
+          "rfds",
+          "bhi",
           "ibpb_no_ret"
         ],
-        "bogo": 8583.85,
-        "cache": 512,
+        "bogo": 5222.4,
+        "cache": 16384,
         "physical_id": 3,
         "siblings": 1,
         "cores": 1,
         "fpu": true,
         "fpu_exception": true,
-        "cpuid_level": 16,
+        "cpuid_level": 32,
         "write_protect": false,
-        "tlb_size": 1024,
         "clflush_size": 64,
         "cache_alignment": 64,
         "address_sizes": {
-          "physical": "0x30",
-          "virtual": "0x30"
-        }
-      },
-      {
-        "architecture": "x86_64",
-        "vendor_name": "AuthenticAMD",
-        "family": 26,
-        "model": 68,
-        "stepping": 0,
-        "features": [
-          "fpu",
-          "vme",
-          "de",
-          "pse",
-          "tsc",
-          "msr",
-          "pae",
-          "mce",
-          "cx8",
-          "apic",
-          "sep",
-          "mtrr",
-          "pge",
-          "mca",
-          "cmov",
-          "pat",
-          "pse36",
-          "clflush",
-          "mmx",
-          "fxsr",
-          "sse",
-          "sse2",
-          "syscall",
-          "nx",
-          "mmxext",
-          "fxsr_opt",
-          "pdpe1gb",
-          "rdtscp",
-          "lm",
-          "rep_good",
-          "nopl",
-          "xtopology",
-          "cpuid",
-          "extd_apicid",
-          "tsc_known_freq",
-          "pni",
-          "pclmulqdq",
-          "ssse3",
-          "fma",
-          "cx16",
-          "sse4_1",
-          "sse4_2",
-          "x2apic",
-          "movbe",
-          "popcnt",
-          "tsc_deadline_timer",
-          "aes",
-          "xsave",
-          "avx",
-          "f16c",
-          "rdrand",
-          "hypervisor",
-          "lahf_lm",
-          "cmp_legacy",
-          "svm",
-          "cr8_legacy",
-          "abm",
-          "sse4a",
-          "misalignsse",
-          "3dnowprefetch",
-          "osvw",
-          "perfctr_core",
-          "ssbd",
-          "perfmon_v2",
-          "ibrs",
-          "ibpb",
-          "stibp",
-          "ibrs_enhanced",
-          "vmmcall",
-          "fsgsbase",
-          "tsc_adjust",
-          "bmi1",
-          "avx2",
-          "smep",
-          "bmi2",
-          "erms",
-          "invpcid",
-          "avx512f",
-          "avx512dq",
-          "rdseed",
-          "adx",
-          "smap",
-          "avx512ifma",
-          "clflushopt",
-          "clwb",
-          "avx512cd",
-          "sha_ni",
-          "avx512bw",
-          "avx512vl",
-          "xsaveopt",
-          "xsavec",
-          "xgetbv1",
-          "xsaves",
-          "avx_vnni",
-          "avx512_bf16",
-          "clzero",
-          "xsaveerptr",
-          "wbnoinvd",
-          "arat",
-          "npt",
-          "lbrv",
-          "nrip_save",
-          "tsc_scale",
-          "vmcb_clean",
-          "flushbyasid",
-          "pausefilter",
-          "pfthreshold",
-          "v_vmsave_vmload",
-          "vgif",
-          "vnmi",
-          "avx512vbmi",
-          "umip",
-          "pku",
-          "ospke",
-          "avx512_vbmi2",
-          "gfni",
-          "vaes",
-          "vpclmulqdq",
-          "avx512_vnni",
-          "avx512_bitalg",
-          "avx512_vpopcntdq",
-          "rdpid",
-          "movdiri",
-          "movdir64b",
-          "overflow_recov",
-          "succor",
-          "fsrm",
-          "avx512_vp2intersect",
-          "flush_l1d"
-        ],
-        "bugs": [
-          "sysret_ss_attrs",
-          "spectre_v1",
-          "spectre_v2",
-          "spec_store_bypass",
-          "srso",
-          "ibpb_no_ret"
-        ],
-        "bogo": 8583.85,
-        "cache": 512,
-        "physical_id": 4,
-        "siblings": 1,
-        "cores": 1,
-        "fpu": true,
-        "fpu_exception": true,
-        "cpuid_level": 16,
-        "write_protect": false,
-        "tlb_size": 1024,
-        "clflush_size": 64,
-        "cache_alignment": 64,
-        "address_sizes": {
-          "physical": "0x30",
-          "virtual": "0x30"
-        }
-      },
-      {
-        "architecture": "x86_64",
-        "vendor_name": "AuthenticAMD",
-        "family": 26,
-        "model": 68,
-        "stepping": 0,
-        "features": [
-          "fpu",
-          "vme",
-          "de",
-          "pse",
-          "tsc",
-          "msr",
-          "pae",
-          "mce",
-          "cx8",
-          "apic",
-          "sep",
-          "mtrr",
-          "pge",
-          "mca",
-          "cmov",
-          "pat",
-          "pse36",
-          "clflush",
-          "mmx",
-          "fxsr",
-          "sse",
-          "sse2",
-          "syscall",
-          "nx",
-          "mmxext",
-          "fxsr_opt",
-          "pdpe1gb",
-          "rdtscp",
-          "lm",
-          "rep_good",
-          "nopl",
-          "xtopology",
-          "cpuid",
-          "extd_apicid",
-          "tsc_known_freq",
-          "pni",
-          "pclmulqdq",
-          "ssse3",
-          "fma",
-          "cx16",
-          "sse4_1",
-          "sse4_2",
-          "x2apic",
-          "movbe",
-          "popcnt",
-          "tsc_deadline_timer",
-          "aes",
-          "xsave",
-          "avx",
-          "f16c",
-          "rdrand",
-          "hypervisor",
-          "lahf_lm",
-          "cmp_legacy",
-          "svm",
-          "cr8_legacy",
-          "abm",
-          "sse4a",
-          "misalignsse",
-          "3dnowprefetch",
-          "osvw",
-          "perfctr_core",
-          "ssbd",
-          "perfmon_v2",
-          "ibrs",
-          "ibpb",
-          "stibp",
-          "ibrs_enhanced",
-          "vmmcall",
-          "fsgsbase",
-          "tsc_adjust",
-          "bmi1",
-          "avx2",
-          "smep",
-          "bmi2",
-          "erms",
-          "invpcid",
-          "avx512f",
-          "avx512dq",
-          "rdseed",
-          "adx",
-          "smap",
-          "avx512ifma",
-          "clflushopt",
-          "clwb",
-          "avx512cd",
-          "sha_ni",
-          "avx512bw",
-          "avx512vl",
-          "xsaveopt",
-          "xsavec",
-          "xgetbv1",
-          "xsaves",
-          "avx_vnni",
-          "avx512_bf16",
-          "clzero",
-          "xsaveerptr",
-          "wbnoinvd",
-          "arat",
-          "npt",
-          "lbrv",
-          "nrip_save",
-          "tsc_scale",
-          "vmcb_clean",
-          "flushbyasid",
-          "pausefilter",
-          "pfthreshold",
-          "v_vmsave_vmload",
-          "vgif",
-          "vnmi",
-          "avx512vbmi",
-          "umip",
-          "pku",
-          "ospke",
-          "avx512_vbmi2",
-          "gfni",
-          "vaes",
-          "vpclmulqdq",
-          "avx512_vnni",
-          "avx512_bitalg",
-          "avx512_vpopcntdq",
-          "rdpid",
-          "movdiri",
-          "movdir64b",
-          "overflow_recov",
-          "succor",
-          "fsrm",
-          "avx512_vp2intersect",
-          "flush_l1d"
-        ],
-        "bugs": [
-          "sysret_ss_attrs",
-          "spectre_v1",
-          "spectre_v2",
-          "spec_store_bypass",
-          "srso",
-          "ibpb_no_ret"
-        ],
-        "bogo": 8583.85,
-        "cache": 512,
-        "physical_id": 5,
-        "siblings": 1,
-        "cores": 1,
-        "fpu": true,
-        "fpu_exception": true,
-        "cpuid_level": 16,
-        "write_protect": false,
-        "tlb_size": 1024,
-        "clflush_size": 64,
-        "cache_alignment": 64,
-        "address_sizes": {
-          "physical": "0x30",
+          "physical": "0x27",
           "virtual": "0x30"
         }
       }
     ],
     "disk": [
       {
-        "index": 46,
-        "attached_to": 40,
+        "index": 44,
+        "attached_to": 38,
         "class_list": [
           "disk",
           "block_device"
@@ -2422,7 +1998,7 @@
         "resources": [
           {
             "type": "disk_geo",
-            "cylinders": 166440,
+            "cylinders": 104025,
             "heads": 16,
             "sectors": 63,
             "size": "0x0",
@@ -2431,7 +2007,7 @@
           {
             "type": "size",
             "unit": "sectors",
-            "value_1": 167772160,
+            "value_1": 104857600,
             "value_2": 512
           }
         ],
@@ -2447,8 +2023,8 @@
         ]
       },
       {
-        "index": 48,
-        "attached_to": 44,
+        "index": 46,
+        "attached_to": 42,
         "class_list": [
           "disk",
           "block_device"
@@ -2482,7 +2058,7 @@
         "resources": [
           {
             "type": "disk_geo",
-            "cylinders": 166440,
+            "cylinders": 104025,
             "heads": 16,
             "sectors": 63,
             "size": "0x0",
@@ -2491,7 +2067,7 @@
           {
             "type": "size",
             "unit": "sectors",
-            "value_1": 167772160,
+            "value_1": 104857600,
             "value_2": 512
           }
         ],
@@ -2509,7 +2085,7 @@
     ],
     "graphics_card": [
       {
-        "index": 17,
+        "index": 15,
         "attached_to": 0,
         "class_list": [
           "graphics_card",
@@ -2630,8 +2206,8 @@
     ],
     "hub": [
       {
-        "index": 49,
-        "attached_to": 16,
+        "index": 47,
+        "attached_to": 14,
         "class_list": [
           "usb",
           "hub"
@@ -2652,7 +2228,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.12.53 xhci-hcd",
+          "name": "Linux 6.12.49 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2666,7 +2242,7 @@
           "value": 0
         },
         "serial": "0000:02:00.0",
-        "model": "Linux 6.12.53 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.12.49 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:02.1/0000:02:00.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -2717,8 +2293,8 @@
         "module_alias": "usb:v1D6Bp0002d0612dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 51,
-        "attached_to": 16,
+        "index": 49,
+        "attached_to": 14,
         "class_list": [
           "usb",
           "hub"
@@ -2739,7 +2315,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 6.12.53 xhci-hcd",
+          "name": "Linux 6.12.49 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2753,7 +2329,7 @@
           "value": 0
         },
         "serial": "0000:02:00.0",
-        "model": "Linux 6.12.53 xhci-hcd xHCI Host Controller",
+        "model": "Linux 6.12.49 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:02.1/0000:02:00.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -2796,7 +2372,7 @@
     ],
     "memory": [
       {
-        "index": 9,
+        "index": 7,
         "attached_to": 0,
         "class_list": [
           "memory"
@@ -2816,7 +2392,7 @@
           {
             "type": "mem",
             "base": 0,
-            "range": 8309288960,
+            "range": 8310239232,
             "enabled": true,
             "access": "read_write",
             "prefetch": "unknown"
@@ -2830,8 +2406,8 @@
     ],
     "mouse": [
       {
-        "index": 50,
-        "attached_to": 49,
+        "index": 48,
+        "attached_to": 47,
         "class_list": [
           "mouse",
           "usb"
@@ -2949,8 +2525,8 @@
     ],
     "network_controller": [
       {
-        "index": 42,
-        "attached_to": 20,
+        "index": 40,
+        "attached_to": 18,
         "class_list": [
           "network_controller"
         ],
@@ -3005,31 +2581,8 @@
     ],
     "network_interface": [
       {
-        "index": 52,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_name": "lo",
-        "unix_device_names": [
-          "lo"
-        ]
-      },
-      {
-        "index": 53,
-        "attached_to": 42,
+        "index": 50,
+        "attached_to": 40,
         "class_list": [
           "network_interface"
         ],
@@ -3068,12 +2621,35 @@
         "driver_modules": [
           "virtio_net"
         ]
+      },
+      {
+        "index": 51,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_name": "lo",
+        "unix_device_names": [
+          "lo"
+        ]
       }
     ],
     "pci": [
       {
-        "index": 18,
-        "attached_to": 13,
+        "index": 16,
+        "attached_to": 11,
         "class_list": [
           "pci",
           "unknown"
@@ -3136,7 +2712,7 @@
           },
           {
             "type": "mem",
-            "base": 61813169324032,
+            "base": 482915385344,
             "range": 16384,
             "enabled": true,
             "access": "read_only",
@@ -3162,8 +2738,8 @@
         "module_alias": "pci:v00001AF4d00001044sv00001AF4sd00001100bc00scFFi00"
       },
       {
-        "index": 20,
-        "attached_to": 36,
+        "index": 18,
+        "attached_to": 34,
         "class_list": [
           "pci",
           "unknown"
@@ -3235,7 +2811,7 @@
           },
           {
             "type": "mem",
-            "base": 61572651155456,
+            "base": 481036337152,
             "range": 16384,
             "enabled": true,
             "access": "read_only",
@@ -3261,8 +2837,8 @@
         "module_alias": "pci:v00001AF4d00001041sv00001AF4sd00001100bc02sc00i00"
       },
       {
-        "index": 24,
-        "attached_to": 30,
+        "index": 22,
+        "attached_to": 28,
         "class_list": [
           "pci",
           "unknown"
@@ -3325,7 +2901,7 @@
           },
           {
             "type": "mem",
-            "base": 61778809585664,
+            "base": 482646949888,
             "range": 16384,
             "enabled": true,
             "access": "read_only",
@@ -3351,7 +2927,7 @@
         "module_alias": "pci:v00001AF4d00001045sv00001AF4sd00001100bc00scFFi00"
       },
       {
-        "index": 26,
+        "index": 24,
         "attached_to": 0,
         "class_list": [
           "pci",
@@ -3434,8 +3010,8 @@
         "module_alias": "pci:v00008086d00002930sv00001AF4sd00001100bc0Csc05i00"
       },
       {
-        "index": 28,
-        "attached_to": 15,
+        "index": 26,
+        "attached_to": 13,
         "class_list": [
           "pci",
           "unknown"
@@ -3499,7 +3075,7 @@
           },
           {
             "type": "mem",
-            "base": 61744449847296,
+            "base": 482378514432,
             "range": 16384,
             "enabled": true,
             "access": "read_only",
@@ -3525,8 +3101,8 @@
         "module_alias": "pci:v00001AF4d00001042sv00001AF4sd00001100bc01sc00i00"
       },
       {
-        "index": 32,
-        "attached_to": 31,
+        "index": 30,
+        "attached_to": 29,
         "class_list": [
           "pci",
           "unknown"
@@ -3590,7 +3166,7 @@
           },
           {
             "type": "mem",
-            "base": 61710090108928,
+            "base": 482110078976,
             "range": 16384,
             "enabled": true,
             "access": "read_only",
@@ -3616,8 +3192,8 @@
         "module_alias": "pci:v00001AF4d00001042sv00001AF4sd00001100bc01sc00i00"
       },
       {
-        "index": 35,
-        "attached_to": 19,
+        "index": 33,
+        "attached_to": 17,
         "class_list": [
           "pci",
           "unknown"
@@ -3681,7 +3257,7 @@
           },
           {
             "type": "mem",
-            "base": 61675730370560,
+            "base": 481841643520,
             "range": 16384,
             "enabled": true,
             "access": "read_only",
@@ -3709,7 +3285,7 @@
     ],
     "sound": [
       {
-        "index": 22,
+        "index": 20,
         "attached_to": 0,
         "class_list": [
           "sound",
@@ -3760,7 +3336,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 78,
+            "base": 70,
             "triggered": 0,
             "enabled": true
           },
@@ -3778,7 +3354,7 @@
           "command": 1031,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 78,
+          "irq": 70,
           "prog_if": 0
         },
         "driver": "snd_hda_intel",
@@ -3794,8 +3370,8 @@
     ],
     "storage_controller": [
       {
-        "index": 10,
-        "attached_to": 33,
+        "index": 8,
+        "attached_to": 31,
         "class_list": [
           "storage_controller",
           "pci"
@@ -3859,7 +3435,7 @@
           },
           {
             "type": "mem",
-            "base": 61641370632192,
+            "base": 481573208064,
             "range": 16384,
             "enabled": true,
             "access": "read_only",
@@ -3885,7 +3461,7 @@
         "module_alias": "pci:v00001AF4d00001048sv00001AF4sd00001100bc01sc00i00"
       },
       {
-        "index": 12,
+        "index": 10,
         "attached_to": 0,
         "class_list": [
           "storage_controller",
@@ -3947,7 +3523,7 @@
           },
           {
             "type": "irq",
-            "base": 56,
+            "base": 67,
             "triggered": 0,
             "enabled": true
           },
@@ -3965,7 +3541,7 @@
           "command": 1031,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 56,
+          "irq": 67,
           "prog_if": 1
         },
         "driver": "ahci",
@@ -3979,8 +3555,8 @@
         "module_alias": "pci:v00008086d00002922sv00001AF4sd00001100bc01sc06i01"
       },
       {
-        "index": 40,
-        "attached_to": 28,
+        "index": 38,
+        "attached_to": 26,
         "class_list": [
           "storage_controller"
         ],
@@ -4019,8 +3595,8 @@
         "module_alias": "virtio:d00000002v00001AF4"
       },
       {
-        "index": 44,
-        "attached_to": 32,
+        "index": 42,
+        "attached_to": 30,
         "class_list": [
           "storage_controller"
         ],
@@ -4064,8 +3640,8 @@
     },
     "unknown": [
       {
-        "index": 38,
-        "attached_to": 10,
+        "index": 36,
+        "attached_to": 8,
         "class_list": [
           "unknown"
         ],
@@ -4095,8 +3671,8 @@
         "module_alias": "virtio:d00000008v00001AF4"
       },
       {
-        "index": 39,
-        "attached_to": 18,
+        "index": 37,
+        "attached_to": 16,
         "class_list": [
           "unknown"
         ],
@@ -4126,8 +3702,8 @@
         "module_alias": "virtio:d00000004v00001AF4"
       },
       {
-        "index": 41,
-        "attached_to": 35,
+        "index": 39,
+        "attached_to": 33,
         "class_list": [
           "unknown"
         ],
@@ -4157,8 +3733,8 @@
         "module_alias": "virtio:d00000003v00001AF4"
       },
       {
-        "index": 43,
-        "attached_to": 24,
+        "index": 41,
+        "attached_to": 22,
         "class_list": [
           "unknown"
         ],
@@ -4188,7 +3764,7 @@
         "module_alias": "virtio:d00000005v00001AF4"
       },
       {
-        "index": 45,
+        "index": 43,
         "attached_to": 0,
         "class_list": [
           "unknown"
@@ -4237,8 +3813,8 @@
     ],
     "usb_controller": [
       {
-        "index": 16,
-        "attached_to": 21,
+        "index": 14,
+        "attached_to": 19,
         "class_list": [
           "usb_controller",
           "pci"
@@ -4329,8 +3905,8 @@
     "bios": {
       "handle": 0,
       "vendor": "EDK II",
-      "version": "unknown",
-      "date": "02/02/2022",
+      "version": "edk2-stable202408-prebuilt.qemu.org",
+      "date": "08/13/2024",
       "features": null,
       "start_address": "0xe8000",
       "rom_size": 65536
@@ -4540,72 +4116,6 @@
       {
         "handle": 1027,
         "socket": "CPU 3",
-        "socket_type": {
-          "hex": "0001",
-          "name": "Other",
-          "value": 1
-        },
-        "socket_populated": true,
-        "manufacturer": "QEMU",
-        "version": "pc-q35-10.1",
-        "part": "",
-        "processor_type": {
-          "hex": "0003",
-          "name": "CPU",
-          "value": 3
-        },
-        "processor_family": {
-          "hex": "00fe",
-          "name": "Other",
-          "value": 254
-        },
-        "processor_status": {
-          "hex": "0001",
-          "name": "Enabled",
-          "value": 1
-        },
-        "clock_ext": 0,
-        "clock_max": 2000,
-        "cache_handle_l1": 0,
-        "cache_handle_l2": 0,
-        "cache_handle_l3": 0
-      },
-      {
-        "handle": 1028,
-        "socket": "CPU 4",
-        "socket_type": {
-          "hex": "0001",
-          "name": "Other",
-          "value": 1
-        },
-        "socket_populated": true,
-        "manufacturer": "QEMU",
-        "version": "pc-q35-10.1",
-        "part": "",
-        "processor_type": {
-          "hex": "0003",
-          "name": "CPU",
-          "value": 3
-        },
-        "processor_family": {
-          "hex": "00fe",
-          "name": "Other",
-          "value": 254
-        },
-        "processor_status": {
-          "hex": "0001",
-          "name": "Enabled",
-          "value": 1
-        },
-        "clock_ext": 0,
-        "clock_max": 2000,
-        "cache_handle_l1": 0,
-        "cache_handle_l2": 0,
-        "cache_handle_l3": 0
-      },
-      {
-        "handle": 1029,
-        "socket": "CPU 5",
         "socket_type": {
           "hex": "0001",
           "name": "Other",

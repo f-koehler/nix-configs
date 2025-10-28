@@ -26,8 +26,8 @@
         inherit (self) outputs;
       };
       nodes = {
-        "homeserver2" = {
-          hostName = "homeserver2";
+        "homeserver-dev" = {
+          hostName = "homeserver-dev";
           hostId = "760f3bc8";
           features = {
             audiobookshelf.enable = false;
@@ -78,7 +78,7 @@
           };
       });
       nixosConfigurations = {
-        "homeserver2" = myLib.os.mkOs nodes."homeserver2";
+        "homeserver-dev" = myLib.os.mkOs nodes."homeserver-dev";
       };
     };
 }

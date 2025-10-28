@@ -13,6 +13,7 @@
       }
     ];
     packages = [
+      "com.microsoft.Edge"
       "com.bitwarden.desktop"
       "com.github.iwalton3.jellyfin-media-player"
       "com.github.tchx84.Flatseal"

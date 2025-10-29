@@ -1,0 +1,16 @@
+[project]
+name = "nix-configs"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "rich>=14.2.0",
+    "ruamel-yaml>=0.18.16",
+    "typer>=0.20.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.2",
+]

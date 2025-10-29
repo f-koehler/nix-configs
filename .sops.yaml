@@ -1,7 +1,8 @@
-keys:
-  - &admin_fkoehler C5DC80511469AD81C84E3564D55A35AFB2900A11
 creation_rules:
-  - path_regex: \.secrets.yaml$
-    key_groups:
-      - pgp:
-          - *admin_fkoehler
+- path_regex: \.secrets.yaml$
+  key_groups:
+  - pgp:
+    - C5DC80511469AD81C84E3564D55A35AFB2900A11       # fkoehler
+    age:
+    - age1vev3hxns4t0lzwndl2nt6wd2xucr0kzqhvprxskysh0gj7j8retsckk04a  # host: 192.168.122.164, config: homeserver-dev
+    - age1td4wjw2z3f5qtvp38vxqretjap4svn23m4e22tmktw6jpms6xfusxejtj6  # host: 192.168.122.164, config: homeserver-dev

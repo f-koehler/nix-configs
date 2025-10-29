@@ -77,7 +77,7 @@ let
       };
       home-manager.users.${name} =
         _:
-        {
+        lib.mkMerge [{
           home = {
             username = name;
             homeDirectory = "/var/lib/selfHosted/${name}";
@@ -85,7 +85,7 @@ let
           };
           programs.home-manager.enable = true;
         }
-        // (mkUserQuadlet { inherit name containers; });
+        (mkUserQuadlet { inherit name containers; })];
     };
   mkUserContainerDefaultOptions = name: {
     autoStart = true;

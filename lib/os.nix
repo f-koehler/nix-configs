@@ -77,15 +77,17 @@ let
       };
       home-manager.users.${name} =
         _:
-        lib.mkMerge [{
-          home = {
-            username = name;
-            homeDirectory = "/var/lib/selfHosted/${name}";
-            inherit stateVersion;
-          };
-          programs.home-manager.enable = true;
-        }
-        (mkUserQuadlet { inherit name containers; })];
+        lib.mkMerge [
+          {
+            home = {
+              username = name;
+              homeDirectory = "/var/lib/selfHosted/${name}";
+              inherit stateVersion;
+            };
+            programs.home-manager.enable = true;
+          }
+          (mkUserQuadlet { inherit name containers; })
+        ];
     };
   mkUserContainerDefaultOptions = name: {
     autoStart = true;
@@ -94,24 +96,26 @@ let
   };
   mkUserQuadlet =
     { name, containers, ... }:
-    {
-      services.podman = {
-        enable = true;
-        enableTypeChecks = true;
-        networks.${name} = {
-          autoStart = true;
-          description = "Podman network for ${name}";
-          internal = true;
+    lib.mkMerge [
+      {
+        services.podman = {
+          enable = true;
+          enableTypeChecks = true;
+          networks.${name} = {
+            autoStart = true;
+            description = "Podman network for ${name}";
+            internal = true;
+          };
+          containers = builtins.mapAttrs (
+            name: options: (mkUserContainerDefaultOptions name) // options
+          ) containers;
         };
-        containers = builtins.mapAttrs (
-          name: options: (mkUserContainerDefaultOptions name) // options
-        ) containers;
-      };
-    };
-  # // (mkTailscaleProxyContainer {
-  #   inherit name;
-  #   system = "x86_64-linux";
-  # });
+      }
+      (mkTailscaleProxyContainer {
+        inherit name;
+        system = "x86_64-linux";
+      })
+    ];
   mkTailscaleProxyImage =
     system:
     inputs.nixos-generators.nixosGenerate {
@@ -136,7 +140,8 @@ let
     in
     {
       services.podman.containers."tailscale-proxy" = (mkUserContainerDefaultOptions name) // {
-        image = "tailscale-proxy";
+        # image = "tailscale-proxy";
+        image = "tailscale/tailscale:stable";
       };
       # systemd.user.services.podman-tailscale-proxy.Service.ExitPreStart = [
       #   "${lib.getExe' pkgs.podman "podman"} import ${image}/tarball/nixos-system-${system}.tar.xz tailscale-proxy"

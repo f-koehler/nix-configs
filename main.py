@@ -29,7 +29,7 @@ def deploy(
         "--flake",
         f".#{config}",
         "--target-host",
-        f"root@${host}",
+        f"root@{host}",
     ]
     for path in extra_files:
         cmd += ["--extra-files", str(path)]
@@ -95,7 +95,7 @@ def setup(
         logger.debug("Command: %s", " ".join(cmd))
         subprocess.check_output(cmd)
 
-        deploy(host, config, extra_files=list[Path(tmpdir)])
+        deploy(host, config, extra_files=[Path(tmpdir)])
 
 
 if __name__ == "__main__":

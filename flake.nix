@@ -92,16 +92,5 @@
       nixosConfigurations = {
         "homeserver-dev" = myLib.os.mkOs nodes."homeserver-dev";
       };
-      packages.x86_64-linux = {
-        user-service-proxy = inputs.nixos-generators.nixosGenerate {
-          system = "x86_64-linux";
-          modules = [
-            {
-              services.tailscale.enable = true;
-            }
-          ];
-          format = "docker";
-        };
-      };
     };
 }

@@ -7,6 +7,12 @@
 }:
 let
   inherit (inputs.nixpkgs) lib;
+  getNixpkgs =
+    system:
+    import inputs.nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
   mkOsConfig = nodeConfig: {
     specialArgs = {
       inherit
@@ -101,6 +107,40 @@ let
           name: options: (mkUserContainerDefaultOptions name) // options
         ) containers;
       };
+    };
+  # // (mkTailscaleProxyContainer {
+  #   inherit name;
+  #   system = "x86_64-linux";
+  # });
+  mkTailscaleProxyImage =
+    system:
+    inputs.nixos-generators.nixosGenerate {
+      inherit system;
+      modules = [
+        {
+          boot.isContainer = true;
+          services.tailscale.enable = true;
+          system = {
+            inherit stateVersion;
+          };
+        }
+      ];
+      format = "docker";
+    };
+  mkTailscaleProxyContainer =
+    { name, system }:
+    let
+      pkgs = getNixpkgs system;
+      lib = inputs.nixpkgs.lib;
+      image = mkTailscaleProxyImage system;
+    in
+    {
+      services.podman.containers."tailscale-proxy" = (mkUserContainerDefaultOptions name) // {
+        image = "tailscale-proxy";
+      };
+      # systemd.user.services.podman-tailscale-proxy.Service.ExitPreStart = [
+      #   "${lib.getExe' pkgs.podman "podman"} import ${image}/tarball/nixos-system-${system}.tar.xz tailscale-proxy"
+      # ];
     };
 in
 {

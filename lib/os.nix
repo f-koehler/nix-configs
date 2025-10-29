@@ -81,13 +81,11 @@ let
         }
         // (mkUserQuadlet { inherit name containers; });
     };
-  mkUserContainerDefaultOptions =
-    { name, ... }:
-    {
-      autoStart = true;
-      autoUpdate = false;
-      network = name;
-    };
+  mkUserContainerDefaultOptions = name: {
+    autoStart = true;
+    autoUpdate = null;
+    network = name;
+  };
   mkUserQuadlet =
     { name, containers, ... }:
     {

@@ -69,6 +69,9 @@
   system = {
     inherit stateVersion;
   };
+  systemd = {
+    network.enable = true;
+  };
   virtualisation = {
     containers.enable = true;
     podman = {

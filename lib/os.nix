@@ -23,6 +23,7 @@ let
       inputs.nixos-facter-modules.nixosModules.facter
       inputs.home-manager.nixosModules.home-manager
       inputs.quadlet-nix.nixosModules.quadlet
+      inputs.sops-nix.nixosModules.sops
       {
         home-manager = {
           useGlobalPkgs = true;
@@ -54,6 +55,10 @@ let
         users.${name} = {
           isNormalUser = true;
           group = name;
+          extraGroups = [
+            "systemd-journal"
+            "quadlet"
+          ];
           linger = true;
           home = "/var/lib/selfHosted/${name}";
           createHome = true;
@@ -73,13 +78,27 @@ let
       home-manager.users.${name} =
         { pkgs, config, ... }:
         {
-          imports = [ inputs.quadlet-nix.homeManagerModules.quadlet ];
+          imports = [
+            inputs.quadlet-nix.homeManagerModules.quadlet
+            inputs.sops-nix.homeManagerModules.sops
+          ];
           home = {
             username = name;
             homeDirectory = "/var/lib/selfHosted/${name}";
             inherit stateVersion;
           };
           programs.home-manager.enable = true;
+          sops = {
+            defaultSopsFile = ../.secrets.yaml;
+            age.keyFile = "/home/.age-quadlet.txt";
+            secrets."services/tailscale/client_secret" = { };
+            templates."tailscale.env".content = ''
+              TS_USERSPACE=true
+              TS_AUTHKEY=${config.sops.placeholder."services/tailscale/client_secret"}?ephemeral=true
+              TS_EXTRA_ARGS=--advertise-tags=tag:homeserver-container
+              TS_HOSTNAME=navidrome
+            '';
+          };
           virtualisation.quadlet =
             let
               inherit (config.virtualisation.quadlet) pods;
@@ -99,9 +118,7 @@ let
                   containerConfig = {
                     image = "tailscale/tailscale:stable";
                     pod = pods.navidrome.ref;
-                    environments = {
-                      TS_USERSPACE = "true";
-                    };
+                    environmentFiles = [ config.sops.templates."tailscale.env".path ];
                   };
                 };
               };

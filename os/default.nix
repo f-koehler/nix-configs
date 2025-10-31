@@ -1,6 +1,7 @@
 {
   nodeConfig,
   stateVersion,
+  config,
   ...
 }:
 {
@@ -56,15 +57,30 @@
   };
   time.timeZone = nodeConfig.timezone;
   users = {
-    groups.${nodeConfig.username} = { };
+    groups = {
+      "quadlet" = { };
+      ${nodeConfig.username} = { };
+    };
     users.${nodeConfig.username} = {
       isNormalUser = true;
       group = "${nodeConfig.username}";
-      extraGroups = [ "wheel" ];
+      extraGroups = [
+        "wheel"
+        "quadlet"
+      ];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICZDAwTGeFn4vAWbk0JboDzdLiNlJXA4EhzCMrJvMTB4"
       ];
       initialHashedPassword = "$y$j9T$RwtXnkpl3WVtJA5sGuteG/$aaxxET8KLqIxp7r0jYEE9.fnCW441j1ur/VUzduyEWB";
+    };
+  };
+  sops = {
+    defaultSopsFile = ../.secrets.yaml;
+    secrets."home/age/private_key" = {
+      mode = "0440";
+      owner = "root";
+      group = "quadlet";
+      path = "/home/.age-quadlet.txt";
     };
   };
   system = {

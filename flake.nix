@@ -9,6 +9,7 @@
     nixos-facter-modules.url = "github:nix-community/nixos-facter-modules";
     nixos-facter.url = "github:nix-community/nixos-facter";
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "nixpkgs/nixos-25.05";
     systems.url = "github:nix-systems/default";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -73,6 +74,7 @@
         default =
           let
             pkgs = myLib.getNixpkgs system;
+            pkgs-stable = myLib.getNixpkgsStable system;
             inherit (self.checks.${system}) pre-commit-check;
           in
           pkgs.mkShell {
@@ -83,6 +85,7 @@
               pkgs.python3
               pkgs.uv
               pkgs.ssh-to-age
+              pkgs-stable.nixos-rebuild-ng
               inputs.nixos-anywhere.packages.${system}.nixos-anywhere
               inputs.nixos-facter.packages.${system}.nixos-facter
             ];

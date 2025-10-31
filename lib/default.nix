@@ -37,6 +37,12 @@ let
         inherit system;
         config.allowUnfree = true;
       };
+    getNixpkgsStable =
+      system:
+      import inputs.nixpkgs-stable {
+        inherit system;
+        config.allowUnfree = true;
+      };
   };
 in
 myLib

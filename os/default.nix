@@ -44,6 +44,7 @@
   };
   networking = {
     inherit (nodeConfig) domain hostName hostId;
+    useDHCP = false;
   };
   nixpkgs = {
     hostPlatform = nodeConfig.system;
@@ -72,10 +73,5 @@
   systemd = {
     network.enable = true;
   };
-  virtualisation = {
-    containers.enable = true;
-    podman = {
-      enable = true;
-    };
-  };
+  virtualisation.quadlet.enable = true;
 }

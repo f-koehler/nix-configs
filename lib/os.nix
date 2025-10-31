@@ -7,12 +7,6 @@
 }:
 let
   inherit (inputs.nixpkgs) lib;
-  getNixpkgs =
-    system:
-    import inputs.nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    };
   mkOsConfig = nodeConfig: {
     specialArgs = {
       inherit
@@ -28,6 +22,7 @@ let
       inputs.disko.nixosModules.disko
       inputs.nixos-facter-modules.nixosModules.facter
       inputs.home-manager.nixosModules.home-manager
+      inputs.quadlet-nix.nixosModules.quadlet
       {
         home-manager = {
           useGlobalPkgs = true;
@@ -43,7 +38,6 @@ let
       name,
       enable ? false,
       datasets ? [ ],
-      containers ? { },
     }:
     lib.mkIf enable {
       disko.devices.zpool.zroot.datasets = builtins.listToAttrs (
@@ -63,6 +57,7 @@ let
           linger = true;
           home = "/var/lib/selfHosted/${name}";
           createHome = true;
+          autoSubUidGidRange = true;
         };
       };
       systemd.tmpfiles.settings = {
@@ -75,77 +70,15 @@ let
           };
         };
       };
-      home-manager.users.${name} =
-        _:
-        lib.mkMerge [
-          {
-            home = {
-              username = name;
-              homeDirectory = "/var/lib/selfHosted/${name}";
-              inherit stateVersion;
-            };
-            programs.home-manager.enable = true;
-          }
-          (mkUserQuadlet { inherit name containers; })
-        ];
-    };
-  mkUserContainerDefaultOptions = name: {
-    autoStart = true;
-    autoUpdate = null;
-    network = name;
-  };
-  mkUserQuadlet =
-    { name, containers, ... }:
-    lib.mkMerge [
-      {
-        services.podman = {
-          enable = true;
-          enableTypeChecks = true;
-          networks.${name} = {
-            autoStart = true;
-            description = "Podman network for ${name}";
-            internal = true;
-          };
-          containers = builtins.mapAttrs (
-            name: options: (mkUserContainerDefaultOptions name) // options
-          ) containers;
+      home-manager.users.${name} = {
+        imports = [ inputs.quadlet-nix.homeManagerModules.quadlet ];
+        home = {
+          username = name;
+          homeDirectory = "/var/lib/selfHosted/${name}";
+          inherit stateVersion;
         };
-      }
-      (mkTailscaleProxyContainer {
-        inherit name;
-        system = "x86_64-linux";
-      })
-    ];
-  mkTailscaleProxyImage =
-    system:
-    inputs.nixos-generators.nixosGenerate {
-      inherit system;
-      modules = [
-        {
-          boot.isContainer = true;
-          services.tailscale.enable = true;
-          system = {
-            inherit stateVersion;
-          };
-        }
-      ];
-      format = "docker";
-    };
-  mkTailscaleProxyContainer =
-    { name, system }:
-    let
-      pkgs = getNixpkgs system;
-      lib = inputs.nixpkgs.lib;
-      image = mkTailscaleProxyImage system;
-    in
-    {
-      services.podman.containers."tailscale-proxy" = (mkUserContainerDefaultOptions name) // {
-        # image = "tailscale-proxy";
-        image = "tailscale/tailscale:stable";
+        programs.home-manager.enable = true;
       };
-      # systemd.user.services.podman-tailscale-proxy.Service.ExitPreStart = [
-      #   "${lib.getExe' pkgs.podman "podman"} import ${image}/tarball/nixos-system-${system}.tar.xz tailscale-proxy"
-      # ];
     };
 in
 {

@@ -5,10 +5,10 @@ myLib.os.mkSelfHostedService {
   datasets = [
     "data"
   ];
-  containers = {
-    navidrome = {
-      image = "docker.io/deluan/navidrome:0.58.0";
-      description = "Navidrome Music Server";
-    };
-  };
+  # containers = {
+  #   navidrome = {
+  #     image = "docker.io/deluan/navidrome:0.58.0";
+  #     description = "Navidrome Music Server";
+  #   };
+  # };
 }

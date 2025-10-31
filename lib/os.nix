@@ -70,15 +70,34 @@ let
           };
         };
       };
-      home-manager.users.${name} = {
-        imports = [ inputs.quadlet-nix.homeManagerModules.quadlet ];
-        home = {
-          username = name;
-          homeDirectory = "/var/lib/selfHosted/${name}";
-          inherit stateVersion;
+      home-manager.users.${name} =
+        { pkgs, config, ... }:
+        {
+          imports = [ inputs.quadlet-nix.homeManagerModules.quadlet ];
+          home = {
+            username = name;
+            homeDirectory = "/var/lib/selfHosted/${name}";
+            inherit stateVersion;
+          };
+          programs.home-manager.enable = true;
+          virtualisation.quadlet =
+            let
+              inherit (config.virtualisation.quadlet) pods;
+            in
+            {
+              pods.navidrome = {
+                autoStart = true;
+              };
+              containers = {
+                app = {
+                  containerConfig = {
+                    image = "deluan/navidrome:0.58.0";
+                    pod = pods.navidrome.ref;
+                  };
+                };
+              };
+            };
         };
-        programs.home-manager.enable = true;
-      };
     };
 in
 {

@@ -3,4 +3,6 @@ creation_rules:
   key_groups:
   - pgp:
     - C5DC80511469AD81C84E3564D55A35AFB2900A11       # fkoehler
-    age: []
+    age:
+    - age1qhfem3f8dad2d0zlutclfs4az3k9e5ql7jflceaxu8fug4xh2s5s03rmxj # quadlet users
+    - age1c6wr89lzrrlnqkq5tyqktetl8lntg6m7jm09mmldczah57t9euks9z8z4h  # host: 192.168.122.164, config: homeserver-dev

@@ -97,6 +97,7 @@ let
               TS_AUTHKEY=${config.sops.placeholder."services/tailscale/client_secret"}?ephemeral=true
               TS_EXTRA_ARGS=--advertise-tags=tag:homeserver-container
               TS_HOSTNAME=navidrome
+              TS_SERVE_CONFIG=/ts-serve.json
             '';
           };
           virtualisation.quadlet =
@@ -114,13 +115,43 @@ let
                     pod = pods.navidrome.ref;
                   };
                 };
-                proxy = {
-                  containerConfig = {
-                    image = "tailscale/tailscale:stable";
-                    pod = pods.navidrome.ref;
-                    environmentFiles = [ config.sops.templates."tailscale.env".path ];
+                proxy =
+                  let
+                    tsServeConfig = pkgs.writeTextFile {
+                      name = "navidrome-ts-serve.json";
+                      text = ''
+                        {
+                          "TCP": {
+                            "443": {
+                              "HTTPS": true
+                            }
+                          },
+                          "Web": {
+                            "''${TS_CERT_DOMAIN}:443": {
+                              "Handlers": {
+                                "/": {
+                                  "Proxy": "http://navidrome:4533"
+                                }
+                              }
+                            }
+                          },
+                          "AllowFunnel": {
+                            "''${TS_CERT_DOMAIN}:443": false
+                          }
+                        }
+                      '';
+                    };
+                  in
+                  {
+                    containerConfig = {
+                      image = "tailscale/tailscale:stable";
+                      pod = pods.navidrome.ref;
+                      environmentFiles = [ config.sops.templates."tailscale.env".path ];
+                      volumes = [
+                        "${tsServeConfig}:/ts-serve.json:Z"
+                      ];
+                    };
                   };
-                };
               };
             };
         };

@@ -7,12 +7,6 @@
 }:
 let
   inherit (inputs.nixpkgs) lib;
-  getNixpkgs =
-    system:
-    import inputs.nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    };
   mkOsConfig = nodeConfig: {
     specialArgs = {
       inherit
@@ -28,6 +22,8 @@ let
       inputs.disko.nixosModules.disko
       inputs.nixos-facter-modules.nixosModules.facter
       inputs.home-manager.nixosModules.home-manager
+      inputs.quadlet-nix.nixosModules.quadlet
+      inputs.sops-nix.nixosModules.sops
       {
         home-manager = {
           useGlobalPkgs = true;
@@ -43,7 +39,6 @@ let
       name,
       enable ? false,
       datasets ? [ ],
-      containers ? { },
     }:
     lib.mkIf enable {
       disko.devices.zpool.zroot.datasets = builtins.listToAttrs (
@@ -60,9 +55,14 @@ let
         users.${name} = {
           isNormalUser = true;
           group = name;
+          extraGroups = [
+            "systemd-journal"
+            "quadlet"
+          ];
           linger = true;
           home = "/var/lib/selfHosted/${name}";
           createHome = true;
+          autoSubUidGidRange = true;
         };
       };
       systemd.tmpfiles.settings = {
@@ -76,76 +76,85 @@ let
         };
       };
       home-manager.users.${name} =
-        _:
-        lib.mkMerge [
-          {
-            home = {
-              username = name;
-              homeDirectory = "/var/lib/selfHosted/${name}";
-              inherit stateVersion;
-            };
-            programs.home-manager.enable = true;
-          }
-          (mkUserQuadlet { inherit name containers; })
-        ];
-    };
-  mkUserContainerDefaultOptions = name: {
-    autoStart = true;
-    autoUpdate = null;
-    network = name;
-  };
-  mkUserQuadlet =
-    { name, containers, ... }:
-    lib.mkMerge [
-      {
-        services.podman = {
-          enable = true;
-          enableTypeChecks = true;
-          networks.${name} = {
-            autoStart = true;
-            description = "Podman network for ${name}";
-            internal = true;
-          };
-          containers = builtins.mapAttrs (
-            name: options: (mkUserContainerDefaultOptions name) // options
-          ) containers;
-        };
-      }
-      (mkTailscaleProxyContainer {
-        inherit name;
-        system = "x86_64-linux";
-      })
-    ];
-  mkTailscaleProxyImage =
-    system:
-    inputs.nixos-generators.nixosGenerate {
-      inherit system;
-      modules = [
+        { pkgs, config, ... }:
         {
-          boot.isContainer = true;
-          services.tailscale.enable = true;
-          system = {
+          imports = [
+            inputs.quadlet-nix.homeManagerModules.quadlet
+            inputs.sops-nix.homeManagerModules.sops
+          ];
+          home = {
+            username = name;
+            homeDirectory = "/var/lib/selfHosted/${name}";
             inherit stateVersion;
           };
-        }
-      ];
-      format = "docker";
-    };
-  mkTailscaleProxyContainer =
-    { name, system }:
-    let
-      pkgs = getNixpkgs system;
-      lib = inputs.nixpkgs.lib;
-      image = mkTailscaleProxyImage system;
-    in
-    {
-      services.podman.containers."tailscale-proxy" = (mkUserContainerDefaultOptions name) // {
-        # image = "tailscale-proxy";
-        image = "tailscale/tailscale:stable";
-      };
-      # systemd.user.services.podman-tailscale-proxy.Service.ExitPreStart = [
-      #   "${lib.getExe' pkgs.podman "podman"} import ${image}/tarball/nixos-system-${system}.tar.xz tailscale-proxy"
-      # ];
+          programs.home-manager.enable = true;
+          sops = {
+            defaultSopsFile = ../.secrets.yaml;
+            age.keyFile = "/home/.age-quadlet.txt";
+            secrets."services/tailscale/client_secret" = { };
+            templates."tailscale.env".content = ''
+              TS_USERSPACE=true
+              TS_AUTHKEY=${config.sops.placeholder."services/tailscale/client_secret"}?ephemeral=true
+              TS_EXTRA_ARGS=--advertise-tags=tag:homeserver-container
+              TS_HOSTNAME=navidrome
+              TS_SERVE_CONFIG=/ts-serve.json
+            '';
+          };
+          virtualisation.quadlet =
+            let
+              inherit (config.virtualisation.quadlet) pods;
+            in
+            {
+              pods.navidrome = {
+                autoStart = true;
+              };
+              containers = {
+                app = {
+                  containerConfig = {
+                    image = "deluan/navidrome:0.58.0";
+                    pod = pods.navidrome.ref;
+                  };
+                };
+                proxy =
+                  let
+                    tsServeConfig = pkgs.writeTextFile {
+                      name = "navidrome-ts-serve.json";
+                      text = ''
+                        {
+                          "TCP": {
+                            "443": {
+                              "HTTPS": true
+                            }
+                          },
+                          "Web": {
+                            "''${TS_CERT_DOMAIN}:443": {
+                              "Handlers": {
+                                "/": {
+                                  "Proxy": "http://navidrome:4533"
+                                }
+                              }
+                            }
+                          },
+                          "AllowFunnel": {
+                            "''${TS_CERT_DOMAIN}:443": false
+                          }
+                        }
+                      '';
+                    };
+                  in
+                  {
+                    containerConfig = {
+                      image = "tailscale/tailscale:stable";
+                      pod = pods.navidrome.ref;
+                      environmentFiles = [ config.sops.templates."tailscale.env".path ];
+                      volumes = [
+                        "${tsServeConfig}:/ts-serve.json:Z"
+                      ];
+                    };
+                  };
+              };
+            };
+        };
     };
 in
 {

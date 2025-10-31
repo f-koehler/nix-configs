@@ -95,6 +95,15 @@ let
                     pod = pods.navidrome.ref;
                   };
                 };
+                proxy = {
+                  containerConfig = {
+                    image = "tailscale/tailscale:stable";
+                    pod = pods.navidrome.ref;
+                    environments = {
+                      TS_USERSPACE = "true";
+                    };
+                  };
+                };
               };
             };
         };

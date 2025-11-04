@@ -39,6 +39,7 @@ let
       name,
       enable ? false,
       datasets ? [ ],
+      containers ? { },
       tailscale ? {
         enable = false;
         serveHost = null;
@@ -113,51 +114,53 @@ let
               pods.${name} = {
                 autoStart = true;
               };
-              containers = {
-                app = {
-                  containerConfig = {
-                    image = "deluan/navidrome:0.58.0";
+              containers = lib.mkMerge [
+                (lib.mapAttrs (_: containerCfg: {
+                  containerConfig = containerCfg // {
                     pod = pods.${name}.ref;
                   };
-                };
-                proxy = lib.mkIf tailscale.enable {
-                  containerConfig = {
-                    image = "tailscale/tailscale:stable";
-                    pod = pods.${name}.ref;
-                    environmentFiles = [ config.sops.templates."tailscale.env".path ];
-                    volumes =
-                      let
-                        tsServeConfig = pkgs.writeTextFile {
-                          name = "${name}-ts-serve.json";
-                          text = ''
-                            {
-                              "TCP": {
-                                "443": {
-                                  "HTTPS": true
-                                }
-                              },
-                              "Web": {
-                                "''${TS_CERT_DOMAIN}:443": {
-                                  "Handlers": {
-                                    "/": {
-                                      "Proxy": "http://${tailscale.serveHost}:${toString tailscale.servePort}"
+                }) containers)
+                {
+                  # };
+                  proxy = lib.mkIf tailscale.enable {
+                    containerConfig = {
+                      image = "tailscale/tailscale:stable";
+                      pod = pods.${name}.ref;
+                      environmentFiles = [ config.sops.templates."tailscale.env".path ];
+                      volumes =
+                        let
+                          tsServeConfig = pkgs.writeTextFile {
+                            name = "${name}-ts-serve.json";
+                            text = ''
+                              {
+                                "TCP": {
+                                  "443": {
+                                    "HTTPS": true
+                                  }
+                                },
+                                "Web": {
+                                  "''${TS_CERT_DOMAIN}:443": {
+                                    "Handlers": {
+                                      "/": {
+                                        "Proxy": "http://${tailscale.serveHost}:${toString tailscale.servePort}"
+                                      }
                                     }
                                   }
+                                },
+                                "AllowFunnel": {
+                                  "''${TS_CERT_DOMAIN}:443": false
                                 }
-                              },
-                              "AllowFunnel": {
-                                "''${TS_CERT_DOMAIN}:443": false
                               }
-                            }
-                          '';
-                        };
-                      in
-                      [
-                        "${tsServeConfig}:/ts-serve.json:Z"
-                      ];
+                            '';
+                          };
+                        in
+                        [
+                          "${tsServeConfig}:/ts-serve.json:Z"
+                        ];
+                    };
                   };
-                };
-              };
+                }
+              ];
             };
         };
     };

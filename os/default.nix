@@ -9,6 +9,7 @@
     ./disks/${nodeConfig.hostName}.nix
     { config.facter.reportPath = ./hardware/${nodeConfig.hostName}.json; }
     ./navidrome.nix
+    ./jellyfin.nix
   ];
 
   boot = {

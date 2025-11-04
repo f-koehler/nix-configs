@@ -162,6 +162,10 @@ let
                 }
               ];
             };
+          systemd.user.services.proxy.Unit = lib.mkIf tailscale.enable {
+            Requires = [ "${tailscale.serveHost}.service" ];
+            After = [ "${tailscale.serveHost}.service" ];
+          };
         };
     };
 in

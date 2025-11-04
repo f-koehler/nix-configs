@@ -96,7 +96,7 @@ let
               TS_USERSPACE=true
               TS_AUTHKEY=${config.sops.placeholder."services/tailscale/client_secret"}?ephemeral=true
               TS_EXTRA_ARGS=--advertise-tags=tag:homeserver-container
-              TS_HOSTNAME=navidrome
+              TS_HOSTNAME=${name}
               TS_SERVE_CONFIG=/ts-serve.json
             '';
           };
@@ -105,20 +105,20 @@ let
               inherit (config.virtualisation.quadlet) pods;
             in
             {
-              pods.navidrome = {
+              pods.${name} = {
                 autoStart = true;
               };
               containers = {
                 app = {
                   containerConfig = {
                     image = "deluan/navidrome:0.58.0";
-                    pod = pods.navidrome.ref;
+                    pod = pods.${name}.ref;
                   };
                 };
                 proxy =
                   let
                     tsServeConfig = pkgs.writeTextFile {
-                      name = "navidrome-ts-serve.json";
+                      name = "${name}-ts-serve.json";
                       text = ''
                         {
                           "TCP": {
@@ -130,7 +130,7 @@ let
                             "''${TS_CERT_DOMAIN}:443": {
                               "Handlers": {
                                 "/": {
-                                  "Proxy": "http://navidrome:4533"
+                                  "Proxy": "http://app:4533"
                                 }
                               }
                             }
@@ -145,7 +145,7 @@ let
                   {
                     containerConfig = {
                       image = "tailscale/tailscale:stable";
-                      pod = pods.navidrome.ref;
+                      pod = pods.${name}.ref;
                       environmentFiles = [ config.sops.templates."tailscale.env".path ];
                       volumes = [
                         "${tsServeConfig}:/ts-serve.json:Z"

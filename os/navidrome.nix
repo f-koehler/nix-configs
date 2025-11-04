@@ -11,4 +11,9 @@ myLib.os.mkSelfHostedService {
   #     description = "Navidrome Music Server";
   #   };
   # };
+  tailscale = {
+    enable = true;
+    serveHost = "app";
+    servePort = 4533;
+  };
 }

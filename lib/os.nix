@@ -39,6 +39,11 @@ let
       name,
       enable ? false,
       datasets ? [ ],
+      tailscale ? {
+        enable = false;
+        serveHost = null;
+        servePort = null;
+      },
     }:
     lib.mkIf enable {
       disko.devices.zpool.zroot.datasets = builtins.listToAttrs (
@@ -115,43 +120,43 @@ let
                     pod = pods.${name}.ref;
                   };
                 };
-                proxy =
-                  let
-                    tsServeConfig = pkgs.writeTextFile {
-                      name = "${name}-ts-serve.json";
-                      text = ''
-                        {
-                          "TCP": {
-                            "443": {
-                              "HTTPS": true
-                            }
-                          },
-                          "Web": {
-                            "''${TS_CERT_DOMAIN}:443": {
-                              "Handlers": {
-                                "/": {
-                                  "Proxy": "http://app:4533"
+                proxy = lib.mkIf tailscale.enable {
+                  containerConfig = {
+                    image = "tailscale/tailscale:stable";
+                    pod = pods.${name}.ref;
+                    environmentFiles = [ config.sops.templates."tailscale.env".path ];
+                    volumes =
+                      let
+                        tsServeConfig = pkgs.writeTextFile {
+                          name = "${name}-ts-serve.json";
+                          text = ''
+                            {
+                              "TCP": {
+                                "443": {
+                                  "HTTPS": true
                                 }
+                              },
+                              "Web": {
+                                "''${TS_CERT_DOMAIN}:443": {
+                                  "Handlers": {
+                                    "/": {
+                                      "Proxy": "http://${tailscale.serveHost}:${toString tailscale.servePort}"
+                                    }
+                                  }
+                                }
+                              },
+                              "AllowFunnel": {
+                                "''${TS_CERT_DOMAIN}:443": false
                               }
                             }
-                          },
-                          "AllowFunnel": {
-                            "''${TS_CERT_DOMAIN}:443": false
-                          }
-                        }
-                      '';
-                    };
-                  in
-                  {
-                    containerConfig = {
-                      image = "tailscale/tailscale:stable";
-                      pod = pods.${name}.ref;
-                      environmentFiles = [ config.sops.templates."tailscale.env".path ];
-                      volumes = [
+                          '';
+                        };
+                      in
+                      [
                         "${tsServeConfig}:/ts-serve.json:Z"
                       ];
-                    };
                   };
+                };
               };
             };
         };

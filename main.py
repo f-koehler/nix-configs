@@ -17,6 +17,30 @@ logger = logging.getLogger()
 def deploy(
     host: Annotated[str, typer.Argument(help="IP or hostname to deploy to")],
     config: Annotated[str, typer.Argument(help="NixOS configuration to use")],
+    username: Annotated[
+        str, typer.Argument(help="Username for SSH connection")
+    ] = "fkoehler",
+):
+    cmd = [
+        "nixos-rebuild-ng",
+        "--flake",
+        f".#{config}",
+        "--build-host",
+        f"{username}@{host}",
+        "--target-host",
+        f"{username}@{host}",
+        "--sudo",
+        "--ask-sudo-password",
+        "switch",
+    ]
+    logger.info("Deploy config %s to host %s", config, host)
+    logger.info("Command: %s", " ".join(cmd))
+    subprocess.run(cmd)
+
+
+def run_nixos_anywhere(
+    host: Annotated[str, typer.Argument(help="IP or hostname to deploy to")],
+    config: Annotated[str, typer.Argument(help="NixOS configuration to use")],
     extra_files: Annotated[
         list[Path], typer.Option(help="Extra files to pass to nixos-anywhere")
     ] = [],
@@ -33,7 +57,7 @@ def deploy(
     ]
     for path in extra_files:
         cmd += ["--extra-files", str(path)]
-    logger.info("Deploy config %s to host %s", config, host)
+    logger.info("Install config %s to host %s", config, host)
     logger.debug("Command: %s", " ".join(cmd))
     subprocess.run(cmd)
 
@@ -95,7 +119,7 @@ def setup(
         logger.debug("Command: %s", " ".join(cmd))
         subprocess.check_output(cmd)
 
-        deploy(host, config, extra_files=[Path(tmpdir)])
+        run_nixos_anywhere(host, config, extra_files=[Path(tmpdir)])
 
 
 if __name__ == "__main__":

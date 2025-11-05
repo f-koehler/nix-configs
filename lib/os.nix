@@ -106,66 +106,63 @@ let
               TS_SERVE_CONFIG=/ts-serve.json
             '';
           };
-          virtualisation.quadlet =
-            let
-              inherit (config.virtualisation.quadlet) pods;
-            in
-            {
-              pods.${name} = {
-                autoStart = true;
-              };
-              containers = lib.mkMerge [
-                (lib.mapAttrs (_: containerCfg: {
-                  containerConfig = containerCfg // {
-                    pod = pods.${name}.ref;
-                  };
-                }) containers)
-                {
-                  # };
-                  proxy = lib.mkIf tailscale.enable {
-                    containerConfig = {
-                      image = "tailscale/tailscale:stable";
-                      pod = pods.${name}.ref;
-                      environmentFiles = [ config.sops.templates."tailscale.env".path ];
-                      volumes =
-                        let
-                          tsServeConfig = pkgs.writeTextFile {
-                            name = "${name}-ts-serve.json";
-                            text = ''
-                              {
-                                "TCP": {
-                                  "443": {
-                                    "HTTPS": true
+          services.podman = {
+            enable = true;
+            enableTypeChecks = true;
+            autoUpdate.enable = false;
+            # networks.${name} = {
+            #   autoStart = true;
+            #   driver = "bridge";
+            #   gateway = "192.168.20.1";
+            #   subnet = "192.168.20.0/24";
+            # };
+            containers = lib.mkMerge [
+              containers
+              {
+                tailscale = lib.mkIf tailscale.enable {
+                  autoStart = true;
+                  environmentFile = [ config.sops.templates."tailscale.env".path ];
+                  image = "tailscale/tailscale:stable";
+                  network = name;
+                  ip4 = "192.168.20.2";
+                  volumes =
+                    let
+                      tsServeConfig = pkgs.writeTextFile {
+                        name = "${name}-ts-serve.json";
+                        text = ''
+                          {
+                            "TCP": {
+                              "443": {
+                                "HTTPS": true
+                              }
+                            },
+                            "Web": {
+                              "''${TS_CERT_DOMAIN}:443": {
+                                "Handlers": {
+                                  "/": {
+                                    "Proxy": "http://${tailscale.serveHost}:${toString tailscale.servePort}"
                                   }
-                                },
-                                "Web": {
-                                  "''${TS_CERT_DOMAIN}:443": {
-                                    "Handlers": {
-                                      "/": {
-                                        "Proxy": "http://${tailscale.serveHost}:${toString tailscale.servePort}"
-                                      }
-                                    }
-                                  }
-                                },
-                                "AllowFunnel": {
-                                  "''${TS_CERT_DOMAIN}:443": false
                                 }
                               }
-                            '';
-                          };
-                        in
-                        [
-                          "${tsServeConfig}:/ts-serve.json:Z"
-                        ];
-                    };
-                  };
-                }
-              ];
-            };
-          systemd.user.services.proxy.Unit = lib.mkIf tailscale.enable {
-            Requires = [ "${tailscale.serveHost}.service" ];
-            After = [ "${tailscale.serveHost}.service" ];
+                            },
+                            "AllowFunnel": {
+                              "''${TS_CERT_DOMAIN}:443": false
+                            }
+                          }
+                        '';
+                      };
+                    in
+                    [
+                      "${tsServeConfig}:/ts-serve.json:Z"
+                    ];
+                };
+              }
+            ];
           };
+          # systemd.user.services.podman-tailscale.Unit = lib.mkIf tailscale.enable {
+          #   Requires = [ "${tailscale.serveHost}.service" ];
+          #   After = [ "${tailscale.serveHost}.service" ];
+          # };
         };
     };
 in

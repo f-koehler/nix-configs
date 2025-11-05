@@ -6,13 +6,14 @@ myLib.os.mkSelfHostedService {
     "data"
   ];
   containers = {
-    app = {
+    navidrome = {
       image = "deluan/navidrome:0.58.0";
+      network = "navidrome";
     };
   };
   tailscale = {
     enable = true;
-    serveHost = "app";
+    serveHost = "navidrome";
     servePort = 4533;
   };
 }

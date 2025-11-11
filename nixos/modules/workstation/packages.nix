@@ -5,7 +5,7 @@
       gvfs
       xfce.thunar
       xfce.thunar-volman
-      vistafonts
+      vista-fonts
       corefonts
     ];
   };

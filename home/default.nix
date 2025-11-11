@@ -21,7 +21,8 @@ in
     ../stylix.nix
     ./common
     ./secrets.nix
-  ] ++ lib.optional nodeConfig.isWorkstation ./workstation;
+  ]
+  ++ lib.optional nodeConfig.isWorkstation ./workstation;
 
   nixpkgs = {
     overlays = [
@@ -47,7 +48,7 @@ in
 
     packages = [
       pkgs.age
-      pkgs.aria
+      pkgs.aria2
       pkgs.cascadia-code
       pkgs.fd
       pkgs.hyperfine

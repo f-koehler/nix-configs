@@ -4,10 +4,10 @@
     fontconfig = {
       enable = true;
       defaultFonts = {
-        emoji = "Noto Color Emoji";
-        monospace = "Cascadia Code NF";
-        sansSerif = "Noto Sans";
-        serif = "Noto Serif";
+        emoji = [ "Noto Color Emoji" ];
+        monospace = [ "Cascadia Code NF" ];
+        sansSerif = [ "Noto Sans" ];
+        serif = [ "Noto Serif" ];
       };
     };
   };

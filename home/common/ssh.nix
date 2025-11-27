@@ -39,8 +39,17 @@ lib.mkIf nodeConfig.isWorkstation {
         hostname = "desktop-ubuntu.corgi-dojo.ts.net";
         user = "fkoehler";
       };
-      vps = {
-        hostname = "194.61.28.200";
+      "scbd1" = {
+        hostname = "10.1.128.101";
+        user = "scbd1";
+      };
+      "scbd3" = {
+        hostname = "10.1.128.104";
+        user = "scbd3";
+      };
+      "scbd4" = {
+        hostname = "10.1.128.102";
+        user = "scbd4";
       };
     };
   };

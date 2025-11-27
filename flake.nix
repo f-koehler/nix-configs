@@ -2,12 +2,13 @@
   description = "Home Configurations";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    catppuccin.url = "github:catppuccin/nix";
     git-hooks.url = "github:cachix/git-hooks.nix";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default";
   };
 
@@ -27,7 +28,17 @@
     {
       homeConfigurations.fkoehler = inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./home.nix ];
+        modules = [
+          ./home.nix
+          inputs.catppuccin.homeModules.catppuccin
+          {
+            catppuccin = {
+              accent = "mauve";
+              enable = true;
+              flavor = "mocha";
+            };
+          }
+        ];
       };
       checks = forEachSystem (system: {
         pre-commit-check = inputs.git-hooks.lib.${system}.run {

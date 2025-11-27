@@ -28,6 +28,13 @@ _: {
       icons = "auto";
     };
     btop.enable = true;
+    difftastic = {
+      enable = true;
+      git = {
+        enable = true;
+        diffToolMode = true;
+      };
+    };
     fish.enable = true;
     fzf = {
       enable = true;
@@ -37,6 +44,9 @@ _: {
       tmux = {
         enableShellIntegration = true;
       };
+    };
+    gh = {
+      enable = true;
     };
     git = {
       enable = true;
@@ -50,6 +60,7 @@ _: {
       enableFishIntegration = true;
       enableZshIntegration = true;
     };
+    mergiraf.enable = true;
     neovim = {
       enable = true;
       defaultEditor = true;

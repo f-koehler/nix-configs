@@ -12,9 +12,77 @@ _: {
     };
 
     sessionVariables = {
-      EDITOR = "nvim";
     };
   };
 
-  programs.home-manager.enable = true;
+  programs = {
+    home-manager.enable = true;
+    alacritty.enable = true;
+    bash.enable = true;
+    bat.enable = true;
+    eza = {
+      enable = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      enableZshIntegration = true;
+      icons = "auto";
+    };
+    btop.enable = true;
+    fish.enable = true;
+    fzf = {
+      enable = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      enableZshIntegration = true;
+      tmux = {
+        enableShellIntegration = true;
+      };
+    };
+    git = {
+      enable = true;
+    };
+    gpg = {
+      enable = true;
+    };
+    lazygit = {
+      enable = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      enableZshIntegration = true;
+    };
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      vimAlias = true;
+      vimdiffalias = true;
+    };
+    starship = {
+      enable = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      enableZshIntegration = true;
+    };
+    tmux = {
+      enable = true;
+      mouse = true;
+    };
+    yazi = {
+      enable = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      enableZshIntegration = true;
+    };
+    zathura.enable = true;
+    zed-editor = {
+      enable = true;
+      installRemoteServer = true;
+    };
+    zoxide = {
+      enable = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      enableZshIntegration = true;
+    };
+    zsh.enable = true;
+  };
 }

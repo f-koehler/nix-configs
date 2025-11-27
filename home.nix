@@ -87,6 +87,16 @@ _: {
     zed-editor = {
       enable = true;
       installRemoteServer = true;
+      extensions = [
+        "docker-compose"
+        "dockerfile"
+        "env"
+        "html"
+        "make"
+        "neocmake"
+        "nix"
+        "toml"
+      ];
     };
     zoxide = {
       enable = true;

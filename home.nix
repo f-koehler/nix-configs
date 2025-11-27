@@ -65,7 +65,7 @@ _: {
       enable = true;
       defaultEditor = true;
       vimAlias = true;
-      vimdiffalias = true;
+      vimdiffAlias = true;
     };
     starship = {
       enable = true;

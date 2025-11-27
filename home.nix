@@ -1,4 +1,16 @@
-_: {
+{ pkgs, ... }:
+{
+  fonts = {
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        emoji = "Noto Color Emoji";
+        monospace = "Cascadia Code NF";
+        sansSerif = "Noto Sans";
+        serif = "Noto Serif";
+      };
+    };
+  };
   home = {
     username = "fkoehler";
     homeDirectory = "/home/fkoehler";
@@ -6,6 +18,11 @@ _: {
     stateVersion = "25.11";
 
     packages = [
+      pkgs.cascadia-code
+      pkgs.noto-fonts
+      pkgs.noto-fonts-color-emoji
+      pkgs.noto-fonts-cjk-sans
+      pkgs.noto-fonts-cjk-serif
     ];
 
     file = {

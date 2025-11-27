@@ -106,4 +106,10 @@ _: {
     };
     zsh.enable = true;
   };
+  targets = {
+    genericLinux = {
+      enable = true;
+      gpu.enable = true;
+    };
+  };
 }

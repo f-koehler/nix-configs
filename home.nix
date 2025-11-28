@@ -122,6 +122,12 @@
         "toml"
       ];
     };
+    zellij = {
+      enable = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      enableZshIntegration = true;
+    };
     zoxide = {
       enable = true;
       enableBashIntegration = true;

@@ -96,7 +96,10 @@
     };
     tmux = {
       enable = true;
+      clock24 = true;
       mouse = true;
+      focusEvents = true;
+      keyMode = "vi";
     };
     yazi = {
       enable = true;

@@ -30,14 +30,8 @@
         inherit pkgs;
         modules = [
           ./home.nix
+          ./theme.nix
           inputs.catppuccin.homeModules.catppuccin
-          {
-            catppuccin = {
-              accent = "mauve";
-              enable = true;
-              flavor = "mocha";
-            };
-          }
         ];
       };
       checks = forEachSystem (system: {

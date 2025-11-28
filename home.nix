@@ -28,7 +28,14 @@
 
   programs = {
     home-manager.enable = true;
-    alacritty.enable = true;
+    alacritty = {
+      enable = true;
+      settings = {
+        general = {
+          env = "xterm-256color";
+        };
+      };
+    };
     bash.enable = true;
     bat.enable = true;
     eza = {

@@ -53,7 +53,10 @@
         diffToolMode = true;
       };
     };
-    fish.enable = true;
+    fish = {
+      enable = true;
+      generateCompletions = true;
+    };
     fzf = {
       enable = true;
       enableBashIntegration = true;

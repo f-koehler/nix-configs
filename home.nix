@@ -11,14 +11,6 @@
 
     stateVersion = "25.11";
 
-    packages = [
-      pkgs.cascadia-code
-      pkgs.noto-fonts
-      pkgs.noto-fonts-color-emoji
-      pkgs.noto-fonts-cjk-sans
-      pkgs.noto-fonts-cjk-serif
-    ];
-
     file = {
     };
 

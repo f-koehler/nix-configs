@@ -1,4 +1,4 @@
-_:
+{ pkgs, ... }:
 let
   themeFonts = {
     emoji = "Noto Color Emoji";
@@ -19,6 +19,13 @@ in
     sansSerif = [ themeFonts.sansSerif ];
     serif = [ themeFonts.serif ];
   };
+  home.packages = [
+    pkgs.cascadia-code
+    pkgs.noto-fonts
+    pkgs.noto-fonts-color-emoji
+    pkgs.noto-fonts-cjk-sans
+    pkgs.noto-fonts-cjk-serif
+  ];
   programs = {
     alacritty.settings.font = {
       normal = {

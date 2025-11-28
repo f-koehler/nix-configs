@@ -24,6 +24,8 @@
 
     sessionVariables = {
     };
+
+    shell.enableShellIntegration = true;
   };
 
   programs = {
@@ -40,9 +42,6 @@
     bat.enable = true;
     eza = {
       enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableZshIntegration = true;
       icons = "auto";
     };
     btop.enable = true;
@@ -59,9 +58,6 @@
     };
     fzf = {
       enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableZshIntegration = true;
       tmux = {
         enableShellIntegration = true;
       };
@@ -75,12 +71,7 @@
     gpg = {
       enable = true;
     };
-    lazygit = {
-      enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableZshIntegration = true;
-    };
+    lazygit.enable = true;
     mergiraf.enable = true;
     neovim = {
       enable = true;
@@ -88,12 +79,7 @@
       vimAlias = true;
       vimdiffAlias = true;
     };
-    starship = {
-      enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableZshIntegration = true;
-    };
+    starship.enable = true;
     tmux = {
       enable = true;
       clock24 = true;
@@ -101,12 +87,7 @@
       focusEvents = true;
       keyMode = "vi";
     };
-    yazi = {
-      enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableZshIntegration = true;
-    };
+    yazi.enable = true;
     zathura.enable = true;
     zed-editor = {
       enable = true;
@@ -122,18 +103,8 @@
         "toml"
       ];
     };
-    zellij = {
-      enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableZshIntegration = true;
-    };
-    zoxide = {
-      enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableZshIntegration = true;
-    };
+    zellij.enable = true;
+    zoxide.enable = true;
     zsh.enable = true;
   };
   targets = {

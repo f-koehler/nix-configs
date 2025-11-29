@@ -17,7 +17,6 @@
     ./wezterm.nix
     ./zed.nix
   ]
-  ++ lib.optionals (isLinux && (builtins.elem "sway" nodeConfig.desktops)) [ ./sway ]
   ++ lib.optionals (isLinux && (builtins.elem "plasma" nodeConfig.desktops)) [ ./plasma.nix ];
 
   home.packages = [ pkgs.devcontainer ];

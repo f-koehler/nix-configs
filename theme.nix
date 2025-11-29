@@ -23,13 +23,13 @@ in
     };
   fonts.fontconfig.defaultFonts = {
     emoji = [ themeFonts.emoji ];
-    monospace = [ themeFonts.monoSpace ];
+    monospace = [ themeFonts.monospace ];
     sansSerif = [ themeFonts.sansSerif ];
     serif = [ themeFonts.serif ];
   };
   gtk = {
     enable = true;
-    font.family = themeFonts.sansSerif;
+    font.name = themeFonts.sansSerif;
   };
   home.packages = [
     pkgs.cascadia-code

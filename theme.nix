@@ -27,6 +27,10 @@ in
     sansSerif = [ themeFonts.sansSerif ];
     serif = [ themeFonts.serif ];
   };
+  gtk = {
+    enable = true;
+    font.family = themeFonts.sansSerif;
+  };
   home.packages = [
     pkgs.cascadia-code
     pkgs.noto-fonts

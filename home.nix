@@ -84,8 +84,8 @@
     alacritty = {
       enable = true;
       settings = {
-        general = {
-          env = "xterm-256color";
+        env = {
+          TERM = "xterm-256color";
         };
       };
     };

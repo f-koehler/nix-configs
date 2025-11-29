@@ -8,11 +8,19 @@ let
   };
 in
 {
-  catppuccin = {
-    enable = true;
-    accent = "mauve";
-    flavor = "mocha";
-  };
+  catppuccin =
+    let
+      accent = "mauve";
+      flavor = "mocha";
+    in
+    {
+      enable = true;
+      inherit accent flavor;
+      cursors = {
+        enable = true;
+        inherit accent flavor;
+      };
+    };
   fonts.fontconfig.defaultFonts = {
     emoji = [ themeFonts.emoji ];
     monospace = [ themeFonts.monoSpace ];

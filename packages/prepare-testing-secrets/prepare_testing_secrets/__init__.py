@@ -57,7 +57,7 @@ def main():
         env.get_template("sops.yaml.j2").render(public_age_key=public_age_key)
     )
 
-    for secret_file in ["common.yaml.j2", "home.yaml.j2", "homeserver.yaml.j2"]:
+    for secret_file in ["common.yaml.j2", "home.yaml.j2"]:
         logging.info("Rendering secret: %s", str(secret_file))
         target = Path.cwd() / "secrets" / secret_file.removesuffix(".j2")
         target.parent.mkdir(exist_ok=True, parents=True)

@@ -27,10 +27,6 @@ lib.mkIf nodeConfig.isWorkstation {
         port = 22;
         user = "fkoehler";
       };
-      "homeserver" = {
-        hostname = "homeserver.corgi-dojo.ts.net";
-        user = "fkoehler";
-      };
       "desktop" = {
         hostname = "desktop.corgi-dojo.ts.net";
         user = "fkoehler";

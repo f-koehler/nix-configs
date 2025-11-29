@@ -34,7 +34,6 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - "fkoehler@homeserver"
           - "fkoehler@fkt14"
           - "fkoehler@desktop"
           - "fkoehler@desktop-ubuntu"
@@ -57,7 +56,6 @@ jobs:
       fail-fast: false
       matrix:
         host:
-          - homeserver
           - fkt14
           - desktop
     runs-on: ubuntu-latest

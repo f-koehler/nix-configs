@@ -136,34 +136,17 @@
         isWorkstation = true;
         isTrusted = true;
       };
-      config-homeserver = {
-        hostname = "homeserver";
-        username = "fkoehler";
-        isWorkstation = false;
-        isTrusted = true;
-        gpus = [ "intel" ];
-      };
-      config-vps = {
-        hostname = "vps";
-        username = "fkoehler";
-        isWorkstation = false;
-        isTrusted = true;
-      };
     in
     {
       homeConfigurations = {
         "fkoehler@fkt14" = mylib.mkHome config-fkt14;
         "fkoehler@mbp21" = mylib.mkHome config-mbp21;
-        "fkoehler@homeserver" = mylib.mkHome config-homeserver;
-        "fkoehler@vps" = mylib.mkHome config-vps;
         "fkoehler@desktop" = mylib.mkHome config-desktop;
         "fkoehler@desktop-ubuntu" = mylib.mkHome config-desktop-ubuntu;
       };
 
       nixosConfigurations = {
         "fkt14" = mylib.mkNixOS config-fkt14;
-        "homeserver" = mylib.mkNixOS config-homeserver;
-        "vps" = mylib.mkNixOS config-vps;
         "desktop" = mylib.mkNixOS config-desktop;
       };
 

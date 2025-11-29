@@ -6,7 +6,6 @@
     ./bluetooth.nix
     ./distrobox.nix
     ./flatpak.nix
-    ./nfs.nix
     ./packages.nix
     ./protonmail.nix
     ./sound.nix

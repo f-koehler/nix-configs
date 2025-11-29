@@ -25,7 +25,7 @@
     gtk.enable = true;
     qt = {
       enable = true;
-      platform = "kde6";
+      # platform = "kde6";
     };
   };
 }

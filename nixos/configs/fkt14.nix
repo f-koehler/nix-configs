@@ -82,7 +82,7 @@
     systemPackages = with pkgs; [
       neovim
       cifs-utils
-      kdePackages.xwaylandvideobridge
+      # kdePackages.xwaylandvideobridge
       boost
       ntfs3g
       exfatprogs

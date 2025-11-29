@@ -35,8 +35,6 @@ jobs:
       matrix:
         config:
           - "fkoehler@fkt14"
-          - "fkoehler@desktop"
-          - "fkoehler@desktop-ubuntu"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -57,7 +55,6 @@ jobs:
       matrix:
         host:
           - fkt14
-          - desktop
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5

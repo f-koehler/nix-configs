@@ -2,7 +2,6 @@
 keys:
   - &gpg_fkoehler C5DC80511469AD81C84E3564D55A35AFB2900A11
   - &ssh_fkt14 age15qceufnzv3dv2ktnulg7dd2cjwp4cncjkhqznrxadnv44llcaulqajpve7
-  - &ssh_desktop age1rllar6h4fhn9jwrgmtykmj0rpn8rrc6yc2m3nmlrk0l276k4nfyqv5r0px
 creation_rules:
   - path_regex: secrets/(home|common)\.yaml$
     key_groups:
@@ -10,4 +9,3 @@ creation_rules:
           - *gpg_fkoehler
         age:
           - *ssh_fkt14
-          - *ssh_desktop

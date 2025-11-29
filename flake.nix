@@ -95,19 +95,6 @@
       stateVersion = "24.11";
       mylib = import ./lib { inherit inputs outputs stateVersion; };
 
-      config-desktop = {
-        hostname = "desktop";
-        username = "fkoehler";
-        isWorkstation = true;
-        isTrusted = true;
-        containerBackend = "docker";
-        virtualisation = true;
-        gpus = [ "nvidia" ];
-        desktops = [
-          "plasma"
-          "sway"
-        ];
-      };
       config-fkt14 = {
         hostname = "fkt14";
         username = "fkoehler";
@@ -123,12 +110,6 @@
         # fontSize = 12;
         # fontSizeMonospace = 10;
       };
-      config-desktop-ubuntu = {
-        hostname = "desktop-ubuntu";
-        username = "fkoehler";
-        isWorkstation = true;
-        isTrusted = true;
-      };
       config-mbp21 = {
         hostname = "mbp21";
         username = "fkoehler";
@@ -141,13 +122,10 @@
       homeConfigurations = {
         "fkoehler@fkt14" = mylib.mkHome config-fkt14;
         "fkoehler@mbp21" = mylib.mkHome config-mbp21;
-        "fkoehler@desktop" = mylib.mkHome config-desktop;
-        "fkoehler@desktop-ubuntu" = mylib.mkHome config-desktop-ubuntu;
       };
 
       nixosConfigurations = {
         "fkt14" = mylib.mkNixOS config-fkt14;
-        "desktop" = mylib.mkNixOS config-desktop;
       };
 
       darwinConfigurations = {

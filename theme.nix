@@ -41,5 +41,10 @@ in
         style = "Italic";
       };
     };
+    zed-editor.userSettings = {
+      buffer_font_family = themeFonts.monospace;
+      terminal.font_family = themeFonts.monospace;
+      ui_font_family = themeFonts.sansSerif;
+    };
   };
 }

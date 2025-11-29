@@ -114,6 +114,10 @@
         "nix"
         "toml"
       ];
+      userSettings = {
+        telemetry.metrics = false;
+        vim_mode = true;
+      };
     };
     zellij.enable = true;
     zoxide.enable = true;

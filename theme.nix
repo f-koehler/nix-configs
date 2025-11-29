@@ -20,6 +20,7 @@ in
         enable = true;
         inherit accent flavor;
       };
+      thunderbird.profile = "default";
     };
   fonts.fontconfig.defaultFonts = {
     emoji = [ themeFonts.emoji ];

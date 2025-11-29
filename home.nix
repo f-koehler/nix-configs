@@ -92,6 +92,12 @@
       vimdiffAlias = true;
     };
     starship.enable = true;
+    thunderbird = {
+      enable = true;
+      profiles.default = {
+        isDefault = true;
+      };
+    };
     tmux = {
       enable = true;
       clock24 = true;

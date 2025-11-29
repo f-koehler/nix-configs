@@ -73,6 +73,12 @@
 
     shell.enableShellIntegration = true;
   };
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      nvidia.acceptLicense = true;
+    };
+  };
   programs = {
     home-manager.enable = true;
     alacritty = {
@@ -206,7 +212,14 @@
   targets = {
     genericLinux = {
       enable = true;
-      gpu.enable = true;
+      gpu = {
+        enable = true;
+        nvidia = {
+          enable = true;
+          sha256 = "sha256-2cboGIZy8+t03QTPpp3VhHn6HQFiyMKMjRdiV2MpNHU=";
+          version = "580.105.08";
+        };
+      };
     };
   };
 }

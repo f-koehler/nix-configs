@@ -63,7 +63,7 @@
     username = "fkoehler";
     homeDirectory = "/home/fkoehler";
 
-    stateVersion = "25.11";
+    stateVersion = "26.05";
 
     file = {
     };

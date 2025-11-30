@@ -20,6 +20,14 @@ in
         enable = true;
         inherit accent flavor;
       };
+      firefox = {
+        enable = true;
+        force = true;
+        profiles.default = {
+          enable = true;
+          force = true;
+        };
+      };
       thunderbird.profile = "default";
     };
   fonts.fontconfig.defaultFonts = {

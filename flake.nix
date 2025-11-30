@@ -9,6 +9,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     systems.url = "github:nix-systems/default";
   };
 
@@ -32,6 +36,20 @@
           ./home.nix
           ./theme.nix
           inputs.catppuccin.homeModules.catppuccin
+        ];
+      };
+      darwinConfigurations.mbp = inputs.nix-darwin.lib.darwinSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./darwin.nix
+          inputs.home-manager.darwinModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.fkoehler = ./home.nix { };
+            };
+          }
         ];
       };
       checks = forEachSystem (system: {
@@ -72,6 +90,7 @@
             buildInputs = pre-commit-check.enabledPackages;
             packages = [
               inputs.home-manager.packages.${system}.home-manager
+              inputs.nix-darwin.packages.${system}.darwin-rebuild
             ];
             env = { };
             inherit (pre-commit-check) shellHook;

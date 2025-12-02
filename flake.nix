@@ -28,28 +28,38 @@
         };
     in
     {
-      homeConfigurations.fkoehler = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = getNixpkgs "x86_64-linux";
-        modules = [
-          ./home.nix
-          ./theme.nix
-          inputs.catppuccin.homeModules.catppuccin
-        ];
+      homeConfigurations = {
+        "fkoehler@desktop" = inputs.home-manager.lib.homeManagerConfiguration {
+          pkgs = getNixpkgs "x86_64-linux";
+          modules = [
+            ./home.nix
+            ./theme.nix
+            inputs.catppuccin.homeModules.catppuccin
+          ];
+        };
+        "fkoehler@mbp" = inputs.home-manager.lib.homeManagerConfiguration {
+          pkgs = getNixpkgs "aarch64-darwin";
+          modules = [
+            ./home.nix
+            ./theme.nix
+            inputs.catppuccin.homeModules.catppuccin
+          ];
+        };
       };
-      darwinConfigurations.mbp = inputs.nix-darwin.lib.darwinSystem {
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./darwin.nix
-          inputs.home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.fkoehler = ./home.nix { };
-            };
-          }
-        ];
-      };
+      # darwinConfigurations.mbp = inputs.nix-darwin.lib.darwinSystem {
+      #   specialArgs = { inherit inputs; };
+      #   modules = [
+      #     ./darwin.nix
+      #     inputs.home-manager.darwinModules.home-manager
+      #     {
+      #       home-manager = {
+      #         useGlobalPkgs = true;
+      #         useUserPackages = true;
+      #         users.fkoehler = ./home.nix { };
+      #       };
+      #     }
+      #   ];
+      # };
       checks = forEachSystem (system: {
         pre-commit-check = inputs.git-hooks.lib.${system}.run {
           src = ./.;

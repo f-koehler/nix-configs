@@ -26,12 +26,10 @@
           inherit system;
           config.allowUnfree = true;
         };
-      system = "x86_64-linux";
-      pkgs = inputs.nixpkgs.legacyPackages.${system};
     in
     {
       homeConfigurations.fkoehler = inputs.home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+        pkgs = getNixpkgs "x86_64-linux";
         modules = [
           ./home.nix
           ./theme.nix

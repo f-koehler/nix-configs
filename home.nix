@@ -333,4 +333,19 @@
       };
     };
   };
+  qt = {
+    enable = true;
+    kde.settings = {
+      kcminputrc = {
+        Mouse = {
+          cursorTheme = "catppuccin-mocha-mauve-cursors";
+        };
+      };
+      kdeglobals = {
+        Icons = {
+          Theme = "Papirus-Dark";
+        };
+      };
+    };
+  };
 }

@@ -32,7 +32,7 @@
         "fkoehler@desktop" = inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = getNixpkgs "x86_64-linux";
           modules = [
-            ./home.nix
+            ./home
             ./theme.nix
             inputs.catppuccin.homeModules.catppuccin
           ];
@@ -40,7 +40,7 @@
         "fkoehler@mbp" = inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = getNixpkgs "aarch64-darwin";
           modules = [
-            ./home.nix
+            ./home
             ./theme.nix
             inputs.catppuccin.homeModules.catppuccin
           ];
@@ -98,7 +98,6 @@
             buildInputs = pre-commit-check.enabledPackages;
             packages = [
               inputs.home-manager.packages.${system}.home-manager
-              inputs.nix-darwin.packages.${system}.darwin-rebuild
             ];
             env = { };
             inherit (pre-commit-check) shellHook;

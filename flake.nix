@@ -33,14 +33,16 @@
           pkgs = getNixpkgs "x86_64-linux";
           modules = [
             ./home
+            ./nodes/desktop.nix
             ./theme.nix
             inputs.catppuccin.homeModules.catppuccin
           ];
         };
-        "fkoehler@mbp" = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = getNixpkgs "aarch64-darwin";
+        "fkoehler@fedora" = inputs.home-manager.lib.homeManagerConfiguration {
+          pkgs = getNixpkgs "x86_64-linux";
           modules = [
             ./home
+            ./nodes/fedora.nix
             ./theme.nix
             inputs.catppuccin.homeModules.catppuccin
           ];

@@ -13,9 +13,6 @@ _: {
     };
   };
   home = {
-    username = "fkoehler";
-    homeDirectory = "/home/fkoehler";
-
     stateVersion = "26.05";
 
     file = {
@@ -103,19 +100,6 @@ _: {
     zathura.enable = true;
     zellij.enable = true;
     zoxide.enable = true;
-  };
-  targets = {
-    genericLinux = {
-      enable = true;
-      gpu = {
-        enable = true;
-        nvidia = {
-          enable = true;
-          sha256 = "sha256-2cboGIZy8+t03QTPpp3VhHn6HQFiyMKMjRdiV2MpNHU=";
-          version = "580.105.08";
-        };
-      };
-    };
   };
   qt = {
     enable = true;

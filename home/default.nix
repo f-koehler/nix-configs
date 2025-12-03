@@ -39,7 +39,10 @@ _: {
         };
       };
     };
-    atuin.enable = true;
+    atuin = {
+      enable = true;
+      flags = [ "--disable-up-arrow" ];
+    };
     bash.enable = true;
     bat.enable = true;
     eza = {

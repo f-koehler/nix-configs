@@ -120,4 +120,12 @@ _: {
     };
     style.name = "kvantum";
   };
+  xdg = {
+    terminal-exec = {
+      enable = true;
+      settings = {
+        default = [ "Alacritty.desktop" ];
+      };
+    };
+  };
 }

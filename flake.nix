@@ -51,6 +51,15 @@
             inputs.nix-flatpak.homeManagerModules.nix-flatpak
           ];
         };
+        "fkoehler@mbp" = inputs.home-manager.lib.homeManagerConfiguration {
+          pkgs = getNixpkgs "aarch64-darwin";
+          modules = [
+            ./home
+            ./nodes/mbp.nix
+            ./theme.nix
+            inputs.catppuccin.homeModules.catppuccin
+          ];
+        };
       };
       # darwinConfigurations.mbp = inputs.nix-darwin.lib.darwinSystem {
       #   specialArgs = { inherit inputs; };

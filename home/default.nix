@@ -1,4 +1,5 @@
-_: {
+{ pkgs, lib, ... }:
+{
   imports = [
     ./accounts.nix
     ./firefox.nix
@@ -104,7 +105,7 @@ _: {
     zellij.enable = true;
     zoxide.enable = true;
   };
-  qt = {
+  qt = lib.mkIf pkgs.stdenv.isLinux {
     enable = true;
     kde.settings = {
       kcminputrc = {

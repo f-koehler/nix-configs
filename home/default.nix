@@ -89,6 +89,7 @@
     starship.enable = true;
     thunderbird = {
       enable = true;
+      package = if pkgs.stdenv.isLinux then pkgs.thunderbird else pkgs.thunderbird-bin;
       profiles.default = {
         isDefault = true;
       };

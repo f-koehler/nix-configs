@@ -40,11 +40,11 @@
             inputs.catppuccin.homeModules.catppuccin
           ];
         };
-        "fkoehler@fedora" = inputs.home-manager.lib.homeManagerConfiguration {
+        "fkoehler@fkt14" = inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = getNixpkgs "x86_64-linux";
           modules = [
             ./home
-            ./nodes/fedora.nix
+            ./nodes/fkt14.nix
             ./theme.nix
             ./flatpak.nix
             inputs.catppuccin.homeModules.catppuccin

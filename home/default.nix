@@ -19,6 +19,7 @@ _: {
     };
 
     sessionVariables = {
+      GIT_SSH = "/usr/bin/ssh";
     };
 
     shell.enableShellIntegration = true;

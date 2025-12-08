@@ -127,10 +127,17 @@
     gpg-agent = {
       enable = true;
       grabKeyboardAndMouse = true;
-      pinentry = lib.mkIf pkgs.stdenv.isLinux {
-        package = pkgs.pinentry_mac;
-        program = "pinentry-mac";
-      };
+      pinentry =
+        if pkgs.stdenv.isLinux then
+          {
+            package = pkgs.pinentry-qt;
+            program = "pinentry-qt";
+          }
+        else
+          {
+            package = pkgs.pinentry_mac;
+            program = "pinentry-mac";
+          };
     };
   };
   xdg = {

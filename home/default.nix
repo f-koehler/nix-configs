@@ -96,6 +96,32 @@
       vimAlias = true;
       vimdiffAlias = true;
     };
+    ssh = {
+      enable = true;
+      enableDefaultConfig = false;
+      matchBlocks = {
+        "*" = {
+          forwardAgent = false;
+          addKeysToAgent = "no";
+          compression = false;
+          serverAliveInterval = 0;
+          serverAliveCountMax = 3;
+          hashKnownHosts = false;
+          userKnownHostsFile = "~/.ssh/known_hosts";
+          controlMaster = "no";
+          controlPath = "~/.ssh/master-%r@%n:%p";
+          controlPersist = "no";
+        };
+        "scbd1" = {
+          hostname = "10.1.128.104";
+          user = "scbd1";
+        };
+        "scbd4" = {
+          hostname = "10.1.128.102";
+          user = "scbd4";
+        };
+      };
+    };
     starship.enable = true;
     thunderbird = {
       enable = true;

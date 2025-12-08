@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   imports = [
     ./accounts.nix
@@ -21,7 +26,11 @@
 
     sessionVariables = {
       GIT_SSH = "/usr/bin/ssh";
+      VCPKG_ROOT = "${config.home.homeDirectory}/vcpkg";
     };
+    sessionPath = [
+      "${config.home.homeDirectory}/.cargo/bin"
+    ];
 
     shell.enableShellIntegration = true;
   };

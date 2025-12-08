@@ -1,6 +1,8 @@
-_: {
+{ pkgs, ... }:
+{
   programs.firefox = {
     enable = true;
+    package = if pkgs.stdenv.isLinux then pkgs.firefox else pkgs.firefox-bin;
     profiles.default = {
       isDefault = true;
       extensions.force = true;

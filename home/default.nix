@@ -1,4 +1,5 @@
-_: {
+{ pkgs, lib, ... }:
+{
   imports = [
     ./accounts.nix
     ./firefox.nix
@@ -89,6 +90,7 @@ _: {
     starship.enable = true;
     thunderbird = {
       enable = true;
+      package = if pkgs.stdenv.isLinux then pkgs.thunderbird else pkgs.thunderbird-bin;
       profiles.default = {
         isDefault = true;
       };
@@ -105,7 +107,7 @@ _: {
     zellij.enable = true;
     zoxide.enable = true;
   };
-  qt = {
+  qt = lib.mkIf pkgs.stdenv.isLinux {
     enable = true;
     kde.settings = {
       kcminputrc = {
@@ -120,6 +122,16 @@ _: {
       };
     };
     style.name = "kvantum";
+  };
+  services = {
+    gpg-agent = {
+      enable = true;
+      grabKeyboardAndMouse = true;
+      pinentry = lib.mkIf pkgs.stdenv.isLinux {
+        package = pkgs.pinentry_mac;
+        program = "pinentry-mac";
+      };
+    };
   };
   xdg = {
     terminal-exec = {

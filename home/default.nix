@@ -156,7 +156,6 @@
         };
       };
     };
-    style.name = "kvantum";
   };
   services = {
     gpg-agent = {

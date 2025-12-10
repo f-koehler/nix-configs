@@ -29,6 +29,7 @@ in
           force = true;
         };
       };
+      kvantum.enable = false;
       thunderbird.profile = "default";
     };
   fonts.fontconfig.defaultFonts = {

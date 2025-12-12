@@ -229,7 +229,14 @@
             PowerProfile = "power-saver";
           };
         };
-
+      };
+      dolphinrc = {
+        General = {
+          EditableUrl = true;
+          ShowFullPath = true;
+          ShowStatusBar = "FullWidth";
+          ShowZoomSlider = true;
+        };
       };
     };
   };

@@ -22,6 +22,9 @@
     stateVersion = "26.05";
 
     file = {
+      ".ideavimrc".text = ''
+        Plug 'tpope/vim-commentary'
+      '';
     };
 
     packages = [

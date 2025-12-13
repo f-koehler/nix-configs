@@ -24,6 +24,10 @@
     file = {
     };
 
+    packages = [
+      pkgs.devenv
+    ];
+
     sessionVariables = {
       GIT_SSH = "/usr/bin/ssh";
       VCPKG_ROOT = "${config.home.homeDirectory}/vcpkg";

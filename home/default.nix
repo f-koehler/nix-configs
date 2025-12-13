@@ -89,6 +89,10 @@
       enable = true;
     };
     lazygit.enable = true;
+    man = {
+      enable = true;
+      generateCaches = true;
+    };
     mergiraf.enable = true;
     neovim = {
       enable = true;

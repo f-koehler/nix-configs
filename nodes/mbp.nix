@@ -29,10 +29,10 @@ _: {
     aerospace = {
       enable = true;
       launchd.enable = true;
-      setttings = {
+      settings = {
+        config-version = 2;
+        persistent-workspaces = [ ];
         mode = {
-          config-version = 2;
-          persistent-workspaces = [ ];
           main.binding = {
             alt-enter = ''
               exec-and-forget osascript -e '
@@ -51,8 +51,8 @@ _: {
             alt-shift-l = "move up";
             alt-shift-semicolon = "move right";
 
-            alt-h = "split horizontal";
-            alt-v = "split vertical";
+            alt-h = "join-with left";
+            alt-v = "join-with up";
 
             alt-f = "fullscreen";
 

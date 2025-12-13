@@ -38,6 +38,7 @@
             ./theme.nix
             ./flatpak.nix
             inputs.catppuccin.homeModules.catppuccin
+            inputs.nix-flatpak.homeManagerModules.nix-flatpak
           ];
         };
         "fkoehler@fkt14" = inputs.home-manager.lib.homeManagerConfiguration {

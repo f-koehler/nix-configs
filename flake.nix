@@ -30,37 +30,55 @@
     in
     {
       homeConfigurations = {
-        "fkoehler@desktop" = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = getNixpkgs "x86_64-linux";
-          modules = [
-            ./home
-            ./nodes/desktop.nix
-            ./theme.nix
-            ./flatpak.nix
-            inputs.catppuccin.homeModules.catppuccin
-            inputs.nix-flatpak.homeManagerModules.nix-flatpak
-          ];
-        };
-        "fkoehler@fkt14" = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = getNixpkgs "x86_64-linux";
-          modules = [
-            ./home
-            ./nodes/fkt14.nix
-            ./theme.nix
-            ./flatpak.nix
-            inputs.catppuccin.homeModules.catppuccin
-            inputs.nix-flatpak.homeManagerModules.nix-flatpak
-          ];
-        };
-        "fkoehler@mbp" = inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = getNixpkgs "aarch64-darwin";
-          modules = [
-            ./home
-            ./nodes/mbp.nix
-            ./theme.nix
-            inputs.catppuccin.homeModules.catppuccin
-          ];
-        };
+        "fkoehler@desktop" =
+          let
+            system = "x86_64-linux";
+          in
+          inputs.home-manager.lib.homeManagerConfiguration {
+            extraSpecialArgs = { inherit inputs; };
+            pkgs = getNixpkgs system;
+            modules = [
+              ./home
+              ./nodes/desktop.nix
+              ./theme.nix
+              ./flatpak.nix
+              inputs.catppuccin.homeModules.catppuccin
+              inputs.nix-flatpak.homeManagerModules.nix-flatpak
+            ];
+          };
+        "fkoehler@fkt14" =
+          let
+            system = "x86_64-linux";
+          in
+          inputs.home-manager.lib.homeManagerConfiguration {
+            extraSpecialArgs = { inherit inputs; };
+            pkgs = getNixpkgs system;
+            modules = [
+              ./home
+              ./nodes/fkt14.nix
+              ./theme.nix
+              ./flatpak.nix
+              inputs.catppuccin.homeModules.catppuccin
+              inputs.nix-flatpak.homeManagerModules.nix-flatpak
+            ];
+          };
+        "fkoehler@mbp" =
+          let
+            system = "aarch64-darwin";
+          in
+          inputs.home-manager.lib.homeManagerConfiguration {
+            extraSpecialArgs = {
+              inherit inputs;
+              inherit system;
+            };
+            pkgs = getNixpkgs system;
+            modules = [
+              ./home
+              ./nodes/mbp.nix
+              ./theme.nix
+              inputs.catppuccin.homeModules.catppuccin
+            ];
+          };
       };
       # darwinConfigurations.mbp = inputs.nix-darwin.lib.darwinSystem {
       #   specialArgs = { inherit inputs; };

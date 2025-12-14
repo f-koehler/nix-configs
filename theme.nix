@@ -30,6 +30,7 @@ in
         };
       };
       kvantum.enable = false;
+      nvim.enable = false;
       thunderbird.profile = "default";
     };
   fonts.fontconfig.defaultFonts = {

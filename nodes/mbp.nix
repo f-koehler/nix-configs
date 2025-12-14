@@ -32,6 +32,10 @@ _: {
       settings = {
         config-version = 2;
         persistent-workspaces = [ ];
+        gaps = {
+          inner.horizontal = 5;
+          inner.vertical = 5;
+        };
         mode = {
           main.binding = {
             alt-enter = ''

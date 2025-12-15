@@ -11,5 +11,6 @@ _: {
     "com.jgraph.drawio.desktop"
     "com.super_productivity.SuperProductivity"
     "org.telegram.desktop"
+    "net.werwolv.ImHex"
   ];
 }

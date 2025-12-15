@@ -61,6 +61,9 @@
       enable = true;
       flags = [ "--disable-up-arrow" ];
     };
+    awscli = {
+      enable = true;
+    };
     bash.enable = true;
     bat.enable = true;
     eza = {

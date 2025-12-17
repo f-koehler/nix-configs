@@ -14,6 +14,7 @@ _: {
     ];
     userSettings = {
       telemetry.metrics = false;
+      ui_font_size = 14;
       vim_mode = true;
     };
   };

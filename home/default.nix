@@ -23,6 +23,8 @@
 
     file = {
       ".ideavimrc".text = ''
+        set visualbell
+        set noerrorbells
         Plug 'tpope/vim-commentary'
       '';
     };

@@ -80,20 +80,9 @@
             ];
           };
       };
-      # darwinConfigurations.mbp = inputs.nix-darwin.lib.darwinSystem {
-      #   specialArgs = { inherit inputs; };
-      #   modules = [
-      #     ./darwin.nix
-      #     inputs.home-manager.darwinModules.home-manager
-      #     {
-      #       home-manager = {
-      #         useGlobalPkgs = true;
-      #         useUserPackages = true;
-      #         users.fkoehler = ./home.nix { };
-      #       };
-      #     }
-      #   ];
-      # };
+      darwinConfigurations.mbp = inputs.nix-darwin.lib.darwinSystem {
+        modules = [ ./darwin.nix ];
+      };
       checks = forEachSystem (system: {
         pre-commit-check = inputs.git-hooks.lib.${system}.run {
           src = ./.;
@@ -126,13 +115,15 @@
         default =
           let
             pkgs = getNixpkgs system;
+            inherit (inputs.nixpkgs) lib;
             inherit (self.checks.${system}) pre-commit-check;
           in
           pkgs.mkShell {
             buildInputs = pre-commit-check.enabledPackages;
             packages = [
               inputs.home-manager.packages.${system}.home-manager
-            ];
+            ]
+            ++ (lib.optionals pkgs.stdenv.isDarwin [ inputs.nix-darwin.packages.${system}.darwin-rebuild ]);
             env = { };
             inherit (pre-commit-check) shellHook;
           };

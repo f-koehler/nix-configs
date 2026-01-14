@@ -102,16 +102,5 @@
         };
       };
     };
-    jankyborders = {
-      enable = true;
-      width = 5.0;
-      hidpi = true;
-      style = "round";
-      active_color = "0xffcba6f7";
-      inactive_color = "0xff1e1e2e";
-    };
-    sketchybar = {
-      enable = true;
-    };
   };
 }

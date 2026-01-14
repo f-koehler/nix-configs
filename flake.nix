@@ -13,7 +13,6 @@
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-flatpak.url = "github:gmodena/nix-flatpak/";
     systems.url = "github:nix-systems/default";
   };
 
@@ -41,9 +40,7 @@
               ./home
               ./nodes/desktop.nix
               ./theme.nix
-              ./flatpak.nix
               inputs.catppuccin.homeModules.catppuccin
-              inputs.nix-flatpak.homeManagerModules.nix-flatpak
             ];
           };
         "fkoehler@fkt14" =
@@ -57,9 +54,7 @@
               ./home
               ./nodes/fkt14.nix
               ./theme.nix
-              ./flatpak.nix
               inputs.catppuccin.homeModules.catppuccin
-              inputs.nix-flatpak.homeManagerModules.nix-flatpak
             ];
           };
         "fkoehler@mbp" =

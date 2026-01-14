@@ -31,6 +31,7 @@
 
     packages = [
       pkgs.devenv
+      pkgs.ncdu
     ];
 
     sessionVariables = {

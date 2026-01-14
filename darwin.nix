@@ -3,7 +3,8 @@
   environment.systemPackages = [
   ];
 
-  nix.settings.experimental-features = "nix-command flakes";
+  # do not manage nix via nix-darwin, clashes with determinate nix
+  nix.enable = false;
   system = {
     primaryUser = "fkoehler";
     startup.chime = false;

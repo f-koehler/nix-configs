@@ -6,8 +6,6 @@ _: {
   targets.darwin = {
     copyApps.enable = true;
     defaults = {
-      "com.apple.dock" = {
-      };
       "com.apple.menuextra.clock" = {
         Show24Hour = true;
         ShowAMPM = false;

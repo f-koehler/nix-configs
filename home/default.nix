@@ -133,6 +133,10 @@
           hostname = "10.1.128.104";
           user = "scbd1";
         };
+        "scbd3" = {
+          hostname = "10.1.128.107";
+          user = "scbd3";
+        };
         "scbd4" = {
           hostname = "10.1.128.102";
           user = "scbd4";

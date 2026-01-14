@@ -88,6 +88,13 @@
     fish = {
       enable = true;
       generateCompletions = true;
+      functions = {
+        fish_user_key_bindings = {
+          body = ''
+            fish_vi_key_bindings --no-erase insert
+          '';
+        };
+      };
     };
     fzf = {
       enable = true;

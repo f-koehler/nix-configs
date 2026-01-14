@@ -1,4 +1,5 @@
-_: {
+{ lib, ... }:
+{
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -18,7 +19,14 @@ _: {
       size = 100000;
     };
     historySubstringSearch.enable = true;
+    initContent = lib.mkMerge [
+      (lib.mkOrder 1000 ''
+        bindkey "^[[1;9D" backward-word
+        bindkey "^[[1;9C" forward-word
+      '')
+    ];
     setOptions = [ "NO_BEEP" ];
     syntaxHighlighting.enable = true;
   };
+
 }

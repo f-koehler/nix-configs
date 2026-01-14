@@ -28,7 +28,7 @@
   nixpkgs.hostPlatform = "aarch64-darwin";
   services = {
     aerospace = {
-      enable = true;
+      enable = false;
       settings = {
         config-version = 2;
         persistent-workspaces = [ ];

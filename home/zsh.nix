@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -23,6 +23,9 @@
       (lib.mkOrder 1000 ''
         bindkey "^[[1;9D" backward-word
         bindkey "^[[1;9C" forward-word
+      '')
+      (lib.mkOrder 1500 ''
+        source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
       '')
     ];
     setOptions = [ "NO_BEEP" ];

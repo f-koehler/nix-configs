@@ -140,6 +140,10 @@
           hostname = "10.1.128.104";
           user = "scbd1";
         };
+        "scbd2" = {
+          hostname = "10.1.128.103";
+          user = "scbd2";
+        };
         "scbd3" = {
           hostname = "10.1.128.107";
           user = "scbd3";
@@ -147,6 +151,10 @@
         "scbd4" = {
           hostname = "10.1.128.102";
           user = "scbd4";
+        };
+        "dnsmasq" = {
+          hostname = "10.1.3.1";
+          user = "root";
         };
       };
     };

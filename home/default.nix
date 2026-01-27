@@ -156,6 +156,26 @@
           hostname = "10.1.3.1";
           user = "root";
         };
+        "pve-beowulf-0" = {
+          hostname = "10.1.206.113";
+          user = "root";
+        };
+        "pve-beowulf-1" = {
+          hostname = "10.1.142.246";
+          user = "root";
+        };
+        "fk-gha-runner-x64-005" = {
+          hostname = "10.1.218.102";
+          user = "fkoehler";
+        };
+        "fk-gha-runner-x64-006" = {
+          hostname = "10.1.255.49";
+          user = "fkoehler";
+        };
+        "fk-gha-runner-x64-007" = {
+          hostname = "10.1.242.35";
+          user = "fkoehler";
+        };
       };
     };
     starship.enable = true;

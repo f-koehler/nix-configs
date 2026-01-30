@@ -20,6 +20,7 @@
   };
   home = {
     stateVersion = "26.05";
+    preferXdgDirectories = true;
 
     file = {
       ".ideavimrc".text = ''

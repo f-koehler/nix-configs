@@ -32,6 +32,7 @@
     packages = [
       pkgs.devenv
       pkgs.ncdu
+      pkgs.jellyfin-tui
     ];
 
     sessionVariables = {

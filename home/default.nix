@@ -222,6 +222,9 @@
         };
       };
       kglobalshortcutsrc = {
+        ksmserver = {
+          "Lock Session" = "Screensaver,Meta+L\tScreensaver,Lock Session";
+        };
         kwin = {
           "Switch to Desktop 1" = "Meta+1,Ctrl+F1,Switch to Desktop 1";
           "Switch to Desktop 2" = "Meta+2,Ctrl+F2,Switch to Desktop 2";
@@ -244,6 +247,18 @@
           "Window to Desktop 9" = "Meta+(,,Window to Desktop 9";
           "Show Desktop" = "none,Meta+D,Peek at Desktop";
           "Window Fullscreen" = "Meta+F,,Make Window Fullscreen";
+          "KrohnkiteFocusDown" = "Meta+J,none,Krohnkite: Focus Down";
+          "KrohnkiteFocusLeft" = "Meta+H,none,Krohnkite: Focus Left";
+          "KrohnkiteFocusNext" = "Meta+.,none,Krohnkite: Focus Next";
+          "KrohnkiteFocusPrev" = "Meta+\\,,none,Krohnkite: Focus Previous";
+          "KrohnkiteFocusRight" = "Meta+L,none,Krohnkite: Focus Right";
+          "KrohnkiteFocusUp" = "Meta+K,none,Krohnkite: Focus Up";
+          "KrohnkiteMonocleLayout" = "Meta+M,none,Krohnkite: Monocle Layout";
+          "KrohnkiteSetMaster" = "Meta+Shift+M,none,Krohnkite: Set master";
+          "KrohnkiteShiftDown" = "Meta+Shift+J,none,Krohnkite: Move Down/Next";
+          "KrohnkiteShiftLeft" = "Meta+Shift+H,none,Krohnkite: Move Left";
+          "KrohnkiteShiftRight" = "Meta+Shift+L,none,Krohnkite: Move Right";
+          "KrohnkiteShiftUp" = "Meta+Shift+K,none,Krohnkite: Move Up/Prev";
         };
 
         plasmashell = {

@@ -154,6 +154,18 @@
           hostname = "10.1.128.102";
           user = "scbd4";
         };
+        "scbd5" = {
+          hostname = "10.1.245.52";
+          user = "scbd5";
+        };
+        "scbd6" = {
+          hostname = "10.1.250.159";
+          user = "scbd6";
+        };
+        "scbd7" = {
+          hostname = "10.1.178.70";
+          user = "scbd7";
+        };
         "dnsmasq" = {
           hostname = "10.1.3.1";
           user = "root";

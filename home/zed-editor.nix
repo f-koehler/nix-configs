@@ -16,6 +16,10 @@ _: {
       telemetry.metrics = false;
       ui_font_size = 14;
       vim_mode = true;
+      colorize_brackets = true;
+      which_key = {
+        enabled = true;
+      };
     };
   };
 }

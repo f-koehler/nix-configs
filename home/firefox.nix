@@ -79,6 +79,10 @@
                 name = "pve-beowulf-1";
                 url = "http://10.1.142.246:8006/";
               }
+              {
+                name = "Mission Planning";
+                url = "http://10.1.128.162:4173/";
+              }
             ];
           }
           {

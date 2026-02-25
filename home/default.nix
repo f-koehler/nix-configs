@@ -39,9 +39,11 @@
     sessionVariables = {
       GIT_SSH = "/usr/bin/ssh";
       VCPKG_ROOT = "${config.home.homeDirectory}/vcpkg";
+      CUDA_PATH = "/usr/local/cuda";
     };
     sessionPath = [
       "${config.home.homeDirectory}/.cargo/bin"
+      "/usr/local/cuda/bin/"
     ];
 
     shell.enableShellIntegration = true;

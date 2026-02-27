@@ -9,6 +9,7 @@
     ./accounts.nix
     ./firefox.nix
     ./git.nix
+    ./linux.nix
     ./zed-editor.nix
     ./zsh.nix
   ];

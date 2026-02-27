@@ -6,16 +6,16 @@ _: {
         type = "caldav";
         url = "https://caldav.fastmail.com/";
         userName = "fabiankoehler@fastmail.com";
-        thunderbird.enable = true;
       };
+      thunderbird.enable = true;
     };
     contact.accounts."fastmail" = {
       remote = {
         type = "carddav";
         url = "https://carddav.fastmail.com/";
         userName = "fabiankoehler@fastmail.com";
-        thunderbird.enable = true;
       };
+      thunderbird.enable = true;
     };
     email.accounts = {
       "fastmail" = {

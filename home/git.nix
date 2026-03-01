@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  programs ={
+  programs = {
     git = {
       enable = true;
       package = pkgs.gitFull;
@@ -25,5 +25,6 @@
       };
     };
     lazygit.enable = true;
+    lazyworktree.enable = true;
   };
 }

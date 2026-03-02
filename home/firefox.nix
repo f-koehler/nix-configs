@@ -81,7 +81,7 @@
               }
               {
                 name = "Mission Planning";
-                url = "http://10.1.128.162:4173/";
+                url = "http://10.1.155.69";
               }
             ];
           }

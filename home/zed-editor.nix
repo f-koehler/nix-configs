@@ -1,4 +1,5 @@
-_: {
+{ pkgs, lib, ... }:
+{
   programs.zed-editor = {
     enable = true;
     installRemoteServer = true;
@@ -14,6 +15,27 @@ _: {
     ];
     userSettings = {
       colorize_brackets = true;
+      languages = {
+        Nix = {
+          formatter = {
+            external = {
+              command = "${lib.getExe' pkgs.nixfmt "nixfmt"}";
+              arguments = [ "" ];
+            };
+          };
+          language_servers = [
+            "nixd"
+            "!nild"
+          ];
+        };
+      };
+      lsp = {
+        nixd = {
+          binary = {
+            path = "${lib.getExe' pkgs.nixd "nixd"}";
+          };
+        };
+      };
       telemetry.metrics = true;
       ui_font_size = 14;
       vim = {

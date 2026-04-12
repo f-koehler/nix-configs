@@ -1,6 +1,7 @@
 _: {
   programs.zed-editor = {
     enable = true;
+    package = null;
     installRemoteServer = true;
     extensions = [
       "docker-compose"

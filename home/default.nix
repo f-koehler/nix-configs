@@ -36,6 +36,7 @@
       pkgs.devenv
       pkgs.ncdu
       pkgs.jellyfin-tui
+      pkgs.glow
     ];
 
     sessionVariables = {

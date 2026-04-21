@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  lib,
   ...
 }:
 {
@@ -42,7 +41,7 @@
     ];
 
     sessionVariables = {
-      EDITOR = "${lib.getExe' pkgs.neovim "nvim"}";
+      EDITOR = "nvim";
       GIT_SSH = "/usr/bin/ssh";
       VCPKG_ROOT = "${config.home.homeDirectory}/vcpkg";
       CUDA_PATH = "/usr/local/cuda";

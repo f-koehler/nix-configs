@@ -42,6 +42,7 @@
 
     sessionVariables = {
       EDITOR = "nvim";
+      BROWSER = "firefox";
       GIT_SSH = "/usr/bin/ssh";
       VCPKG_ROOT = "${config.home.homeDirectory}/vcpkg";
       CUDA_PATH = "/usr/local/cuda";

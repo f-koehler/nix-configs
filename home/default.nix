@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }:
 {
@@ -37,9 +38,11 @@
       pkgs.ncdu
       pkgs.jellyfin-tui
       pkgs.glow
+      pkgs.neovim
     ];
 
     sessionVariables = {
+      EDITOR = "${lib.getExe' pkgs.neovim "nvim"}";
       GIT_SSH = "/usr/bin/ssh";
       VCPKG_ROOT = "${config.home.homeDirectory}/vcpkg";
       CUDA_PATH = "/usr/local/cuda";
@@ -121,12 +124,6 @@
       generateCaches = true;
     };
     mergiraf.enable = true;
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      vimAlias = true;
-      vimdiffAlias = true;
-    };
     starship.enable = true;
     thunderbird = {
       enable = true;

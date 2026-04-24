@@ -10,8 +10,8 @@ _: {
         enable = true;
         nvidia = {
           enable = true;
-          sha256 = "sha256-gCD139PuiK7no4mQ0MPSr+VHUemhcLqerdfqZwE47Nc=";
-          version = "580.119.02";
+          sha256 = "sha256-jA1Plnt5MsSrVxQnKu6BAzkrCnAskq+lVRdtNiBYKfk=";
+          version = "595.58.03";
         };
       };
     };

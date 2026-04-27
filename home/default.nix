@@ -10,6 +10,7 @@
     ./git.nix
     ./kde.nix
     ./linux.nix
+    ./sftpman.nix
     ./ssh.nix
     ./zed-editor.nix
     ./zsh.nix

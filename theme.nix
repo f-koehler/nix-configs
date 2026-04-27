@@ -2,7 +2,7 @@
 let
   themeFonts = {
     emoji = "Noto Color Emoji";
-    monospace = "Cascadia Code NF";
+    monospace = "CaskaydiaCove Nerd Font Mono";
     sansSerif = "Noto Sans";
     serif = "Noto Serif";
   };
@@ -44,7 +44,7 @@ in
     font.name = themeFonts.sansSerif;
   };
   home.packages = [
-    pkgs.cascadia-code
+    pkgs.nerd-fonts.caskaydia-cove
     pkgs.noto-fonts
     pkgs.noto-fonts-color-emoji
     pkgs.noto-fonts-cjk-sans

@@ -126,7 +126,10 @@
       generateCaches = true;
     };
     mergiraf.enable = true;
-    starship.enable = true;
+    starship = {
+      enable = true;
+      presets = [ "nerd-font-symbols" ];
+    };
     thunderbird = {
       enable = true;
       package = if pkgs.stdenv.isLinux then pkgs.thunderbird else pkgs.thunderbird-bin;

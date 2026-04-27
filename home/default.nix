@@ -38,6 +38,7 @@
       pkgs.jellyfin-tui
       pkgs.glow
       pkgs.neovim
+      pkgs.prettier
     ];
 
     sessionVariables = {

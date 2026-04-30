@@ -37,7 +37,6 @@
       pkgs.ccache
       pkgs.devenv
       pkgs.glow
-      pkgs.jellyfin-tui
       pkgs.ncdu
       pkgs.neovim
       pkgs.prettier

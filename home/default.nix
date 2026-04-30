@@ -34,10 +34,11 @@
     };
 
     packages = [
+      pkgs.ccache
       pkgs.devenv
-      pkgs.ncdu
-      pkgs.jellyfin-tui
       pkgs.glow
+      pkgs.jellyfin-tui
+      pkgs.ncdu
       pkgs.neovim
       pkgs.prettier
     ];
@@ -48,6 +49,9 @@
       GIT_SSH = "/usr/bin/ssh";
       VCPKG_ROOT = "${config.home.homeDirectory}/vcpkg";
       CUDA_PATH = "/usr/local/cuda";
+      CMAKE_C_COMPILER_LAUNCHER = "ccache";
+      CMAKE_CXX_COMPILER_LAUNCHER = "ccache";
+      CMAKE_CUDA_COMPILER_LAUNCHER = "ccache";
     };
     sessionPath = [
       "${config.home.homeDirectory}/.cargo/bin"

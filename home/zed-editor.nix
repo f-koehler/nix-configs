@@ -8,6 +8,7 @@ _: {
       "dockerfile"
       "env"
       "html"
+      "latex"
       "make"
       "neocmake"
       "nix"

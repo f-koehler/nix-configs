@@ -1,4 +1,6 @@
-_: {
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.texlab ];
   programs.zed-editor = {
     enable = true;
     package = null;

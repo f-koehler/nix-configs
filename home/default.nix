@@ -37,6 +37,7 @@
       pkgs.ccache
       pkgs.devenv
       pkgs.glow
+      pkgs.just
       pkgs.ncdu
       pkgs.neovim
       pkgs.prettier

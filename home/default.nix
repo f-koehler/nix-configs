@@ -149,7 +149,7 @@
       keyMode = "vi";
     };
     yazi.enable = true;
-    zathura.enable = true;
+    zathura.enable = pkgs.stdenv.isLinux;
     zellij.enable = true;
     zoxide.enable = true;
   };

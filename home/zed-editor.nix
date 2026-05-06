@@ -18,6 +18,17 @@
     ];
     userSettings = {
       colorize_brackets = true;
+      lsp = {
+        texlab = {
+          settings = {
+            texlab = {
+              build = {
+                onSave = false;
+              };
+            };
+          };
+        };
+      };
       telemetry.metrics = true;
       ui_font_size = 14;
       vim = {

@@ -40,6 +40,7 @@
       pkgs.just
       pkgs.ncdu
       pkgs.neovim
+      pkgs.prek
       pkgs.prettier
     ];
 

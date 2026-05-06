@@ -103,6 +103,9 @@
       enable = true;
       nix-direnv.enable = true;
     };
+    distrobox = {
+      enable = true;
+    };
     fish = {
       enable = true;
       generateCompletions = true;

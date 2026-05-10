@@ -111,7 +111,7 @@
       nix-direnv.enable = true;
     };
     distrobox = {
-      enable = true;
+      enable = pkgs.stdenv.isLinux;
     };
     fish = {
       enable = true;

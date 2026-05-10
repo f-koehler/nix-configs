@@ -139,6 +139,7 @@
     man = {
       enable = true;
       generateCaches = true;
+      man-db.enable = true;
     };
     mergiraf.enable = true;
     starship = {

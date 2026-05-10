@@ -48,6 +48,7 @@
     sessionVariables = {
       EDITOR = "nvim";
       BROWSER = "firefox";
+      # use system ssh to avoid nix ssh not finding the system ssh-agent
       GIT_SSH = "/usr/bin/ssh";
       CMAKE_C_COMPILER_LAUNCHER = "ccache";
       CMAKE_CXX_COMPILER_LAUNCHER = "ccache";

@@ -53,7 +53,7 @@ _: {
       "zed"
       "zotero"
     ];
-    homebrew.global.autoUpdate = false; # only update on home-manager activation (see below)
+    global.autoUpdate = false; # only update on home-manager activation (see below)
     greedyCasks = true;
     masApps = {
       "Bitwarden" = 1352778147;

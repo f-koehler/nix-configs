@@ -138,6 +138,7 @@
     };
     man = {
       enable = true;
+      package = pkgs.man;
       generateCaches = true;
       man-db.enable = true;
     };

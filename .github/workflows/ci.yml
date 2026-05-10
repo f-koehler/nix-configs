@@ -1,0 +1,31 @@
+---
+name: CI
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-home:
+    name: "Build home-manager (${{ matrix.config }})"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - fkt14
+          - desktop
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: wimpysworld/nothing-but-nix@v10
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v22
+      - name: Build home-manager config
+        run: nix build '.#homeConfigurations."fkoehler@${{ matrix.config }}".activationPackage'

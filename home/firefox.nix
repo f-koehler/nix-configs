@@ -65,27 +65,6 @@
         force = true;
         settings = [
           {
-            name = "SpeQtral";
-            bookmarks = [
-              {
-                name = "Redmine Agile";
-                url = "http://10.1.5.5:3000/agile/board?set_filter=1&f%5B%5D=assigned_to_id&op%5Bassigned_to_id%5D=%3D&v%5Bassigned_to_id%5D%5B%5D=me&f%5B%5D=status_id&op%5Bstatus_id%5D=%3D&f_status%5B%5D=1&f_status%5B%5D=7&f_status%5B%5D=2&f_status%5B%5D=4&f_status%5B%5D=8&f_status%5B%5D=11&f_status%5B%5D=10&f_status%5B%5D=9&c%5B%5D=tracker&c%5B%5D=estimated_hours&c%5B%5D=spent_hours&c%5B%5D=done_ratio&c%5B%5D=parent&c%5B%5D=assigned_to&c%5B%5D=cf_4&c%5B%5D=cf_3";
-              }
-              {
-                name = "pve-beowulf-0";
-                url = "http://10.1.206.113:8006/";
-              }
-              {
-                name = "pve-beowulf-1";
-                url = "http://10.1.142.246:8006/";
-              }
-              {
-                name = "Mission Planning";
-                url = "http://10.1.155.69";
-              }
-            ];
-          }
-          {
             name = "Nix";
             bookmarks = [
               {
@@ -111,35 +90,52 @@
     };
     policies = {
       ExtensionSettings = {
+        # uBlock Origin
         "uBlock0@raymondhill.net" = {
           default_area = "menupanel";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/uBlock0@raymondhill.net/latest.xpi";
           installation_mode = "force_installed";
           private_browsing = true;
         };
+
+        # bitwarden
         "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
           default_area = "menupanel";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/{446900e4-71c2-419f-a6a7-df9c091e268b}/latest.xpi";
           installation_mode = "force_installed";
           private_browsing = false;
         };
+
+        # Zotero
         "zotero@chnm.gmu.edu" = {
-          default_area = "menupanel";
+          default_area = "menuarea";
           install_url = "https://www.zotero.org/download/connector/dl?browser=firefox";
           installation_mode = "force_installed";
           private_browsing = false;
         };
+
+        # Karakeep
         "addon@karakeep.app" = {
-          default_area = "menupanel";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/karakeep/latest.xpi";
+          default_area = "menuarea";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/addon@karakeep.app/latest.xpi";
           installation_mode = "force_installed";
           private_browsing = false;
         };
+
+        # Firefox Color
         "FirefoxColor@mozilla.com" = {
           default_area = "menupanel";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/firefox-color/latest.xpi";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/FirefoxColor@mozilla.com/latest.xpi";
           installation_mode = "force_installed";
           private_browsing = false;
+        };
+
+        # Darkreader
+        "addon@darkreader.org" = {
+          default_area = "menuarea";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/addon@darkreader.org/latest.xpi";
+          installation_mode = "force_installed";
+          private_browsing = true;
         };
       };
     };

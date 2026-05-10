@@ -21,6 +21,58 @@ _: {
     };
   };
 
+  homebrew = {
+    enable = true;
+    enableBashIntegration = true;
+    enableFishIntegration = true;
+    enableZshIntegration = true;
+    brews = [
+      "cmake"
+      "doxygen"
+      "gcc"
+      "immich-cli"
+      "mas"
+      "ninja"
+    ];
+    casks = [
+      "deskflow-dev"
+      "discord"
+      "drawio"
+      "font-caskaydia-cove-nerd-font"
+      "gimp"
+      "google-chrome"
+      "inkscape"
+      "jetbrains-toolbox"
+      "libreoffice"
+      "nextcloud"
+      "obsidian"
+      "spotify"
+      "steam"
+      "tailscale-app"
+      "vlc"
+      "zed"
+      "zotero"
+    ];
+    homebrew.global.autoUpdate = false; # only update on home-manager activation (see below)
+    greedyCasks = true;
+    masApps = {
+      "Bitwarden" = 1352778147;
+      "Infuse" = 1136220934;
+    };
+    taps = [
+      {
+        name = "deskflow/tap";
+        clone_target = "https://github.com/deskflow/homebrew-tap.git";
+        force_auto_update = true;
+      }
+    ];
+    onActivation = {
+      autoUpdate = true;
+      cleanup = "zap";
+      upgrade = true;
+    };
+  };
+
   nixpkgs.hostPlatform = "aarch64-darwin";
   services = {
     aerospace = {

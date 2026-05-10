@@ -181,7 +181,7 @@
           };
     };
   };
-  xdg = {
+  xdg = lib.mkIf pkgs.stdenv.isLinux {
     terminal-exec = {
       enable = true;
       settings = {

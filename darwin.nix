@@ -1,8 +1,4 @@
-{ pkgs, ... }:
-{
-  environment.systemPackages = [
-  ];
-
+_: {
   # do not manage nix via nix-darwin, clashes with determinate nix
   nix.enable = false;
   system = {

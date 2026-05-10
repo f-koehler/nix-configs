@@ -19,9 +19,6 @@ jobs:
         config:
           - fkt14
           - desktop
-    permissions:
-      contents: read
-      id-token: write
     steps:
       - uses: actions/checkout@v6
       - uses: wimpysworld/nothing-but-nix@v10

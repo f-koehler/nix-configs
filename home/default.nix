@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   config,
   ...
 }:
@@ -48,16 +49,21 @@
       EDITOR = "nvim";
       BROWSER = "firefox";
       GIT_SSH = "/usr/bin/ssh";
-      VCPKG_ROOT = "${config.home.homeDirectory}/vcpkg";
-      CUDA_PATH = "/usr/local/cuda";
       CMAKE_C_COMPILER_LAUNCHER = "ccache";
       CMAKE_CXX_COMPILER_LAUNCHER = "ccache";
+    }
+    // lib.optionalAttrs pkgs.stdenv.isLinux {
+      CUDA_PATH = "/usr/local/cuda";
       CMAKE_CUDA_COMPILER_LAUNCHER = "ccache";
+      VCPKG_ROOT = "${config.home.homeDirectory}/vcpkg";
+      CMAKE_TOOLCHAIN_FILE = "${config.home.homeDirectory}/vcpkg/scripts/buildsystems/vcpkg.cmake";
     };
     sessionPath = [
       "${config.home.homeDirectory}/.cargo/bin"
       "${config.home.homeDirectory}/.local/bin"
-      "/usr/local/cuda/bin/"
+    ]
+    ++ lib.optionals pkgs.stdenv.isLinux [
+      "/usr/local/cuda/bin"
     ];
 
     shell.enableShellIntegration = true;

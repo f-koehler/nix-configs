@@ -1,5 +1,24 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
+  # The nixpkgs Firefox wrapper sets MOZ_LEGACY_PROFILES=1, forcing Firefox to
+  # read profiles from ~/.mozilla/firefox/ instead of the XDG path that
+  # home-manager now uses (~/.config/mozilla/firefox/). This profiles.ini
+  # bridges the gap by pointing Firefox at the home-manager-managed profile.
+  home.file.".mozilla/firefox/profiles.ini" = {
+    force = true;
+    text = ''
+      [General]
+      StartWithLastProfile=1
+      Version=2
+
+      [Profile0]
+      Default=1
+      IsRelative=0
+      Name=default
+      Path=${config.home.homeDirectory}/.config/mozilla/firefox/default
+    '';
+  };
+
   programs.firefox = {
     enable = true;
     package = if pkgs.stdenv.isLinux then pkgs.firefox else pkgs.firefox-bin;

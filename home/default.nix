@@ -62,6 +62,7 @@
     sessionPath = [
       "${config.home.homeDirectory}/.cargo/bin"
       "${config.home.homeDirectory}/.local/bin"
+      "${config.home.homeDirectory}/vcpkg"
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       "/usr/local/cuda/bin"

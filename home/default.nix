@@ -52,11 +52,11 @@
       GIT_SSH = "/usr/bin/ssh";
       CMAKE_C_COMPILER_LAUNCHER = "ccache";
       CMAKE_CXX_COMPILER_LAUNCHER = "ccache";
+      VCPKG_ROOT = "${config.home.homeDirectory}/vcpkg";
     }
     // lib.optionalAttrs pkgs.stdenv.isLinux {
       CUDA_PATH = "/usr/local/cuda";
       CMAKE_CUDA_COMPILER_LAUNCHER = "ccache";
-      VCPKG_ROOT = "${config.home.homeDirectory}/vcpkg";
       CMAKE_TOOLCHAIN_FILE = "${config.home.homeDirectory}/vcpkg/scripts/buildsystems/vcpkg.cmake";
     };
     sessionPath = [

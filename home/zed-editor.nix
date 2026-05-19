@@ -14,6 +14,7 @@
       "make"
       "neocmake"
       "nix"
+      "qml"
       "toml"
     ];
     userSettings = {

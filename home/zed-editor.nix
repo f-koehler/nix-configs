@@ -16,6 +16,7 @@
       "nix"
       "qml"
       "toml"
+      "xml"
     ];
     userSettings = {
       colorize_brackets = true;

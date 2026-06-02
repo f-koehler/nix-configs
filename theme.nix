@@ -15,6 +15,7 @@ in
     in
     {
       enable = true;
+      autoEnable = true;
       gtk.icon.enable = pkgs.stdenv.isLinux;
       inherit accent flavor;
       cursors = {

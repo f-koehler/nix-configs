@@ -156,6 +156,14 @@
           installation_mode = "force_installed";
           private_browsing = true;
         };
+
+        # Tridactyl
+        "tridactyl.vim@cmcaine.co.uk" = {
+          default_area = "menuarea";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/tridactyl.vim@cmcaine.co.uk/latest.xpi";
+          installation_mode = "force_installed";
+          private_browsing = true;
+        };
       };
     };
   };

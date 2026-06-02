@@ -14,6 +14,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     systems.url = "github:nix-systems/default";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -55,6 +59,7 @@
               ./nodes/fkt14.nix
               ./theme.nix
               inputs.catppuccin.homeModules.catppuccin
+              inputs.sops-nix.homeManagerModules.sops
             ];
           };
         "fkoehler@mbp" =

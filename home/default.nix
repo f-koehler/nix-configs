@@ -7,6 +7,7 @@
 {
   imports = [
     ./accounts.nix
+    ./aws.nix
     ./firefox.nix
     ./git.nix
     ./kde.nix
@@ -35,6 +36,7 @@
     };
 
     packages = [
+      pkgs.age
       pkgs.ccache
       pkgs.devenv
       pkgs.glow
@@ -43,6 +45,8 @@
       pkgs.neovim
       pkgs.prek
       pkgs.prettier
+      pkgs.sops
+      pkgs.ssh-to-age
     ];
 
     sessionVariables = {
@@ -89,9 +93,6 @@
     atuin = {
       enable = true;
       flags = [ "--disable-up-arrow" ];
-    };
-    awscli = {
-      enable = true;
     };
     bash.enable = true;
     bat.enable = true;

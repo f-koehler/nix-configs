@@ -89,6 +89,7 @@
           TERM = "xterm-256color";
         };
       };
+      package = null;
     };
     atuin = {
       enable = true;

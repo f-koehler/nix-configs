@@ -8,6 +8,7 @@
   imports = [
     ./accounts.nix
     ./aws.nix
+    ./edge.nix
     ./firefox.nix
     ./git.nix
     ./kde.nix

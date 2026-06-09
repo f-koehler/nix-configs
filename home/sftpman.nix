@@ -27,4 +27,18 @@ lib.mkIf pkgs.stdenv.isLinux {
       };
     };
   };
+
+  systemd.user.services.sftpman = {
+    Unit = {
+      Description = "Mount sftpman SFTP filesystems";
+      After = [ "network-online.target" ];
+    };
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.sftpman}/bin/sftpman mount_all";
+      RemainAfterExit = true;
+      ExecStop = "${pkgs.sftpman}/bin/sftpman umount_all";
+    };
+    Install.WantedBy = [ "default.target" ];
+  };
 }

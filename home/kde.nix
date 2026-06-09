@@ -1,5 +1,14 @@
 { lib, pkgs, ... }:
 {
+  home.activation.rebuildKdeSycoca = lib.mkIf pkgs.stdenv.isLinux (
+    lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      if command -v kbuildsycoca6 > /dev/null 2>&1; then
+        $DRY_RUN_CMD kbuildsycoca6
+      elif command -v kbuildsycoca5 > /dev/null 2>&1; then
+        $DRY_RUN_CMD kbuildsycoca5
+      fi
+    ''
+  );
   qt = lib.mkIf pkgs.stdenv.isLinux {
     enable = true;
     kde.settings = {

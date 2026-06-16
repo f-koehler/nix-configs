@@ -1,6 +1,12 @@
 { pkgs, ... }:
 {
   programs = {
+    gh = {
+      enable = true;
+    };
+    gh-dash = {
+      enable = true;
+    };
     git = {
       enable = true;
       package = pkgs.gitFull;

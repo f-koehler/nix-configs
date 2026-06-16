@@ -134,9 +134,6 @@
         enableShellIntegration = true;
       };
     };
-    gh = {
-      enable = true;
-    };
     gpg = {
       enable = true;
     };

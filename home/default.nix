@@ -137,6 +137,12 @@
     gpg = {
       enable = true;
     };
+    ghostty = {
+      enable = true;
+      systemd = {
+        enable = true;
+      };
+    };
     man = {
       enable = true;
       package = pkgs.man;

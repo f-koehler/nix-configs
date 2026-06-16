@@ -66,6 +66,13 @@ in
         style = "Italic";
       };
     };
+    ghostty = {
+      settings = {
+        font-family = "CaskaydiaCove Nerd Font Mono";
+        font-size = 12;
+        font-feature = "liga";
+      };
+    };
     zed-editor.userSettings = {
       buffer_font_family = themeFonts.monospace;
       terminal.font_family = themeFonts.monospace;

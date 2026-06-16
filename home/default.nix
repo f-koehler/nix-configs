@@ -48,6 +48,7 @@
       pkgs.prettier
       pkgs.sops
       pkgs.ssh-to-age
+      pkgs.jellyfin-tui
     ];
 
     sessionVariables = {

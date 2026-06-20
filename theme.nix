@@ -69,7 +69,7 @@ in
     ghostty = {
       settings = {
         font-family = "CaskaydiaCove Nerd Font Mono";
-        font-size = 12;
+        font-size = 10;
         font-feature = "liga";
       };
     };

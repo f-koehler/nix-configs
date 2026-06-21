@@ -20,7 +20,7 @@ jobs:
           - fkt14
           - desktop
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: wimpysworld/nothing-but-nix@v10
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v22

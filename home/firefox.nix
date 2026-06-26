@@ -156,6 +156,14 @@
           installation_mode = "force_installed";
           private_browsing = true;
         };
+
+        # KeePassXC-Browser
+        "KeePassXC-Browser" = {
+          default_area = "menuarea";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/KeePassXC-Browser/latest.xpi";
+          installation_mode = "force_installed";
+          private_browsing = true;
+        };
       };
     };
   };

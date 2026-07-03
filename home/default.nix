@@ -131,6 +131,7 @@
     };
     fzf = {
       enable = true;
+      historyWidget.command = "";
       tmux = {
         enableShellIntegration = true;
       };

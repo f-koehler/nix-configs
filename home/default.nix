@@ -145,6 +145,25 @@
         enable = true;
       };
     };
+    keepassxc = {
+      enable = true;
+      autostart = true;
+      settings = {
+        Browser = {
+          Enabled = true;
+          UpdateBinaryPath = false;
+        };
+        GUI = {
+          AdvancedSettings = true;
+          ApplicationTheme = "dark";
+          CompactMode = true;
+          HidePasswords = true;
+        };
+        SSHAgent = {
+          Enabled = true;
+        };
+      };
+    };
     man = {
       enable = true;
       package = pkgs.man;
@@ -193,6 +212,7 @@
     };
   };
   xdg = lib.mkIf pkgs.stdenv.isLinux {
+    autostart.enable = true;
     terminal-exec = {
       enable = true;
       settings = {

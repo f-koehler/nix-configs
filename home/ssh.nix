@@ -12,11 +12,11 @@ _: {
         User = "scbd2";
       };
       "Host scbd3" = {
-        HostName = "10.1.128.107";
+        HostName = "192.168.2.177";
         User = "scbd3";
       };
       "Host scbd4" = {
-        HostName = "10.1.128.102";
+        HostName = "192.168.2.216";
         User = "scbd4";
       };
       "Host scbd5" = {

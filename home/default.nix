@@ -14,6 +14,7 @@
     ./kde.nix
     ./linux.nix
     ./sftpman.nix
+    ./spack.nix
     ./ssh.nix
     ./zed-editor.nix
     ./zsh.nix

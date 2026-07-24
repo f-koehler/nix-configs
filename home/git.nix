@@ -9,6 +9,7 @@
     };
     git = {
       enable = true;
+      lfs.enable = true;
       package = pkgs.gitFull;
       signing = {
         format = "openpgp";

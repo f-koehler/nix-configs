@@ -183,6 +183,19 @@
     mergiraf.enable = true;
     nushell = {
       enable = true;
+      settings = {
+        edit_mode = "vi";
+        show_banner = false;
+      };
+      plugins = with pkgs.nushellPlugins; [
+        desktop_notifications
+        gstat
+        # highlight
+      ];
+      shellAliases = {
+        g = "git";
+        ll = "ls -l";
+      };
     };
     starship = {
       enable = true;

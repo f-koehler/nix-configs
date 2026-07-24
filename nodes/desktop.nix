@@ -3,6 +3,9 @@ _: {
     username = "fkoehler";
     homeDirectory = "/home/fkoehler";
   };
+  programs.nvibrant = {
+    enable = true;
+  };
   targets = {
     genericLinux = {
       enable = true;

@@ -29,7 +29,8 @@
       '')
     ];
     setOptions = [ "NO_BEEP" ];
-    syntaxHighlighting.enable = true;
+    fastSyntaxHighlighting.enable = true;
+    syntaxHighlighting.enable = false;
   };
 
 }

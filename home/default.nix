@@ -75,7 +75,10 @@
       "/usr/local/cuda/bin"
     ];
 
-    shell.enableShellIntegration = true;
+    shell = {
+      enableNushellIntegration = true;
+      enableShellIntegration = true;
+    };
   };
   nixpkgs = {
     config = {
@@ -172,6 +175,9 @@
       man-db.enable = true;
     };
     mergiraf.enable = true;
+    nushell = {
+      enable = true;
+    };
     starship = {
       enable = true;
       presets = [ "nerd-font-symbols" ];

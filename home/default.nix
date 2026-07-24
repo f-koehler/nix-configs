@@ -52,6 +52,12 @@
       pkgs.jellyfin-tui
     ];
 
+    pointerCursor = {
+      enable = true;
+      dotIcons.enable = true;
+      gtk.enable = true;
+    };
+
     sessionVariables = {
       EDITOR = "nvim";
       BROWSER = "firefox";

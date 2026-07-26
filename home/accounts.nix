@@ -1,4 +1,5 @@
-_: {
+{ lib, hasTag, ... }:
+{
   accounts = {
     calendar.accounts."fastmail" = {
       primary = true;
@@ -29,7 +30,7 @@ _: {
           enable = true;
         };
       };
-      "speqtral" = {
+      "speqtral" = lib.mkIf (hasTag "speqtral") {
         address = "fabian@speqtral.space";
         realName = "Fabian Koehler";
         flavor = "outlook.office365.com";

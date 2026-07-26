@@ -1,4 +1,5 @@
 _: {
+  nodeTags = [ "speqtral" ];
   targets = {
     genericLinux = {
       enable = true;

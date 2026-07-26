@@ -16,6 +16,7 @@
     ./sftpman.nix
     ./spack.nix
     ./ssh.nix
+    ./tags.nix
     ./zed-editor.nix
     ./zsh.nix
   ];

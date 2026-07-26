@@ -45,6 +45,7 @@
               ./nodes/desktop.nix
               ./theme.nix
               inputs.catppuccin.homeModules.catppuccin
+              inputs.sops-nix.homeManagerModules.sops
             ];
           };
         "fkoehler@fkt14" =
@@ -77,6 +78,7 @@
               ./nodes/mbp.nix
               ./theme.nix
               inputs.catppuccin.homeModules.catppuccin
+              inputs.sops-nix.homeManagerModules.sops
             ];
           };
       };

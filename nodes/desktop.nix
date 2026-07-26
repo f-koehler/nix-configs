@@ -3,8 +3,18 @@ _: {
     username = "fkoehler";
     homeDirectory = "/home/fkoehler";
   };
-  programs.nvibrant = {
+  services.nvibrant = {
     enable = true;
+    dithering = [
+      false
+      false
+      false
+    ];
+    vibrancy = [
+      "150%"
+      "150%"
+      "150%"
+    ];
   };
   targets = {
     genericLinux = {

@@ -46,6 +46,10 @@ in
       name = "Teams";
       exec = "${edge} --app=https://teams.cloud.microsoft";
       terminal = false;
+      icon = "${pkgs.fetchurl {
+        url = "https://statics.teams.cdn.office.net/evergreen-assets/icons/windows/teams-icon-pwa-v2025-256.png";
+        hash = "sha256-JZtYmSuAX4UiEgKme2cuZ6/nRPI3jsnC0e6B7CyDp2k=";
+      }}";
       categories = [
         "Chat"
         "InstantMessaging"

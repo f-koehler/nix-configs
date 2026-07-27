@@ -69,6 +69,44 @@ Pre-commit hooks run `deadnix`, `nil`, `nixfmt`, and `statix` on Nix files and `
 
 ---
 
+## Adding a PWA Desktop Entry
+
+PWA entries are declared in `home/edge.nix` under `xdg.desktopEntries`. Each entry needs an icon fetched from the app's PWA manifest.
+
+**1. Find the manifest icon URL**
+
+```bash
+EDGE_UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+curl -sL -A "$EDGE_UA" https://example.com/manifest.json | python3 -m json.tool | grep -E '"src"|"sizes"|"purpose"'
+```
+
+Pick the largest `any`-purpose PNG (e.g. 256x256).
+
+**2. Prefetch the icon and get its hash**
+
+```bash
+nix store prefetch-file --hash-type sha256 <icon-url>
+```
+
+**3. Add the entry**
+
+```nix
+xdg.desktopEntries.my-app = {
+  name = "My App";
+  exec = "${edge} --app=https://example.com";
+  terminal = false;
+  icon = "${pkgs.fetchurl {
+    url = "<icon-url>";
+    hash = "<sha256-...>";
+  }}";
+  categories = [ "..." ];
+};
+```
+
+If the icon URL contains a version string (e.g. `v2025`), a hash mismatch after an upstream update is the signal to refresh it.
+
+---
+
 ## Non-NixOS GPU Setup
 
 The `targets.genericLinux.gpu` module runs `non-nixos-gpu-setup` during `home-manager` activation to link NVIDIA drivers from the Nix store. This requires passwordless `sudo` for the setup script:

@@ -110,6 +110,13 @@
     };
     bash.enable = true;
     bat.enable = true;
+    carapace = {
+      enable = true;
+      enableNushellIntegration = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      enableZshIntegration = true;
+    };
     eza = {
       enable = true;
       icons = "auto";

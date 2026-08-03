@@ -4,7 +4,7 @@ _: {
     homeDirectory = "/home/fkoehler";
   };
   services.nvibrant = {
-    enable = true;
+    enable = false;
     dithering = [
       false
       false

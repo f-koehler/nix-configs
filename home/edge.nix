@@ -7,7 +7,7 @@
 let
   edge = lib.getExe' config.programs.microsoft-edge.finalPackage "microsoft-edge";
 in
-{
+lib.mkIf pkgs.stdenv.isLinux {
   programs.microsoft-edge = {
     enable = true;
     dictionaries = with pkgs; [

@@ -53,7 +53,7 @@
       pkgs.jellyfin-tui
     ];
 
-    pointerCursor = {
+    pointerCursor = lib.mkIf pkgs.stdenv.isLinux {
       enable = true;
       dotIcons.enable = true;
       gtk.enable = true;
@@ -157,7 +157,7 @@
     gpg = {
       enable = true;
     };
-    ghostty = {
+    ghostty = lib.mkIf pkgs.stdenv.isLinux {
       enable = true;
       systemd = {
         enable = true;
@@ -165,7 +165,7 @@
     };
     keepassxc = {
       enable = true;
-      autostart = true;
+      autostart = pkgs.stdenv.isLinux;
       settings = {
         Browser = {
           Enabled = true;

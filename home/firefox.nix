@@ -36,6 +36,7 @@
         "browser.uidensity" = 1;
         "sidebar.verticalTabs" = true;
         "browser.tabs.tabmanager.enabled" = false;
+        "browser.urlbar.showSearchSuggestionsFirst" = false; # Show bookmarks/history/open tabs before search engine suggestions in the address bar
         "browser.uiCustomization.state" = builtins.toJSON {
           placements = {
             widget-overflow-fixed-list = [ ];

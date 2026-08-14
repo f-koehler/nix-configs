@@ -2,8 +2,12 @@
   pkgs,
   lib,
   config,
+  hasTag,
   ...
 }:
+let
+  flattenBookmarks = import ./lib/flatten-bookmarks.nix { inherit lib; };
+in
 {
   imports = [
     ./accounts.nix
@@ -200,6 +204,10 @@
         g = "git";
         ll = "ls -l";
       };
+    };
+    qutebrowser = {
+      enable = true;
+      quickmarks = flattenBookmarks (import ./bookmarks.nix { inherit lib hasTag; });
     };
     starship = {
       enable = true;

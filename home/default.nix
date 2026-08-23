@@ -168,6 +168,19 @@ in
         enable = true;
       };
     };
+    herdr = {
+      enable = true;
+      settings = {
+        theme = {
+          name = "catppuccin";
+        };
+        ui = {
+          show_agent_labels_on_pane_borders = true;
+          sound.enabled = false;
+          toast.delivery = "herdr";
+        };
+      };
+    };
     keepassxc = {
       enable = true;
       autostart = pkgs.stdenv.isLinux;

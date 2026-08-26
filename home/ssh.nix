@@ -35,6 +35,17 @@ _: {
         HostName = "10.1.3.1";
         User = "root";
       };
+      "Host ogs3" = {
+        User = "ogs3";
+        HostName = "10.1.157.92";
+      };
+      "Host ogs2" = {
+        User = "ogs2";
+        HostName = "10.1.217.86";
+      };
+      "Host fk-temp27.speqtranet.com" = {
+        ForwardAgent = "yes";
+      };
     };
   };
 }

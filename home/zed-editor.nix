@@ -20,6 +20,7 @@
     ];
     userSettings = {
       colorize_brackets = true;
+      load_direnv = "shell_hook";
       lsp = {
         texlab = {
           settings = {

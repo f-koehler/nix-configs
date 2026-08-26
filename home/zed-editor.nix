@@ -15,6 +15,7 @@
       "neocmake"
       "nix"
       "qml"
+      "terraform"
       "toml"
       "xml"
     ];

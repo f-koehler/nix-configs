@@ -55,7 +55,6 @@ in
       pkgs.prettier
       pkgs.sops
       pkgs.ssh-to-age
-      pkgs.jellyfin-tui
     ];
 
     pointerCursor = lib.mkIf pkgs.stdenv.isLinux {

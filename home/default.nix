@@ -52,6 +52,7 @@
       pkgs.prettier
       pkgs.sops
       pkgs.ssh-to-age
+      pkgs.zotero
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       pkgs.planify

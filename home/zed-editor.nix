@@ -3,7 +3,7 @@
   home.packages = [ pkgs.texlab ];
   programs.zed-editor = {
     enable = true;
-    package = null;
+    package = pkgs.zed-editor;
     installRemoteServer = true;
     extensions = [
       "docker-compose"

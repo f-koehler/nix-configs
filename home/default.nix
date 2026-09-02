@@ -14,6 +14,7 @@
     ./git.nix
     ./kde.nix
     ./linux.nix
+    ./obsidian.nix
     ./sftpman.nix
     ./spack.nix
     ./ssh.nix

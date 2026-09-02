@@ -102,7 +102,7 @@
           TERM = "xterm-256color";
         };
       };
-      package = null;
+      package = pkgs.alacritty;
     };
     atuin = {
       enable = true;

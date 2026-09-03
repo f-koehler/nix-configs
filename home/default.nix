@@ -51,8 +51,9 @@
       pkgs.prettier
       pkgs.sops
       pkgs.ssh-to-age
-    ] ++ lib.optionals pkgs.stdenv.isLinux [
-    pkgs.planify
+    ]
+    ++ lib.optionals pkgs.stdenv.isLinux [
+      pkgs.planify
     ];
 
     pointerCursor = lib.mkIf pkgs.stdenv.isLinux {
@@ -197,11 +198,11 @@
         };
       };
     };
-#     lan-mouse = {
-#       enable = true;
-# # systemd = false;
-# # settings = {};
-#       };
+    #     lan-mouse = {
+    #       enable = true;
+    # # systemd = false;
+    # # settings = {};
+    #       };
     man = {
       enable = true;
       package = pkgs.man;

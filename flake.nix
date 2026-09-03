@@ -18,6 +18,7 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lan-mouse.url = "github:feschber/lan-mouse";
   };
 
   outputs =
@@ -44,6 +45,7 @@
               ./home
               ./nodes/desktop.nix
               ./theme.nix
+              inputs.lan-mouse.homeManagerModules.default
               inputs.catppuccin.homeModules.catppuccin
               inputs.sops-nix.homeManagerModules.sops
             ];
@@ -59,6 +61,7 @@
               ./home
               ./nodes/fkt14.nix
               ./theme.nix
+              inputs.lan-mouse.homeManagerModules.default
               inputs.catppuccin.homeModules.catppuccin
               inputs.sops-nix.homeManagerModules.sops
             ];
@@ -77,6 +80,7 @@
               ./home
               ./nodes/mbp.nix
               ./theme.nix
+              inputs.lan-mouse.homeManagerModules.default
               inputs.catppuccin.homeModules.catppuccin
               inputs.sops-nix.homeManagerModules.sops
             ];

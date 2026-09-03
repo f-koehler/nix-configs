@@ -19,14 +19,7 @@ _: {
   targets = {
     genericLinux = {
       enable = true;
-      gpu = {
-        enable = true;
-        nvidia = {
-          enable = true;
-          sha256 = "sha256-ReLUwTSiPDXlDyU6SqY+fl6NF+PRhdSgfIpY6WEu05I=";
-          version = "610.43.03";
-        };
-      };
+      gpu.enable = false;
     };
   };
 }

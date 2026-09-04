@@ -201,11 +201,11 @@
         };
       };
     };
-    #     lan-mouse = {
-    #       enable = true;
-    # # systemd = false;
-    # # settings = {};
-    #       };
+    lan-mouse = {
+      enable = true;
+      systemd = true;
+      # settings = {};
+    };
     man = {
       enable = true;
       package = pkgs.man;

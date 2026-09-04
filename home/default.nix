@@ -203,7 +203,7 @@
     };
     lan-mouse = {
       enable = true;
-      systemd = true;
+      systemd = pkgs.stdenv.isLinux;
       # settings = {};
     };
     man = {

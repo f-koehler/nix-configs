@@ -150,6 +150,9 @@
         };
       };
     };
+    fresh-editor = {
+      enable = true;
+    };
     fzf = {
       enable = true;
       historyWidget.command = "";

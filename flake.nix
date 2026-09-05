@@ -2,8 +2,14 @@
   description = "Home Configurations";
 
   inputs = {
-    catppuccin.url = "github:catppuccin/nix";
-    git-hooks.url = "github:cachix/git-hooks.nix";
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

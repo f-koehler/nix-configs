@@ -14,7 +14,6 @@
     ./git.nix
     ./kde.nix
     ./linux.nix
-    ./obsidian.nix
     ./sftpman.nix
     ./spack.nix
     ./ssh.nix
@@ -27,6 +26,7 @@
     fontconfig = {
       enable = true;
     };
+
   };
   home = {
     stateVersion = "26.05";
@@ -55,7 +55,6 @@
       pkgs.zotero
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
-      pkgs.planify
     ];
 
     pointerCursor = lib.mkIf pkgs.stdenv.isLinux {

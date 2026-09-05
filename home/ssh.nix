@@ -46,6 +46,10 @@ _: {
       "Host fk-temp27.speqtranet.com" = {
         ForwardAgent = "yes";
       };
+      "Host homeserver" = {
+        User = "fkoehler";
+        HostName = "homeserver.corgi-dojo.ts.net";
+      };
     };
   };
 }

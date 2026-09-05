@@ -22,6 +22,7 @@
       url = "github:feschber/lan-mouse";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
 
   outputs =
@@ -48,6 +49,7 @@
               ./home
               ./nodes/desktop.nix
               ./theme.nix
+              inputs.nix-flatpak.homeManagerModules.nix-flatpak
               inputs.lan-mouse.homeManagerModules.default
               inputs.catppuccin.homeModules.catppuccin
               inputs.sops-nix.homeManagerModules.sops
@@ -64,6 +66,7 @@
               ./home
               ./nodes/fkt14.nix
               ./theme.nix
+              inputs.nix-flatpak.homeManagerModules.nix-flatpak
               inputs.lan-mouse.homeManagerModules.default
               inputs.catppuccin.homeModules.catppuccin
               inputs.sops-nix.homeManagerModules.sops

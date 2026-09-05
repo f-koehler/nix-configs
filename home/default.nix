@@ -11,6 +11,7 @@
     ./aws.nix
     ./edge.nix
     ./firefox.nix
+    ./flatpak.nix
     ./git.nix
     ./kde.nix
     ./linux.nix

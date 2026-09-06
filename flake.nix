@@ -14,6 +14,15 @@
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -104,7 +113,30 @@
             };
         };
       darwinConfigurations.fk-mbp21 = inputs.nix-darwin.lib.darwinSystem {
-        modules = [ ./darwin.nix ];
+        modules = [
+          inputs.nix-homebrew.darwinModules.nix-homebrew
+          {
+            nix-homebrew = {
+              enable = true;
+              user = "fkoehler";
+              taps = {
+                "homebrew/homebrew-core" = inputs.homebrew-core;
+                "homebrew/homebrew-cask" = inputs.homebrew-cask;
+              };
+              mutableTaps = false;
+              trust = {
+                formulae = [ ];
+                casks = [ ];
+                commands = [ ];
+                taps = [ ];
+              };
+            };
+          }
+          ({ config, ... }: {
+            homebrew.taps = builtins.attrNames config.nix-homebrew.taps;
+          })
+          ./darwin.nix
+        ];
       };
       checks = forEachSystem (system: {
         pre-commit-check = inputs.git-hooks.lib.${system}.run {

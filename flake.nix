@@ -14,21 +14,25 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nix-darwin = {
-      url = "github:nix-darwin/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    systems.url = "github:nix-systems/default";
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     lan-mouse = {
       url = "github:feschber/lan-mouse";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    systems.url = "github:nix-systems/default";
   };
 
   outputs =
@@ -43,61 +47,57 @@
         };
     in
     {
-      homeConfigurations = {
-        "fkoehler@desktop" =
-          let
-            system = "x86_64-linux";
-          in
-          inputs.home-manager.lib.homeManagerConfiguration {
-            extraSpecialArgs = { inherit inputs; };
-            pkgs = getNixpkgs system;
-            modules = [
-              ./home
-              ./nodes/desktop.nix
-              ./theme.nix
-              inputs.nix-flatpak.homeManagerModules.nix-flatpak
-              inputs.lan-mouse.homeManagerModules.default
-              inputs.catppuccin.homeModules.catppuccin
-              inputs.sops-nix.homeManagerModules.sops
-            ];
-          };
-        "fkoehler@fkt14" =
-          let
-            system = "x86_64-linux";
-          in
-          inputs.home-manager.lib.homeManagerConfiguration {
-            extraSpecialArgs = { inherit inputs; };
-            pkgs = getNixpkgs system;
-            modules = [
-              ./home
-              ./nodes/fkt14.nix
-              ./theme.nix
-              inputs.nix-flatpak.homeManagerModules.nix-flatpak
-              inputs.lan-mouse.homeManagerModules.default
-              inputs.catppuccin.homeModules.catppuccin
-              inputs.sops-nix.homeManagerModules.sops
-            ];
-          };
-        "fkoehler@mbp" =
-          let
-            system = "aarch64-darwin";
-          in
-          inputs.home-manager.lib.homeManagerConfiguration {
-            extraSpecialArgs = {
-              inherit inputs;
-              inherit system;
+      homeConfigurations =
+        let
+          commonHomeManagerModules = [
+            inputs.catppuccin.homeModules.catppuccin
+            inputs.lan-mouse.homeManagerModules.default
+            inputs.nix-index-database.homeModules.default
+            inputs.sops-nix.homeManagerModules.sops
+            ./home
+            ./theme.nix
+          ];
+        in
+        {
+          "fkoehler@desktop" =
+            let
+              system = "x86_64-linux";
+            in
+            inputs.home-manager.lib.homeManagerConfiguration {
+              extraSpecialArgs = { inherit inputs; };
+              pkgs = getNixpkgs system;
+              modules = commonHomeManagerModules ++ [
+                ./nodes/desktop.nix
+                inputs.nix-flatpak.homeManagerModules.nix-flatpak
+              ];
             };
-            pkgs = getNixpkgs system;
-            modules = [
-              ./home
-              ./nodes/mbp.nix
-              ./theme.nix
-              inputs.lan-mouse.homeManagerModules.default
-              inputs.catppuccin.homeModules.catppuccin
-              inputs.sops-nix.homeManagerModules.sops
-            ];
-          };
-      };
+          "fkoehler@fkt14" =
+            let
+              system = "x86_64-linux";
+            in
+            inputs.home-manager.lib.homeManagerConfiguration {
+              extraSpecialArgs = { inherit inputs; };
+              pkgs = getNixpkgs system;
+              modules = commonHomeManagerModules ++ [
+                ./nodes/fkt14.nix
+                inputs.nix-flatpak.homeManagerModules.nix-flatpak
+              ];
+            };
+          "fkoehler@mbp" =
+            let
+              system = "aarch64-darwin";
+            in
+            inputs.home-manager.lib.homeManagerConfiguration {
+              extraSpecialArgs = {
+                inherit inputs;
+                inherit system;
+              };
+              pkgs = getNixpkgs system;
+              modules = commonHomeManagerModules ++ [
+                ./nodes/mbp.nix
+              ];
+            };
+        };
       darwinConfigurations.mbp = inputs.nix-darwin.lib.darwinSystem {
         modules = [ ./darwin.nix ];
       };

@@ -214,6 +214,7 @@
       generateCaches = true;
       man-db.enable = true;
     };
+    nix-index.enable = true;
     mergiraf.enable = true;
     nushell = {
       enable = true;

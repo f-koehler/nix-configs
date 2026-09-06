@@ -82,6 +82,7 @@
             inputs.catppuccin.homeModules.catppuccin
             inputs.direnv-instant.homeModules.direnv-instant
             inputs.lan-mouse.homeManagerModules.default
+            inputs.nix-flatpak.homeManagerModules.nix-flatpak
             inputs.nix-index-database.homeModules.default
             inputs.sops-nix.homeManagerModules.sops
             ./home
@@ -98,7 +99,6 @@
               pkgs = getNixpkgs system;
               modules = commonHomeManagerModules ++ [
                 ./nodes/desktop.nix
-                inputs.nix-flatpak.homeManagerModules.nix-flatpak
               ];
             };
           "fkoehler@fkt14" =
@@ -110,7 +110,6 @@
               pkgs = getNixpkgs system;
               modules = commonHomeManagerModules ++ [
                 ./nodes/fkt14.nix
-                inputs.nix-flatpak.homeManagerModules.nix-flatpak
               ];
             };
           "fkoehler@fk-mbp21" =

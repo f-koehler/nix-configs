@@ -55,10 +55,10 @@
       pkgs.ssh-to-age
       pkgs.zotero
     ]
-    ++ lib.optionals pkgs.stdenv.isLinux [
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
     ];
 
-    pointerCursor = lib.mkIf pkgs.stdenv.isLinux {
+    pointerCursor = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       enable = true;
       dotIcons.enable = true;
       gtk.enable = true;
@@ -73,7 +73,7 @@
       CMAKE_CXX_COMPILER_LAUNCHER = "ccache";
       VCPKG_ROOT = "${config.home.homeDirectory}/vcpkg";
     }
-    // lib.optionalAttrs pkgs.stdenv.isLinux {
+    // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
       CUDA_PATH = "/usr/local/cuda";
       CMAKE_CUDA_COMPILER_LAUNCHER = "ccache";
       CMAKE_TOOLCHAIN_FILE = "${config.home.homeDirectory}/vcpkg/scripts/buildsystems/vcpkg.cmake";
@@ -83,7 +83,7 @@
       "${config.home.homeDirectory}/.local/bin"
       "${config.home.homeDirectory}/vcpkg"
     ]
-    ++ lib.optionals pkgs.stdenv.isLinux [
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       "/usr/local/cuda/bin"
     ];
 
@@ -140,7 +140,7 @@
     };
     direnv-instant.enable = true;
     distrobox = {
-      enable = pkgs.stdenv.isLinux;
+      enable = pkgs.stdenv.hostPlatform.isLinux;
     };
     fish = {
       enable = true;
@@ -166,7 +166,7 @@
     gpg = {
       enable = true;
     };
-    ghostty = lib.mkIf pkgs.stdenv.isLinux {
+    ghostty = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       enable = true;
       systemd = {
         enable = true;
@@ -187,7 +187,7 @@
     };
     keepassxc = {
       enable = true;
-      autostart = pkgs.stdenv.isLinux;
+      autostart = pkgs.stdenv.hostPlatform.isLinux;
       settings = {
         Browser = {
           Enabled = true;
@@ -206,7 +206,7 @@
     };
     lan-mouse = {
       enable = true;
-      systemd = pkgs.stdenv.isLinux;
+      systemd = pkgs.stdenv.hostPlatform.isLinux;
       # settings = {};
     };
     man = {
@@ -234,7 +234,7 @@
     };
     thunderbird = {
       enable = true;
-      package = if pkgs.stdenv.isLinux then pkgs.thunderbird else pkgs.thunderbird-bin;
+      package = if pkgs.stdenv.hostPlatform.isLinux then pkgs.thunderbird else pkgs.thunderbird-bin;
       profiles.default = {
         isDefault = true;
       };
@@ -247,7 +247,7 @@
       keyMode = "vi";
     };
     yazi.enable = true;
-    zathura.enable = pkgs.stdenv.isLinux;
+    zathura.enable = pkgs.stdenv.hostPlatform.isLinux;
     zellij.enable = true;
     zoxide.enable = true;
   };
@@ -256,7 +256,7 @@
       enable = true;
       grabKeyboardAndMouse = true;
       pinentry =
-        if pkgs.stdenv.isLinux then
+        if pkgs.stdenv.hostPlatform.isLinux then
           {
             package = pkgs.pinentry-qt;
             program = "pinentry-qt";
@@ -268,7 +268,7 @@
           };
     };
   };
-  xdg = lib.mkIf pkgs.stdenv.isLinux {
+  xdg = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     autostart.enable = true;
     terminal-exec = {
       enable = true;

@@ -16,10 +16,10 @@ in
     {
       enable = true;
       autoEnable = true;
-      gtk.icon.enable = pkgs.stdenv.isLinux;
+      gtk.icon.enable = pkgs.stdenv.hostPlatform.isLinux;
       inherit accent flavor;
       cursors = {
-        enable = pkgs.stdenv.isLinux;
+        enable = pkgs.stdenv.hostPlatform.isLinux;
         inherit accent flavor;
       };
       firefox = {

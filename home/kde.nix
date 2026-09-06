@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 {
-  home.activation.rebuildKdeSycoca = lib.mkIf pkgs.stdenv.isLinux (
+  home.activation.rebuildKdeSycoca = lib.mkIf pkgs.stdenv.hostPlatform.isLinux (
     lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       if command -v kbuildsycoca6 > /dev/null 2>&1; then
         $DRY_RUN_CMD kbuildsycoca6
@@ -9,7 +9,7 @@
       fi
     ''
   );
-  qt = lib.mkIf pkgs.stdenv.isLinux {
+  qt = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     enable = true;
     kde.settings = {
       kcminputrc = {

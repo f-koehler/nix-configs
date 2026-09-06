@@ -4,7 +4,7 @@
   pkgs,
   ...
 }:
-lib.mkIf pkgs.stdenv.isLinux {
+lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
   programs.sftpman = {
     enable = true;
     defaultSshKey = "${config.home.homeDirectory}/.ssh/id_ed25519";

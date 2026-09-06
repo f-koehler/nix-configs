@@ -3,7 +3,7 @@
   pkgs,
   ...
 }:
-lib.mkIf pkgs.stdenv.isLinux {
+lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
   services.flatpak = {
     enable = true;
     uninstallUnmanaged = true;

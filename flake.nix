@@ -146,7 +146,9 @@
             packages = [
               inputs.home-manager.packages.${system}.home-manager
             ]
-            ++ (lib.optionals pkgs.stdenv.isDarwin [ inputs.nix-darwin.packages.${system}.darwin-rebuild ]);
+            ++ (lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
+              inputs.nix-darwin.packages.${system}.darwin-rebuild
+            ]);
             env = { };
             inherit (pre-commit-check) shellHook;
           };

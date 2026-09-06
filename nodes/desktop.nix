@@ -1,4 +1,5 @@
 _: {
+  nodeTags = [ "gpu-nvidia" ];
   home = {
     username = "fkoehler";
     homeDirectory = "/home/fkoehler";

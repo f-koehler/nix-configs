@@ -4,6 +4,7 @@
     type = lib.types.listOf (
       lib.types.enum [
         "speqtral"
+        "gpu-nvidia"
       ]
     );
     default = [ ];

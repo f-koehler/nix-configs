@@ -49,6 +49,8 @@
       pkgs.just
       pkgs.ncdu
       pkgs.neovim
+      pkgs.nh
+      pkgs.nix-tree
       pkgs.prek
       pkgs.prettier
       pkgs.sops

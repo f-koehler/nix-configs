@@ -104,7 +104,7 @@
 
         # Zotero
         "zotero@chnm.gmu.edu" = {
-          default_area = "menuarea";
+          default_area = "navbar";
           install_url = "https://www.zotero.org/download/connector/dl?browser=firefox";
           installation_mode = "force_installed";
           private_browsing = false;
@@ -112,7 +112,7 @@
 
         # Karakeep
         "addon@karakeep.app" = {
-          default_area = "menuarea";
+          default_area = "navbar";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/addon@karakeep.app/latest.xpi";
           installation_mode = "force_installed";
           private_browsing = false;
@@ -126,25 +126,17 @@
           private_browsing = false;
         };
 
-        # Darkreader
-        "addon@darkreader.org" = {
-          default_area = "menuarea";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/addon@darkreader.org/latest.xpi";
-          installation_mode = "force_installed";
-          private_browsing = true;
-        };
-
         # Tridactyl
         "tridactyl.vim@cmcaine.co.uk" = {
-          default_area = "menuarea";
+          default_area = "navbar";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/tridactyl.vim@cmcaine.co.uk/latest.xpi";
           installation_mode = "force_installed";
           private_browsing = true;
         };
 
         # KeePassXC-Browser
-        "KeePassXC-Browser" = {
-          default_area = "menuarea";
+        "keepassxc-browser@keepassxc.org" = {
+          default_area = "navbar";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/KeePassXC-Browser/latest.xpi";
           installation_mode = "force_installed";
           private_browsing = true;

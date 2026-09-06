@@ -10,6 +10,10 @@
       url = "github:Mic92/direnv-instant";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,6 +34,18 @@
     lan-mouse = {
       url = "github:feschber/lan-mouse";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    mac-app-util = {
+      url = "github:hraban/mac-app-util";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        cl-nix-lite.inputs = {
+          nixpkgs.follows = "nixpkgs";
+          systems.follows = "systems";
+          flake-parts.follows = "flake-parts";
+          treefmt-nix.follows = "mac-app-util/treefmt-nix";
+        };
+      };
     };
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/master";
@@ -108,12 +124,14 @@
               };
               pkgs = getNixpkgs system;
               modules = commonHomeManagerModules ++ [
+                inputs.mac-app-util.homeManagerModules.default
                 ./nodes/fk-mbp21.nix
               ];
             };
         };
       darwinConfigurations.fk-mbp21 = inputs.nix-darwin.lib.darwinSystem {
         modules = [
+          inputs.mac-app-util.darwinModules.default
           inputs.nix-homebrew.darwinModules.nix-homebrew
           {
             nix-homebrew = {

@@ -6,6 +6,10 @@
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    direnv-instant = {
+      url = "github:Mic92/direnv-instant";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -51,6 +55,7 @@
         let
           commonHomeManagerModules = [
             inputs.catppuccin.homeModules.catppuccin
+            inputs.direnv-instant.homeModules.direnv-instant
             inputs.lan-mouse.homeManagerModules.default
             inputs.nix-index-database.homeModules.default
             inputs.sops-nix.homeManagerModules.sops

@@ -138,6 +138,7 @@
       enable = true;
       nix-direnv.enable = true;
     };
+    direnv-instant.enable = true;
     distrobox = {
       enable = pkgs.stdenv.isLinux;
     };

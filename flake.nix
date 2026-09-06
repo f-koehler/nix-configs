@@ -88,7 +88,7 @@
                 inputs.nix-flatpak.homeManagerModules.nix-flatpak
               ];
             };
-          "fkoehler@mbp" =
+          "fkoehler@fk-mbp21" =
             let
               system = "aarch64-darwin";
             in
@@ -99,11 +99,11 @@
               };
               pkgs = getNixpkgs system;
               modules = commonHomeManagerModules ++ [
-                ./nodes/mbp.nix
+                ./nodes/fk-mbp21.nix
               ];
             };
         };
-      darwinConfigurations.mbp = inputs.nix-darwin.lib.darwinSystem {
+      darwinConfigurations.fk-mbp21 = inputs.nix-darwin.lib.darwinSystem {
         modules = [ ./darwin.nix ];
       };
       checks = forEachSystem (system: {
@@ -115,7 +115,7 @@
             flake-checker.enable = true;
             nil.enable = true;
             nixfmt.enable = true;
-            statix.enable = true;
+            #statix.enable = true;
 
             # python
             ruff.enable = true;

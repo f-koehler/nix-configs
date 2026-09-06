@@ -204,11 +204,6 @@
         };
       };
     };
-    lan-mouse = {
-      enable = true;
-      systemd = pkgs.stdenv.hostPlatform.isLinux;
-      # settings = {};
-    };
     man = {
       enable = true;
       package = pkgs.man;

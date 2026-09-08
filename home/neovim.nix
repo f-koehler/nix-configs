@@ -2,6 +2,8 @@
 {
   home.packages = [
     pkgs.neovim
+    pkgs.kdePackages.qtdeclarative # for qmlformat
+    pkgs.rustfmt
   ];
   programs.ripgrep.enable = true;
   programs.fd.enable = true;

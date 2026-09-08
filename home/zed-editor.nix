@@ -34,6 +34,7 @@ in
       "docker-compose"
       "dockerfile"
       "env"
+      "harper"
       "html"
       "latex"
       "make"

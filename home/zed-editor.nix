@@ -37,6 +37,7 @@ in
       "harper"
       "html"
       "latex"
+      "lua"
       "make"
       "neocmake"
       "nix"

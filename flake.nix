@@ -194,6 +194,8 @@
             buildInputs = pre-commit-check.enabledPackages;
             packages = [
               inputs.home-manager.packages.${system}.home-manager
+              pkgs.nixd
+              pkgs.nil
             ]
             ++ (lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
               inputs.nix-darwin.packages.${system}.darwin-rebuild

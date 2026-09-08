@@ -15,6 +15,7 @@
     ./git.nix
     ./kde.nix
     ./linux.nix
+    ./neovim.nix
     ./sftpman.nix
     ./spack.nix
     ./ssh.nix
@@ -48,7 +49,6 @@
       pkgs.glow
       pkgs.just
       pkgs.ncdu
-      pkgs.neovim
       pkgs.nh
       pkgs.nix-tree
       pkgs.prek

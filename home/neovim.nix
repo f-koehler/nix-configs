@@ -1,9 +1,12 @@
 { config, pkgs, ... }:
 {
   home.packages = [
+    pkgs.luaPackages.luarocks
+    pkgs.julia
     pkgs.neovim
     pkgs.kdePackages.qtdeclarative # for qmlformat
     pkgs.rustfmt
+    pkgs.luaPackages.tree-sitter-cli
   ];
   programs.ripgrep.enable = true;
   programs.fd.enable = true;

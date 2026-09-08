@@ -34,6 +34,7 @@ in
       "docker-compose"
       "dockerfile"
       "env"
+      "github-actions"
       "harper"
       "html"
       "latex"

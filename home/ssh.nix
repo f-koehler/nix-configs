@@ -8,7 +8,7 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    includes = lib.optional (hasTag "speqtral") config.sops.secrets."ssh-internal_hosts".path;
+    includes = lib.optional (hasTag "speqtral") config.sops.secrets."ssh/internal_hosts".path;
     settings = {
       "Host homeserver" = {
         User = "fkoehler";
@@ -18,6 +18,6 @@
   };
 
   sops.secrets."ssh/internal_hosts" = lib.mkIf (hasTag "speqtral") {
-    sopsFile = ./../secrets/ssh-hosts.yaml;
+    sopsFile = ./../secrets/speqtral.yaml;
   };
 }

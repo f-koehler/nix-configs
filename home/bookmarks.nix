@@ -45,6 +45,10 @@
         name = "C++ Standard Draft";
         url = "https://eel.is/c++draft/";
       }
+      {
+        name = "cpp-grail";
+        url = "https://bashar-ahmed.github.io/cpp-grail/";
+      }
     ];
   }
 ]

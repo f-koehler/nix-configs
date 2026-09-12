@@ -7,6 +7,7 @@
 {
   imports = [
     ./accounts.nix
+    ./aerospace.nix
     ./ai.nix
     ./aws.nix
     ./edge.nix

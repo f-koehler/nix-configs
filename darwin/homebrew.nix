@@ -8,6 +8,7 @@ _: {
     ];
     casks = [
       "nextcloud"
+      "obsidian"
       "telegram"
     ];
     global.autoUpdate = false;

@@ -44,6 +44,7 @@
 
     packages = [
       pkgs.age
+      pkgs.cargo
       pkgs.ccache
       pkgs.devenv
       pkgs.glow
@@ -51,8 +52,12 @@
       pkgs.ncdu
       pkgs.nh
       pkgs.nix-tree
+      pkgs.pkg-config
       pkgs.prek
       pkgs.prettier
+      pkgs.python3
+      pkgs.rustPlatform.bindgenHook
+      pkgs.rustc
       pkgs.sops
       pkgs.ssh-to-age
       pkgs.zotero

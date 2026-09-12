@@ -3,6 +3,7 @@ _: {
   nix.enable = false;
 
   imports = [
+    ./dock.nix
     ./homebrew.nix
   ];
 

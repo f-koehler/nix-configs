@@ -61,9 +61,9 @@
       pkgs.rustc
       pkgs.sops
       pkgs.ssh-to-age
-      pkgs.zotero
     ]
     ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+      pkgs.zotero
     ];
 
     pointerCursor = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {

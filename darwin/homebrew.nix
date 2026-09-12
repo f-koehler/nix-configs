@@ -7,6 +7,7 @@ _: {
     brews = [
     ];
     casks = [
+      "microsoft-teams"
       "nextcloud"
       "obsidian"
       "telegram"
@@ -20,5 +21,9 @@ _: {
       cleanup = "zap";
       upgrade = true;
     };
+  };
+
+  nix-homebrew = {
+    enable = true;
   };
 }

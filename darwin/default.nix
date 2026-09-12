@@ -2,6 +2,10 @@ _: {
   # do not manage nix via nix-darwin, clashes with determinate nix
   nix.enable = false;
 
+  imports = [
+    ./homebrew.nix
+  ];
+
   networking = {
     hostName = "fk-mbp21";
     localHostName = "fk-mbp21";
@@ -15,10 +19,6 @@ _: {
 
   services = {
     tailscale.enable = true;
-  };
-
-  nix-homebrew = {
-    enable = true;
   };
 
   nixpkgs.hostPlatform = "aarch64-darwin";

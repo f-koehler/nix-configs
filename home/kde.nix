@@ -30,6 +30,11 @@
           Enable = false;
         };
       };
+      kded6rc = {
+        "Module-gtkconfig" = {
+          autoload = false;
+        };
+      };
       kglobalshortcutsrc = {
         ksmserver = {
           "Lock Session" = "Screensaver,Meta+L\tScreensaver,Lock Session";

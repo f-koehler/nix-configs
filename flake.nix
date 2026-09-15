@@ -31,10 +31,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    lan-mouse = {
-      url = "github:feschber/lan-mouse";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     mac-app-util = {
       url = "github:hraban/mac-app-util";
       inputs = {
@@ -81,7 +77,6 @@
           commonHomeManagerModules = [
             inputs.catppuccin.homeModules.catppuccin
             inputs.direnv-instant.homeModules.direnv-instant
-            inputs.lan-mouse.homeManagerModules.default
             inputs.nix-flatpak.homeManagerModules.nix-flatpak
             inputs.nix-index-database.homeModules.default
             inputs.sops-nix.homeManagerModules.sops

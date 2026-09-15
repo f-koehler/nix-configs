@@ -12,6 +12,7 @@ _: {
       "nextcloud"
       "obsidian"
       "telegram"
+      "zotero"
     ];
     global.autoUpdate = false;
     masApps = {

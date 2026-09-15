@@ -24,5 +24,8 @@ jobs:
       - uses: wimpysworld/nothing-but-nix@v10
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v22
+        with:
+          extra-conf: |
+            build-dir = /nix/build
       - name: Build home-manager config
         run: nix build '.#homeConfigurations."fkoehler@${{ matrix.config }}".activationPackage'

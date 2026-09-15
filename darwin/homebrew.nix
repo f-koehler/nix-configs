@@ -7,6 +7,7 @@ _: {
     brews = [
     ];
     casks = [
+      "deskflow"
       "microsoft-teams"
       "nextcloud"
       "obsidian"

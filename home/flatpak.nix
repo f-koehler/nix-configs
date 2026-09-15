@@ -60,6 +60,10 @@ lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
         appId = "md.obsidian.Obsidian";
         origin = "flathub";
       }
+      {
+        appId = "org.deskflow.deskflow";
+        origin = "flathub";
+      }
     ];
   };
 }

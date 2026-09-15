@@ -27,6 +27,10 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+    homebrew-deskflow = {
+      url = "github:deskflow/homebrew-tap";
+      flake = false;
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -134,6 +138,7 @@
               taps = {
                 "homebrew/homebrew-core" = inputs.homebrew-core;
                 "homebrew/homebrew-cask" = inputs.homebrew-cask;
+                "deskflow/tap" = inputs.homebrew-deskflow;
               };
               mutableTaps = false;
               trust = {

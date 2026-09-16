@@ -10,5 +10,8 @@
     claude-code = {
       enable = true;
     };
+    github-copilot-cli = {
+      enable = true;
+    };
   };
 }

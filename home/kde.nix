@@ -169,6 +169,13 @@
           ShowZoomSlider = true;
         };
       };
+      ki3 = {
+        General = {
+          Gap = 0;
+          OuterGap = 0;
+          FloatingClasses = "org.freedesktop.impl.portal.desktop.kde,org.kde.kcalc";
+        };
+      };
     };
   };
 }

@@ -90,10 +90,17 @@
 
         services = {
           "Alacritty.desktop" = {
-            New = "Meta+Return";
+            _launch = "none";
+            New = "none";
+          };
+          "org.kde.konsole.desktop" = {
+            _launch = "none";
           };
           "org.kde.krunner.desktop" = {
             _launch = "Meta+D\tSearch";
+          };
+          "com.mithcellh.ghostty.desktop" = {
+            new-window = "Meta+Return";
           };
         };
       };

@@ -14,7 +14,7 @@
     ./firefox.nix
     ./flatpak.nix
     ./git.nix
-    ./kde.nix
+    ./kde
     ./linux.nix
     ./neovim.nix
     ./sftpman.nix

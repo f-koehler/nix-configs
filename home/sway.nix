@@ -2,8 +2,13 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 }:
+let
+  noctaliaPackage = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  noctaliaExe = "${lib.getExe' noctaliaPackage "noctalia"}";
+in
 {
   home.packages = [
     pkgs.bluetui
@@ -18,6 +23,21 @@
       show = "drun";
       allow_images = true;
       insensitive = true;
+    };
+  };
+
+  programs.noctalia = {
+    enable = true;
+    settings = {
+      theme = {
+        mode = "dark";
+        source = "builtin";
+        builtin = "Catppuccin";
+      };
+      wallpaper = {
+        enabled = true;
+        default.path = "/usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png";
+      };
     };
   };
 
@@ -118,8 +138,6 @@
           }
         ];
     };
-
-    swayosd.enable = true;
   };
 
   wayland = {
@@ -134,61 +152,31 @@
 
         terminal = "${lib.getExe' config.programs.ghostty.package "ghostty"}";
 
-        # GIO hides desktop entries whose Exec binary isn't on PATH, and the
-        # sway session's PATH lacks the nix profile, so add it for the launcher.
-        menu = ''PATH="${config.home.profileDirectory}/bin:$PATH" ${lib.getExe' config.programs.wofi.package "wofi"} --show drun'';
+        menu = "${noctaliaExe} msg panel-toggle launcher";
 
         focus = {
           followMouse = false;
         };
 
-        output = {
-          "*" = {
-            bg = "/usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill";
-          };
-        };
-
-        # Most keybindings (workspaces, moving/resizing containers, layout,
-        # scratchpad, ...) come from the module's built-in defaults, which
-        # already mirror the stock /etc/sway/config bindings almost exactly.
-        bars = [
-          {
-            position = "top";
-            statusCommand = "while date +'%Y-%m-%d %X'; do sleep 1; done";
-          }
-        ];
+        bars = [ ];
       };
 
       # Bindings that need flags (--locked) not expressible via config.keybindings.
-      extraConfig =
-        let
-          swayosd = lib.getExe' pkgs.swayosd "swayosd-client";
-        in
-        ''
-          exec swayosd-server
+      extraConfig = ''
+        exec ${noctaliaExe}
 
-          # Audio
-          bindsym XF86AudioRaiseVolume exec ${swayosd} --output-volume raise 5
-          bindsym XF86AudioLowerVolume exec ${swayosd} --output-volume lower -5
-          bindsym XF86AudioMute exec ${swayosd} --output-volume mute-toggle
-          bindsym XF86AudioMicMute exec ${swayosd} --input-volume mute-toggle
+        set $ipc ${noctaliaExe} msg
 
-          # Capslock and friends
-          bindsym --release Caps_Lock exec ${swayosd} --caps-lock
-          bindsym --release Num_Lock exec ${swayosd} --num-lock
-          bindsym --release Scroll_Lock exec ${swayosd} --scroll-lock
+        bindsym ${config.wayland.windowManager.sway.config.modifier}+comma exec $ipc settings-toggle
 
-          # Brightness
-          bindsym XF86MonBrightnessUp exec ${swayosd} --brightness +5
-          bindsym XF86MonBrightnessDown exec ${swayosd} --brightness -5
+        bindsym --locked XF86AudioRaiseVolume exec $ipc volume-up
+        bindsym --locked XF86AudioLowerVolume exec $ipc volume-down
+        bindsym --locked XF86AudioMute exec $ipc volume-mute
+        bindsym --locked XF86MonBrightnessUp exec $ipc brightness-up
+        bindsym --locked XF86MonBrightnessDown exec $ipc brightness-down
 
-          # Media playback
-          bindsym XF86AudioPlay exec ${swayosd} --playerctl play-pause
-          bindsym XF86AudioNext exec ${swayosd} --playerctl next
-          bindsym XF86AudioPrev exec ${swayosd} --playerctl previous
-
-          bindsym Print exec ${lib.getExe' pkgs.grim "grim"}
-        '';
+        exec ${lib.getExe' pkgs.kanshi "kanshi"}
+      '';
     };
   };
 }

@@ -20,6 +20,7 @@
     ./sftpman.nix
     ./spack.nix
     ./ssh.nix
+    ./sway.nix
     ./tags.nix
     ./zed-editor.nix
     ./zsh.nix
@@ -85,6 +86,7 @@
       CUDA_PATH = "/usr/local/cuda";
       CMAKE_CUDA_COMPILER_LAUNCHER = "ccache";
       CMAKE_TOOLCHAIN_FILE = "${config.home.homeDirectory}/vcpkg/scripts/buildsystems/vcpkg.cmake";
+      PKG_CONFIG_PATH = "/usr/lib64/pkgconfig:$PKG_CONFIG_PATH";
     };
     sessionPath = [
       "${config.home.homeDirectory}/.cargo/bin"

@@ -193,6 +193,10 @@ in
             followMouse = false;
           };
 
+          keybindings = lib.mkOptionDefault {
+            "${modifier}+Shift+e" = lib.mkForce "exec ${noctaliaExe} msg panel-toggle session";
+          };
+
           bars = [ ];
         };
 

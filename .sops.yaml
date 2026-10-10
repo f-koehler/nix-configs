@@ -2,6 +2,7 @@
 keys:
   - &admin_fkoehler C5DC80511469AD81C84E3564D55A35AFB2900A11
   - &host_fkt14 age1zetksdq7lym8r34vsyzyyfh7rl4t7e79fd4mj5ld6cjhv0x0wpnqp955wq
+  - &host_desktop age16daxck38pq0rt7ftxxe7fm7j54sa39ckfpu98243kuagz2lmyyjs88850a
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
@@ -9,3 +10,4 @@ creation_rules:
           - *admin_fkoehler
         age:
           - *host_fkt14
+          - *host_desktop

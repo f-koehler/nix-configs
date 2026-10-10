@@ -1,22 +1,58 @@
-{ lib, hasTag, ... }:
 {
+  lib,
+  config,
+  hasTag,
+  ...
+}:
+{
+  sops = {
+    secrets."accounts/fastmail/dav_password".sopsFile = ./../secrets/personal.yaml;
+  };
   accounts = {
-    calendar.accounts."fastmail" = {
-      primary = true;
-      remote = {
-        type = "caldav";
-        url = "https://caldav.fastmail.com/";
-        userName = "fabiankoehler@fastmail.com";
+    calendar = {
+      basePath = ".local/state/calendars";
+      accounts."fastmail" = {
+        primary = true;
+        remote = {
+          type = "caldav";
+          url = "https://caldav.fastmail.com/";
+          userName = "fabiankoehler@fastmail.com";
+          passwordCommand = [
+            "cat"
+            config.sops.secrets."accounts/fastmail/dav_password".path
+          ];
+        };
+        thunderbird.enable = true;
+        vdirsyncer = {
+          enable = true;
+          collections = [
+            "from a"
+            "from b"
+          ];
+        };
       };
-      thunderbird.enable = true;
     };
-    contact.accounts."fastmail" = {
-      remote = {
-        type = "carddav";
-        url = "https://carddav.fastmail.com/";
-        userName = "fabiankoehler@fastmail.com";
+    contact = {
+      basePath = ".local/state/contacts";
+      accounts."fastmail" = {
+        remote = {
+          type = "carddav";
+          url = "https://carddav.fastmail.com/";
+          userName = "fabiankoehler@fastmail.com";
+          passwordCommand = [
+            "cat"
+            config.sops.secrets."accounts/fastmail/dav_password".path
+          ];
+        };
+        thunderbird.enable = true;
+        vdirsyncer = {
+          enable = true;
+          collections = [
+            "from a"
+            "from b"
+          ];
+        };
       };
-      thunderbird.enable = true;
     };
     email.accounts = {
       "fastmail" = {
@@ -54,4 +90,10 @@
       };
     };
   };
+  programs = {
+    vdirsyncer.enable = true;
+  };
+  # services = {
+  #   vdirsyncer.enable = true;
+  # };
 }

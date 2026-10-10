@@ -27,6 +27,8 @@
     ./zsh.nix
   ];
 
+  sops.age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+
   fonts = {
     fontconfig = {
       enable = true;

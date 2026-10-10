@@ -112,6 +112,14 @@
     };
   };
   programs = {
+    aerc = {
+      enable = true;
+      extraConfig = {
+        general = {
+          unsafe-accounts-conf = true;
+        };
+      };
+    };
     home-manager.enable = true;
     alacritty = {
       enable = true;

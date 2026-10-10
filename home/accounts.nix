@@ -63,6 +63,10 @@
         userName = "fabiankoehler@fastmail.com";
         flavor = "fastmail.com";
         aerc.enable = true;
+        passwordCommand = [
+          "cat"
+          config.sops.secrets."accounts/fastmail/dav_password".path
+        ];
         thunderbird = {
           enable = true;
         };

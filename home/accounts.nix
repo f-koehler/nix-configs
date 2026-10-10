@@ -22,6 +22,7 @@
             config.sops.secrets."accounts/fastmail/dav_password".path
           ];
         };
+        noctalia.enable = true;
         thunderbird.enable = true;
         vdirsyncer = {
           enable = true;

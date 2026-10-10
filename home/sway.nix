@@ -195,6 +195,11 @@ in
 
           keybindings = lib.mkOptionDefault {
             "${modifier}+Shift+e" = lib.mkForce "exec ${noctaliaExe} msg panel-toggle session";
+            "${modifier}+comma" = "exec ${noctaliaExe} msg settings-toggle";
+            "XF86AudioRaiseVolume" = "exec ${noctaliaExe} msg volume-up";
+            "XF86AudioLowerVolume" = "exec ${noctaliaExe} msg volume-down";
+            "XF86AudioMute" = "exec ${noctaliaExe} msg volume-mute";
+            "XF86MonBrightnessUp" = "exec ${noctaliaExe} msg brightness-up";
           };
 
           bars = [ ];
@@ -210,13 +215,6 @@ in
             client.placeholder      $overlay0 $base $text $overlay0 $overlay0
             client.background       $base
           ''}
-
-          bindsym          ${modifier}+comma     exec ${noctaliaExe} msg settings-toggle
-          bindsym --locked XF86AudioRaiseVolume  exec ${noctaliaExe} msg volume-up
-          bindsym --locked XF86AudioLowerVolume  exec ${noctaliaExe} msg volume-down
-          bindsym --locked XF86AudioMute         exec ${noctaliaExe} msg volume-mute
-          bindsym --locked XF86MonBrightnessUp   exec ${noctaliaExe} msg brightness-up
-          bindsym --locked XF86MonBrightnessDown exec ${noctaliaExe} msg brightness-down
 
           exec ${noctaliaExe}
           exec ${lib.getExe' pkgs.kanshi "kanshi"}

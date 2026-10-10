@@ -75,7 +75,6 @@
     };
 
     sessionVariables = {
-      QT_QPA_PLATFORM = "qt6ct";
       EDITOR = "nvim";
       BROWSER = "firefox";
       # use system ssh to avoid nix ssh not finding the system ssh-agent

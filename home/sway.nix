@@ -202,6 +202,11 @@ in
             "XF86MonBrightnessUp" = "exec ${noctaliaExe} msg brightness-up";
           };
 
+          window = {
+            titlebar = false;
+            border = 2;
+          };
+
           bars = [ ];
         };
 

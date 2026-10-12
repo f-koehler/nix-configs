@@ -159,6 +159,55 @@ in
                 "workspace $workspace; move workspace to output $output"
             done
           '';
+          moveWorkspacesToWork = pkgs.writeShellScript "kanshi-move-workspaces-to-home" ''
+            set -eu
+
+            output="$(
+              ${lib.getExe' pkgs.sway "swaymsg"} -t get_outputs -r |
+                ${lib.getExe pkgs.jq} -r \
+                  --arg make ${lib.escapeShellArg monitors.work-right.make} \
+                  --arg model ${lib.escapeShellArg monitors.work-right.model} \
+                  --arg serial ${lib.escapeShellArg monitors.work-right.serial} '
+                    .[]
+                    | select(
+                        .make == $make
+                        and .model == $model
+                        and .serial == $serial
+                      )
+                    | .name
+                  '
+            )"
+
+            [ -n "$output" ] || exit 0
+
+            for workspace in 1 2 3 4 5; do
+              ${lib.getExe' pkgs.sway "swaymsg"} \
+                "workspace $workspace; move workspace to output $output"
+            done
+
+            output="$(
+              ${lib.getExe' pkgs.sway "swaymsg"} -t get_outputs -r |
+                ${lib.getExe pkgs.jq} -r \
+                  --arg make ${lib.escapeShellArg monitors.work-left.make} \
+                  --arg model ${lib.escapeShellArg monitors.work-left.model} \
+                  --arg serial ${lib.escapeShellArg monitors.work-left.serial} '
+                    .[]
+                    | select(
+                        .make == $make
+                        and .model == $model
+                        and .serial == $serial
+                      )
+                    | .name
+                  '
+            )"
+
+            [ -n "$output" ] || exit 0
+
+            for workspace in 6 7 8 9 10; do
+              ${lib.getExe' pkgs.sway "swaymsg"} \
+                "workspace $workspace; move workspace to output $output"
+            done
+          '';
         in
         [
           {
@@ -226,7 +275,7 @@ in
                 )
               ];
 
-              # exec = "${moveWorkspacesToHome}";
+              exec = "${moveWorkspacesToWork}";
             };
           }
         ];

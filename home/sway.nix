@@ -101,6 +101,15 @@ in
   };
 
   services = {
+    flameshot = {
+      enable = true;
+      settings = {
+        General = {
+          disabledTrayIcon = true;
+          showStartupLaunchMessage = false;
+        };
+      };
+    };
     kanshi = {
       enable = true;
 
@@ -339,6 +348,7 @@ in
             "XF86AudioLowerVolume" = "exec ${noctaliaExe} msg volume-down";
             "XF86AudioMute" = "exec ${noctaliaExe} msg volume-mute";
             "XF86MonBrightnessUp" = "exec ${noctaliaExe} msg brightness-up";
+            "Print" = "exec ${lib.getExe' pkgs.flameshot "flameshot"} gui";
           };
 
           window = {

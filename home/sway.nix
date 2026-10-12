@@ -83,7 +83,6 @@ in
               make = "AU Optronics";
               model = "0xFA9B";
               serial = "Unknown";
-
               mode = "1920x1200@60";
               position = "0,0";
               scale = 1.0;
@@ -94,11 +93,29 @@ in
               make = "LG Electronics";
               model = "LG ULTRAGEAR+";
               serial = "202NTDV2S306";
-
               mode = "3840x2160@60";
               position = "1920,-500";
               scale = 1.25;
               adaptiveSync = true;
+              transform = "normal";
+            };
+
+            work-left = {
+              make = "Dell Inc.";
+              model = "DELL S2722DC";
+              serial = "82CRGD3";
+              mode = "2560x1440@75";
+              position = "0,0";
+              scale = 1.0;
+              transform = "normal";
+            };
+            work-right = {
+              make = "Dell Inc.";
+              model = "DELL S2722DC";
+              serial = "62CRGD3";
+              mode = "2560x1440@75";
+              position = "2560,0";
+              scale = 1.0;
               transform = "normal";
             };
           };
@@ -146,6 +163,22 @@ in
         [
           {
             profile = {
+              name = "undocked";
+
+              outputs = [
+                (
+                  kanshiOutput monitors.laptop
+                  // {
+                    status = "enable";
+                  }
+                )
+              ];
+
+              exec = "${moveWorkspacesToHome}";
+            };
+          }
+          {
+            profile = {
               name = "home";
 
               outputs = [
@@ -165,6 +198,35 @@ in
               ];
 
               exec = "${moveWorkspacesToHome}";
+            };
+          }
+          {
+            profile = {
+              name = "work";
+
+              outputs = [
+                (
+                  kanshiOutput monitors.laptop
+                  // {
+                    status = "disable";
+                  }
+                )
+
+                (
+                  kanshiOutput monitors.work-left
+                  // {
+                    status = "enable";
+                  }
+                )
+                (
+                  kanshiOutput monitors.work-right
+                  // {
+                    status = "enable";
+                  }
+                )
+              ];
+
+              # exec = "${moveWorkspacesToHome}";
             };
           }
         ];

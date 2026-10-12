@@ -332,7 +332,7 @@ in
             client.background       $base
           ''}
 
-          exec ${noctaliaExe}
+          exec env PATH="${config.home.profileDirectory}/bin:$PATH" ${noctaliaExe}
           exec ${lib.getExe' pkgs.kanshi "kanshi"}
         '';
       };

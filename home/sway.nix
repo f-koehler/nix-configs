@@ -41,7 +41,12 @@ in
           thickness = 28;
           margin_ends = 0;
           start = [ "workspaces" ];
-          center = [ "clock" ];
+          center = [
+            "cpu-graph"
+            "temp"
+            "ram"
+            "disk"
+          ];
           end = [
             "media"
             "tray"
@@ -54,6 +59,7 @@ in
             "battery"
             "control-center"
             "session"
+            "clock"
           ];
         };
       };
@@ -68,6 +74,28 @@ in
       wallpaper = {
         enabled = true;
         default.path = "/usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png";
+      };
+      widget = {
+        cpu-graph = {
+          type = "sysmon";
+          stat = "cpu_usage";
+          visualization = "graph";
+        };
+        temp = {
+          type = "sysmon";
+          stat = "cpu_temp";
+          visualization = "graph";
+        };
+        ram = {
+          type = "sysmon";
+          stat = "ram_used";
+          visualization = "graph";
+        };
+        disk = {
+          type = "sysmon";
+          stat = "disk_used_pct";
+          path = "/";
+        };
       };
     };
   };

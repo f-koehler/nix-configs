@@ -333,14 +333,10 @@ in
         config = {
           inherit modifier;
 
-          terminal = "${lib.getExe' config.programs.ghostty.package "ghostty"}";
-
-          menu = "${noctaliaExe} msg panel-toggle launcher";
-
+          bars = [ ];
           focus = {
             followMouse = false;
           };
-
           keybindings = lib.mkOptionDefault {
             "${modifier}+Shift+e" = lib.mkForce "exec ${noctaliaExe} msg panel-toggle session";
             "${modifier}+comma" = "exec ${noctaliaExe} msg settings-toggle";
@@ -350,13 +346,14 @@ in
             "XF86MonBrightnessUp" = "exec ${noctaliaExe} msg brightness-up";
             "Print" = "exec ${lib.getExe' pkgs.flameshot "flameshot"} gui";
           };
-
+          menu = "${noctaliaExe} msg panel-toggle launcher";
+          terminal = "${lib.getExe' config.programs.ghostty.package "ghostty"}";
           window = {
             titlebar = false;
             border = 2;
           };
+          workspaceAutoBackAndForth = true;
 
-          bars = [ ];
         };
 
         extraConfig = ''

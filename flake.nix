@@ -52,6 +52,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -105,6 +109,17 @@
                 ./nodes/desktop.nix
               ];
             };
+          "fkoehler@desktop-nixos" =
+            let
+              system = "x86_64-linux";
+            in
+            inputs.home-manager.lib.homeManagerConfiguration {
+              extraSpecialArgs = { inherit inputs; };
+              pkgs = getNixpkgs system;
+              modules = commonHomeManagerModules ++ [
+                ./nodes/desktop-nixos.nix
+              ];
+            };
           "fkoehler@fkt14" =
             let
               system = "x86_64-linux";
@@ -132,6 +147,18 @@
               ];
             };
         };
+      nixosConfigurations.desktop-nixos = inputs.nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          "${inputs.nixos-hardware}/common/cpu/amd"
+          "${inputs.nixos-hardware}/common/cpu/amd/pstate.nix"
+          "${inputs.nixos-hardware}/common/gpu/nvidia/blackwell"
+          "${inputs.nixos-hardware}/common/pc"
+          "${inputs.nixos-hardware}/common/pc/ssd"
+          "${inputs.nixos-hardware}/common/hidpi.nix"
+          ./nixos.nix
+        ];
+      };
       darwinConfigurations.fk-mbp21 = inputs.nix-darwin.lib.darwinSystem {
         modules = [
           inputs.mac-app-util.darwinModules.default

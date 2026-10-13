@@ -6,11 +6,11 @@
 }:
 {
   imports = [
-    ./accounts.nix
+    #./accounts.nix
     ./aerospace.nix
     ./ai.nix
     ./aws.nix
-    ./edge.nix
+    # ./edge.nix
     ./firefox.nix
     ./flatpak.nix
     ./git.nix
@@ -48,6 +48,7 @@
     };
 
     packages = [
+      pkgs.scanmem
       pkgs.age
       pkgs.cargo
       pkgs.ccache
@@ -67,7 +68,7 @@
       pkgs.ssh-to-age
     ]
     ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
-      pkgs.zotero
+      # pkgs.zotero
     ];
 
     pointerCursor = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
@@ -79,8 +80,6 @@
     sessionVariables = {
       EDITOR = "nvim";
       BROWSER = "firefox";
-      # use system ssh to avoid nix ssh not finding the system ssh-agent
-      GIT_SSH = "/usr/bin/ssh";
       CMAKE_C_COMPILER_LAUNCHER = "ccache";
       CMAKE_CXX_COMPILER_LAUNCHER = "ccache";
       VCPKG_ROOT = "${config.home.homeDirectory}/vcpkg";
@@ -263,6 +262,10 @@
             package = pkgs.pinentry_mac;
             program = "pinentry-mac";
           };
+    };
+    nextcloud-client = {
+      enable = true;
+      startInBackground = true;
     };
   };
   xdg = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {

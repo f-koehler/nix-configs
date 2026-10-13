@@ -7,7 +7,11 @@
     pkgs.kdePackages.qtdeclarative # for qmlformat
     pkgs.rustfmt
     pkgs.luaPackages.tree-sitter-cli
+    pkgs.unzip
+    pkgs.gnutar
+    pkgs.gzip
   ];
+
   programs.ripgrep.enable = true;
   programs.fd.enable = true;
   programs.npm.enable = true;

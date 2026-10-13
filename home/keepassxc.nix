@@ -12,9 +12,14 @@
         ApplicationTheme = "dark";
         CompactMode = true;
         HidePasswords = true;
+        MinimizeOnClose = true;
+        MinimizeOnStartup = true;
+        MinimizeToTray = true;
+        ShowTrayIcon = true;
+        TrayIconAppearance = "monochrome-light";
       };
       SSHAgent = {
-        Enabled = true;
+        Enabled = false;
       };
     };
   };

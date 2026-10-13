@@ -146,6 +146,7 @@ in
               scale = 1.0;
               transform = "normal";
             };
+
             work-right = {
               make = "Dell Inc.";
               model = "DELL S2722DC";
@@ -329,6 +330,7 @@ in
       {
         enable = true;
         package = null;
+        systemd.xdgAutostart = true;
 
         config = {
           inherit modifier;

@@ -130,3 +130,19 @@ Allow passwordless `sudo` for `restorecon` during activation:
 echo 'fkoehler ALL=(root) NOPASSWD: /usr/sbin/restorecon /nix/store/*/lib/systemd/system/non-nixos-gpu.service' | sudo tee /etc/sudoers.d/nix-restorecon
 sudo chmod 440 /etc/sudoers.d/nix-restorecon
 ```
+
+---
+
+## Debugging Steam Games
+
+When a game fails to launch, check these logs (`1041720` is an example app ID, find it in the game's store URL):
+
+| What                                     | Where                                                                                       |
+|------------------------------------------|---------------------------------------------------------------------------------------------|
+| Steam client output (stdout/stderr)      | `journalctl --user -t steam --since "10 min ago"`                                           |
+| Exact launch command, start/exit times   | `~/.local/share/Steam/logs/console_log.txt`                                                 |
+| Proton / Steam Linux Runtime selection   | `~/.local/share/Steam/logs/compat_log.txt`                                                  |
+| Downloads, updates, app state changes    | `~/.local/share/Steam/logs/content_log.txt`                                                 |
+| Proton/Wine log of the game              | `~/steam-<appid>.log`, enable via launch option `PROTON_LOG=1 %command%`                    |
+
+If the game process is added and removed within the same second in `console_log.txt`, the launch wrapper (e.g. gamescope) died before Proton ran: check the journal for its error output.

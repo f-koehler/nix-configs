@@ -7,6 +7,7 @@
 {
   sops = {
     secrets."accounts/fastmail/dav_password".sopsFile = ./../secrets/personal.yaml;
+    secrets."accounts/speqtral/calendar_url".sopsFile = ./../secrets/personal.yaml;
   };
   accounts = {
     calendar = {
@@ -31,6 +32,18 @@
             "from b"
           ];
         };
+      };
+    };
+    calendar.accounts."speqtral" = {
+      remote.type = "http";
+      noctalia.enable = true;
+      thunderbird.enable = true;
+      vdirsyncer = {
+        enable = true;
+        urlCommand = [
+          "cat"
+          config.sops.secrets."accounts/speqtral/calendar_url".path
+        ];
       };
     };
     contact = {

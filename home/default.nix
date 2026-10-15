@@ -48,6 +48,7 @@
     };
 
     packages = [
+      pkgs.jellyfin-tui
       pkgs.scanmem
       pkgs.age
       pkgs.cargo

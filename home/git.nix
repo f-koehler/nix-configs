@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   programs = {
     gh = {
@@ -23,6 +23,7 @@
           prune = true;
           pruneTags = true;
         };
+        core.sshCommand = lib.mkIf pkgs.stdenv.hostPlatform.isLinux "ssh -F ~/.ssh/config";
         help.autoCorrect = "prompt";
         init.defaultBranch = "main";
         push.autoSetupRemote = true;

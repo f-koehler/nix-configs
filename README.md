@@ -146,3 +146,29 @@ When a game fails to launch, check these logs (`1041720` is an example app ID, f
 | Proton/Wine log of the game              | `~/steam-<appid>.log`, enable via launch option `PROTON_LOG=1 %command%`                    |
 
 If the game process is added and removed within the same second in `console_log.txt`, the launch wrapper (e.g. gamescope) died before Proton ran: check the journal for its error output.
+
+## Non-NixOS Noctalia Lock Screen
+
+Noctalia (installed via Nix) authenticates through PAM using the service name `noctalia`. On Fedora there is no such service, so PAM falls back to `/etc/pam.d/other` (`pam_deny`) and every password is rejected. Additionally, Nix's `pam_unix.so` expects the setuid helper at `/run/wrappers/bin/unix_chkpwd`, which only exists on NixOS.
+
+Create the PAM service:
+
+```bash
+printf '#%%PAM-1.0\nauth include login\n' | sudo tee /etc/pam.d/noctalia
+```
+
+Link the setuid helper and make it persist across reboots:
+
+```bash
+sudo mkdir -p /run/wrappers/bin
+sudo ln -sf /usr/sbin/unix_chkpwd /run/wrappers/bin/unix_chkpwd
+echo 'L+ /run/wrappers/bin/unix_chkpwd - - - - /usr/sbin/unix_chkpwd' | sudo tee /etc/tmpfiles.d/nix-unix-chkpwd.conf
+```
+
+If `include login` fails because of `pam_fprintd` (not available in Nix's `libpam`), use a minimal stack instead:
+
+```
+#%PAM-1.0
+auth     required  pam_unix.so
+account  required  pam_unix.so
+```

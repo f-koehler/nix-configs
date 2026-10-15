@@ -33,6 +33,7 @@ in
 
   programs.noctalia = {
     enable = true;
+    package = noctaliaPackage;
     settings = {
       bar = {
         default = {

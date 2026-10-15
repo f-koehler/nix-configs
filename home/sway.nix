@@ -40,7 +40,10 @@ in
           shadow = false;
           thickness = 28;
           margin_ends = 0;
-          start = [ "workspaces" ];
+          start = [
+            "workspaces"
+            "media"
+          ];
           center = [
             "cpu-graph"
             "temp"
@@ -48,7 +51,6 @@ in
             "disk"
           ];
           end = [
-            "media"
             "tray"
             "notifications"
             "clipboard"
@@ -76,6 +78,10 @@ in
         default.path = "/usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png";
       };
       widget = {
+        clock = {
+          type = "clock";
+          format = "{:%Y-%m-%d} {:%H:%M}";
+        };
         cpu-graph = {
           type = "sysmon";
           stat = "cpu_usage";

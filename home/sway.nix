@@ -7,6 +7,18 @@
 }:
 let
   noctaliaPackage = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  qtctSettings = {
+    Appearance = {
+      style = "Breeze";
+      icon_theme = config.gtk.iconTheme.name;
+      # color_scheme_path/custom_palette come from catppuccin.qt5ct below
+      standard_dialogs = "default";
+    };
+    Fonts = {
+      general = "Noto Sans,12";
+      fixed = "Noto Sans,12";
+    };
+  };
   noctaliaExe = "${lib.getExe' noctaliaPackage "noctalia"}";
 in
 {
@@ -15,11 +27,23 @@ in
     pkgs.wiremix
     pkgs.networkmanager
     pkgs.brightnessctl
+    pkgs.libsForQt5.qt5ct # plugin for Qt5 apps (keepassxc), see keepassxc.nix
   ];
+
+  catppuccin.qt5ct = {
+    enable = true;
+    assertPlatformTheme = false;
+  };
 
   qt = {
     enable = true;
     platformTheme.name = "qt6ct";
+    qt5ctSettings = qtctSettings // {
+      Appearance = qtctSettings.Appearance // {
+        style = "Fusion";
+      };
+    };
+    qt6ctSettings = qtctSettings;
   };
 
   programs.wofi = {

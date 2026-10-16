@@ -30,6 +30,10 @@ in
     enable = true;
     package = if hasTag "gpu-nvidia" then zed-editor-nvidia else pkgs.zed-editor;
     installRemoteServer = true;
+    extraPackages = [
+      pkgs.nil
+      pkgs.nixd
+    ];
     extensions = [
       "docker-compose"
       "dockerfile"
@@ -56,6 +60,10 @@ in
       git_panel.dock = "left";
       outline_panel.dock = "left";
       project_panel.dock = "left";
+      languages.Nix.language_servers = [
+        "nixd"
+        "nil"
+      ];
       load_direnv = "shell_hook";
       lsp = {
         texlab = {

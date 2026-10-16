@@ -155,7 +155,7 @@
           "${inputs.nixos-hardware}/common/pc"
           "${inputs.nixos-hardware}/common/pc/ssd"
           "${inputs.nixos-hardware}/common/hidpi.nix"
-          ./nixos.nix
+          ./nixos
         ];
       };
       darwinConfigurations.fk-mbp21 = inputs.nix-darwin.lib.darwinSystem {

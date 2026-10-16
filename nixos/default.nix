@@ -8,6 +8,7 @@
     ./hardware-configuration.nix
     ./networking.nix
     ./nix.nix
+    ./podman.nix
     ./power.nix
     ./ssh.nix
     ./tailscale.nix

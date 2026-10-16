@@ -48,7 +48,14 @@ in
       "xml"
     ];
     userSettings = {
+      agent = {
+        dock = "right";
+        threads_sidebar.position = "right";
+      };
       colorize_brackets = true;
+      git_panel.dock = "left";
+      outline_panel.dock = "left";
+      project_panel.dock = "left";
       load_direnv = "shell_hook";
       lsp = {
         texlab = {

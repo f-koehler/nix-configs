@@ -6,7 +6,7 @@
 }:
 {
   imports = [
-    #./accounts.nix
+    ./accounts.nix
     ./aerospace.nix
     ./ai.nix
     ./aws.nix

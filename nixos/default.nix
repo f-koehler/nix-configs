@@ -18,6 +18,8 @@
   i18n.defaultLocale = "en_SG.UTF-8";
   system.stateVersion = "26.11"; # Did you read the comment?
 
+  programs.nix-ld.enable = true;
+
   environment.systemPackages = with pkgs; [
     vim
     wget

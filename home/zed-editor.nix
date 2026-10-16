@@ -2,6 +2,7 @@
   pkgs,
   config,
   hasTag,
+  lib,
   ...
 }:
 let
@@ -56,7 +57,9 @@ in
         dock = "right";
         threads_sidebar.position = "right";
       };
+      agent_servers.claude-acp.type = "registry";
       colorize_brackets = true;
+      edit_predictions.provider = "copilot";
       git_panel.dock = "left";
       outline_panel.dock = "left";
       project_panel.dock = "left";
@@ -66,6 +69,10 @@ in
       ];
       load_direnv = "shell_hook";
       lsp = {
+        copilot.binary = {
+          path = lib.getExe pkgs.copilot-language-server;
+          arguments = [ "--stdio" ];
+        };
         texlab = {
           settings = {
             texlab = {

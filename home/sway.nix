@@ -28,6 +28,7 @@ in
     pkgs.networkmanager
     pkgs.brightnessctl
     pkgs.libsForQt5.qt5ct # plugin for Qt5 apps (keepassxc), see keepassxc.nix
+    pkgs.wl-clipboard
   ];
 
   catppuccin.qt5ct = {

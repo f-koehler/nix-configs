@@ -82,6 +82,7 @@ lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       "org.kde.dolphin" = kdeOverride;
       "org.kde.okular" = kdeOverride;
       "org.kde.ark" = kdeOverride;
+      "org.fkoehler.KTailctl" = kdeOverride;
     };
     packages = [
       {

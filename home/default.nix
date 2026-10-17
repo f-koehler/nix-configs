@@ -14,7 +14,6 @@
     ./firefox.nix
     ./flatpak.nix
     ./git.nix
-    # ./kde
     ./keepassxc.nix
     ./linux.nix
     ./neovim.nix

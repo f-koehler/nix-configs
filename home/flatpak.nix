@@ -18,8 +18,50 @@ let
       XDG_CURRENT_DESKTOP = "KDE";
     };
   };
+  # Minimal INI reader: { group = { key = value; }; } for a KDE .colors file.
+  parseIni =
+    text:
+    (lib.foldl'
+      (
+        acc: line:
+        let
+          header = builtins.match "[[](.*)[]]" line;
+          pair = builtins.match "([^=]+)=(.*)" line;
+        in
+        if header != null then
+          acc // { group = lib.head header; }
+        else if pair != null && acc.group != null then
+          lib.recursiveUpdate acc { out.${acc.group}.${lib.elemAt pair 0} = lib.elemAt pair 1; }
+        else
+          acc
+      )
+      {
+        group = null;
+        out = { };
+      }
+      (lib.splitString "\n" text)
+    ).out;
+  colorScheme =
+    let
+      flavor = lib.toSentenceCase config.catppuccin.flavor;
+      accent = lib.toSentenceCase config.catppuccin.accent;
+      package = pkgs.catppuccin-kde.override {
+        flavour = [ config.catppuccin.flavor ];
+        accents = [ config.catppuccin.accent ];
+        winDecStyles = [ "modern" ];
+      };
+    in
+    parseIni (builtins.readFile "${package}/share/color-schemes/Catppuccin${flavor}${accent}.colors");
 in
 lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
+  # The sandboxed KDE apps read ~/.config/kdeglobals (see kdeOverride). Inline
+  # the catppuccin colour scheme, since apps can't resolve it by name inside
+  # the sandbox. qt.kde.settings merges via kwriteconfig6, so an existing
+  # (mutable) kdeglobals is updated rather than clobbered.
+  qt.kde.settings.kdeglobals = lib.recursiveUpdate colorScheme {
+    Icons.Theme = config.gtk.iconTheme.name;
+    KDE.widgetStyle = "Breeze";
+  };
   # Flatpak exposes ~/.local/share/icons to apps, but not the nix profile.
   # Link the catppuccin-flavoured Papirus (see theme.nix) there.
   xdg.dataFile = lib.genAttrs [ "icons/Papirus" "icons/Papirus-Dark" ] (path: {

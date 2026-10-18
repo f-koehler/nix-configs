@@ -145,6 +145,10 @@ lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
         appId = "org.kde.ark";
         origin = "flathub";
       }
+      {
+        appId = "org.telegram.desktop";
+        origin = "flathub";
+      }
     ];
   };
 }

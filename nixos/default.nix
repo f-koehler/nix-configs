@@ -20,6 +20,7 @@
   system.stateVersion = "26.11"; # Did you read the comment?
 
   programs.nix-ld.enable = true;
+  services.envfs.enable = true;
 
   environment.systemPackages = with pkgs; [
     vim

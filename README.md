@@ -3,7 +3,7 @@
 User space configuration via [home-manager](https://github.com/nix-community/home-manager) for all my machines as well as system config of my Mac through [nix-darwin](https://github.com/nix-darwin/nix-darwin).
 
 | Host      | OS                    | Architecture |
-|-----------|-----------------------|--------------|
+| --------- | --------------------- | ------------ |
 | `desktop` | Fedora Linux          | x86_64       |
 | `fkt14`   | Fedora Linux          | x86_64       |
 | `mbp`     | macOS (Apple Silicon) | aarch64      |
@@ -137,13 +137,13 @@ sudo chmod 440 /etc/sudoers.d/nix-restorecon
 
 When a game fails to launch, check these logs (`1041720` is an example app ID, find it in the game's store URL):
 
-| What                                     | Where                                                                                       |
-|------------------------------------------|---------------------------------------------------------------------------------------------|
-| Steam client output (stdout/stderr)      | `journalctl --user -t steam --since "10 min ago"`                                           |
-| Exact launch command, start/exit times   | `~/.local/share/Steam/logs/console_log.txt`                                                 |
-| Proton / Steam Linux Runtime selection   | `~/.local/share/Steam/logs/compat_log.txt`                                                  |
-| Downloads, updates, app state changes    | `~/.local/share/Steam/logs/content_log.txt`                                                 |
-| Proton/Wine log of the game              | `~/steam-<appid>.log`, enable via launch option `PROTON_LOG=1 %command%`                    |
+| What                                   | Where                                                                    |
+| -------------------------------------- | ------------------------------------------------------------------------ |
+| Steam client output (stdout/stderr)    | `journalctl --user -t steam --since "10 min ago"`                        |
+| Exact launch command, start/exit times | `~/.local/share/Steam/logs/console_log.txt`                              |
+| Proton / Steam Linux Runtime selection | `~/.local/share/Steam/logs/compat_log.txt`                               |
+| Downloads, updates, app state changes  | `~/.local/share/Steam/logs/content_log.txt`                              |
+| Proton/Wine log of the game            | `~/steam-<appid>.log`, enable via launch option `PROTON_LOG=1 %command%` |
 
 If the game process is added and removed within the same second in `console_log.txt`, the launch wrapper (e.g. gamescope) died before Proton ran: check the journal for its error output.
 

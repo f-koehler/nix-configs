@@ -10,6 +10,10 @@
       url = "github:Mic92/direnv-instant";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -18,6 +22,7 @@
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
@@ -146,17 +151,35 @@
               ];
             };
         };
-      nixosConfigurations.desktop-nixos = inputs.nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          "${inputs.nixos-hardware}/common/cpu/amd"
-          "${inputs.nixos-hardware}/common/cpu/amd/pstate.nix"
-          "${inputs.nixos-hardware}/common/gpu/nvidia/blackwell"
-          "${inputs.nixos-hardware}/common/pc"
-          "${inputs.nixos-hardware}/common/pc/ssd"
-          "${inputs.nixos-hardware}/common/hidpi.nix"
-          ./nixos
-        ];
+      nixosConfigurations = {
+        desktop-nixos = inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            inputs.determinate.nixosModules.default
+            ./nixos
+            ./nodes/desktop/hardware.nix
+            "${inputs.nixos-hardware}/common/cpu/amd"
+            "${inputs.nixos-hardware}/common/cpu/amd/pstate.nix"
+            "${inputs.nixos-hardware}/common/gpu/nvidia/blackwell"
+            "${inputs.nixos-hardware}/common/pc"
+            "${inputs.nixos-hardware}/common/pc/ssd"
+            "${inputs.nixos-hardware}/common/hidpi.nix"
+          ];
+        };
+        fkt14 = inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            inputs.disko.nixosModules.disko
+            inputs.determinate.nixosModules.default
+            ./nixos
+            ./nodes/fkt14/hardware.nix
+            ./nodes/fkt14/disko.nix
+            "${inputs.nixos-hardware}/common/pc"
+            "${inputs.nixos-hardware}/common/pc/ssd"
+            "${inputs.nixos-hardware}/common/cpu/intel/raptor-lake"
+            "${inputs.nixos-hardware}/common/gpu/intel/raptor-lake"
+          ];
+        };
       };
       darwinConfigurations.fk-mbp21 = inputs.nix-darwin.lib.darwinSystem {
         modules = [
@@ -200,6 +223,9 @@
             # python
             ruff.enable = true;
             ruff-format.enable = true;
+
+            # JSON
+            prettier.enable = true;
           };
         };
       });

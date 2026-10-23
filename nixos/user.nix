@@ -3,6 +3,7 @@
     groups.fkoehler = { };
     users.fkoehler = {
       isNormalUser = true;
+      initialPassword = "changeme";
       group = "fkoehler";
       extraGroups = [
         "networkmanager"

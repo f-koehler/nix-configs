@@ -5,7 +5,6 @@
     ./boot.nix
     ./desktop.nix
     ./gaming.nix
-    ./hardware-configuration.nix
     ./networking.nix
     ./nix.nix
     ./podman.nix

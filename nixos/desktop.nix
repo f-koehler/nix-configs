@@ -1,4 +1,4 @@
-_: {
+{ pkgs, ... }: {
   programs = {
     seahorse.enable = true;
     sway = {
@@ -27,4 +27,18 @@ _: {
     printing.enable = true;
   };
   xdg.portal.enable = true;
+  environment.systemPackages = with pkgs; [
+    deskflow
+    gimp
+    imhex
+    inkscape
+    kdePackages.ark
+    kdePackages.dolphin
+    kdePackages.filelight
+    kdePackages.kcharselect
+    kdePackages.okular
+    libreoffice-fresh
+    sqlitebrowser
+    telegram-desktop
+  ];
 }

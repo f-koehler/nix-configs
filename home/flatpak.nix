@@ -95,23 +95,7 @@ lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
         origin = "flathub";
       }
       {
-        appId = "io.github.alainm23.planify";
-        origin = "flathub";
-      }
-      {
-        appId = "net.werwolv.ImHex";
-        origin = "flathub";
-      }
-      {
         appId = "org.fkoehler.KTailctl";
-        origin = "flathub";
-      }
-      {
-        appId = "org.gimp.GIMP";
-        origin = "flathub";
-      }
-      {
-        appId = "org.inkscape.Inkscape";
         origin = "flathub";
       }
       {
@@ -119,39 +103,7 @@ lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
         origin = "flathub";
       }
       {
-        appId = "org.libreoffice.LibreOffice";
-        origin = "flathub";
-      }
-      {
-        appId = "org.sqlitebrowser.sqlitebrowser";
-        origin = "flathub";
-      }
-      {
         appId = "md.obsidian.Obsidian";
-        origin = "flathub";
-      }
-      {
-        appId = "org.deskflow.deskflow";
-        origin = "flathub";
-      }
-      {
-        appId = "org.kde.dolphin";
-        origin = "flathub";
-      }
-      {
-        appId = "org.kde.kcharselect";
-        origin = "flathub";
-      }
-      {
-        appId = "org.kde.okular";
-        origin = "flathub";
-      }
-      {
-        appId = "org.kde.ark";
-        origin = "flathub";
-      }
-      {
-        appId = "org.telegram.desktop";
         origin = "flathub";
       }
     ];

@@ -80,6 +80,7 @@ lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     };
     overrides.settings = {
       "org.kde.dolphin" = kdeOverride;
+      "org.kde.kcharselect" = kdeOverride;
       "org.kde.okular" = kdeOverride;
       "org.kde.ark" = kdeOverride;
       "org.fkoehler.KTailctl" = kdeOverride;
@@ -135,6 +136,10 @@ lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       }
       {
         appId = "org.kde.dolphin";
+        origin = "flathub";
+      }
+      {
+        appId = "org.kde.kcharselect";
         origin = "flathub";
       }
       {

@@ -155,29 +155,31 @@
         desktop-nixos = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            inputs.determinate.nixosModules.default
-            ./nixos
-            ./nodes/desktop/hardware.nix
             "${inputs.nixos-hardware}/common/cpu/amd"
             "${inputs.nixos-hardware}/common/cpu/amd/pstate.nix"
             "${inputs.nixos-hardware}/common/gpu/nvidia/blackwell"
+            "${inputs.nixos-hardware}/common/hidpi.nix"
             "${inputs.nixos-hardware}/common/pc"
             "${inputs.nixos-hardware}/common/pc/ssd"
-            "${inputs.nixos-hardware}/common/hidpi.nix"
+            ./nixos
+            ./nodes/desktop/disko.nix
+            ./nodes/desktop/hardware.nix
+            inputs.determinate.nixosModules.default
+            inputs.disko.nixosModules.disko
           ];
         };
         fkt14 = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            inputs.disko.nixosModules.disko
-            inputs.determinate.nixosModules.default
-            ./nixos
-            ./nodes/fkt14/hardware.nix
-            ./nodes/fkt14/disko.nix
-            "${inputs.nixos-hardware}/common/pc"
-            "${inputs.nixos-hardware}/common/pc/ssd"
             "${inputs.nixos-hardware}/common/cpu/intel/raptor-lake"
             "${inputs.nixos-hardware}/common/gpu/intel/raptor-lake"
+            "${inputs.nixos-hardware}/common/pc"
+            "${inputs.nixos-hardware}/common/pc/ssd"
+            ./nixos
+            ./nodes/fkt14/disko.nix
+            ./nodes/fkt14/hardware.nix
+            inputs.determinate.nixosModules.default
+            inputs.disko.nixosModules.disko
           ];
         };
       };

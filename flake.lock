@@ -412,11 +412,11 @@
     "homebrew-deskflow": {
       "flake": false,
       "locked": {
-        "lastModified": 1792157947,
-        "narHash": "sha256-AGCvo0OTLqVNbj9eXEkDMja5YjQDZXYGzNxcjQuxu8k=",
+        "lastModified": 1792600445,
+        "narHash": "sha256-PSSbxe/qCXJ9973uF1DPk9xmlOJtXrpu0YNrPr452qM=",
         "owner": "deskflow",
         "repo": "homebrew-tap",
-        "rev": "d4418bd8cc42d44f77858465f4e4383704c56c8a",
+        "rev": "1a460e444de3f40c997e36a8a58002586d99d93c",
         "type": "github"
       },
       "original": {

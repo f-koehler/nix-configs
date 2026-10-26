@@ -15,7 +15,6 @@
     ./flatpak.nix
     ./git.nix
     ./keepassxc.nix
-    ./linux.nix
     ./neovim.nix
     ./sftpman.nix
     ./spack.nix

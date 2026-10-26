@@ -102,7 +102,7 @@
           ];
         in
         {
-          "fkoehler@desktop" =
+          "fkoehler@fk-desktop" =
             let
               system = "x86_64-linux";
             in
@@ -110,10 +110,10 @@
               extraSpecialArgs = { inherit inputs; };
               pkgs = getNixpkgs system;
               modules = commonHomeManagerModules ++ [
-                ./nodes/desktop.nix
+                ./nodes/fk-desktop/home.nix
               ];
             };
-          "fkoehler@desktop-nixos" =
+          "fkoehler@fk-t14" =
             let
               system = "x86_64-linux";
             in
@@ -121,18 +121,7 @@
               extraSpecialArgs = { inherit inputs; };
               pkgs = getNixpkgs system;
               modules = commonHomeManagerModules ++ [
-                ./nodes/desktop-nixos.nix
-              ];
-            };
-          "fkoehler@fkt14" =
-            let
-              system = "x86_64-linux";
-            in
-            inputs.home-manager.lib.homeManagerConfiguration {
-              extraSpecialArgs = { inherit inputs; };
-              pkgs = getNixpkgs system;
-              modules = commonHomeManagerModules ++ [
-                ./nodes/fkt14.nix
+                ./nodes/fkt14/home.nix
               ];
             };
           "fkoehler@fk-mbp21" =
@@ -147,12 +136,12 @@
               pkgs = getNixpkgs system;
               modules = commonHomeManagerModules ++ [
                 inputs.mac-app-util.homeManagerModules.default
-                ./nodes/fk-mbp21.nix
+                ./nodes/mbp21.nix
               ];
             };
         };
       nixosConfigurations = {
-        desktop-nixos = inputs.nixpkgs.lib.nixosSystem {
+        fk-desktop = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             "${inputs.nixos-hardware}/common/cpu/amd"
@@ -162,13 +151,12 @@
             "${inputs.nixos-hardware}/common/pc"
             "${inputs.nixos-hardware}/common/pc/ssd"
             ./nixos
-            ./nodes/desktop/disko.nix
-            ./nodes/desktop/hardware.nix
+            ./nodes/fk-desktop/nixos.nix
             inputs.determinate.nixosModules.default
             inputs.disko.nixosModules.disko
           ];
         };
-        fkt14 = inputs.nixpkgs.lib.nixosSystem {
+        fk-t14 = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             "${inputs.nixos-hardware}/common/cpu/intel/raptor-lake"
@@ -176,8 +164,7 @@
             "${inputs.nixos-hardware}/common/pc"
             "${inputs.nixos-hardware}/common/pc/ssd"
             ./nixos
-            ./nodes/fkt14/disko.nix
-            ./nodes/fkt14/hardware.nix
+            ./nodes/fk-t14/nixos.nix
             inputs.determinate.nixosModules.default
             inputs.disko.nixosModules.disko
           ];

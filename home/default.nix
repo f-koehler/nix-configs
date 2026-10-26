@@ -10,7 +10,7 @@
     ./aerospace.nix
     ./ai.nix
     ./aws.nix
-    # ./edge.nix
+    ./edge.nix
     ./firefox.nix
     ./flatpak.nix
     ./git.nix

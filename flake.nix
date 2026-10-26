@@ -23,6 +23,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
@@ -81,14 +85,21 @@
     { self, ... }@inputs:
     let
       forEachSystem = inputs.nixpkgs.lib.genAttrs (import inputs.systems);
+      overlays = [
+        inputs.fenix.overlays.default
+      ];
+      overlayModule = {
+        nixpkgs.overlays = overlays;
+      };
       getNixpkgs =
         system:
         import inputs.nixpkgs {
-          inherit system;
+          inherit system overlays;
           config.allowUnfree = true;
         };
     in
     {
+      inherit overlays;
       homeConfigurations =
         let
           commonHomeManagerModules = [
@@ -150,6 +161,7 @@
             "${inputs.nixos-hardware}/common/hidpi.nix"
             "${inputs.nixos-hardware}/common/pc"
             "${inputs.nixos-hardware}/common/pc/ssd"
+            overlayModule
             ./nixos
             ./nodes/fk-desktop/nixos.nix
             inputs.determinate.nixosModules.default
@@ -163,6 +175,7 @@
             "${inputs.nixos-hardware}/common/gpu/intel/raptor-lake"
             "${inputs.nixos-hardware}/common/pc"
             "${inputs.nixos-hardware}/common/pc/ssd"
+            overlayModule
             ./nixos
             ./nodes/fk-t14/nixos.nix
             inputs.determinate.nixosModules.default
@@ -172,6 +185,7 @@
       };
       darwinConfigurations.fk-mbp21 = inputs.nix-darwin.lib.darwinSystem {
         modules = [
+          overlayModule
           inputs.mac-app-util.darwinModules.default
           inputs.nix-homebrew.darwinModules.nix-homebrew
           {

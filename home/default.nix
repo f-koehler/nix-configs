@@ -65,6 +65,7 @@
       pkgs.rustc
       pkgs.sops
       pkgs.ssh-to-age
+      pkgs.vcpkg
     ]
     ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       # pkgs.zotero
@@ -81,12 +82,12 @@
       BROWSER = "firefox";
       CMAKE_C_COMPILER_LAUNCHER = "ccache";
       CMAKE_CXX_COMPILER_LAUNCHER = "ccache";
-      VCPKG_ROOT = "${config.home.homeDirectory}/vcpkg";
+      VCPKG_ROOT = "${pkgs.vcpkg}";
     }
     // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
       CUDA_PATH = "/usr/local/cuda";
       CMAKE_CUDA_COMPILER_LAUNCHER = "ccache";
-      CMAKE_TOOLCHAIN_FILE = "${config.home.homeDirectory}/vcpkg/scripts/buildsystems/vcpkg.cmake";
+      CMAKE_TOOLCHAIN_FILE = "${pkgs.vcpkg}/share/vcpkg/scripts/buildsystems/vcpkg.cmake";
       PKG_CONFIG_PATH = "/usr/lib64/pkgconfig:$PKG_CONFIG_PATH";
     };
     sessionPath = [

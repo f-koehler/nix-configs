@@ -101,7 +101,13 @@ in
       };
       wallpaper = {
         enabled = true;
-        default.path = "/usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png";
+        directory = "${config.home.homeDirectory}/Wallpapers";
+        automation = {
+          enabled = true;
+          interval_seconds = 1800;
+          order = "random";
+          recursive = true;
+        };
       };
       widget = {
         clock = {

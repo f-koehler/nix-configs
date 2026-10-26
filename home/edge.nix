@@ -16,28 +16,16 @@ lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     ];
     extensions = [
       {
-        # Bitwarden
-        id = "nngceckbapebfimnlniiiahkandclblb";
-      }
-      {
         # uBlock Origin Lite
         id = "ddkjiahejlhfcafbddmgiahcphecmpfh";
       }
       {
-        # Dark Reader
-        id = "eimadpbcbfnmbkopoojfekhnkhdbieeh";
-      }
-      {
-        # Surfingkeys
-        id = "gfbliohnnapiefjpjlpjnehglfpaknnc";
-      }
-      {
-        # Karakeep
-        id = "kgcjekpmcjjogibpjebkhaanilehneje";
-      }
-      {
         # Zotero Connector
         id = "ekhagklcjbdpajgpjgmbionohlpdbjgc";
+      }
+      {
+        # KeePassXC
+        id = "oboonakemofpalcgghocfoadofidjkkk";
       }
     ];
   };

@@ -6,6 +6,7 @@
     enableVteIntegration = true;
     autocd = true;
     autosuggestion.enable = true;
+    defaultKeymap = "viins";
     history = {
       append = true;
       expireDuplicatesFirst = true;

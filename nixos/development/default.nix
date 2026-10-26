@@ -4,6 +4,7 @@
     ./go.nix
     ./latex.nix
     ./node.nix
+    ./python.nix
     ./rust.nix
   ];
   environment.systemPackages = [

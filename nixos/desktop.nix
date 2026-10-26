@@ -37,7 +37,7 @@
     kdePackages.filelight
     kdePackages.kcharselect
     kdePackages.okular
-    libreoffice-fresh
+    libreoffice
     sqlitebrowser
     telegram-desktop
   ];

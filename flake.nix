@@ -164,6 +164,7 @@
             overlayModule
             ./nixos
             ./nodes/fk-desktop/nixos.nix
+            inputs.catppuccin.nixosModules.catppuccin
             inputs.determinate.nixosModules.default
             inputs.disko.nixosModules.disko
           ];
@@ -178,6 +179,7 @@
             overlayModule
             ./nixos
             ./nodes/fk-t14/nixos.nix
+            inputs.catppuccin.nixosModules.catppuccin
             inputs.determinate.nixosModules.default
             inputs.disko.nixosModules.disko
           ];

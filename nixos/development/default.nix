@@ -9,5 +9,7 @@
   ];
   environment.systemPackages = [
     pkgs.prek
+    pkgs.perf
+    pkgs.flamegraph
   ];
 }

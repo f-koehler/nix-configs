@@ -26,6 +26,7 @@
     vim
     wget
     htop
+    killall
 
     # for neovim config
     gcc

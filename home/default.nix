@@ -19,7 +19,7 @@
     ./sftpman.nix
     ./spack.nix
     ./ssh.nix
-    ./sway.nix
+    ./sway
     ./tags.nix
     ./zed-editor.nix
     ./zsh.nix

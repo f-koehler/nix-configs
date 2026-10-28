@@ -48,15 +48,6 @@ in
     qt6ctSettings = qtctSettings;
   };
 
-  programs.wofi = {
-    enable = true;
-    settings = {
-      show = "drun";
-      allow_images = true;
-      insensitive = true;
-    };
-  };
-
   programs.noctalia = {
     enable = true;
     package = noctaliaPackage;

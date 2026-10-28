@@ -65,7 +65,7 @@ in
         enable_ddcutil = true;
       };
       bar = {
-        default = {
+        main = {
           radius = 0;
           shadow = false;
           thickness = 28;

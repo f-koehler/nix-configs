@@ -90,6 +90,13 @@ in
               {
                 command = "floating enable";
                 criteria = {
+                  app_id = "com.nextcloud.desktopclient.nextcloud";
+                  title = "^Select the source folder";
+                };
+              }
+              {
+                command = "floating enable";
+                criteria = {
                   app_id = "soffice";
                   title = "^Text Import.*";
                 };

@@ -42,11 +42,12 @@
     sqlitebrowser
     telegram-desktop
 
-    kdePackages.qt6ct
-    libsForQt5.qt5ct
     kdePackages.breeze
     kdePackages.qqc2-breeze-style
     kdePackages.breeze-icons
   ];
-  qt.platformTheme = "qt5ct";
+  qt = {
+    enable = true;
+    platformTheme = "kde";
+  };
 }

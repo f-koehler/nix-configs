@@ -42,9 +42,11 @@ in
     assertPlatformTheme = false;
   };
 
+  home.sessionVariables.QT_QPA_PLATFORMTHEME = lib.mkForce "kde";
+
   qt = {
     enable = true;
-    platformTheme.name = "qt6ct";
+    platformTheme.name = "kde6";
     qt5ctSettings = qtctSettings // {
       Appearance = qtctSettings.Appearance // {
         style = "Fusion";

@@ -26,6 +26,7 @@
     libinput.enable = true;
     printing.enable = true;
   };
+  hardware.i2c.enable = true;
   xdg.portal.enable = true;
   environment.systemPackages = with pkgs; [
     deskflow

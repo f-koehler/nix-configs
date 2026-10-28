@@ -23,6 +23,7 @@ let
 in
 {
   home.packages = [
+    pkgs.ddcutil
     pkgs.bluetui
     pkgs.wiremix
     pkgs.networkmanager
@@ -60,6 +61,9 @@ in
     enable = true;
     package = noctaliaPackage;
     settings = {
+      brightness = {
+        enable_ddcutil = true;
+      };
       bar = {
         default = {
           radius = 0;

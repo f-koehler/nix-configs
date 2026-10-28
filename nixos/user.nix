@@ -6,6 +6,7 @@
       initialPassword = "changeme";
       group = "fkoehler";
       extraGroups = [
+        "i2c"
         "networkmanager"
         "wheel"
       ];

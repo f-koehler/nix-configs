@@ -49,7 +49,6 @@
       pkgs.jellyfin-tui
       pkgs.scanmem
       pkgs.age
-      pkgs.cargo
       pkgs.ccache
       pkgs.devenv
       pkgs.glow
@@ -61,11 +60,18 @@
       pkgs.prek
       pkgs.prettier
       pkgs.python3
-      pkgs.rustPlatform.bindgenHook
-      pkgs.rustc
       pkgs.sops
       pkgs.ssh-to-age
       pkgs.vcpkg
+
+      (pkgs.fenix.complete.withComponents [
+        "cargo"
+        "clippy"
+        "rust-src"
+        "rustc"
+        "rustfmt"
+      ])
+      pkgs.rust-analyzer-nightly
     ]
     ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       # pkgs.zotero

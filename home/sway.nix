@@ -391,6 +391,15 @@ in
           window = {
             titlebar = false;
             border = 2;
+            commands = [
+              {
+                command = "floating enable";
+                criteria = {
+                  app_id = "soffice";
+                  title = "^Text Import.*";
+                };
+              }
+            ];
           };
           workspaceAutoBackAndForth = true;
 

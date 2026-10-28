@@ -132,7 +132,7 @@
               extraSpecialArgs = { inherit inputs; };
               pkgs = getNixpkgs system;
               modules = commonHomeManagerModules ++ [
-                ./nodes/fkt14/home.nix
+                ./nodes/fk-t14/home.nix
               ];
             };
           "fkoehler@fk-mbp21" =
@@ -147,7 +147,7 @@
               pkgs = getNixpkgs system;
               modules = commonHomeManagerModules ++ [
                 inputs.mac-app-util.homeManagerModules.default
-                ./nodes/mbp21.nix
+                ./nodes/mbp-21/home.nix
               ];
             };
         };

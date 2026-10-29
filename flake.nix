@@ -127,10 +127,18 @@
         in
         {
           homeConfigurations."${user}@${node}" = inputs.home-manager.lib.homeManagerConfiguration {
-            extraSpecialArgs = { inherit inputs; };
+            extraSpecialArgs = { inherit inputs user; };
             pkgs = getNixpkgs system;
             modules =
               commonHomeManagerModules
+              ++ [
+                {
+                  home = {
+                    username = user;
+                    homeDirectory = (if isDarwin then "/Users" else "/home") + "/${user}";
+                  };
+                }
+              ]
               ++ lib.optional isDarwin inputs.mac-app-util.homeManagerModules.default
               ++ [ ./nodes/${node}/home.nix ];
           };

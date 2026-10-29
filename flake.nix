@@ -124,9 +124,7 @@
             nixpkgs.hostPlatform = system;
           };
           specialArgs = { inherit inputs user; };
-        in
-        {
-          homeConfigurations."${user}@${node}" = inputs.home-manager.lib.homeManagerConfiguration {
+          home = inputs.home-manager.lib.homeManagerConfiguration {
             extraSpecialArgs = { inherit inputs user; };
             pkgs = getNixpkgs system;
             modules =
@@ -142,21 +140,30 @@
               ++ lib.optional isDarwin inputs.mac-app-util.homeManagerModules.default
               ++ [ ./nodes/${node}/home.nix ];
           };
+          darwin = inputs.nix-darwin.lib.darwinSystem {
+            inherit specialArgs;
+            modules = [ platform ] ++ commonDarwinModules ++ [ ./nodes/${node}/darwin.nix ];
+          };
+          nixos = lib.nixosSystem {
+            inherit specialArgs;
+            modules = [ platform ] ++ commonNixOsModules ++ [ ./nodes/${node}/nixos.nix ];
+          };
+        in
+        {
+          homeConfigurations."${user}@${node}" = home;
+          # evaluated by `nix flake check --no-build` to catch broken configurations
+          checks.${system}."home-${node}" = home.activationPackage;
         }
         // (
           if isDarwin then
             {
-              darwinConfigurations.${node} = inputs.nix-darwin.lib.darwinSystem {
-                inherit specialArgs;
-                modules = [ platform ] ++ commonDarwinModules ++ [ ./nodes/${node}/darwin.nix ];
-              };
+              darwinConfigurations.${node} = darwin;
+              checks.${system}."darwin-${node}" = darwin.system;
             }
           else
             {
-              nixosConfigurations.${node} = lib.nixosSystem {
-                inherit specialArgs;
-                modules = [ platform ] ++ commonNixOsModules ++ [ ./nodes/${node}/nixos.nix ];
-              };
+              nixosConfigurations.${node} = nixos;
+              checks.${system}."nixos-${node}" = nixos.config.system.build.toplevel;
             }
         );
       nodes = [
@@ -176,29 +183,34 @@
           node = "fk-mbp21";
         }
       ];
+      nodeOutputs = lib.foldl' lib.recursiveUpdate { inherit overlays; } (map mkNode nodes);
     in
-    lib.foldl' lib.recursiveUpdate { inherit overlays; } (map mkNode nodes)
+    nodeOutputs
     // {
-      checks = forEachSystem (system: {
-        pre-commit-check = inputs.git-hooks.lib.${system}.run {
-          src = ./.;
-          hooks = {
-            # nix
-            deadnix.enable = true;
-            flake-checker.enable = true;
-            nil.enable = true;
-            nixfmt.enable = true;
-            #statix.enable = true;
+      checks = lib.recursiveUpdate nodeOutputs.checks (
+        forEachSystem (system: {
+          pre-commit-check = inputs.git-hooks.lib.${system}.run {
+            src = ./.;
+            # the neovim config is a separate repo (submodule)
+            excludes = [ "^home/neovim-config/" ];
+            hooks = {
+              # nix
+              deadnix.enable = true;
+              flake-checker.enable = true;
+              nil.enable = true;
+              nixfmt.enable = true;
+              #statix.enable = true;
 
-            # python
-            ruff.enable = true;
-            ruff-format.enable = true;
+              # python
+              ruff.enable = true;
+              ruff-format.enable = true;
 
-            # JSON
-            prettier.enable = true;
+              # JSON
+              prettier.enable = true;
+            };
           };
-        };
-      });
+        })
+      );
       formatter = forEachSystem (
         system:
         let

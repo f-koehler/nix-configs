@@ -1,17 +1,12 @@
 { pkgs, ... }: {
   boot = {
     loader = {
-      systemd-boot.enable = false;
-      grub = {
+      systemd-boot = {
         enable = true;
-        device = "nodev";
-        efiSupport = true;
-        useOSProber = true;
+        # the ESP is only 1G, keep the number of kernels/initrds on it bounded
+        configurationLimit = 10;
       };
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
-      };
+      efi.canTouchEfiVariables = true;
     };
     kernelPackages = pkgs.linuxPackages_latest;
   };

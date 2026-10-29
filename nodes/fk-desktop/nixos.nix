@@ -1,4 +1,9 @@
-{ inputs, lib, ... }:
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 {
   imports = [
     "${inputs.nixos-hardware}/common/cpu/amd"
@@ -13,6 +18,10 @@
     reportPath = ./facter.json;
   };
   networking.hostName = "fk-desktop";
+  # keep the second ESP (see disko.nix) in sync so either disk can boot the system
+  boot.loader.systemd-boot.extraInstallCommands = ''
+    ${pkgs.rsync}/bin/rsync -a --delete /boot/ /boot-mirror/
+  '';
   # facter's AMD iGPU module sets videoDrivers at normal priority, which
   # overrides nixos-hardware's mkDefault ["nvidia"]; add it back explicitly.
   services.xserver.videoDrivers = lib.mkAfter [ "nvidia" ];

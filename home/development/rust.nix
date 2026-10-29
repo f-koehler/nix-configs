@@ -1,5 +1,6 @@
-{ pkgs, ... }: {
-  environment.systemPackages = [
+{ pkgs, ... }:
+{
+  home.packages = [
     (pkgs.fenix.complete.withComponents [
       "cargo"
       "clippy"

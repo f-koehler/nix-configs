@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     ./cpp.nix
     ./go.nix
@@ -7,9 +8,8 @@
     ./python.nix
     ./rust.nix
   ];
-  environment.systemPackages = [
-    pkgs.prek
-    pkgs.perf
+
+  home.packages = [
     pkgs.flamegraph
   ];
 }

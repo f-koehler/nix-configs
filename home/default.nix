@@ -10,6 +10,7 @@
     ./aerospace.nix
     ./ai.nix
     ./aws.nix
+    ./development
     ./edge.nix
     ./firefox.nix
     ./flatpak.nix
@@ -58,19 +59,9 @@
       pkgs.pkg-config
       pkgs.prek
       pkgs.prettier
-      pkgs.python3
       pkgs.sops
       pkgs.ssh-to-age
       pkgs.vcpkg
-
-      (pkgs.fenix.complete.withComponents [
-        "cargo"
-        "clippy"
-        "rust-src"
-        "rustc"
-        "rustfmt"
-      ])
-      pkgs.rust-analyzer-nightly
     ]
     ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       # pkgs.zotero

@@ -4,7 +4,7 @@
     ./bluetooth.nix
     ./boot.nix
     ./desktop.nix
-    ./development
+    ./development.nix
     ./firmware.nix
     ./gaming.nix
     ./memory.nix
@@ -21,7 +21,6 @@
   i18n.defaultLocale = "en_SG.UTF-8";
   system.stateVersion = "26.11"; # Did you read the comment?
 
-  programs.nix-ld.enable = true;
   services.envfs.enable = true;
 
   environment.systemPackages = with pkgs; [

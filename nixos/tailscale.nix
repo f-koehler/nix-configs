@@ -5,4 +5,9 @@
     openFirewall = true;
     useRoutingFeatures = "both";
   };
+  networking.firewall = {
+    # required for subnet routers/exit nodes, strict rp_filter drops the routed traffic
+    checkReversePath = "loose";
+    trustedInterfaces = [ "tailscale0" ];
+  };
 }

@@ -200,6 +200,7 @@
     };
     herdr = {
       enable = true;
+      mutableSettings = true;
       settings = {
         theme = {
           name = "catppuccin";

@@ -1,5 +1,8 @@
 { pkgs, ... }: {
+  # authorization backend, the polkit agent itself is provided by noctalia
+  security.polkit.enable = true;
   programs = {
+    dconf.enable = true;
     seahorse.enable = true;
     sway = {
       enable = true;

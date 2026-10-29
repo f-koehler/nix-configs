@@ -91,6 +91,8 @@
       VCPKG_ROOT = "${pkgs.vcpkg}";
     }
     // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
+      # gpg-agent only exports this from shell init, GUI apps in the sway session need it too
+      SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh";
       CMAKE_CUDA_COMPILER_LAUNCHER = "ccache";
       CMAKE_TOOLCHAIN_FILE = "${pkgs.vcpkg}/share/vcpkg/scripts/buildsystems/vcpkg.cmake";
     };
@@ -252,6 +254,7 @@
   services = {
     gpg-agent = {
       enable = true;
+      enableSshSupport = true;
       grabKeyboardAndMouse = true;
       pinentry =
         if pkgs.stdenv.hostPlatform.isLinux then

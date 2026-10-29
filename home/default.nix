@@ -268,8 +268,9 @@
             program = "pinentry-mac";
           };
     };
+    # Linux only, the Mac uses the Homebrew cask
     nextcloud-client = {
-      enable = true;
+      enable = pkgs.stdenv.hostPlatform.isLinux;
       startInBackground = true;
     };
   };

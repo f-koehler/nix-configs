@@ -41,7 +41,7 @@ in
     serif = [ themeFonts.serif ];
   };
   gtk = {
-    enable = true;
+    enable = pkgs.stdenv.hostPlatform.isLinux;
     font.name = themeFonts.sansSerif;
   };
   home.packages = [

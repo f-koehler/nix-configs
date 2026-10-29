@@ -27,6 +27,8 @@
     wget
     htop
     killall
+    gptfdisk
+    e2fsprogs
 
     # for neovim config
     gcc

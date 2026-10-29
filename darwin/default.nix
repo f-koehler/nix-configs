@@ -1,4 +1,4 @@
-_: {
+{ user, ... }: {
   # do not manage nix via nix-darwin, clashes with determinate nix
   nix.enable = false;
 
@@ -13,7 +13,7 @@ _: {
     computerName = "Fabian MacBook Pro 21";
   };
   system = {
-    primaryUser = "fkoehler";
+    primaryUser = user;
     startup.chime = false;
     stateVersion = 7;
   };

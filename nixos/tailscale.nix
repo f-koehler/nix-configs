@@ -1,7 +1,7 @@
-_: {
+{ user, ... }: {
   services.tailscale = {
     enable = true;
-    extraUpFlags = [ "--operator=fkoehler" ];
+    extraUpFlags = [ "--operator=${user}" ];
     openFirewall = true;
     useRoutingFeatures = "both";
   };

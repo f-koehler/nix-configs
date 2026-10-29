@@ -1,10 +1,10 @@
-{ pkgs, ... }: {
+{ pkgs, user, ... }: {
   users = {
-    groups.fkoehler = { };
-    users.fkoehler = {
+    groups.${user} = { };
+    users.${user} = {
       isNormalUser = true;
       initialPassword = "changeme";
-      group = "fkoehler";
+      group = user;
       extraGroups = [
         "i2c"
         "networkmanager"

@@ -80,7 +80,8 @@
   outputs =
     { self, ... }@inputs:
     let
-      forEachSystem = inputs.nixpkgs.lib.genAttrs (import inputs.systems);
+      inherit (inputs.nixpkgs) lib;
+      forEachSystem = lib.genAttrs (import inputs.systems);
       overlays = [
         inputs.fenix.overlays.default
       ];
@@ -110,66 +111,71 @@
         inputs.determinate.nixosModules.default
         inputs.disko.nixosModules.disko
       ];
-      mkHome =
-        node: system:
-        inputs.home-manager.lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs; };
-          pkgs = getNixpkgs system;
-          modules = commonHomeManagerModules ++ [
-            ./nodes/${node}/home.nix
-          ];
-        };
-      mkNixOs =
-        node: system:
-        inputs.nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./nodes/${node}/nixos.nix
-          ]
-          ++ commonNixOsModules;
-        };
+      commonDarwinModules = [
+        overlayModule
+        inputs.mac-app-util.darwinModules.default
+        inputs.nix-homebrew.darwinModules.nix-homebrew
+        ./darwin
+      ];
+      mkNode =
+        {
+          user,
+          system,
+          node,
+        }:
+        let
+          isDarwin = lib.hasSuffix "darwin" system;
+          platform = {
+            nixpkgs.hostPlatform = system;
+          };
+          specialArgs = { inherit inputs user; };
+        in
+        {
+          homeConfigurations."${user}@${node}" = inputs.home-manager.lib.homeManagerConfiguration {
+            extraSpecialArgs = { inherit inputs; };
+            pkgs = getNixpkgs system;
+            modules =
+              commonHomeManagerModules
+              ++ lib.optional isDarwin inputs.mac-app-util.homeManagerModules.default
+              ++ [ ./nodes/${node}/home.nix ];
+          };
+        }
+        // (
+          if isDarwin then
+            {
+              darwinConfigurations.${node} = inputs.nix-darwin.lib.darwinSystem {
+                inherit specialArgs;
+                modules = [ platform ] ++ commonDarwinModules ++ [ ./nodes/${node}/darwin.nix ];
+              };
+            }
+          else
+            {
+              nixosConfigurations.${node} = lib.nixosSystem {
+                inherit specialArgs;
+                modules = [ platform ] ++ commonNixOsModules ++ [ ./nodes/${node}/nixos.nix ];
+              };
+            }
+        );
+      nodes = [
+        {
+          user = "fkoehler";
+          system = "x86_64-linux";
+          node = "fk-desktop";
+        }
+        {
+          user = "fkoehler";
+          system = "x86_64-linux";
+          node = "fk-t14";
+        }
+        {
+          user = "fkoehler";
+          system = "aarch64-darwin";
+          node = "fk-mbp21";
+        }
+      ];
     in
-    {
-      inherit overlays;
-      homeConfigurations = {
-        "fkoehler@fk-desktop" = mkHome "fk-desktop" "x86_64-linux";
-        "fkoehler@fk-t14" = mkHome "fk-t14" "x86_64-linux";
-        "fkoehler@fk-mbp21" = mkHome "fk-mbp21" "aarch64-darwin";
-      };
-      nixosConfigurations = {
-        fk-desktop = mkNixOs "fk-desktop" "x86_64-linux";
-        fk-t14 = mkNixOs "fk-t14" "x86_64-linux";
-      };
-      darwinConfigurations.fk-mbp21 = inputs.nix-darwin.lib.darwinSystem {
-        modules = [
-          overlayModule
-          inputs.mac-app-util.darwinModules.default
-          inputs.nix-homebrew.darwinModules.nix-homebrew
-          {
-            nix-homebrew = {
-              enable = true;
-              user = "fkoehler";
-              taps = {
-                "homebrew/homebrew-core" = inputs.homebrew-core;
-                "homebrew/homebrew-cask" = inputs.homebrew-cask;
-                "deskflow/tap" = inputs.homebrew-deskflow;
-              };
-              mutableTaps = false;
-              trust = {
-                formulae = [ ];
-                casks = [ ];
-                commands = [ ];
-                taps = [ ];
-              };
-            };
-          }
-          ({ config, ... }: {
-            homebrew.taps = builtins.attrNames config.nix-homebrew.taps;
-          })
-          ./darwin
-        ];
-      };
+    lib.foldl' lib.recursiveUpdate { inherit overlays; } (map mkNode nodes)
+    // {
       checks = forEachSystem (system: {
         pre-commit-check = inputs.git-hooks.lib.${system}.run {
           src = ./.;
@@ -205,7 +211,6 @@
         default =
           let
             pkgs = getNixpkgs system;
-            inherit (inputs.nixpkgs) lib;
             inherit (self.checks.${system}) pre-commit-check;
           in
           pkgs.mkShell {

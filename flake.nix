@@ -199,7 +199,7 @@
               flake-checker.enable = true;
               nil.enable = true;
               nixfmt.enable = true;
-              #statix.enable = true;
+              statix.enable = true;
 
               # python
               ruff.enable = true;

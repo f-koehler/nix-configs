@@ -11,9 +11,11 @@
     pkgs.gzip
   ];
 
-  programs.ripgrep.enable = true;
-  programs.fd.enable = true;
-  programs.npm.enable = true;
+  programs = {
+    ripgrep.enable = true;
+    fd.enable = true;
+    npm.enable = true;
+  };
   xdg.configFile."nvim".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Code/nix-configs/home/neovim-config";
 }

@@ -50,13 +50,15 @@
           monitor:
           {
             criteria = "${monitor.make} ${monitor.model} ${monitor.serial}";
-            mode = monitor.mode;
-            position = monitor.position;
-            scale = monitor.scale;
-            transform = monitor.transform;
+            inherit (monitor)
+              mode
+              position
+              scale
+              transform
+              ;
           }
           // lib.optionalAttrs (monitor ? adaptiveSync) {
-            adaptiveSync = monitor.adaptiveSync;
+            inherit (monitor) adaptiveSync;
           };
 
         moveWorkspacesToHome = pkgs.writeShellScript "kanshi-move-workspaces-to-home" ''

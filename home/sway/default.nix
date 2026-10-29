@@ -1,12 +1,10 @@
 {
-  inputs,
   lib,
   config,
   pkgs,
   ...
 }:
 let
-  noctaliaPackage = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
   qtctSettings = {
     Appearance = {
       style = "Breeze";
@@ -19,7 +17,7 @@ let
       fixed = "Noto Sans,12";
     };
   };
-  noctaliaExe = "${lib.getExe' noctaliaPackage "noctalia"}";
+  noctaliaExe = "${lib.getExe' pkgs.noctalia "noctalia"}";
 in
 {
   imports = [

@@ -1,13 +1,10 @@
 {
-  inputs,
-  pkgs,
   config,
   ...
 }:
 {
   programs.noctalia = {
     enable = true;
-    package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
     settings = {
       brightness = {
         enable_ddcutil = true;

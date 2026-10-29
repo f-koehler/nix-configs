@@ -1,59 +1,85 @@
 # nix-configs
 
-User space configuration via [home-manager](https://github.com/nix-community/home-manager) for all my machines as well as system config of my Mac through [nix-darwin](https://github.com/nix-darwin/nix-darwin).
+Configuration of all my machines: system config via [NixOS](https://nixos.org) and [nix-darwin](https://github.com/nix-darwin/nix-darwin), user space config via [home-manager](https://github.com/nix-community/home-manager). Secrets are managed with [sops-nix](https://github.com/Mic92/sops-nix).
 
-| Host      | OS                    | Architecture |
-| --------- | --------------------- | ------------ |
-| `desktop` | Fedora Linux          | x86_64       |
-| `fkt14`   | Fedora Linux          | x86_64       |
-| `mbp`     | macOS (Apple Silicon) | aarch64      |
+| Node         | OS                    | Architecture | Configs                   |
+| ------------ | --------------------- | ------------ | ------------------------- |
+| `fk-desktop` | NixOS                 | x86_64       | NixOS + home-manager      |
+| `fk-t14`     | NixOS                 | x86_64       | NixOS + home-manager      |
+| `fk-mbp21`   | macOS (Apple Silicon) | aarch64      | nix-darwin + home-manager |
 
 ## Structure
 
 ```
-flake.nix          entry point: inputs, home-manager/nix-darwin outputs, dev shell
-darwin.nix         macOS system settings (nix-darwin)
-theme.nix          fonts (CaskaydiaCove, Noto) and Catppuccin Mocha/Mauve theming used throughout all modules
-home/
-  default.nix      core programs: shell, terminal, CLI tools, session environment
-  accounts.nix     email, calendar, and contact accounts
-  firefox.nix      Firefox profile, forced extensions
-  git.nix          Git with GPG commit signing
-  kde.nix          KDE Plasma / Krohnkite settings (Linux only)
-  linux.nix        GPU activation hook for non-NixOS (Linux only)
-  ssh.nix          SSH host entries
-  sftpman.nix      SFTP mount points (Linux only)
-  zed-editor.nix   Zed editor extensions and settings
-  zsh.nix          Zsh history, completion, vi-mode
-nodes/
-  desktop.nix      NVIDIA driver version + nixpkgs overlay workaround
-  fkt14.nix        generic GPU support
-  mbp.nix          macOS user directory and system defaults
+flake.nix     inputs, the mkNode function, the list of nodes, checks, dev shell
+nixos/        NixOS modules shared by all NixOS nodes (imported through nixos/default.nix)
+darwin/       nix-darwin modules shared by all macOS nodes (imported through darwin/default.nix)
+home/         home-manager modules shared by all nodes (imported through home/default.nix)
+theme.nix     fonts and Catppuccin theming, part of the shared home-manager modules
+secrets/      sops-encrypted secrets, see .sops.yaml for the keys
+nodes/<node>/ configuration specific to a single node
 ```
+
+### Nodes
+
+`flake.nix` declares every machine as an entry in the `nodes` list:
+
+```nix
+{ user = "fkoehler"; system = "x86_64-linux"; node = "fk-t14"; }
+```
+
+`mkNode` turns such an entry into flake outputs, depending on `system`:
+
+| Output                                       | Created for    | Modules                                                             |
+| -------------------------------------------- | -------------- | ------------------------------------------------------------------- |
+| `homeConfigurations."<user>@<node>"`         | every node     | `home/` + `theme.nix` + `nodes/<node>/home.nix`                     |
+| `nixosConfigurations.<node>`                 | Linux systems  | `nixos/` + `nodes/<node>/nixos.nix`                                 |
+| `darwinConfigurations.<node>`                | Darwin systems | `darwin/` + `nodes/<node>/darwin.nix`                               |
+| `checks.<system>.{home,nixos,darwin}-<node>` | every node     | the configurations above, evaluated by `nix flake check --no-build` |
+
+`user` and `inputs` are passed to the NixOS and nix-darwin modules via `specialArgs` (and to home-manager via `extraSpecialArgs`). `home.username` and `home.homeDirectory` are derived from `user` and `system`, so node files don't have to set them.
+
+Everything that differs between machines lives in `nodes/<node>/`:
+
+| File          | Used by      | Typical content                                                                                |
+| ------------- | ------------ | ---------------------------------------------------------------------------------------------- |
+| `nixos.nix`   | NixOS nodes  | host name, [nixos-hardware](https://github.com/NixOS/nixos-hardware) profiles, GPU workarounds |
+| `disko.nix`   | NixOS nodes  | [disko](https://github.com/nix-community/disko) disk layout                                    |
+| `facter.json` | NixOS nodes  | [nixos-facter](https://github.com/nix-community/nixos-facter) hardware report                  |
+| `darwin.nix`  | Darwin nodes | Homebrew taps and other macOS-only system settings                                             |
+| `home.nix`    | every node   | node tags (see `home/tags.nix`) and macOS user defaults                                        |
+
+Node tags (`nodeTags` in `home.nix`, e.g. `speqtral`) enable optional home-manager modules such as the work accounts, SSH hosts and AWS credentials.
 
 ## Applying Configuration
 
-### User space for all machines
+The flake attribute is picked automatically from the host name (and user name for home-manager), so `.` is enough on each machine.
 
-Apply user space config via `home-manager`:
+### NixOS
 
 ```bash
-home-manager switch -b backup --flake .
+sudo nixos-rebuild switch --flake .
+# or: install for the next boot only
+sudo nixos-rebuild boot --flake .
 ```
 
-### macOS System Settings
-
-Apply system settings via `nix-darwin`:
+### macOS
 
 ```bash
 darwin-rebuild switch --flake .
+```
+
+### home-manager
+
+```bash
+home-manager switch -b backup --flake .
 ```
 
 ---
 
 ## Development
 
-Enter the dev shell to get home-manager, darwin-rebuild, and pre-commit hooks:
+Enter the dev shell to get home-manager, darwin-rebuild (on macOS) and the pre-commit hooks:
 
 ```bash
 nix develop
@@ -66,6 +92,14 @@ nix fmt
 ```
 
 Pre-commit hooks run `deadnix`, `nil`, `nixfmt`, and `statix` on Nix files and `ruff` on Python files.
+
+Evaluate all configurations of the current system without building them:
+
+```bash
+nix flake check --no-build
+```
+
+On Linux this also reports an error for the macOS home-manager config, which can only be evaluated on a Mac.
 
 ---
 
@@ -107,32 +141,6 @@ If the icon URL contains a version string (e.g. `v2025`), a hash mismatch after 
 
 ---
 
-## Non-NixOS GPU Setup
-
-The `targets.genericLinux.gpu` module runs `non-nixos-gpu-setup` during `home-manager` activation to link NVIDIA drivers from the Nix store. This requires passwordless `sudo` for the setup script:
-
-```bash
-echo 'fkoehler ALL=(root) NOPASSWD: /nix/store/*/bin/non-nixos-gpu-setup' | sudo tee /etc/sudoers.d/nix-non-nixos-gpu-setup
-sudo chmod 440 /etc/sudoers.d/nix-non-nixos-gpu-setup
-```
-
-### SELinux
-
-On SELinux-enabled systems (Fedora), set the correct security context for the systemd unit:
-
-```bash
-sudo semanage fcontext -a -t systemd_unit_file_t '/nix/store/[^/]+-non-nixos-gpu/lib/systemd/system/non-nixos-gpu\.service'
-```
-
-Allow passwordless `sudo` for `restorecon` during activation:
-
-```bash
-echo 'fkoehler ALL=(root) NOPASSWD: /usr/sbin/restorecon /nix/store/*/lib/systemd/system/non-nixos-gpu.service' | sudo tee /etc/sudoers.d/nix-restorecon
-sudo chmod 440 /etc/sudoers.d/nix-restorecon
-```
-
----
-
 ## Debugging Steam Games
 
 When a game fails to launch, check these logs (`1041720` is an example app ID, find it in the game's store URL):
@@ -146,29 +154,3 @@ When a game fails to launch, check these logs (`1041720` is an example app ID, f
 | Proton/Wine log of the game            | `~/steam-<appid>.log`, enable via launch option `PROTON_LOG=1 %command%` |
 
 If the game process is added and removed within the same second in `console_log.txt`, the launch wrapper (e.g. gamescope) died before Proton ran: check the journal for its error output.
-
-## Non-NixOS Noctalia Lock Screen
-
-Noctalia (installed via Nix) authenticates through PAM using the service name `noctalia`. On Fedora there is no such service, so PAM falls back to `/etc/pam.d/other` (`pam_deny`) and every password is rejected. Additionally, Nix's `pam_unix.so` expects the setuid helper at `/run/wrappers/bin/unix_chkpwd`, which only exists on NixOS.
-
-Create the PAM service:
-
-```bash
-printf '#%%PAM-1.0\nauth include login\n' | sudo tee /etc/pam.d/noctalia
-```
-
-Link the setuid helper and make it persist across reboots:
-
-```bash
-sudo mkdir -p /run/wrappers/bin
-sudo ln -sf /usr/sbin/unix_chkpwd /run/wrappers/bin/unix_chkpwd
-echo 'L+ /run/wrappers/bin/unix_chkpwd - - - - /usr/sbin/unix_chkpwd' | sudo tee /etc/tmpfiles.d/nix-unix-chkpwd.conf
-```
-
-If `include login` fails because of `pam_fprintd` (not available in Nix's `libpam`), use a minimal stack instead:
-
-```
-#%PAM-1.0
-auth     required  pam_unix.so
-account  required  pam_unix.so
-```

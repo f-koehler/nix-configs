@@ -93,92 +93,81 @@
           inherit system overlays;
           config.allowUnfree = true;
         };
+      commonHomeManagerModules = [
+        inputs.catppuccin.homeModules.catppuccin
+        inputs.direnv-instant.homeModules.direnv-instant
+        inputs.nix-flatpak.homeManagerModules.nix-flatpak
+        inputs.nix-index-database.homeModules.default
+        inputs.sops-nix.homeManagerModules.sops
+        ./home
+        ./theme.nix
+      ];
+      commonNixOsModules = [
+        "${inputs.nixos-hardware}/common/pc"
+        overlayModule
+        ./nixos
+        inputs.catppuccin.nixosModules.catppuccin
+        inputs.determinate.nixosModules.default
+        inputs.disko.nixosModules.disko
+      ];
     in
     {
       inherit overlays;
-      homeConfigurations =
-        let
-          commonHomeManagerModules = [
-            inputs.catppuccin.homeModules.catppuccin
-            inputs.direnv-instant.homeModules.direnv-instant
-            inputs.nix-flatpak.homeManagerModules.nix-flatpak
-            inputs.nix-index-database.homeModules.default
-            inputs.sops-nix.homeManagerModules.sops
-            ./home
-            ./theme.nix
-          ];
-        in
-        {
-          "fkoehler@fk-desktop" =
-            let
-              system = "x86_64-linux";
-            in
-            inputs.home-manager.lib.homeManagerConfiguration {
-              extraSpecialArgs = { inherit inputs; };
-              pkgs = getNixpkgs system;
-              modules = commonHomeManagerModules ++ [
-                ./nodes/fk-desktop/home.nix
-              ];
+      homeConfigurations = {
+        "fkoehler@fk-desktop" =
+          let
+            system = "x86_64-linux";
+          in
+          inputs.home-manager.lib.homeManagerConfiguration {
+            extraSpecialArgs = { inherit inputs; };
+            pkgs = getNixpkgs system;
+            modules = commonHomeManagerModules ++ [
+              ./nodes/fk-desktop/home.nix
+            ];
+          };
+        "fkoehler@fk-t14" =
+          let
+            system = "x86_64-linux";
+          in
+          inputs.home-manager.lib.homeManagerConfiguration {
+            extraSpecialArgs = { inherit inputs; };
+            pkgs = getNixpkgs system;
+            modules = commonHomeManagerModules ++ [
+              ./nodes/fk-t14/home.nix
+            ];
+          };
+        "fkoehler@fk-mbp21" =
+          let
+            system = "aarch64-darwin";
+          in
+          inputs.home-manager.lib.homeManagerConfiguration {
+            extraSpecialArgs = {
+              inherit inputs;
+              inherit system;
             };
-          "fkoehler@fk-t14" =
-            let
-              system = "x86_64-linux";
-            in
-            inputs.home-manager.lib.homeManagerConfiguration {
-              extraSpecialArgs = { inherit inputs; };
-              pkgs = getNixpkgs system;
-              modules = commonHomeManagerModules ++ [
-                ./nodes/fk-t14/home.nix
-              ];
-            };
-          "fkoehler@fk-mbp21" =
-            let
-              system = "aarch64-darwin";
-            in
-            inputs.home-manager.lib.homeManagerConfiguration {
-              extraSpecialArgs = {
-                inherit inputs;
-                inherit system;
-              };
-              pkgs = getNixpkgs system;
-              modules = commonHomeManagerModules ++ [
-                inputs.mac-app-util.homeManagerModules.default
-                ./nodes/mbp-21/home.nix
-              ];
-            };
-        };
+            pkgs = getNixpkgs system;
+            modules = commonHomeManagerModules ++ [
+              inputs.mac-app-util.homeManagerModules.default
+              ./nodes/mbp-21/home.nix
+            ];
+          };
+      };
       nixosConfigurations = {
         fk-desktop = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
           modules = [
-            "${inputs.nixos-hardware}/common/cpu/amd"
-            "${inputs.nixos-hardware}/common/cpu/amd/pstate.nix"
-            "${inputs.nixos-hardware}/common/gpu/nvidia/blackwell"
-            "${inputs.nixos-hardware}/common/hidpi.nix"
-            "${inputs.nixos-hardware}/common/pc"
-            "${inputs.nixos-hardware}/common/pc/ssd"
-            overlayModule
-            ./nixos
             ./nodes/fk-desktop/nixos.nix
-            inputs.catppuccin.nixosModules.catppuccin
-            inputs.determinate.nixosModules.default
-            inputs.disko.nixosModules.disko
-          ];
+          ]
+          ++ commonNixOsModules;
         };
         fk-t14 = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
           modules = [
-            "${inputs.nixos-hardware}/common/cpu/intel/raptor-lake"
-            "${inputs.nixos-hardware}/common/gpu/intel/raptor-lake"
-            "${inputs.nixos-hardware}/common/pc"
-            "${inputs.nixos-hardware}/common/pc/ssd"
-            overlayModule
-            ./nixos
             ./nodes/fk-t14/nixos.nix
-            inputs.catppuccin.nixosModules.catppuccin
-            inputs.determinate.nixosModules.default
-            inputs.disko.nixosModules.disko
-          ];
+          ]
+          ++ commonNixOsModules;
         };
       };
       darwinConfigurations.fk-mbp21 = inputs.nix-darwin.lib.darwinSystem {

@@ -1,6 +1,13 @@
-{ lib, ... }:
+{ inputs, lib, ... }:
 {
-  imports = [ ./disko.nix ];
+  imports = [
+    "${inputs.nixos-hardware}/common/cpu/amd"
+    "${inputs.nixos-hardware}/common/cpu/amd/pstate.nix"
+    "${inputs.nixos-hardware}/common/gpu/nvidia/blackwell"
+    "${inputs.nixos-hardware}/common/hidpi.nix"
+    "${inputs.nixos-hardware}/common/pc/ssd"
+    ./disko.nix
+  ];
   hardware.facter = {
     enable = true;
     reportPath = ./facter.json;

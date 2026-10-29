@@ -216,6 +216,7 @@
       man-db.enable = true;
     };
     nix-index.enable = true;
+    nix-index-database.comma.enable = true;
     mergiraf.enable = true;
     nushell = {
       enable = true;

@@ -280,22 +280,24 @@
     mimeApps = {
       enable = true;
       defaultApplications = {
-        "x-scheme-handler/claude-cli" = "claude-code-url-handler.desktop";
-        "x-scheme-handler/mailto" = "userapp-Thunderbird-PIT5X3.desktop";
-        "x-scheme-handler/mid" = "userapp-Thunderbird-PIT5X3.desktop";
-        "message/rfc822" = "userapp-Thunderbird-PIT5X3.desktop";
-        "x-scheme-handler/net.thunderbird" = "userapp-Thunderbird-QCG6X3.desktop";
-        "x-scheme-handler/http" = "firefox.desktop";
-        "x-scheme-handler/https" = "firefox.desktop";
-        "x-scheme-handler/chrome" = "firefox.desktop";
-        "text/html" = "firefox.desktop";
+        "application/pdf" = "okular.desktop";
         "application/x-extension-htm" = "firefox.desktop";
         "application/x-extension-html" = "firefox.desktop";
         "application/x-extension-shtml" = "firefox.desktop";
         "application/x-extension-xht" = "firefox.desktop";
         "application/x-extension-xhtml" = "firefox.desktop";
         "application/xhtml+xml" = "firefox.desktop";
+        "image/png" = "gwenview.desktop";
+        "message/rfc822" = "userapp-Thunderbird-PIT5X3.desktop";
         "text/csv" = "calc.desktop";
+        "text/html" = "firefox.desktop";
+        "x-scheme-handler/chrome" = "firefox.desktop";
+        "x-scheme-handler/claude-cli" = "claude-code-url-handler.desktop";
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
+        "x-scheme-handler/mailto" = "userapp-Thunderbird-PIT5X3.desktop";
+        "x-scheme-handler/mid" = "userapp-Thunderbird-PIT5X3.desktop";
+        "x-scheme-handler/net.thunderbird" = "userapp-Thunderbird-QCG6X3.desktop";
       };
     };
     terminal-exec = {

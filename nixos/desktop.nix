@@ -35,6 +35,7 @@
     inkscape
     kdePackages.ark
     kdePackages.dolphin
+    kdePackages.gwenview
     kdePackages.filelight
     kdePackages.kcharselect
     kdePackages.okular

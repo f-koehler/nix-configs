@@ -7,25 +7,43 @@ on:
       - main
 
 jobs:
-  build-home:
-    name: "Build home-manager (${{ matrix.config }})"
-    runs-on: ubuntu-latest
+  build:
+    name: "Build ${{ matrix.name }}"
+    runs-on: ${{ matrix.runner }}
     permissions:
       contents: read
       id-token: write
     strategy:
       fail-fast: false
       matrix:
-        config:
-          - fkt14
-          - desktop
+        include:
+          - name: "NixOS fk-desktop"
+            runner: ubuntu-latest
+            attr: nixosConfigurations.fk-desktop.config.system.build.toplevel
+          - name: "NixOS fk-t14"
+            runner: ubuntu-latest
+            attr: nixosConfigurations.fk-t14.config.system.build.toplevel
+          - name: "home fkoehler@fk-desktop"
+            runner: ubuntu-latest
+            attr: homeConfigurations."fkoehler@fk-desktop".activationPackage
+          - name: "home fkoehler@fk-t14"
+            runner: ubuntu-latest
+            attr: homeConfigurations."fkoehler@fk-t14".activationPackage
+          - name: "Darwin fk-mbp21"
+            runner: macos-latest
+            attr: darwinConfigurations.fk-mbp21.system
+          - name: "home fkoehler@fk-mbp21"
+            runner: macos-latest
+            attr: homeConfigurations."fkoehler@fk-mbp21".activationPackage
     steps:
       - uses: actions/checkout@v7
+        with:
+          submodules: false
       - uses: wimpysworld/nothing-but-nix@v10
+        if: runner.os == 'Linux'
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v22
         with:
-          extra-conf: |
-            build-dir = /nix/build
-      - name: Build home-manager config
-        run: nix build '.#homeConfigurations."fkoehler@${{ matrix.config }}".activationPackage'
+          extra-conf: ${{ runner.os == 'Linux' && 'build-dir = /nix/build' || '' }}
+      - name: Build
+        run: nix build --print-build-logs '.#${{ matrix.attr }}'

@@ -5,6 +5,7 @@
     ./boot.nix
     ./desktop.nix
     ./development
+    ./firmware.nix
     ./gaming.nix
     ./networking.nix
     ./nix.nix

@@ -138,6 +138,7 @@
                 }
               ]
               ++ lib.optional isDarwin inputs.mac-app-util.homeManagerModules.default
+              ++ lib.optional (!isDarwin) ./home/sway
               ++ [ ./nodes/${node}/home.nix ];
           };
           darwin = inputs.nix-darwin.lib.darwinSystem {

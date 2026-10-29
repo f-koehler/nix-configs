@@ -7,6 +7,7 @@
     ./development
     ./firmware.nix
     ./gaming.nix
+    ./memory.nix
     ./networking.nix
     ./nix.nix
     ./podman.nix

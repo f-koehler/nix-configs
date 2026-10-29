@@ -11,4 +11,14 @@
     reportPath = ./facter.json;
   };
   networking.hostName = "fk-t14";
+
+  # Intel thermal management (complements power-profiles-daemon)
+  services.thermald.enable = true;
+
+  services.logind.settings.Login = {
+    HandleLidSwitch = "suspend";
+    HandleLidSwitchExternalPower = "suspend";
+    # keep running with the lid closed when docked to an external monitor
+    HandleLidSwitchDocked = "ignore";
+  };
 }

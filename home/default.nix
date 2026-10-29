@@ -91,18 +91,13 @@
       VCPKG_ROOT = "${pkgs.vcpkg}";
     }
     // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
-      CUDA_PATH = "/usr/local/cuda";
       CMAKE_CUDA_COMPILER_LAUNCHER = "ccache";
       CMAKE_TOOLCHAIN_FILE = "${pkgs.vcpkg}/share/vcpkg/scripts/buildsystems/vcpkg.cmake";
-      PKG_CONFIG_PATH = "/usr/lib64/pkgconfig:$PKG_CONFIG_PATH";
     };
     sessionPath = [
       "${config.home.homeDirectory}/.cargo/bin"
       "${config.home.homeDirectory}/.local/bin"
       "${config.home.homeDirectory}/vcpkg"
-    ]
-    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
-      "/usr/local/cuda/bin"
     ];
 
     shell = {

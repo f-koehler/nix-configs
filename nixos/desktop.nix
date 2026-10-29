@@ -15,7 +15,12 @@
     displayManager = {
       noctalia-greeter.enable = true;
     };
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+    };
     flatpak.enable = true;
+    gvfs.enable = true;
     gnome = {
       gnome-keyring.enable = true;
       gcr-ssh-agent.enable = false;
@@ -25,9 +30,14 @@
     };
     libinput.enable = true;
     printing.enable = true;
+    udisks2.enable = true;
   };
   hardware.i2c.enable = true;
-  xdg.portal.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
+  };
+  environment.sessionVariables.XDG_MENU_PREFIX = "plasma-";
   environment.systemPackages = with pkgs; [
     deskflow
     gimp
@@ -35,11 +45,20 @@
     inkscape
     kdePackages.ark
     kdePackages.dolphin
+    kdePackages.dolphin-plugins
+    kdePackages.ffmpegthumbs
     kdePackages.gwenview
+    kdePackages.kdegraphics-thumbnailers
+    kdePackages.kimageformats
+    kdePackages.kio-admin
+    kdePackages.kio-extras
+    kdePackages.kio-fuse
+    kdePackages.plasma-workspace
     kdePackages.filelight
     kdePackages.kcharselect
     kdePackages.okular
     libreoffice
+    samba
     sqlitebrowser
     telegram-desktop
 

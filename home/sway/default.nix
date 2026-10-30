@@ -18,6 +18,11 @@ let
     };
   };
   noctaliaExe = "${lib.getExe' pkgs.noctalia "noctalia"}";
+  swaymsg = lib.getExe' pkgs.sway "swaymsg";
+  lidClosed = pkgs.writeShellScript "sway-lid-closed" ''
+    others="$(${swaymsg} -t get_outputs -r | ${lib.getExe pkgs.jq} '[.[] | select(.active and .name != "eDP-1")] | length')"
+    [ "$others" -gt 0 ] && ${swaymsg} output eDP-1 disable
+  '';
 in
 {
   imports = [
@@ -120,6 +125,11 @@ in
 
           exec env PATH="${config.home.profileDirectory}/bin:$PATH" ${noctaliaExe}
           exec ${lib.getExe' pkgs.kanshi "kanshi"}
+
+          # Lid closed: turn off the internal display, but only when another output remains.
+          # Lid opened: let kanshi re-apply the matching profile.
+          bindswitch --locked lid:on exec ${lidClosed}
+          bindswitch --locked lid:off exec ${lib.getExe' pkgs.kanshi "kanshictl"} reload
         '';
       };
   };

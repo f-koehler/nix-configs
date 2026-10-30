@@ -1,5 +1,7 @@
 {
   config,
+  hasAnyTagOf,
+  hasTag,
   lib,
   pkgs,
   ...
@@ -53,59 +55,69 @@ let
     in
     parseIni (builtins.readFile "${package}/share/color-schemes/Catppuccin${flavor}${accent}.colors");
 in
-lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
-  # The sandboxed KDE apps read ~/.config/kdeglobals (see kdeOverride). Inline
-  # the catppuccin colour scheme, since apps can't resolve it by name inside
-  # the sandbox. qt.kde.settings merges via kwriteconfig6, so an existing
-  # (mutable) kdeglobals is updated rather than clobbered.
-  qt.kde.settings.kdeglobals = lib.recursiveUpdate colorScheme {
-    Icons.Theme = config.gtk.iconTheme.name;
-    KDE.widgetStyle = "Breeze";
-  };
-  # Flatpak exposes ~/.local/share/icons to apps, but not the nix profile.
-  # Link the catppuccin-flavoured Papirus (see theme.nix) there.
-  xdg.dataFile = lib.genAttrs [ "icons/Papirus" "icons/Papirus-Dark" ] (path: {
-    source = "${config.gtk.iconTheme.package}/share/${path}";
-  });
-  services.flatpak = {
-    enable = true;
-    uninstallUnmanaged = true;
-    uninstallUnused = true;
-    update = {
-      auto = {
-        enable = true;
-        onCalendar = "daily";
+lib.mkIf
+  (
+    pkgs.stdenv.hostPlatform.isLinux
+    && (hasAnyTagOf [
+      "desktop"
+      "laptop"
+    ])
+  )
+  {
+    # The sandboxed KDE apps read ~/.config/kdeglobals (see kdeOverride). Inline
+    # the catppuccin colour scheme, since apps can't resolve it by name inside
+    # the sandbox. qt.kde.settings merges via kwriteconfig6, so an existing
+    # (mutable) kdeglobals is updated rather than clobbered.
+    qt.kde.settings.kdeglobals = lib.recursiveUpdate colorScheme {
+      Icons.Theme = config.gtk.iconTheme.name;
+      KDE.widgetStyle = "Breeze";
+    };
+    # Flatpak exposes ~/.local/share/icons to apps, but not the nix profile.
+    # Link the catppuccin-flavoured Papirus (see theme.nix) there.
+    xdg.dataFile = lib.genAttrs [ "icons/Papirus" "icons/Papirus-Dark" ] (path: {
+      source = "${config.gtk.iconTheme.package}/share/${path}";
+    });
+    services.flatpak = {
+      enable = true;
+      uninstallUnmanaged = true;
+      uninstallUnused = true;
+      update = {
+        auto = {
+          enable = true;
+          onCalendar = "daily";
+        };
+        onActivation = false;
       };
-      onActivation = false;
+      overrides.settings = {
+        "org.kde.dolphin" = kdeOverride;
+        "org.kde.kcharselect" = kdeOverride;
+        "org.kde.okular" = kdeOverride;
+        "org.kde.ark" = kdeOverride;
+        "org.fkoehler.KTailctl" = kdeOverride;
+      };
+      packages = [
+        {
+          appId = "com.jgraph.drawio.desktop";
+          origin = "flathub";
+        }
+        {
+          appId = "org.fkoehler.KTailctl";
+          origin = "flathub";
+        }
+        {
+          appId = "md.obsidian.Obsidian";
+          origin = "flathub";
+        }
+      ]
+      ++ lib.optionals (hasTag "personal") [
+        {
+          appId = "com.discordapp.Discord";
+          origin = "flathub";
+        }
+        {
+          appId = "org.jellyfin.JellyfinDesktop";
+          origin = "flathub";
+        }
+      ];
     };
-    overrides.settings = {
-      "org.kde.dolphin" = kdeOverride;
-      "org.kde.kcharselect" = kdeOverride;
-      "org.kde.okular" = kdeOverride;
-      "org.kde.ark" = kdeOverride;
-      "org.fkoehler.KTailctl" = kdeOverride;
-    };
-    packages = [
-      {
-        appId = "com.discordapp.Discord";
-        origin = "flathub";
-      }
-      {
-        appId = "com.jgraph.drawio.desktop";
-        origin = "flathub";
-      }
-      {
-        appId = "org.fkoehler.KTailctl";
-        origin = "flathub";
-      }
-      {
-        appId = "org.jellyfin.JellyfinDesktop";
-        origin = "flathub";
-      }
-      {
-        appId = "md.obsidian.Obsidian";
-        origin = "flathub";
-      }
-    ];
-  };
-}
+  }

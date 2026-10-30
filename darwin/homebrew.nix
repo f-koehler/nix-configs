@@ -1,4 +1,4 @@
-_: {
+{ lib, hasTag, ... }: {
   homebrew = {
     enable = true;
     enableBashIntegration = true;
@@ -8,14 +8,14 @@ _: {
     ];
     casks = [
       "deskflow"
-      "microsoft-teams"
       "nextcloud"
       "obsidian"
-      "telegram"
       "zotero"
-    ];
+    ]
+    ++ lib.optional (hasTag "speqtral") "microsoft-teams"
+    ++ lib.optional (hasTag "personal") "telegram";
     global.autoUpdate = false;
-    masApps = {
+    masApps = lib.optionalAttrs (hasTag "personal") {
       "Infuse" = 1136220934;
     };
     onActivation = {

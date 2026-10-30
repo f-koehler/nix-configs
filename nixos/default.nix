@@ -1,4 +1,10 @@
-{ pkgs, ... }: {
+{
+  lib,
+  pkgs,
+  hasAnyTagOf,
+  ...
+}:
+{
   imports = [
     ./audio.nix
     ./bluetooth.nix
@@ -23,35 +29,44 @@
 
   services.envfs.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    htop
-    killall
-    gptfdisk
-    e2fsprogs
-
-    # for neovim config
-    gcc
-    basedpyright
-    clang-tools
-    docker-language-server
-    harper
-    lua-language-server
-    neocmakelsp
-    ruff
-    rust-analyzer
-    statix
-    taplo
-    terraform-ls
-    texlab
-    tofu-ls
-    zizmor
-    nixfmt
-    shfmt
-    stylua
-    terraform
-    tex-fmt
-    vscode-extensions.vadimcn.vscode-lldb.adapter
-  ];
+  environment.systemPackages =
+    with pkgs;
+    [
+      vim
+      wget
+      htop
+      killall
+      gptfdisk
+      e2fsprogs
+    ]
+    ++
+      lib.optionals
+        (hasAnyTagOf [
+          "desktop"
+          "laptop"
+        ])
+        [
+          # for neovim config
+          gcc
+          basedpyright
+          clang-tools
+          docker-language-server
+          harper
+          lua-language-server
+          neocmakelsp
+          ruff
+          rust-analyzer
+          statix
+          taplo
+          terraform-ls
+          texlab
+          tofu-ls
+          zizmor
+          nixfmt
+          shfmt
+          stylua
+          terraform
+          tex-fmt
+          vscode-extensions.vadimcn.vscode-lldb.adapter
+        ];
 }

@@ -96,12 +96,14 @@
         inputs.nix-index-database.homeModules.default
         inputs.sops-nix.homeManagerModules.sops
         ./home
+        ./tags.nix
         ./theme.nix
       ];
       commonNixOsModules = [
         "${inputs.nixos-hardware}/common/pc"
         overlayModule
         ./nixos
+        ./tags.nix
         inputs.catppuccin.nixosModules.catppuccin
         inputs.determinate.nixosModules.default
         inputs.disko.nixosModules.disko
@@ -111,17 +113,20 @@
         inputs.mac-app-util.darwinModules.default
         inputs.nix-homebrew.darwinModules.nix-homebrew
         ./darwin
+        ./tags.nix
       ];
       mkNode =
         {
           user,
           system,
           node,
+          tags ? [ ],
         }:
         let
           isDarwin = lib.hasSuffix "darwin" system;
           platform = {
             nixpkgs.hostPlatform = system;
+            nodeTags = tags;
           };
           specialArgs = { inherit inputs user; };
           home = inputs.home-manager.lib.homeManagerConfiguration {
@@ -131,6 +136,7 @@
               commonHomeManagerModules
               ++ [
                 {
+                  nodeTags = tags;
                   home = {
                     username = user;
                     homeDirectory = (if isDarwin then "/Users" else "/home") + "/${user}";
@@ -172,16 +178,30 @@
           user = "fkoehler";
           system = "x86_64-linux";
           node = "fk-desktop";
+          tags = [
+            "personal"
+            "desktop"
+            "gaming"
+            "gpu-nvidia"
+          ];
         }
         {
           user = "fkoehler";
           system = "x86_64-linux";
           node = "fk-t14";
+          tags = [
+            "speqtral"
+            "laptop"
+          ];
         }
         {
           user = "fkoehler";
           system = "aarch64-darwin";
           node = "fk-mbp21";
+          tags = [
+            "personal"
+            "laptop"
+          ];
         }
       ];
       nodeOutputs = lib.foldl' lib.recursiveUpdate { inherit overlays; } (map mkNode nodes);

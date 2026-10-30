@@ -1,5 +1,14 @@
-{ pkgs, ... }:
+{
+  lib,
+  pkgs,
+  hasAnyTagOf,
+  ...
+}:
 let
+  workstation = hasAnyTagOf [
+    "desktop"
+    "laptop"
+  ];
   themeFonts = {
     emoji = "Noto Color Emoji";
     monospace = "CaskaydiaCove Nerd Font Mono";
@@ -16,13 +25,13 @@ in
     {
       enable = true;
       autoEnable = true;
-      gtk.icon.enable = pkgs.stdenv.hostPlatform.isLinux;
+      gtk.icon.enable = pkgs.stdenv.hostPlatform.isLinux && workstation;
       inherit accent flavor;
       cursors = {
-        enable = pkgs.stdenv.hostPlatform.isLinux;
+        enable = pkgs.stdenv.hostPlatform.isLinux && workstation;
         inherit accent flavor;
       };
-      firefox = {
+      firefox = lib.mkIf workstation {
         enable = true;
         force = true;
         profiles.default = {
@@ -41,10 +50,10 @@ in
     serif = [ themeFonts.serif ];
   };
   gtk = {
-    enable = pkgs.stdenv.hostPlatform.isLinux;
+    enable = pkgs.stdenv.hostPlatform.isLinux && workstation;
     font.name = themeFonts.sansSerif;
   };
-  home.packages = [
+  home.packages = lib.optionals workstation [
     pkgs.nerd-fonts.caskaydia-cove
     pkgs.noto-fonts
     pkgs.noto-fonts-color-emoji

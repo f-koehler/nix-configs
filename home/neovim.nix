@@ -1,15 +1,29 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  hasAnyTagOf,
+  ...
+}:
 {
   home.packages = [
     pkgs.luaPackages.luarocks
-    pkgs.julia
     pkgs.neovim
-    pkgs.kdePackages.qtdeclarative # for qmlformat
     pkgs.luaPackages.tree-sitter-cli
     pkgs.unzip
     pkgs.gnutar
     pkgs.gzip
-  ];
+  ]
+  ++
+    lib.optionals
+      (hasAnyTagOf [
+        "desktop"
+        "laptop"
+      ])
+      [
+        pkgs.julia
+        pkgs.kdePackages.qtdeclarative # for qmlformat
+      ];
 
   programs = {
     ripgrep.enable = true;

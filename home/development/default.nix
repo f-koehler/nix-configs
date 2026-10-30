@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  lib,
+  pkgs,
+  hasAnyTagOf,
+  ...
+}:
 {
   imports = [
     ./cpp.nix
@@ -9,7 +14,15 @@
     ./rust.nix
   ];
 
-  home.packages = [
-    pkgs.flamegraph
-  ];
+  config =
+    lib.mkIf
+      (hasAnyTagOf [
+        "desktop"
+        "laptop"
+      ])
+      {
+        home.packages = [
+          pkgs.flamegraph
+        ];
+      };
 }

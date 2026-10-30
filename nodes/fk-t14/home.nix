@@ -1,3 +1,1 @@
-_: {
-  nodeTags = [ "speqtral" ];
-}
+_: { }

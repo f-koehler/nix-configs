@@ -9,6 +9,7 @@
     ./audio.nix
     ./bluetooth.nix
     ./boot.nix
+    ./btrfs.nix
     ./desktop.nix
     ./development.nix
     ./firmware.nix

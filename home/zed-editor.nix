@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   hasAnyTagOf,
@@ -12,15 +13,11 @@
         "laptop"
       ])
       {
-        home.packages = [ pkgs.texlab ];
         programs.zed-editor = {
           enable = true;
           package = pkgs.zed-editor;
           installRemoteServer = true;
-          extraPackages = [
-            pkgs.nil
-            pkgs.nixd
-          ];
+          extraPackages = config.editorTools.packages ++ [ pkgs.nixd ];
           extensions = [
             "docker-compose"
             "dockerfile"

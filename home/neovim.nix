@@ -8,7 +8,6 @@
 {
   home.packages = [
     pkgs.luaPackages.luarocks
-    pkgs.neovim
     pkgs.luaPackages.tree-sitter-cli
     pkgs.unzip
     pkgs.gnutar
@@ -22,10 +21,15 @@
       ])
       [
         pkgs.julia
-        pkgs.kdePackages.qtdeclarative # for qmlformat
       ];
 
   programs = {
+    neovim = {
+      enable = true;
+      # the config is the symlinked nvim dir, don't write an init.lua over it
+      sideloadInitLua = true;
+      extraPackages = config.editorTools.packages;
+    };
     ripgrep.enable = true;
     fd.enable = true;
     npm.enable = true;

@@ -19,6 +19,7 @@ in
     ./ai.nix
     ./aws.nix
     ./development
+    ./editor-tools.nix
     ./edge.nix
     ./firefox.nix
     ./flatpak.nix

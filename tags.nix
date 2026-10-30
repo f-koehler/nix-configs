@@ -12,6 +12,7 @@
         # form factor
         "laptop" # battery, lid, suspend, wifi, power profiles
         "desktop" # always on mains, no battery handling
+        "server" # headless, no desktop session or home-manager (see nixos/workstation)
 
         # capabilities
         "gpu-nvidia" # proprietary driver and CUDA tooling

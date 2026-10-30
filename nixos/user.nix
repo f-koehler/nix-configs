@@ -1,23 +1,10 @@
-{ pkgs, user, ... }: {
+{ user, ... }: {
   users = {
     groups.${user} = { };
     users.${user} = {
       isNormalUser = true;
-      initialPassword = "changeme";
       group = user;
-      extraGroups = [
-        "i2c"
-        "networkmanager"
-        "wheel"
-      ];
-      packages = with pkgs; [
-        tree
-      ];
-      shell = pkgs.fish;
+      extraGroups = [ "wheel" ];
     };
-  };
-  programs = {
-    fish.enable = true;
-    zsh.enable = true;
   };
 }

@@ -1,24 +1,22 @@
-{ inputs, pkgs, ... }:
+# Base shared by every NixOS node (workstations and servers). Anything that
+# only makes sense with a desktop session lives in ./workstation.
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 {
   imports = [
-    "${inputs.nixos-hardware}/common/pc"
-    inputs.catppuccin.nixosModules.catppuccin
     inputs.determinate.nixosModules.default
     inputs.disko.nixosModules.disko
+    inputs.sops-nix.nixosModules.sops
     ../tags.nix
-    ./audio.nix
-    ./bluetooth.nix
-    ./boot.nix
-    ./btrfs.nix
-    ./desktop.nix
     ./development.nix
-    ./firmware.nix
-    ./gaming.nix
     ./memory.nix
     ./networking.nix
     ./nix.nix
     ./podman.nix
-    ./power.nix
     ./ssh.nix
     ./tailscale.nix
     ./user.nix
@@ -26,7 +24,8 @@
 
   time.timeZone = "Asia/Singapore";
   i18n.defaultLocale = "en_SG.UTF-8";
-  system.stateVersion = "26.11"; # Did you read the comment?
+  # nodes with an existing install override this to the release they were installed with
+  system.stateVersion = lib.mkDefault "26.11"; # Did you read the comment?
 
   services.envfs.enable = true;
 

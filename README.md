@@ -13,6 +13,7 @@ Configuration of all my machines: system config via [NixOS](https://nixos.org) a
 ```
 flake.nix     inputs, the mkNode function, the list of nodes, checks, dev shell
 nixos/        NixOS modules shared by all NixOS nodes (imported through nixos/default.nix)
+nixos/workstation/  desktop/laptop-only NixOS modules, skipped for nodes tagged `server`
 darwin/       nix-darwin modules shared by all macOS nodes (imported through darwin/default.nix)
 home/         home-manager modules shared by all nodes (imported through home/default.nix)
 nixpkgs.nix   overlays and nixpkgs config shared by home-manager, NixOS and nix-darwin

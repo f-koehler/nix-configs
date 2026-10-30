@@ -91,8 +91,12 @@
           system,
           node,
           tags ? [ ],
+          # channel to build the NixOS system from, e.g. a stable one for servers
+          nixpkgs ? inputs.nixpkgs,
         }:
         let
+          isServer = lib.elem "server" tags;
+          hasHome = builtins.pathExists ./nodes/${node}/home.nix;
           isDarwin = lib.hasSuffix "darwin" system;
           platform = {
             nixpkgs = {
@@ -128,32 +132,35 @@
               ./nodes/${node}/darwin.nix
             ];
           };
-          nixos = lib.nixosSystem {
+          nixos = nixpkgs.lib.nixosSystem {
             inherit specialArgs;
             modules = [
               platform
               ./nixos
-              ./nodes/${node}/nixos.nix
-            ];
+            ]
+            ++ lib.optional (!isServer) ./nixos/workstation
+            ++ [ ./nodes/${node}/nixos.nix ];
           };
         in
-        {
-          homeConfigurations."${user}@${node}" = home;
-          # evaluated by `nix flake check --no-build` to catch broken configurations
-          checks.${system}."home-${node}" = home.activationPackage;
-        }
-        // (
-          if isDarwin then
-            {
-              darwinConfigurations.${node} = darwin;
-              checks.${system}."darwin-${node}" = darwin.system;
-            }
-          else
-            {
-              nixosConfigurations.${node} = nixos;
-              checks.${system}."nixos-${node}" = nixos.config.system.build.toplevel;
-            }
-        );
+        # nodes without a home.nix (servers) have no standalone home-manager config
+        lib.recursiveUpdate
+          (lib.optionalAttrs hasHome {
+            homeConfigurations."${user}@${node}" = home;
+            # evaluated by `nix flake check --no-build` to catch broken configurations
+            checks.${system}."home-${node}" = home.activationPackage;
+          })
+          (
+            if isDarwin then
+              {
+                darwinConfigurations.${node} = darwin;
+                checks.${system}."darwin-${node}" = darwin.system;
+              }
+            else
+              {
+                nixosConfigurations.${node} = nixos;
+                checks.${system}."nixos-${node}" = nixos.config.system.build.toplevel;
+              }
+          );
       nodes = [
         {
           user = "fkoehler";

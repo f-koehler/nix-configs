@@ -115,7 +115,6 @@ in
     ];
 
     shell = {
-      enableNushellIntegration = true;
       enableShellIntegration = true;
     };
   };
@@ -146,7 +145,6 @@ in
     bat.enable = true;
     carapace = {
       enable = true;
-      enableNushellIntegration = true;
       enableBashIntegration = true;
       enableFishIntegration = true;
       enableZshIntegration = true;
@@ -224,17 +222,6 @@ in
     nix-index.enable = true;
     nix-index-database.comma.enable = true;
     mergiraf.enable = true;
-    nushell = {
-      enable = true;
-      settings = {
-        edit_mode = "vi";
-        show_banner = false;
-      };
-      shellAliases = {
-        g = "git";
-        ll = "ls -l";
-      };
-    };
     starship = {
       enable = true;
       presets = [ "nerd-font-symbols" ];

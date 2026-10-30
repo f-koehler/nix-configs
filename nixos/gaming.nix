@@ -1,11 +1,13 @@
 {
+  config,
   lib,
   pkgs,
-  hasTag,
   ...
 }:
 {
-  config = lib.mkIf (hasTag "gaming") {
+  options.fk.gaming.enable = lib.mkEnableOption "steam, gamescope and mangohud";
+
+  config = lib.mkIf config.fk.gaming.enable {
     programs = {
       gamescope = {
         enable = true;

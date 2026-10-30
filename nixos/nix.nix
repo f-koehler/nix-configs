@@ -26,5 +26,4 @@ _: {
       extraArgs = "--keep 5 --keep-since 30d";
     };
   };
-  nixpkgs.config.allowUnfree = true;
 }

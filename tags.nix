@@ -14,7 +14,6 @@
         "desktop" # always on mains, no battery handling
 
         # capabilities
-        "gaming" # steam, gamescope, mangohud
         "gpu-nvidia" # proprietary driver and CUDA tooling
       ]
     );

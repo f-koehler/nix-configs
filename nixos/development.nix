@@ -1,30 +1,26 @@
 {
-  pkgs,
+  config,
   lib,
-  hasAnyTagOf,
+  pkgs,
   ...
 }:
 {
-  config =
-    lib.mkIf
-      (hasAnyTagOf [
-        "desktop"
-        "laptop"
-      ])
-      {
-        environment.systemPackages = [
-          pkgs.perf
-        ];
+  options.fk.development.enable = lib.mkEnableOption "perf for profiling and nix-ld for running unpatched binaries";
 
-        programs.nix-ld = {
-          enable = true;
-          libraries = with pkgs; [
-            stdenv.cc.cc.lib
-            zlib
-            openssl
-            libffi
-            glibc
-          ];
-        };
-      };
+  config = lib.mkIf config.fk.development.enable {
+    environment.systemPackages = [
+      pkgs.perf
+    ];
+
+    programs.nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        stdenv.cc.cc.lib
+        zlib
+        openssl
+        libffi
+        glibc
+      ];
+    };
+  };
 }

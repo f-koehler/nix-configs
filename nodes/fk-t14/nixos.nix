@@ -12,6 +12,11 @@
   };
   networking.hostName = "fk-t14";
 
+  fk = {
+    development.enable = true;
+    podman.enable = true;
+  };
+
   # Intel thermal management (complements power-profiles-daemon)
   services.thermald.enable = true;
 

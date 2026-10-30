@@ -1,9 +1,11 @@
-{
-  pkgs,
-  ...
-}:
+{ inputs, pkgs, ... }:
 {
   imports = [
+    "${inputs.nixos-hardware}/common/pc"
+    inputs.catppuccin.nixosModules.catppuccin
+    inputs.determinate.nixosModules.default
+    inputs.disko.nixosModules.disko
+    ../tags.nix
     ./audio.nix
     ./bluetooth.nix
     ./boot.nix

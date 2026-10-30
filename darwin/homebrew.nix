@@ -4,8 +4,6 @@
     enableBashIntegration = true;
     enableFishIntegration = true;
     enableZshIntegration = true;
-    brews = [
-    ];
     casks = [
       "deskflow"
       "nextcloud"
@@ -23,9 +21,5 @@
       cleanup = "zap";
       upgrade = true;
     };
-  };
-
-  nix-homebrew = {
-    enable = true;
   };
 }

@@ -15,6 +15,8 @@ flake.nix     inputs, the mkNode function, the list of nodes, checks, dev shell
 nixos/        NixOS modules shared by all NixOS nodes (imported through nixos/default.nix)
 darwin/       nix-darwin modules shared by all macOS nodes (imported through darwin/default.nix)
 home/         home-manager modules shared by all nodes (imported through home/default.nix)
+nixpkgs.nix   overlays and nixpkgs config shared by home-manager, NixOS and nix-darwin
+tags.nix      the node tag option and the `hasTag` helpers, imported by every module set
 theme.nix     fonts and Catppuccin theming, part of the shared home-manager modules
 secrets/      sops-encrypted secrets, see .sops.yaml for the keys
 nodes/<node>/ configuration specific to a single node

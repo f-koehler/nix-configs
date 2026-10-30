@@ -18,6 +18,13 @@
     reportPath = ./facter.json;
   };
   networking.hostName = "fk-desktop";
+
+  fk = {
+    development.enable = true;
+    gaming.enable = true;
+    podman.enable = true;
+  };
+
   # keep the second ESP (see disko.nix) in sync so either disk can boot the system
   boot.loader.systemd-boot.extraInstallCommands = ''
     ${pkgs.rsync}/bin/rsync -a --delete /boot/ /boot-mirror/

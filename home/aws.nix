@@ -8,7 +8,6 @@
 {
   config = lib.mkIf (hasTag "speqtral") {
     sops = {
-      age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
       secrets = {
         "aws/key_id" = {
           sopsFile = ./../secrets/speqtral.yaml;

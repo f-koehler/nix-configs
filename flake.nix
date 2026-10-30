@@ -77,44 +77,14 @@
     let
       inherit (inputs.nixpkgs) lib;
       forEachSystem = lib.genAttrs (import inputs.systems);
-      overlays = [
-        inputs.fenix.overlays.default
-      ];
-      overlayModule = {
-        nixpkgs.overlays = overlays;
-      };
+      shared = import ./nixpkgs.nix { inherit inputs lib; };
       getNixpkgs =
-        system:
+        system: tags:
         import inputs.nixpkgs {
-          inherit system overlays;
-          config.allowUnfree = true;
+          inherit system;
+          overlays = shared.overlayList;
+          config = shared.config tags;
         };
-      commonHomeManagerModules = [
-        inputs.catppuccin.homeModules.catppuccin
-        inputs.direnv-instant.homeModules.direnv-instant
-        inputs.nix-flatpak.homeManagerModules.nix-flatpak
-        inputs.nix-index-database.homeModules.default
-        inputs.sops-nix.homeManagerModules.sops
-        ./home
-        ./tags.nix
-        ./theme.nix
-      ];
-      commonNixOsModules = [
-        "${inputs.nixos-hardware}/common/pc"
-        overlayModule
-        ./nixos
-        ./tags.nix
-        inputs.catppuccin.nixosModules.catppuccin
-        inputs.determinate.nixosModules.default
-        inputs.disko.nixosModules.disko
-      ];
-      commonDarwinModules = [
-        overlayModule
-        inputs.mac-app-util.darwinModules.default
-        inputs.nix-homebrew.darwinModules.nix-homebrew
-        ./darwin
-        ./tags.nix
-      ];
       mkNode =
         {
           user,
@@ -125,35 +95,46 @@
         let
           isDarwin = lib.hasSuffix "darwin" system;
           platform = {
-            nixpkgs.hostPlatform = system;
+            nixpkgs = {
+              hostPlatform = system;
+              overlays = shared.overlayList;
+              config = shared.config tags;
+            };
             nodeTags = tags;
           };
           specialArgs = { inherit inputs user; };
           home = inputs.home-manager.lib.homeManagerConfiguration {
             extraSpecialArgs = { inherit inputs user; };
-            pkgs = getNixpkgs system;
-            modules =
-              commonHomeManagerModules
-              ++ [
-                {
-                  nodeTags = tags;
-                  home = {
-                    username = user;
-                    homeDirectory = (if isDarwin then "/Users" else "/home") + "/${user}";
-                  };
-                }
-              ]
-              ++ lib.optional isDarwin inputs.mac-app-util.homeManagerModules.default
-              ++ lib.optional (!isDarwin) ./home/sway
-              ++ [ ./nodes/${node}/home.nix ];
+            pkgs = getNixpkgs system tags;
+            modules = [
+              ./home
+              {
+                nodeTags = tags;
+                home = {
+                  username = user;
+                  homeDirectory = (if isDarwin then "/Users" else "/home") + "/${user}";
+                };
+              }
+            ]
+            ++ lib.optional isDarwin inputs.mac-app-util.homeManagerModules.default
+            ++ lib.optional (!isDarwin) ./home/sway
+            ++ [ ./nodes/${node}/home.nix ];
           };
           darwin = inputs.nix-darwin.lib.darwinSystem {
             inherit specialArgs;
-            modules = [ platform ] ++ commonDarwinModules ++ [ ./nodes/${node}/darwin.nix ];
+            modules = [
+              platform
+              ./darwin
+              ./nodes/${node}/darwin.nix
+            ];
           };
           nixos = lib.nixosSystem {
             inherit specialArgs;
-            modules = [ platform ] ++ commonNixOsModules ++ [ ./nodes/${node}/nixos.nix ];
+            modules = [
+              platform
+              ./nixos
+              ./nodes/${node}/nixos.nix
+            ];
           };
         in
         {
@@ -181,7 +162,6 @@
           tags = [
             "personal"
             "desktop"
-            "gaming"
             "gpu-nvidia"
           ];
         }
@@ -204,7 +184,7 @@
           ];
         }
       ];
-      nodeOutputs = lib.foldl' lib.recursiveUpdate { inherit overlays; } (map mkNode nodes);
+      nodeOutputs = lib.foldl' lib.recursiveUpdate { inherit (shared) overlays; } (map mkNode nodes);
     in
     nodeOutputs
     // {
@@ -235,7 +215,7 @@
       formatter = forEachSystem (
         system:
         let
-          pkgs = getNixpkgs system;
+          pkgs = getNixpkgs system [ ];
           inherit (self.checks.${system}) pre-commit-check;
           script = ''
             ${pre-commit-check.config.package}/bin/pre-commit run --all-files --config ${pre-commit-check.config.configFile}
@@ -246,7 +226,7 @@
       devShells = forEachSystem (system: {
         default =
           let
-            pkgs = getNixpkgs system;
+            pkgs = getNixpkgs system [ ];
             inherit (self.checks.${system}) pre-commit-check;
           in
           pkgs.mkShell {

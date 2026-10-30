@@ -1,8 +1,12 @@
-{ user, ... }: {
+{ inputs, user, ... }:
+{
   # do not manage nix via nix-darwin, clashes with determinate nix
   nix.enable = false;
 
   imports = [
+    inputs.mac-app-util.darwinModules.default
+    inputs.nix-homebrew.darwinModules.nix-homebrew
+    ../tags.nix
     ./dock.nix
     ./homebrew.nix
   ];

@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   hasAnyTagOf,
   hasTag,
   ...
@@ -14,6 +15,13 @@ let
 in
 {
   imports = [
+    inputs.catppuccin.homeModules.catppuccin
+    inputs.direnv-instant.homeModules.direnv-instant
+    inputs.nix-flatpak.homeManagerModules.nix-flatpak
+    inputs.nix-index-database.homeModules.default
+    inputs.sops-nix.homeManagerModules.sops
+    ../tags.nix
+    ../theme.nix
     ./accounts.nix
     ./aerospace.nix
     ./ai.nix
@@ -109,12 +117,6 @@ in
     shell = {
       enableNushellIntegration = true;
       enableShellIntegration = true;
-    };
-  };
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      nvidia.acceptLicense = hasTag "gpu-nvidia";
     };
   };
   programs = {

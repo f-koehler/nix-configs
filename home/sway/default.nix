@@ -116,6 +116,13 @@ in
                         title = "^Text Import.*";
                       };
                     }
+                    {
+                      command = "floating enable";
+                      criteria = {
+                        app_id = "org.keepassxc.KeePassXC";
+                        title = ".*Browser Access Request$";
+                      };
+                    }
                   ];
                 };
                 workspaceAutoBackAndForth = true;

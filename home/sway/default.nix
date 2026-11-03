@@ -11,7 +11,6 @@ let
     Appearance = {
       style = "Breeze";
       icon_theme = config.gtk.iconTheme.name;
-      # color_scheme_path/custom_palette come from catppuccin.qt5ct below
       standard_dialogs = "default";
     };
     Fonts = {
@@ -46,25 +45,14 @@ in
           pkgs.wiremix
           pkgs.networkmanager
           pkgs.brightnessctl
-          pkgs.libsForQt5.qt5ct # plugin for Qt5 apps (keepassxc), see keepassxc.nix
           pkgs.wl-clipboard
         ];
-
-        catppuccin.qt5ct = {
-          enable = true;
-          assertPlatformTheme = false;
-        };
 
         home.sessionVariables.QT_QPA_PLATFORMTHEME = lib.mkForce "kde";
 
         qt = {
           enable = true;
           platformTheme.name = "kde6";
-          qt5ctSettings = qtctSettings // {
-            Appearance = qtctSettings.Appearance // {
-              style = "Fusion";
-            };
-          };
           qt6ctSettings = qtctSettings;
         };
 

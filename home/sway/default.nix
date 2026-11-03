@@ -128,7 +128,7 @@ in
                   client.background       $base
                 ''}
 
-                exec env PATH="${config.home.profileDirectory}/bin:$PATH" ${noctaliaExe}
+                exec env PATH="${config.home.profileDirectory}/bin:$PATH" ${noctaliaExe} --daemon
                 exec ${lib.getExe' pkgs.kanshi "kanshi"}
 
                 # Lid closed: turn off the internal display, but only when another output remains.

@@ -81,6 +81,7 @@
           kdePackages.breeze
           kdePackages.qqc2-breeze-style
           kdePackages.breeze-icons
+          keepassxc
         ];
         qt = {
           enable = true;

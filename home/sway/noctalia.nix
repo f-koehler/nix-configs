@@ -57,6 +57,9 @@
             location = {
               address = "Singapore";
             };
+            shell = {
+              polkit_agent = true;
+            };
             theme = {
               mode = "dark";
               source = "builtin";

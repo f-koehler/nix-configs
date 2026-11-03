@@ -48,11 +48,9 @@ in
           pkgs.wl-clipboard
         ];
 
-        home.sessionVariables.QT_QPA_PLATFORMTHEME = lib.mkForce "kde";
-
         qt = {
           enable = true;
-          platformTheme.name = "kde6";
+          platformTheme.name = "kde";
           qt6ctSettings = qtctSettings;
         };
 

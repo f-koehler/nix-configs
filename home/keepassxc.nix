@@ -16,6 +16,10 @@
           enable = true;
           autostart = pkgs.stdenv.hostPlatform.isLinux;
           settings = {
+            General = {
+              ConfigVersion = 2;
+              FaviconDownloadTimeout = 15;
+            };
             Browser = {
               Enabled = true;
               UpdateBinaryPath = false;
@@ -33,6 +37,9 @@
             };
             SSHAgent = {
               Enabled = false;
+            };
+            Security = {
+              IconDownloadFallback = true;
             };
           };
         };

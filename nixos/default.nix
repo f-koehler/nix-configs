@@ -36,5 +36,6 @@
     killall
     gptfdisk
     e2fsprogs
+    nmap
   ];
 }

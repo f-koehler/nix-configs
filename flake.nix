@@ -196,28 +196,35 @@
     nodeOutputs
     // {
       checks = lib.recursiveUpdate nodeOutputs.checks (
-        forEachSystem (system: {
-          pre-commit-check = inputs.git-hooks.lib.${system}.run {
-            src = ./.;
-            # the neovim config is a separate repo (submodule)
-            excludes = [ "^home/neovim-config/" ];
-            hooks = {
-              # nix
-              deadnix.enable = true;
-              flake-checker.enable = true;
-              nil.enable = true;
-              nixfmt.enable = true;
-              statix.enable = true;
+        forEachSystem (
+          system:
+          let
+            pkgs = getNixpkgs system [ ];
+          in
+          {
+            pre-commit-check = inputs.git-hooks.lib.${system}.run {
+              src = ./.;
+              # the neovim config is a separate repo (submodule)
+              excludes = [ "^home/neovim-config/" ];
+              package = pkgs.prek;
+              hooks = {
+                # nix
+                deadnix.enable = true;
+                flake-checker.enable = true;
+                nil.enable = true;
+                nixfmt.enable = true;
+                statix.enable = true;
 
-              # python
-              ruff.enable = true;
-              ruff-format.enable = true;
+                # python
+                ruff.enable = true;
+                ruff-format.enable = true;
 
-              # JSON
-              prettier.enable = true;
+                # JSON
+                prettier.enable = true;
+              };
             };
-          };
-        })
+          }
+        )
       );
       formatter = forEachSystem (
         system:

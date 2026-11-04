@@ -274,13 +274,14 @@ in
     mimeApps = {
       enable = true;
       defaultApplications = {
-        "application/pdf" = "okular.desktop";
+        "application/pdf" = "org.pwmt.zathura.desktop";
         "application/x-extension-htm" = "firefox.desktop";
         "application/x-extension-html" = "firefox.desktop";
         "application/x-extension-shtml" = "firefox.desktop";
         "application/x-extension-xht" = "firefox.desktop";
         "application/x-extension-xhtml" = "firefox.desktop";
         "application/xhtml+xml" = "firefox.desktop";
+        "application/zip" = "org.kde.ark.desktop";
         "image/png" = "gwenview.desktop";
         "message/rfc822" = "userapp-Thunderbird-PIT5X3.desktop";
         "text/csv" = "calc.desktop";

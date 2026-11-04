@@ -33,11 +33,13 @@
               };
               noctalia.enable = true;
               thunderbird.enable = true;
-              vdirsyncer = {
+              pimsync = {
                 enable = true;
-                collections = [
-                  "from a"
-                  "from b"
+                extraPairDirectives = [
+                  {
+                    name = "collections";
+                    params = [ "all" ];
+                  }
                 ];
               };
             };
@@ -46,11 +48,31 @@
             remote.type = "http";
             noctalia.enable = true;
             thunderbird.enable = true;
-            vdirsyncer = {
+            pimsync = {
               enable = true;
-              urlCommand = [
-                "cat"
-                config.sops.secrets."accounts/speqtral/calendar_url".path
+              extraRemoteStorageDirectives = [
+                {
+                  name = "collection_id";
+                  params = [ "speqtral" ];
+                }
+                {
+                  name = "url";
+                  children = [
+                    {
+                      name = "cmd";
+                      params = [
+                        "cat"
+                        config.sops.secrets."accounts/speqtral/calendar_url".path
+                      ];
+                    }
+                  ];
+                }
+              ];
+              extraPairDirectives = [
+                {
+                  name = "collection";
+                  params = [ "speqtral" ];
+                }
               ];
             };
           };
@@ -67,16 +89,45 @@
                 ];
               };
               thunderbird.enable = true;
-              vdirsyncer = {
+              pimsync = {
                 enable = true;
-                collections = [
-                  "from a"
-                  "from b"
+                extraPairDirectives = [
+                  {
+                    name = "collections";
+                    params = [ "all" ];
+                  }
                 ];
               };
             };
           };
           email.accounts = {
+            "proton" = {
+              address = "fabian.koehler@proton.me";
+              realName = "Fabian Koehler";
+              userName = "fabian.koehler@proton.me";
+              flavor = "plain";
+              imap = {
+                authentication = "plain";
+                host = "127.0.0.1";
+                port = 1143;
+                tls = {
+                  enable = true;
+                  useStartTls = true;
+                };
+              };
+              smtp = {
+                authentication = "plain";
+                host = "127.0.0.1";
+                port = 1025;
+                tls = {
+                  enable = true;
+                  useStartTls = true;
+                };
+              };
+              thunderbird = {
+                enable = true;
+              };
+            };
             "fastmail" = {
               address = "fabian@fkoehler.me";
               primary = true;
@@ -116,11 +167,18 @@
             };
           };
         };
+        # pimsync does not create its local vdir storage directories
+        home.activation.createPimsyncDirs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          run mkdir -p \
+            "$HOME/.local/state/calendars/fastmail" \
+            "$HOME/.local/state/calendars/speqtral" \
+            "$HOME/.local/state/contacts/fastmail"
+        '';
         programs = {
-          vdirsyncer.enable = true;
+          pimsync.enable = true;
         };
         services = {
-          vdirsyncer.enable = true;
+          pimsync.enable = true;
         };
       };
 }

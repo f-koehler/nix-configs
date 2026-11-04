@@ -199,20 +199,6 @@ in
         enable = true;
       };
     };
-    herdr = {
-      enable = true;
-      mutableSettings = true;
-      settings = {
-        theme = {
-          name = "catppuccin";
-        };
-        ui = {
-          show_agent_labels_on_pane_borders = true;
-          sound.enabled = false;
-          toast.delivery = "herdr";
-        };
-      };
-    };
     man = {
       enable = true;
       package = pkgs.man;

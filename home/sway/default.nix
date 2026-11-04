@@ -109,6 +109,12 @@ in
                         title = ".*Browser Access Request$";
                       };
                     }
+                    {
+                      command = "floating enable";
+                      criteria = {
+                        app_id = "org.kde.kcharselect";
+                      };
+                    }
                   ];
                 };
                 workspaceAutoBackAndForth = true;

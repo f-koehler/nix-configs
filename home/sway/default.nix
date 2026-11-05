@@ -82,6 +82,10 @@ in
                   "XF86MonBrightnessUp" = "exec ${noctaliaExe} msg brightness-up";
                   "Print" = "exec ${lib.getExe' pkgs.flameshot "flameshot"} gui";
                 };
+                input."type:keyboard" = {
+                  xkb_layout = "us,de";
+                  xkb_options = "grp:alt_shift_toggle";
+                };
                 menu = "${noctaliaExe} msg panel-toggle launcher";
                 terminal = "${lib.getExe' config.programs.ghostty.package "ghostty"}";
                 window = {

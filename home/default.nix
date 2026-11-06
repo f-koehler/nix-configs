@@ -75,6 +75,7 @@ in
       pkgs.prettier
       pkgs.sops
       pkgs.ssh-to-age
+      pkgs.poppler-utils
     ]
     ++ lib.optionals workstation [
       pkgs.ccache

@@ -51,7 +51,17 @@
         hardware.i2c.enable = true;
         xdg.portal = {
           enable = true;
-          extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
+          extraPortals = [
+            pkgs.kdePackages.xdg-desktop-portal-kde
+            pkgs.xdg-desktop-portal-luminous
+          ];
+          config.sway = {
+            "org.freedesktop.impl.portal.RemoteDesktop" = "luminous";
+            "org.freedesktop.impl.portal.Clipboard" = "luminous";
+            "org.freedesktop.impl.portal.Background" = "luminous";
+            "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
+            "org.freedesktop.impl.portal.Inhibit" = lib.mkForce "gtk";
+          };
         };
         environment.sessionVariables.XDG_MENU_PREFIX = "plasma-";
         environment.systemPackages = with pkgs; [

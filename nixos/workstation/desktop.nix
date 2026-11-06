@@ -92,6 +92,8 @@
           kdePackages.qqc2-breeze-style
           kdePackages.breeze-icons
           keepassxc
+
+          qbittorrent
         ];
         qt = {
           enable = true;

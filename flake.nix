@@ -6,6 +6,10 @@
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    colmena = {
+      url = "github:nix-community/colmena";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     direnv-instant = {
       url = "github:Mic92/direnv-instant";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -93,6 +97,7 @@
           tags ? [ ],
           # channel to build the NixOS system from, e.g. a stable one for servers
           nixpkgs ? inputs.nixpkgs,
+          deployment ? { },
         }:
         let
           isServer = lib.elem "server" tags;
@@ -132,14 +137,15 @@
               ./nodes/${node}/darwin.nix
             ];
           };
+          nixosModules = [
+            platform
+            ./nixos
+          ]
+          ++ lib.optional (!isServer) ./nixos/workstation
+          ++ [ ./nodes/${node}/nixos.nix ];
           nixos = nixpkgs.lib.nixosSystem {
             inherit specialArgs;
-            modules = [
-              platform
-              ./nixos
-            ]
-            ++ lib.optional (!isServer) ./nixos/workstation
-            ++ [ ./nodes/${node}/nixos.nix ];
+            modules = nixosModules;
           };
         in
         # nodes without a home.nix (servers) have no standalone home-manager config
@@ -158,6 +164,26 @@
             else
               {
                 nixosConfigurations.${node} = nixos;
+                colmena.${node} = {
+                  imports = nixosModules ++ [
+                    {
+                      nixpkgs.flake.source = nixpkgs.outPath;
+                      system.nixos = {
+                        versionSuffix = ".${
+                          lib.substring 0 8 (nixpkgs.lastModifiedDate or "19700101")
+                        }.${nixpkgs.shortRev or "dirty"}";
+                        revision = nixpkgs.rev or null;
+                      };
+                    }
+                  ];
+                  deployment = {
+                    targetUser = user;
+                    inherit tags;
+                  }
+                  // deployment;
+                };
+                colmena.meta.nodeNixpkgs.${node} = import nixpkgs { inherit system; };
+                colmena.meta.nodeSpecialArgs.${node} = specialArgs;
                 checks.${system}."nixos-${node}" = nixos.config.system.build.toplevel;
               }
           );
@@ -171,6 +197,10 @@
             "desktop"
             "gpu-nvidia"
           ];
+          deployment = {
+            targetHost = "fk-desktop.corgi-dojo.ts.net";
+            buildOnTarget = true;
+          };
         }
         {
           user = "fkoehler";
@@ -180,6 +210,10 @@
             "speqtral"
             "laptop"
           ];
+          deployment = {
+            targetHost = "fk-t14.corgi-dojo.ts.net";
+            buildOnTarget = true;
+          };
         }
         {
           user = "fkoehler";
@@ -195,6 +229,15 @@
     in
     nodeOutputs
     // {
+      # `colmena apply --on <node>`; modules and specialArgs come from mkNode
+      colmenaHive = inputs.colmena.lib.makeHive (
+        lib.recursiveUpdate nodeOutputs.colmena {
+          meta = {
+            nixpkgs = getNixpkgs "x86_64-linux" [ ];
+            allowApplyAll = false;
+          };
+        }
+      );
       checks = lib.recursiveUpdate nodeOutputs.checks (
         forEachSystem (
           system:
@@ -247,6 +290,7 @@
             buildInputs = pre-commit-check.enabledPackages;
             packages = [
               inputs.home-manager.packages.${system}.home-manager
+              inputs.colmena.packages.${system}.colmena
               pkgs.nixd
               pkgs.nil
             ]

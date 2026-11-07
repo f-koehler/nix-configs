@@ -38,6 +38,7 @@ nodes/<node>/ configuration specific to a single node
 | `homeConfigurations."<user>@<node>"`         | every node     | `home/` + `theme.nix` + `nodes/<node>/home.nix`                     |
 | `nixosConfigurations.<node>`                 | Linux systems  | `nixos/` + `nodes/<node>/nixos.nix`                                 |
 | `darwinConfigurations.<node>`                | Darwin systems | `darwin/` + `nodes/<node>/darwin.nix`                               |
+| `colmena.<node>`, `colmenaHive`              | Linux systems  | the NixOS modules above + `deployment.*` options                    |
 | `checks.<system>.{home,nixos,darwin}-<node>` | every node     | the configurations above, evaluated by `nix flake check --no-build` |
 
 `user` and `inputs` are passed to the NixOS and nix-darwin modules via `specialArgs` (and to home-manager via `extraSpecialArgs`). `home.username` and `home.homeDirectory` are derived from `user` and `system`, so node files don't have to set them.
@@ -66,6 +67,35 @@ sudo nixos-rebuild switch --flake .
 sudo nixos-rebuild boot --flake .
 ```
 
+### Remote deployment (colmena)
+
+[colmena](https://github.com/nix-community/colmena) deploys the NixOS configurations to other machines. The hive (`colmenaHive`) reuses the modules of each `nixosConfigurations.<node>` and adds `deployment.*` options. Node tags (e.g. `laptop`, `server`) are available as colmena tags.
+
+```bash
+colmena apply --on fk-t14            # build and switch on a node
+colmena apply --on fk-t14 boot       # activate on the next boot (also: test, dry-activate)
+colmena apply --on @laptop           # select by tag
+colmena build --on fk-t14            # build only
+colmena apply-local --sudo           # deploy to the machine you are on
+```
+
+`--on` is required (`allowApplyAll = false`). The target host defaults to the node name, so it has to resolve (e.g. through Tailscale MagicDNS). `colmena apply-local` needs `allowLocalDeployment = true` for the node.
+
+Per-node options go in the node's entry in `flake.nix` and are merged into `deployment.*`:
+
+```nix
+{
+  user = "fkoehler";
+  system = "x86_64-linux";
+  node = "homeserver";
+  tags = [ "server" ];
+  deployment = {
+    targetHost = "homeserver.example.ts.net";
+    buildOnTarget = true;
+  };
+}
+```
+
 ### macOS
 
 ```bash
@@ -82,7 +112,7 @@ home-manager switch -b backup --flake .
 
 ## Development
 
-Enter the dev shell to get home-manager, darwin-rebuild (on macOS) and the pre-commit hooks:
+Enter the dev shell to get home-manager, colmena, darwin-rebuild (on macOS) and the pre-commit hooks:
 
 ```bash
 nix develop

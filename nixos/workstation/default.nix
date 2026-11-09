@@ -14,5 +14,6 @@
     ./networking.nix
     ./power.nix
     ./user.nix
+    ./virtualisation.nix
   ];
 }

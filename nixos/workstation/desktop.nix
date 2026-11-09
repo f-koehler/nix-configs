@@ -14,6 +14,10 @@
       {
         # authorization backend, the polkit agent itself is provided by noctalia
         security.polkit.enable = true;
+        security.pam.services = {
+          login.oo7.enable = true;
+          greetd.oo7.enable = true;
+        };
         programs = {
           dconf.enable = true;
           seahorse.enable = true;
@@ -37,10 +41,8 @@
           };
           flatpak.enable = true;
           gvfs.enable = true;
-          gnome = {
-            gnome-keyring.enable = true;
-            gcr-ssh-agent.enable = false;
-          };
+          oo7.enable = true;
+          dbus.packages = [ pkgs.gcr_3 ];
           greetd = {
             enable = true;
           };
@@ -59,7 +61,7 @@
             "org.freedesktop.impl.portal.RemoteDesktop" = "luminous";
             "org.freedesktop.impl.portal.Clipboard" = "luminous";
             "org.freedesktop.impl.portal.Background" = "luminous";
-            "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
+            "org.freedesktop.impl.portal.Secret" = "oo7-portal";
             "org.freedesktop.impl.portal.Inhibit" = lib.mkForce "gtk";
           };
         };

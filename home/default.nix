@@ -99,7 +99,7 @@ in
       BROWSER = "firefox";
       CMAKE_C_COMPILER_LAUNCHER = "ccache";
       CMAKE_CXX_COMPILER_LAUNCHER = "ccache";
-      VCPKG_ROOT = "${pkgs.vcpkg}";
+      VCPKG_ROOT = "${pkgs.vcpkg}/share/vcpkg";
     }
     // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
       # gpg-agent only exports this from shell init, GUI apps in the sway session need it too

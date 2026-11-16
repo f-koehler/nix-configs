@@ -20,5 +20,6 @@
         extraPackages = [ pkgs.mangohud ];
       };
     };
+    environment.systemPackages = [ pkgs.itch ];
   };
 }

@@ -108,6 +108,10 @@ lib.mkIf
           appId = "md.obsidian.Obsidian";
           origin = "flathub";
         }
+        {
+          appId = "org.zotero.Zotero";
+          origin = "flathub";
+        }
       ]
       ++ lib.optionals (hasTag "personal") [
         {

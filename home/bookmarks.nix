@@ -18,6 +18,15 @@
     ];
   })
   {
+    name = "Cycling";
+    bookmarks = [
+      {
+        name = "Pedalah";
+        url = "https://pedalah.com/";
+      }
+    ];
+  }
+  {
     name = "Nix";
     bookmarks = [
       {

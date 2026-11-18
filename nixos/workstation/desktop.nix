@@ -96,6 +96,8 @@
           keepassxc
 
           qbittorrent
+          mpv
+          picard
         ];
         qt = {
           enable = true;

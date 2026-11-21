@@ -82,6 +82,9 @@ in
       pkgs.vcpkg
     ]
     ++ lib.optional (hasTag "personal") pkgs.jellyfin-tui
+    ++ lib.optional (hasTag "personal" && pkgs.stdenv.hostPlatform.isLinux && workstation) (
+      pkgs.guitar-pro-8.override { dpi = 96; }
+    )
     ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       # pkgs.zotero
     ];
